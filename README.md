@@ -24,6 +24,14 @@ The notebook clones this repository from:
 https://github.com/piccoripico/whisper-colab.git
 ```
 
+## Generated notebook
+
+`Whisper_v3.ipynb` is generated from `scripts/build_notebook.py`. Edit the script, then rebuild the notebook:
+
+```powershell
+python scripts/build_notebook.py
+```
+
 ## Known limitations
 
 - Whisper can hallucinate common phrases during silence, especially at the beginning of recordings. This repository does not remove those phrases in post-processing.
@@ -33,6 +41,7 @@ https://github.com/piccoripico/whisper-colab.git
 ## Local tests
 
 ```powershell
+python scripts/build_notebook.py --check
 ruff format --check .
 ruff check .
 python -m unittest

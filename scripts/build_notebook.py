@@ -12,6 +12,9 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = REPO_ROOT / "Whisper_v3.ipynb"
+sys.path.insert(0, str(REPO_ROOT / "src"))
+
+from whisper_colab.colab_runner import LANGUAGE_OPTIONS, MODEL_OPTIONS  # noqa: E402
 
 
 def build_notebook() -> dict[str, Any]:
@@ -60,10 +63,10 @@ def build_notebook() -> dict[str, Any]:
                     DRIVE_FOLDER_PATH = "/content/drive/MyDrive/whisper-input" #@param {type:"string"}
                     DRIVE_RECURSIVE = False #@param {type:"boolean"}
 
-                    # Whisper model and language settings.
-                    MODEL_ID = "openai/whisper-large-v3-turbo" #@param {type:"string"}
-                    IS_JAPANESE_LANGUAGE = True #@param {type:"boolean"}
-                    TRANSLATE_INTO_ENGLISH = False #@param {type:"boolean"}
+                    # Whisper model and generation settings.
+                    MODEL_ID = "openai/whisper-large-v3-turbo" #@param __MODEL_CHOICES__
+                    LANGUAGE = "auto" #@param __LANGUAGE_CHOICES__
+                    TRANSLATE_TO_ENGLISH = False #@param {type:"boolean"}
 
                     # Output settings.
                     INCLUDE_TIMESTAMPS = True #@param {type:"boolean"}
@@ -104,8 +107,8 @@ def build_notebook() -> dict[str, Any]:
                         drive_folder_path=DRIVE_FOLDER_PATH,
                         drive_recursive=DRIVE_RECURSIVE,
                         model_id=MODEL_ID,
-                        is_japanese_language=IS_JAPANESE_LANGUAGE,
-                        translate_into_english=TRANSLATE_INTO_ENGLISH,
+                        language=LANGUAGE,
+                        translate_to_english=TRANSLATE_TO_ENGLISH,
                         include_timestamps=INCLUDE_TIMESTAMPS,
                         export_excel=EXPORT_EXCEL,
                         audio_output_dir=AUDIO_OUTPUT_DIR,
@@ -163,7 +166,18 @@ def check_notebook(output_path: Path) -> int:
 
 
 def _source_lines(text: str) -> list[str]:
-    return dedent(text).lstrip("\n").splitlines(keepends=True)
+    replacements = {
+        "__MODEL_CHOICES__": _colab_param_choices(MODEL_OPTIONS),
+        "__LANGUAGE_CHOICES__": _colab_param_choices(LANGUAGE_OPTIONS),
+    }
+    source = dedent(text).lstrip("\n")
+    for placeholder, value in replacements.items():
+        source = source.replace(placeholder, value)
+    return source.splitlines(keepends=True)
+
+
+def _colab_param_choices(values: list[str]) -> str:
+    return json.dumps(values)
 
 
 def main() -> int:

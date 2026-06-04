@@ -9,6 +9,8 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
 - Keeps the notebook small: user settings stay in the notebook, while the workflow lives in `src/whisper_colab`.
 - Converts input audio or video to Whisper-friendly WAV before transcription.
 - Uses `16 kHz / mono / PCM WAV` extraction through `ffmpeg`.
+- Lets you choose `openai/whisper-large-v3-turbo` or `openai/whisper-large-v3`.
+- Lets Whisper auto-detect the language by default, or lets you select a source language.
 - Downloads transcript outputs as `.txt` and, optionally, `.xlsx`.
 
 ## Colab usage
@@ -22,6 +24,8 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
    - `drive_folder_path`: enter a Google Drive folder path and process supported media files in that folder.
    - `drive_file_picker`: pick one file from mounted Google Drive with a small notebook widget.
    - `drive_folder_picker`: pick one folder from mounted Google Drive with a small notebook widget.
+5. Leave `LANGUAGE` as `auto` unless you want to force a source language.
+6. Enable `TRANSLATE_TO_ENGLISH` only when you want Whisper's translation task. Whisper translates speech to English, not to an arbitrary target language.
 
 The notebook clones this repository from:
 

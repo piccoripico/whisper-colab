@@ -32,6 +32,13 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertIn("https://github.com/piccoripico/whisper-colab.git", self.sources)
         self.assertIn("run_colab_transcription(config)", self.sources)
         self.assertIn("INPUT_MODE", self.sources)
+        self.assertIn("MODEL_ID", self.sources)
+        self.assertIn('"openai/whisper-large-v3-turbo"', self.sources)
+        self.assertIn('"openai/whisper-large-v3"', self.sources)
+        self.assertIn('LANGUAGE = "auto"', self.sources)
+        self.assertIn('"japanese"', self.sources)
+        self.assertIn('"english"', self.sources)
+        self.assertIn("TRANSLATE_TO_ENGLISH", self.sources)
         for input_mode in [
             "upload",
             "drive_file_paths",
@@ -43,6 +50,8 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertNotIn("pipeline(", self.sources)
         self.assertNotIn("extract_audio_for_whisper(", self.sources)
         self.assertNotIn("chunk_length_s", self.sources)
+        self.assertNotIn("IS_JAPANESE_LANGUAGE", self.sources)
+        self.assertNotIn("TRANSLATE_INTO_ENGLISH", self.sources)
         self.assertNotIn("YOUR_GITHUB" + "_USERNAME", self.sources)
 
     def test_notebook_keeps_colab_form_comments(self):

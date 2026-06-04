@@ -38,6 +38,31 @@ SUPPORTED_MEDIA_EXTENSIONS = {
 }
 DRIVE_ROOT = Path("/content/drive/MyDrive")
 
+MODEL_OPTIONS = [
+    "openai/whisper-large-v3-turbo",
+    "openai/whisper-large-v3",
+]
+
+LANGUAGE_AUTO = "auto"
+LANGUAGE_OPTIONS = [
+    LANGUAGE_AUTO,
+    "japanese",
+    "english",
+    "chinese",
+    "korean",
+    "spanish",
+    "french",
+    "german",
+    "italian",
+    "portuguese",
+    "russian",
+    "arabic",
+    "hindi",
+    "thai",
+    "vietnamese",
+    "indonesian",
+]
+
 
 @dataclass(frozen=True)
 class ColabTranscriptionConfig:
@@ -49,7 +74,9 @@ class ColabTranscriptionConfig:
     drive_folder_path: str = "/content/drive/MyDrive/whisper-input"
     drive_recursive: bool = False
     model_id: str = "openai/whisper-large-v3-turbo"
-    is_japanese_language: bool = True
+    language: str = LANGUAGE_AUTO
+    translate_to_english: bool = False
+    is_japanese_language: bool = False
     translate_into_english: bool = False
     include_timestamps: bool = True
     export_excel: bool = True
@@ -382,13 +409,27 @@ def _load_whisper_pipeline(model_id: str):
 
 
 def _build_generate_kwargs(config: ColabTranscriptionConfig) -> dict[str, str]:
-    if config.is_japanese_language and config.translate_into_english:
-        return {"language": "japanese", "task": "translate"}
-    if config.translate_into_english:
-        return {"task": "translate"}
-    if config.is_japanese_language:
-        return {"language": "japanese", "task": "transcribe"}
-    return {"task": "transcribe"}
+    language = _normalize_language(config.language)
+    if language is None and config.is_japanese_language:
+        language = "japanese"
+
+    kwargs = {"task": "translate" if _should_translate_to_english(config) else "transcribe"}
+    if language is not None:
+        kwargs["language"] = language
+    return kwargs
+
+
+def _normalize_language(language: str | None) -> str | None:
+    if language is None:
+        return None
+    normalized = language.strip().lower()
+    if normalized in {"", LANGUAGE_AUTO, "none"}:
+        return None
+    return normalized
+
+
+def _should_translate_to_english(config: ColabTranscriptionConfig) -> bool:
+    return config.translate_to_english or config.translate_into_english
 
 
 def _save_and_download_outputs(

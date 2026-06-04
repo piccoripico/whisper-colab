@@ -6,34 +6,63 @@ from src.whisper_colab.colab_runner import (
     INPUT_MODE_DRIVE_FILE_PATHS,
     INPUT_MODE_DRIVE_FOLDER_PATH,
     INPUT_MODE_UPLOAD,
+    LANGUAGE_AUTO,
+    LANGUAGE_OPTIONS,
+    MODEL_OPTIONS,
     ColabTranscriptionConfig,
     _build_generate_kwargs,
     _build_transcript,
     _collect_drive_folder_paths,
     _normalize_input_mode,
+    _normalize_language,
     _validate_media_files,
 )
 
 
 class ColabRunnerTests(unittest.TestCase):
-    def test_build_generate_kwargs_for_japanese_transcription(self):
+    def test_model_and_language_options_expose_expected_defaults(self):
+        self.assertEqual(MODEL_OPTIONS[0], "openai/whisper-large-v3-turbo")
+        self.assertIn("openai/whisper-large-v3", MODEL_OPTIONS)
+        self.assertEqual(LANGUAGE_OPTIONS[0], LANGUAGE_AUTO)
+        self.assertIn("japanese", LANGUAGE_OPTIONS)
+        self.assertIn("english", LANGUAGE_OPTIONS)
+
+    def test_build_generate_kwargs_defaults_to_auto_language_transcription(self):
+        config = ColabTranscriptionConfig()
+
+        self.assertEqual(_build_generate_kwargs(config), {"task": "transcribe"})
+
+    def test_build_generate_kwargs_with_source_language(self):
+        config = ColabTranscriptionConfig(language="japanese")
+
+        self.assertEqual(
+            _build_generate_kwargs(config),
+            {"task": "transcribe", "language": "japanese"},
+        )
+
+    def test_build_generate_kwargs_for_translation_to_english(self):
         config = ColabTranscriptionConfig(
-            is_japanese_language=True,
-            translate_into_english=False,
+            language="japanese",
+            translate_to_english=True,
         )
 
         self.assertEqual(
             _build_generate_kwargs(config),
-            {"language": "japanese", "task": "transcribe"},
+            {"task": "translate", "language": "japanese"},
         )
 
-    def test_build_generate_kwargs_for_translation(self):
-        config = ColabTranscriptionConfig(
-            is_japanese_language=False,
-            translate_into_english=True,
+    def test_build_generate_kwargs_preserves_legacy_japanese_flag(self):
+        config = ColabTranscriptionConfig(is_japanese_language=True)
+
+        self.assertEqual(
+            _build_generate_kwargs(config),
+            {"task": "transcribe", "language": "japanese"},
         )
 
-        self.assertEqual(_build_generate_kwargs(config), {"task": "translate"})
+    def test_normalize_language_treats_auto_as_unspecified(self):
+        self.assertIsNone(_normalize_language("auto"))
+        self.assertIsNone(_normalize_language(""))
+        self.assertEqual(_normalize_language(" English "), "english")
 
     def test_build_transcript_with_timestamps(self):
         transcription = {

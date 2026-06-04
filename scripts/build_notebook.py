@@ -48,13 +48,17 @@ def build_notebook() -> dict[str, Any]:
                     """
                     #@title 1. Settings
 
-                    # Use Google Drive file paths instead of Colab upload.
-                    USE_GOOGLE_DRIVE_FILES = False #@param {type:"boolean"}
+                    # Input mode.
+                    INPUT_MODE = "upload" #@param ["upload", "drive_file_paths", "drive_folder_path", "drive_file_picker", "drive_folder_picker"]
 
-                    # Used only when USE_GOOGLE_DRIVE_FILES is True.
+                    # Used only when INPUT_MODE is "drive_file_paths".
                     MEETING_FILE_PATHS = [
                         "/content/drive/MyDrive/path/to/meeting.mp4",
                     ]
+
+                    # Used only when INPUT_MODE is "drive_folder_path".
+                    DRIVE_FOLDER_PATH = "/content/drive/MyDrive/whisper-input" #@param {type:"string"}
+                    DRIVE_RECURSIVE = False #@param {type:"boolean"}
 
                     # Whisper model and language settings.
                     MODEL_ID = "openai/whisper-large-v3-turbo" #@param {type:"string"}
@@ -95,8 +99,10 @@ def build_notebook() -> dict[str, Any]:
                     from whisper_colab import ColabTranscriptionConfig, run_colab_transcription  # noqa: E402
 
                     config = ColabTranscriptionConfig(
-                        use_google_drive_files=USE_GOOGLE_DRIVE_FILES,
+                        input_mode=INPUT_MODE,
                         meeting_file_paths=MEETING_FILE_PATHS,
+                        drive_folder_path=DRIVE_FOLDER_PATH,
+                        drive_recursive=DRIVE_RECURSIVE,
                         model_id=MODEL_ID,
                         is_japanese_language=IS_JAPANESE_LANGUAGE,
                         translate_into_english=TRANSLATE_INTO_ENGLISH,

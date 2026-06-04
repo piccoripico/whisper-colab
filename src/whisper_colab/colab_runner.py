@@ -4,19 +4,50 @@ from __future__ import annotations
 
 import shutil
 import subprocess
+from collections.abc import Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 from .audio import extract_audio_for_whisper
 
+INPUT_MODE_UPLOAD = "upload"
+INPUT_MODE_DRIVE_FILE_PATHS = "drive_file_paths"
+INPUT_MODE_DRIVE_FOLDER_PATH = "drive_folder_path"
+INPUT_MODE_DRIVE_FILE_PICKER = "drive_file_picker"
+INPUT_MODE_DRIVE_FOLDER_PICKER = "drive_folder_picker"
+
+INPUT_MODES = {
+    INPUT_MODE_UPLOAD,
+    INPUT_MODE_DRIVE_FILE_PATHS,
+    INPUT_MODE_DRIVE_FOLDER_PATH,
+    INPUT_MODE_DRIVE_FILE_PICKER,
+    INPUT_MODE_DRIVE_FOLDER_PICKER,
+}
+
+SUPPORTED_MEDIA_EXTENSIONS = {
+    ".aac",
+    ".flac",
+    ".m4a",
+    ".mov",
+    ".mp3",
+    ".mp4",
+    ".ogg",
+    ".wav",
+    ".webm",
+}
+DRIVE_ROOT = Path("/content/drive/MyDrive")
+
 
 @dataclass(frozen=True)
 class ColabTranscriptionConfig:
     """User-facing settings passed from the thin Colab notebook."""
 
+    input_mode: str = INPUT_MODE_UPLOAD
     use_google_drive_files: bool = False
     meeting_file_paths: list[str] = field(default_factory=list)
+    drive_folder_path: str = "/content/drive/MyDrive/whisper-input"
+    drive_recursive: bool = False
     model_id: str = "openai/whisper-large-v3-turbo"
     is_japanese_language: bool = True
     translate_into_english: bool = False
@@ -118,18 +149,195 @@ def _import_colab_files():
 
 
 def _collect_input_paths(config: ColabTranscriptionConfig, files_module) -> list[Path]:
-    if config.use_google_drive_files:
-        from google.colab import drive
+    input_mode = _normalize_input_mode(config)
+    if input_mode == INPUT_MODE_UPLOAD:
+        return _collect_uploaded_paths(files_module)
 
-        drive.mount("/content/drive")
-        if not config.meeting_file_paths:
-            raise ValueError("meeting_file_paths must be set when use_google_drive_files is True.")
-        return [Path(path) for path in config.meeting_file_paths]
+    _mount_drive()
 
+    if input_mode == INPUT_MODE_DRIVE_FILE_PATHS:
+        return _collect_manual_drive_file_paths(config.meeting_file_paths)
+    if input_mode == INPUT_MODE_DRIVE_FOLDER_PATH:
+        return _collect_drive_folder_paths(
+            config.drive_folder_path,
+            recursive=config.drive_recursive,
+        )
+    if input_mode == INPUT_MODE_DRIVE_FILE_PICKER:
+        return _collect_picker_paths(select_folder=False, recursive=config.drive_recursive)
+    if input_mode == INPUT_MODE_DRIVE_FOLDER_PICKER:
+        return _collect_picker_paths(select_folder=True, recursive=config.drive_recursive)
+
+    raise ValueError(f"Unsupported input_mode: {config.input_mode!r}")
+
+
+def _normalize_input_mode(config: ColabTranscriptionConfig) -> str:
+    if config.input_mode not in INPUT_MODES:
+        raise ValueError(
+            f"input_mode must be one of {sorted(INPUT_MODES)}. Got {config.input_mode!r}."
+        )
+    if config.use_google_drive_files and config.input_mode == INPUT_MODE_UPLOAD:
+        return INPUT_MODE_DRIVE_FILE_PATHS
+    return config.input_mode
+
+
+def _collect_uploaded_paths(files_module) -> list[Path]:
     uploaded = files_module.upload()
     if not uploaded:
         raise SystemExit("No file was uploaded.")
     return [Path("/content") / name for name in uploaded.keys()]
+
+
+def _mount_drive() -> None:
+    from google.colab import drive
+
+    drive.mount("/content/drive")
+
+
+def _collect_manual_drive_file_paths(file_paths: Iterable[str]) -> list[Path]:
+    paths = [Path(path) for path in file_paths]
+    if not paths:
+        raise ValueError("meeting_file_paths must be set when input_mode is drive_file_paths.")
+    return _validate_media_files(paths)
+
+
+def _collect_drive_folder_paths(folder_path: str, *, recursive: bool) -> list[Path]:
+    folder = Path(folder_path)
+    if not folder.exists():
+        raise FileNotFoundError(f"Drive folder does not exist: {folder}")
+    if not folder.is_dir():
+        raise NotADirectoryError(f"Drive folder path is not a directory: {folder}")
+    return _find_media_files(folder, recursive=recursive)
+
+
+def _collect_picker_paths(*, select_folder: bool, recursive: bool) -> list[Path]:
+    selected_path = _pick_drive_path(select_folder=select_folder)
+    if select_folder:
+        return _find_media_files(selected_path, recursive=recursive)
+    return _validate_media_files([selected_path])
+
+
+def _find_media_files(folder: Path, *, recursive: bool) -> list[Path]:
+    iterator = folder.rglob("*") if recursive else folder.iterdir()
+    paths = sorted(
+        path
+        for path in iterator
+        if path.is_file() and path.suffix.lower() in SUPPORTED_MEDIA_EXTENSIONS
+    )
+    if not paths:
+        raise FileNotFoundError(
+            f"No supported media files were found in {folder}. "
+            f"Supported extensions: {', '.join(sorted(SUPPORTED_MEDIA_EXTENSIONS))}"
+        )
+    return paths
+
+
+def _validate_media_files(paths: Iterable[Path]) -> list[Path]:
+    valid_paths = []
+    for path in paths:
+        if not path.exists():
+            raise FileNotFoundError(f"Input file does not exist: {path}")
+        if not path.is_file():
+            raise ValueError(f"Input path is not a file: {path}")
+        if path.suffix.lower() not in SUPPORTED_MEDIA_EXTENSIONS:
+            raise ValueError(
+                f"Unsupported media extension for {path}. "
+                f"Supported extensions: {', '.join(sorted(SUPPORTED_MEDIA_EXTENSIONS))}"
+            )
+        valid_paths.append(path)
+    return valid_paths
+
+
+def _pick_drive_path(*, select_folder: bool) -> Path:
+    try:
+        import ipywidgets as widgets
+        from IPython.display import clear_output, display
+    except ImportError as exc:
+        raise RuntimeError("Drive picker mode requires ipywidgets in the Colab runtime.") from exc
+
+    start_path = DRIVE_ROOT if DRIVE_ROOT.exists() else Path("/content/drive")
+    state = {"current": start_path, "selected": None}
+    output = widgets.Output()
+    path_label = widgets.HTML()
+    status_label = widgets.HTML()
+    items = widgets.Select(rows=14, layout=widgets.Layout(width="100%"))
+    open_button = widgets.Button(description="Open")
+    parent_button = widgets.Button(description="Parent")
+    select_button = widgets.Button(description="Select")
+
+    def refresh() -> None:
+        current = state["current"]
+        path_label.value = f"<b>Current:</b> {current}"
+        entries = ["./"] if select_folder else []
+        if current.parent != current:
+            entries.append("../")
+        children = sorted(current.iterdir(), key=lambda path: (path.is_file(), path.name.lower()))
+        for child in children:
+            if child.is_dir():
+                entries.append(f"{child.name}/")
+            elif not select_folder and child.suffix.lower() in SUPPORTED_MEDIA_EXTENSIONS:
+                entries.append(child.name)
+        items.options = entries
+        if entries:
+            items.value = entries[0]
+
+    def selected_child() -> Path | None:
+        value = items.value
+        if not value:
+            return None
+        if value == "./":
+            return state["current"]
+        if value == "../":
+            return state["current"].parent
+        return state["current"] / value.rstrip("/")
+
+    def on_open(_button) -> None:
+        child = selected_child()
+        if child and child.is_dir():
+            state["current"] = child
+            refresh()
+
+    def on_parent(_button) -> None:
+        if state["current"].parent != state["current"]:
+            state["current"] = state["current"].parent
+            refresh()
+
+    def on_select(_button) -> None:
+        child = selected_child()
+        if select_folder:
+            selected = child if child and child.is_dir() else state["current"]
+        else:
+            selected = child
+        if selected is None or not selected.exists():
+            status_label.value = "<b>No valid path selected.</b>"
+            return
+        if not select_folder and not selected.is_file():
+            status_label.value = "<b>Select a media file.</b>"
+            return
+        state["selected"] = selected
+        status_label.value = f"<b>Selected:</b> {selected}"
+
+    open_button.on_click(on_open)
+    parent_button.on_click(on_parent)
+    select_button.on_click(on_select)
+    refresh()
+
+    with output:
+        clear_output()
+        display(
+            widgets.VBox(
+                [
+                    path_label,
+                    items,
+                    widgets.HBox([open_button, parent_button, select_button]),
+                    status_label,
+                ]
+            )
+        )
+    display(output)
+
+    while state["selected"] is None:
+        input("Use the picker above, click Select, then press Enter here to continue.")
+    return state["selected"]
 
 
 def _load_whisper_pipeline(model_id: str):

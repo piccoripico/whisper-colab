@@ -31,6 +31,15 @@ class NotebookStructureTests(unittest.TestCase):
     def test_notebook_is_thin_github_launcher(self):
         self.assertIn("https://github.com/piccoripico/whisper-colab.git", self.sources)
         self.assertIn("run_colab_transcription(config)", self.sources)
+        self.assertIn("INPUT_MODE", self.sources)
+        for input_mode in [
+            "upload",
+            "drive_file_paths",
+            "drive_folder_path",
+            "drive_file_picker",
+            "drive_folder_picker",
+        ]:
+            self.assertIn(input_mode, self.sources)
         self.assertNotIn("pipeline(", self.sources)
         self.assertNotIn("extract_audio_for_whisper(", self.sources)
         self.assertNotIn("chunk_length_s", self.sources)

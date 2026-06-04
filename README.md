@@ -16,7 +16,12 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
 1. Open `Whisper_v3.ipynb` in Google Colab.
 2. Edit the settings cell.
 3. Run the bootstrap/run cell.
-4. Choose files through Colab upload, or set Google Drive paths when `USE_GOOGLE_DRIVE_FILES` is enabled.
+4. Choose an input mode:
+   - `upload`: upload local files to the Colab runtime.
+   - `drive_file_paths`: enter one or more Google Drive file paths manually.
+   - `drive_folder_path`: enter a Google Drive folder path and process supported media files in that folder.
+   - `drive_file_picker`: pick one file from mounted Google Drive with a small notebook widget.
+   - `drive_folder_picker`: pick one folder from mounted Google Drive with a small notebook widget.
 
 The notebook clones this repository from:
 

@@ -1,7 +1,6 @@
-from pathlib import Path
 import json
 import unittest
-
+from pathlib import Path
 
 NOTEBOOK_PATH = Path(__file__).resolve().parents[1] / "Whisper_v3.ipynb"
 
@@ -36,6 +35,11 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertNotIn("extract_audio_for_whisper(", self.sources)
         self.assertNotIn("chunk_length_s", self.sources)
         self.assertNotIn("YOUR_GITHUB" + "_USERNAME", self.sources)
+
+    def test_notebook_keeps_colab_form_comments(self):
+        self.assertIn("#@title", self.sources)
+        self.assertIn("#@param", self.sources)
+        self.assertNotIn("# @param", self.sources)
 
 
 if __name__ == "__main__":

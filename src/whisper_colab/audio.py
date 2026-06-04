@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 import subprocess
-from typing import Sequence
-
+from collections.abc import Sequence
+from pathlib import Path
 
 MIN_AUDIO_BYTES = 1_000
 
@@ -127,8 +126,10 @@ def _looks_like_missing_audio_stream(message: str) -> bool:
     lowered = message.lower()
     return (
         "matches no streams" in lowered
-        or "stream map" in lowered and "no streams" in lowered
-        or "audio:0" in lowered and "not found" in lowered
+        or "stream map" in lowered
+        and "no streams" in lowered
+        or "audio:0" in lowered
+        and "not found" in lowered
     )
 
 
@@ -137,6 +138,5 @@ def _validate_output(output: Path) -> None:
         raise AudioExtractionError(f"ffmpeg did not create an output file: {output}")
     if output.stat().st_size < MIN_AUDIO_BYTES:
         raise AudioExtractionError(
-            f"Extracted audio is too small to be usable: {output} "
-            f"({output.stat().st_size} bytes)"
+            f"Extracted audio is too small to be usable: {output} ({output.stat().st_size} bytes)"
         )

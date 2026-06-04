@@ -33,8 +33,12 @@ https://github.com/piccoripico/whisper-colab.git
 ## Local tests
 
 ```powershell
+ruff format --check .
+ruff check .
 python -m unittest
 ```
+
+The same checks run in GitHub Actions on pushes to `main` and on pull requests.
 
 ## License
 

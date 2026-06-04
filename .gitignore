@@ -9,6 +9,7 @@ venv/
 .ipynb_checkpoints/
 .pytest_cache/
 .mypy_cache/
+.ruff_cache/
 
 upgrades_done.flag
 whisper_audio/

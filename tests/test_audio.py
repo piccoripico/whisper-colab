@@ -1,10 +1,9 @@
-from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 from unittest.mock import patch
-
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
@@ -63,9 +62,7 @@ class ExtractAudioForWhisperTests(unittest.TestCase):
 
             with patch(
                 "whisper_colab.audio.subprocess.run",
-                return_value=subprocess.CompletedProcess(
-                    ["ffmpeg"], 1, "", "invalid codec data"
-                ),
+                return_value=subprocess.CompletedProcess(["ffmpeg"], 1, "", "invalid codec data"),
             ):
                 with self.assertRaisesRegex(AudioExtractionError, "invalid codec data"):
                     extract_audio_for_whisper(source, output_dir=Path(temp_dir) / "audio")

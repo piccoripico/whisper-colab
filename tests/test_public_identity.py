@@ -1,7 +1,6 @@
-from pathlib import Path
 import re
 import unittest
-
+from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FORBIDDEN_LITERALS = [
@@ -24,7 +23,7 @@ def _read_public_text_files():
     for path in REPO_ROOT.rglob("*"):
         if not path.is_file():
             continue
-        if ".git" in path.parts or "__pycache__" in path.parts:
+        if ".git" in path.parts or ".ruff_cache" in path.parts or "__pycache__" in path.parts:
             continue
         if path.suffix in {".pyc", ".wav", ".mp3", ".mp4", ".xlsx"}:
             continue

@@ -2,6 +2,7 @@ import unittest
 import zipfile
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from src.whisper_colab.colab_runner import (
@@ -26,6 +27,7 @@ from src.whisper_colab.colab_runner import (
     _normalize_language,
     _normalize_max_segment_seconds,
     _prepare_downloadable_outputs,
+    _resolve_torch_device,
     _run_transcription_pipeline,
     _save_outputs,
     _split_audio_for_transcription,
@@ -111,6 +113,28 @@ class ColabRunnerTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "model_id"):
             _validate_config(config)
+
+    def test_resolve_torch_device_uses_cuda_when_available(self):
+        torch = _FakeTorch(cuda_available=True)
+
+        self.assertEqual(
+            _resolve_torch_device(torch, require_gpu=True),
+            ("cuda:0", "float16"),
+        )
+
+    def test_resolve_torch_device_rejects_cpu_when_gpu_is_required(self):
+        torch = _FakeTorch(cuda_available=False)
+
+        with self.assertRaisesRegex(RuntimeError, "CUDA GPU is required"):
+            _resolve_torch_device(torch, require_gpu=True)
+
+    def test_resolve_torch_device_can_fallback_to_cpu(self):
+        torch = _FakeTorch(cuda_available=False)
+
+        self.assertEqual(
+            _resolve_torch_device(torch, require_gpu=False),
+            ("cpu", "float32"),
+        )
 
     def test_normalize_max_segment_seconds(self):
         self.assertEqual(_normalize_max_segment_seconds("1800"), 1800)
@@ -367,6 +391,14 @@ class _CompletedProcess:
         self.returncode = 0
         self.stdout = ""
         self.stderr = ""
+
+
+class _FakeTorch:
+    float16 = "float16"
+    float32 = "float32"
+
+    def __init__(self, *, cuda_available):
+        self.cuda = SimpleNamespace(is_available=lambda: cuda_available)
 
 
 if __name__ == "__main__":

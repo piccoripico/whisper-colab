@@ -34,6 +34,8 @@ def build_notebook() -> dict[str, Any]:
 
                     After the cell runs, Colab prints a Gradio URL. Open that URL in a new tab, pick files from Google Drive, choose model and output settings, then click `Run transcription` in the app.
 
+                    This notebook requires a CUDA GPU by default. In Colab, choose `Runtime > Change runtime type > Hardware accelerator > GPU` before launching the app.
+
                     ## Details
 
                     This notebook is a thin launcher for `piccoripico/whisper-colab`. The implementation is cloned from GitHub and imported from `src/whisper_colab`.
@@ -71,6 +73,9 @@ def build_notebook() -> dict[str, Any]:
                     # Install Python packages and ffmpeg in the Colab runtime when needed.
                     INSTALL_PACKAGES = True #@param {type:"boolean"}
 
+                    # Exit before launching the app if this runtime has no CUDA GPU.
+                    REQUIRE_GPU = True #@param {type:"boolean"}
+
                     import subprocess
                     import sys
                     from pathlib import Path
@@ -87,6 +92,7 @@ def build_notebook() -> dict[str, Any]:
 
                     config = ColabTranscriptionConfig(
                         install_packages=INSTALL_PACKAGES,
+                        require_gpu=REQUIRE_GPU,
                     )
 
                     app = launch_gradio_app(config, share=True, inline=False)

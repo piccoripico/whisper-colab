@@ -34,6 +34,8 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertIn("#@title Launch Whisper Colab App", self.sources)
         self.assertIn("https://github.com/piccoripico/whisper-colab.git", self.sources)
         self.assertIn("launch_gradio_app(config, share=True, inline=False)", self.sources)
+        self.assertIn("REQUIRE_GPU = True", self.sources)
+        self.assertIn("require_gpu=REQUIRE_GPU", self.sources)
         self.assertNotIn("run_colab_transcription(config)", self.sources)
         self.assertNotIn("launch_colab" + "_ui", self.sources)
         self.assertNotIn("USE_WIDGET" + "_UI", self.sources)

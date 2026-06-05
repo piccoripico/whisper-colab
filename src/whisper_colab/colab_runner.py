@@ -146,6 +146,7 @@ class ColabTranscriptionConfig:
     zip_file_name: str = DEFAULT_ZIP_FILE_NAME
     max_segment_seconds: int = 0
     install_packages: bool = True
+    require_gpu: bool = True
 
 
 def run_colab_transcription(config: ColabTranscriptionConfig) -> list[dict[str, Any]]:
@@ -197,7 +198,7 @@ def _run_transcription_pipeline(
     if not input_paths:
         raise ValueError("At least one input file is required.")
 
-    pipe = _load_whisper_pipeline(config.model_id)
+    pipe = _load_whisper_pipeline(config.model_id, require_gpu=config.require_gpu)
     generate_kwargs = _build_generate_kwargs(config)
     max_segment_seconds = _normalize_max_segment_seconds(config.max_segment_seconds)
     output_dir = Path(config.output_dir).expanduser()
@@ -435,12 +436,19 @@ def _validate_media_files(paths: Iterable[Path]) -> list[Path]:
     return valid_paths
 
 
-def _load_whisper_pipeline(model_id: str):
+def require_gpu_available() -> None:
+    """Fail early when the runtime is not backed by a CUDA GPU."""
+
+    import torch
+
+    _resolve_torch_device(torch, require_gpu=True)
+
+
+def _load_whisper_pipeline(model_id: str, *, require_gpu: bool = True):
     import torch
     from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 
-    device = "cuda:0" if torch.cuda.is_available() else "cpu"
-    torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
+    device, torch_dtype = _resolve_torch_device(torch, require_gpu=require_gpu)
     model_load_kwargs = {
         "low_cpu_mem_usage": True,
         "use_safetensors": True,
@@ -474,6 +482,17 @@ def _load_whisper_pipeline(model_id: str):
         return pipeline(**pipeline_kwargs, dtype=torch_dtype)
     except TypeError:
         return pipeline(**pipeline_kwargs, torch_dtype=torch_dtype)
+
+
+def _resolve_torch_device(torch_module, *, require_gpu: bool):
+    if torch_module.cuda.is_available():
+        return "cuda:0", torch_module.float16
+    if require_gpu:
+        raise RuntimeError(
+            "A CUDA GPU is required for this notebook. In Colab, choose "
+            "Runtime > Change runtime type > Hardware accelerator > GPU, then rerun."
+        )
+    return "cpu", torch_module.float32
 
 
 def _split_audio_for_transcription(

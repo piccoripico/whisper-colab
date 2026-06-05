@@ -15,6 +15,7 @@ from src.whisper_colab.colab_runner import (
 from src.whisper_colab.gradio_app import (
     collect_gradio_input_paths,
     config_from_gradio_values,
+    input_section_visibility,
     ui_values_from_config,
 )
 
@@ -69,6 +70,17 @@ class GradioAppTests(unittest.TestCase):
         self.assertEqual(config.custom_language, "Welsh")
         self.assertEqual(config.max_segment_seconds, 1800)
         self.assertFalse(config.install_packages)
+        self.assertTrue(config.require_gpu)
+
+    def test_input_section_visibility_matches_selected_input_mode(self):
+        self.assertEqual(
+            input_section_visibility(INPUT_MODE_DRIVE_FILE_PICKER),
+            (False, True, False, False, False),
+        )
+        self.assertEqual(
+            input_section_visibility(INPUT_MODE_UPLOAD),
+            (False, False, False, False, True),
+        )
 
     def test_drive_file_picker_collects_selected_files(self):
         with TemporaryDirectory() as temp_dir:
@@ -180,6 +192,7 @@ class GradioAppTests(unittest.TestCase):
                 False,
                 "outputs.zip",
                 "/content/whisper_audio",
+                True,
             )
 
         self.assertIn("Processed 1 file", status)

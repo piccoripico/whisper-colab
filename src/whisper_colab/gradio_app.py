@@ -23,6 +23,7 @@ from .colab_runner import (
     _find_media_files,
     _validate_media_files,
     install_colab_dependencies,
+    require_gpu_available,
     run_transcription_for_paths,
 )
 
@@ -54,6 +55,8 @@ def launch_gradio_app(
     config = initial_config or ColabTranscriptionConfig()
     if config.install_packages:
         install_colab_dependencies()
+    if config.require_gpu:
+        require_gpu_available()
     _mount_drive_for_picker()
     gr = _import_gradio(install_packages=config.install_packages)
     demo = _build_gradio_blocks(gr, config)
@@ -88,6 +91,7 @@ def config_from_gradio_values(values: dict[str, Any]) -> ColabTranscriptionConfi
         zip_file_name=str(values["zip_file_name"]),
         max_segment_seconds=int(values["max_segment_seconds"]),
         install_packages=False,
+        require_gpu=bool(values.get("require_gpu", True)),
     )
 
 
@@ -153,34 +157,55 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 value=values["drive_recursive"],
                 label="Search Drive folders recursively",
             )
-            drive_folder_picker = gr.FileExplorer(
-                root_dir=str(DRIVE_ROOT),
-                glob="**/*",
-                file_count="single",
-                label="Drive folder picker",
-            )
-            drive_file_picker = gr.FileExplorer(
-                root_dir=str(DRIVE_ROOT),
-                glob=media_glob,
-                file_count="multiple",
-                label="Drive file picker",
-            )
-            drive_folder_path = gr.Textbox(
-                value=values["drive_folder_path"],
-                label="Drive folder path",
-                placeholder="/content/drive/MyDrive/whisper-input",
-            )
-            drive_file_paths = gr.Textbox(
-                value=values["drive_file_paths"],
-                label="Drive file paths",
-                lines=5,
-                placeholder="/content/drive/MyDrive/path/to/meeting.mp4",
-            )
-            uploaded_files = gr.File(
-                file_count="multiple",
-                type="filepath",
-                label="Upload local files",
-            )
+            with gr.Group(
+                visible=_is_input_section_visible(
+                    values["input_mode"], INPUT_MODE_DRIVE_FOLDER_PICKER
+                )
+            ) as drive_folder_picker_group:
+                drive_folder_picker = gr.FileExplorer(
+                    root_dir=str(DRIVE_ROOT),
+                    glob="**/*",
+                    file_count="single",
+                    label="Drive folder picker",
+                )
+            with gr.Group(
+                visible=_is_input_section_visible(
+                    values["input_mode"], INPUT_MODE_DRIVE_FILE_PICKER
+                )
+            ) as drive_file_picker_group:
+                drive_file_picker = gr.FileExplorer(
+                    root_dir=str(DRIVE_ROOT),
+                    glob=media_glob,
+                    file_count="multiple",
+                    label="Drive file picker",
+                )
+            with gr.Group(
+                visible=_is_input_section_visible(
+                    values["input_mode"], INPUT_MODE_DRIVE_FOLDER_PATH
+                )
+            ) as drive_folder_path_group:
+                drive_folder_path = gr.Textbox(
+                    value=values["drive_folder_path"],
+                    label="Drive folder path",
+                    placeholder="/content/drive/MyDrive/whisper-input",
+                )
+            with gr.Group(
+                visible=_is_input_section_visible(values["input_mode"], INPUT_MODE_DRIVE_FILE_PATHS)
+            ) as drive_file_paths_group:
+                drive_file_paths = gr.Textbox(
+                    value=values["drive_file_paths"],
+                    label="Drive file paths",
+                    lines=5,
+                    placeholder="/content/drive/MyDrive/path/to/meeting.mp4",
+                )
+            with gr.Group(
+                visible=_is_input_section_visible(values["input_mode"], INPUT_MODE_UPLOAD)
+            ) as uploaded_files_group:
+                uploaded_files = gr.File(
+                    file_count="multiple",
+                    type="filepath",
+                    label="Upload local files",
+                )
 
         with gr.Tab("Recognition"):
             model_id = gr.Dropdown(
@@ -238,6 +263,10 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 value=values["audio_output_dir"],
                 label="Temporary audio directory",
             )
+            require_gpu = gr.Checkbox(
+                value=values["require_gpu"],
+                label="Require GPU",
+            )
 
         run_button = gr.Button("Run transcription", variant="primary")
         status = gr.Textbox(label="Status", lines=8)
@@ -265,8 +294,20 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 download_individual_files,
                 zip_file_name,
                 audio_output_dir,
+                require_gpu,
             ],
             outputs=[status, output_files],
+        )
+        input_mode.change(
+            fn=_input_visibility_updates,
+            inputs=input_mode,
+            outputs=[
+                drive_folder_picker_group,
+                drive_file_picker_group,
+                drive_folder_path_group,
+                drive_file_paths_group,
+                uploaded_files_group,
+            ],
         )
     return demo
 
@@ -291,6 +332,7 @@ def _run_from_gradio(
     download_individual_files: bool,
     zip_file_name: str,
     audio_output_dir: str,
+    require_gpu: bool,
 ) -> tuple[str, list[str]]:
     values = {
         "input_mode": input_mode,
@@ -309,6 +351,7 @@ def _run_from_gradio(
         "download_individual_files": download_individual_files,
         "zip_file_name": zip_file_name,
         "max_segment_seconds": int(max_segment_seconds),
+        "require_gpu": require_gpu,
     }
     config = config_from_gradio_values(values)
     input_paths = collect_gradio_input_paths(
@@ -324,6 +367,28 @@ def _run_from_gradio(
     downloadable_files = _downloadable_files_from_results(results)
     status = _build_status_message(results, downloadable_files)
     return status, downloadable_files
+
+
+def input_section_visibility(input_mode: str) -> tuple[bool, bool, bool, bool, bool]:
+    """Return visible states for input groups in UI output order."""
+
+    return (
+        _is_input_section_visible(input_mode, INPUT_MODE_DRIVE_FOLDER_PICKER),
+        _is_input_section_visible(input_mode, INPUT_MODE_DRIVE_FILE_PICKER),
+        _is_input_section_visible(input_mode, INPUT_MODE_DRIVE_FOLDER_PATH),
+        _is_input_section_visible(input_mode, INPUT_MODE_DRIVE_FILE_PATHS),
+        _is_input_section_visible(input_mode, INPUT_MODE_UPLOAD),
+    )
+
+
+def _input_visibility_updates(input_mode: str):
+    import gradio as gr
+
+    return tuple(gr.update(visible=visible) for visible in input_section_visibility(input_mode))
+
+
+def _is_input_section_visible(input_mode: str, target_mode: str) -> bool:
+    return input_mode == target_mode
 
 
 def _downloadable_files_from_results(results: list[dict[str, Any]]) -> list[str]:

@@ -5,7 +5,7 @@ from __future__ import annotations
 import shutil
 import subprocess
 import zipfile
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -151,6 +151,15 @@ class ColabTranscriptionConfig:
     mount_google_drive: bool = True
     use_custom_output_dir: bool = False
     download_zip_on_completion: bool = True
+    pipeline_chunk_length_s: int = 0
+    pipeline_batch_size: int = 0
+    generate_num_beams: int = 0
+    generate_temperature: str = ""
+    generate_condition_on_prev_tokens: str = ""
+    generate_compression_ratio_threshold: str = ""
+    generate_logprob_threshold: str = ""
+    generate_no_speech_threshold: str = ""
+    model_attn_implementation: str = ""
 
 
 def run_colab_transcription(config: ColabTranscriptionConfig) -> list[dict[str, Any]]:
@@ -177,6 +186,7 @@ def run_transcription_for_paths(
     *,
     download_outputs: bool = False,
     files_module=None,
+    progress_callback: Callable[[str], None] | None = None,
 ) -> list[dict[str, Any]]:
     """Run transcription for explicit input paths."""
 
@@ -189,6 +199,7 @@ def run_transcription_for_paths(
         input_paths=paths,
         files_module=files_module,
         download_outputs=download_outputs,
+        progress_callback=progress_callback,
     )
 
 
@@ -198,11 +209,19 @@ def _run_transcription_pipeline(
     input_paths: list[Path],
     files_module=None,
     download_outputs: bool,
+    progress_callback: Callable[[str], None] | None = None,
 ) -> list[dict[str, Any]]:
     if not input_paths:
         raise ValueError("At least one input file is required.")
 
-    pipe = _load_whisper_pipeline(config.model_id, require_gpu=config.require_gpu)
+    _report_progress(progress_callback, "Loading Whisper model.")
+    pipe = _load_whisper_pipeline(
+        config.model_id,
+        require_gpu=config.require_gpu,
+        model_attn_implementation=config.model_attn_implementation,
+        pipeline_chunk_length_s=config.pipeline_chunk_length_s,
+        pipeline_batch_size=config.pipeline_batch_size,
+    )
     generate_kwargs = _build_generate_kwargs(config)
     max_segment_seconds = _normalize_max_segment_seconds(config.max_segment_seconds)
 
@@ -212,16 +231,18 @@ def _run_transcription_pipeline(
     total_files = len(input_paths)
     for file_index, source_path in enumerate(input_paths, start=1):
         progress_prefix = f"[{file_index}/{total_files}]"
-        print(f"{progress_prefix} Extracting audio: {source_path}")
+        _report_progress(progress_callback, f"{progress_prefix} Extracting audio: {source_path}")
         audio_path = extract_audio_for_whisper(
             source_path,
             output_dir=config.audio_output_dir,
         )
 
+        _report_progress(progress_callback, f"{progress_prefix} Preparing audio segments.")
         segment_paths = _split_audio_for_transcription(
             audio_path,
             output_dir=config.audio_output_dir,
             max_segment_seconds=max_segment_seconds,
+            progress_callback=progress_callback,
         )
         transcription = _transcribe_audio_segments(
             pipe=pipe,
@@ -229,9 +250,11 @@ def _run_transcription_pipeline(
             generate_kwargs=generate_kwargs,
             progress_prefix=progress_prefix,
             max_segment_seconds=max_segment_seconds,
+            progress_callback=progress_callback,
         )
 
         output_dir = _output_dir_for_source(config, source_path)
+        _report_progress(progress_callback, f"{progress_prefix} Saving outputs to {output_dir}.")
         saved_files = _save_outputs(
             source_path=source_path,
             transcription=transcription,
@@ -251,7 +274,7 @@ def _run_transcription_pipeline(
                 "output_dir": str(output_dir),
             }
         )
-        print(f"{progress_prefix} Finished: {source_path.name}")
+        _report_progress(progress_callback, f"{progress_prefix} Finished: {source_path.name}")
 
     fallback_output_dir = Path(config.output_dir).expanduser()
     if download_outputs:
@@ -268,6 +291,7 @@ def _run_transcription_pipeline(
             output_paths=all_saved_files,
             config=config,
             output_dir=fallback_output_dir,
+            progress_callback=progress_callback,
         )
         for result in results:
             result["downloadable_files"] = [str(path) for path in downloadable_files]
@@ -406,12 +430,32 @@ def _collect_manual_drive_file_paths(file_paths: Iterable[str]) -> list[Path]:
 
 
 def _collect_drive_folder_paths(folder_path: str, *, recursive: bool) -> list[Path]:
-    folder = Path(folder_path)
-    if not folder.exists():
-        raise FileNotFoundError(f"Drive folder does not exist: {folder}")
-    if not folder.is_dir():
-        raise NotADirectoryError(f"Drive folder path is not a directory: {folder}")
-    return _find_media_files(folder, recursive=recursive)
+    folder_paths = [Path(path) for path in _parse_path_lines(folder_path)]
+    if not folder_paths:
+        raise ValueError("drive_folder_path must contain at least one folder path.")
+
+    media_files: list[Path] = []
+    for folder in folder_paths:
+        if not folder.exists():
+            raise FileNotFoundError(f"Drive folder does not exist: {folder}")
+        if not folder.is_dir():
+            raise NotADirectoryError(f"Drive folder path is not a directory: {folder}")
+        media_files.extend(_find_media_files(folder, recursive=recursive))
+    return _deduplicate_paths(media_files)
+
+
+def _parse_path_lines(value: str) -> list[str]:
+    return [line.strip() for line in str(value).splitlines() if line.strip()]
+
+
+def _deduplicate_paths(paths: Iterable[Path]) -> list[Path]:
+    deduplicated = []
+    seen = set()
+    for path in paths:
+        if path not in seen:
+            seen.add(path)
+            deduplicated.append(path)
+    return deduplicated
 
 
 def _find_media_files(folder: Path, *, recursive: bool) -> list[Path]:
@@ -453,7 +497,14 @@ def require_gpu_available() -> None:
     _resolve_torch_device(torch, require_gpu=True)
 
 
-def _load_whisper_pipeline(model_id: str, *, require_gpu: bool = True):
+def _load_whisper_pipeline(
+    model_id: str,
+    *,
+    require_gpu: bool = True,
+    model_attn_implementation: str = "",
+    pipeline_chunk_length_s: int = 0,
+    pipeline_batch_size: int = 0,
+):
     import torch
     from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 
@@ -462,6 +513,9 @@ def _load_whisper_pipeline(model_id: str, *, require_gpu: bool = True):
         "low_cpu_mem_usage": True,
         "use_safetensors": True,
     }
+    attn_implementation = _normalize_optional_text(model_attn_implementation)
+    if attn_implementation is not None:
+        model_load_kwargs["attn_implementation"] = attn_implementation
 
     try:
         model = AutoModelForSpeechSeq2Seq.from_pretrained(
@@ -486,6 +540,18 @@ def _load_whisper_pipeline(model_id: str, *, require_gpu: bool = True):
         "return_timestamps": True,
         "device": device,
     }
+    chunk_length_s = _normalize_optional_positive_int(
+        pipeline_chunk_length_s,
+        field_name="pipeline_chunk_length_s",
+    )
+    batch_size = _normalize_optional_positive_int(
+        pipeline_batch_size,
+        field_name="pipeline_batch_size",
+    )
+    if chunk_length_s is not None:
+        pipeline_kwargs["chunk_length_s"] = chunk_length_s
+    if batch_size is not None:
+        pipeline_kwargs["batch_size"] = batch_size
 
     try:
         return pipeline(**pipeline_kwargs, dtype=torch_dtype)
@@ -509,6 +575,7 @@ def _split_audio_for_transcription(
     *,
     output_dir: str | Path,
     max_segment_seconds: int,
+    progress_callback: Callable[[str], None] | None = None,
 ) -> list[Path]:
     audio = Path(audio_path)
     if max_segment_seconds == 0:
@@ -544,7 +611,7 @@ def _split_audio_for_transcription(
     segments = sorted(segment_dir.glob("part*.wav"))
     if not segments:
         raise RuntimeError(f"ffmpeg did not create audio segments in {segment_dir}.")
-    print(f"Created {len(segments)} audio segment(s).")
+    _report_progress(progress_callback, f"Created {len(segments)} audio segment(s).")
     return segments
 
 
@@ -572,18 +639,20 @@ def _transcribe_audio_segments(
     *,
     pipe,
     segment_paths: list[Path],
-    generate_kwargs: dict[str, str],
+    generate_kwargs: dict[str, Any],
     progress_prefix: str,
     max_segment_seconds: int,
+    progress_callback: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
     transcriptions = []
     total_segments = len(segment_paths)
     for segment_index, segment_path in enumerate(segment_paths, start=1):
         if total_segments == 1:
-            print(f"{progress_prefix} Transcribing: {segment_path}")
+            _report_progress(progress_callback, f"{progress_prefix} Transcribing: {segment_path}")
         else:
-            print(
-                f"{progress_prefix} Transcribing segment {segment_index}/{total_segments}: {segment_path}"
+            _report_progress(
+                progress_callback,
+                f"{progress_prefix} Transcribing segment {segment_index}/{total_segments}: {segment_path}",
             )
 
         transcription = pipe(
@@ -641,15 +710,95 @@ def _merge_transcriptions(transcriptions: list[dict[str, Any]]) -> dict[str, Any
     }
 
 
-def _build_generate_kwargs(config: ColabTranscriptionConfig) -> dict[str, str]:
+def _build_generate_kwargs(config: ColabTranscriptionConfig) -> dict[str, Any]:
     language = _normalize_language(config.language, config.custom_language)
     if language is None and config.is_japanese_language:
         language = "japanese"
 
-    kwargs = {"task": "translate" if _should_translate_to_english(config) else "transcribe"}
+    kwargs: dict[str, Any] = {
+        "task": "translate" if _should_translate_to_english(config) else "transcribe"
+    }
     if language is not None:
         kwargs["language"] = language
+    num_beams = _normalize_optional_positive_int(
+        config.generate_num_beams,
+        field_name="generate_num_beams",
+    )
+    if num_beams is not None:
+        kwargs["num_beams"] = num_beams
+    temperature = _normalize_optional_float(
+        config.generate_temperature,
+        field_name="generate_temperature",
+    )
+    if temperature is not None:
+        kwargs["temperature"] = temperature
+    condition_on_prev_tokens = _normalize_optional_bool(config.generate_condition_on_prev_tokens)
+    if condition_on_prev_tokens is not None:
+        kwargs["condition_on_prev_tokens"] = condition_on_prev_tokens
+    compression_ratio_threshold = _normalize_optional_float(
+        config.generate_compression_ratio_threshold,
+        field_name="generate_compression_ratio_threshold",
+    )
+    if compression_ratio_threshold is not None:
+        kwargs["compression_ratio_threshold"] = compression_ratio_threshold
+    logprob_threshold = _normalize_optional_float(
+        config.generate_logprob_threshold,
+        field_name="generate_logprob_threshold",
+    )
+    if logprob_threshold is not None:
+        kwargs["logprob_threshold"] = logprob_threshold
+    no_speech_threshold = _normalize_optional_float(
+        config.generate_no_speech_threshold,
+        field_name="generate_no_speech_threshold",
+    )
+    if no_speech_threshold is not None:
+        kwargs["no_speech_threshold"] = no_speech_threshold
     return kwargs
+
+
+def _normalize_optional_text(value: str | None) -> str | None:
+    if value is None:
+        return None
+    normalized = str(value).strip()
+    if not normalized or normalized.lower() in {"default", "auto", "none"}:
+        return None
+    return normalized
+
+
+def _normalize_optional_positive_int(value: int | str | None, *, field_name: str) -> int | None:
+    if value is None or str(value).strip() == "":
+        return None
+    try:
+        normalized = int(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{field_name} must be blank or a positive integer.") from exc
+    if normalized <= 0:
+        return None
+    return normalized
+
+
+def _normalize_optional_float(value: str | float | int | None, *, field_name: str) -> float | None:
+    if value is None or str(value).strip() == "":
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{field_name} must be blank or a number.") from exc
+
+
+def _normalize_optional_bool(value: str | bool | None) -> bool | None:
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return value
+    normalized = str(value).strip().lower()
+    if normalized in {"", "default", "auto", "none"}:
+        return None
+    if normalized in {"true", "yes", "1", "on"}:
+        return True
+    if normalized in {"false", "no", "0", "off"}:
+        return False
+    raise ValueError(f"Optional boolean must be blank, true, or false. Got {value!r}.")
 
 
 def _normalize_language(language: str | None, custom_language: str = "") -> str | None:
@@ -752,6 +901,7 @@ def _prepare_downloadable_outputs(
     output_paths: list[Path],
     config: ColabTranscriptionConfig,
     output_dir: Path,
+    progress_callback: Callable[[str], None] | None = None,
 ) -> list[Path]:
     if not output_paths:
         return []
@@ -760,7 +910,14 @@ def _prepare_downloadable_outputs(
         return []
 
     zip_path = _download_zip_path(config, output_dir)
+    _report_progress(progress_callback, f"Creating ZIP download: {zip_path}")
     return [_create_zip_archive(output_paths, zip_path)]
+
+
+def _report_progress(callback: Callable[[str], None] | None, message: str) -> None:
+    print(message)
+    if callback is not None:
+        callback(message)
 
 
 def _download_zip_path(config: ColabTranscriptionConfig, output_dir: Path) -> Path:

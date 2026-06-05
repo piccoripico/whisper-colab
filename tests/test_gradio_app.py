@@ -16,9 +16,12 @@ from src.whisper_colab.gradio_app import (
     _build_output_locations_html,
     _drive_picker_root,
     _is_drive_picker_available,
+    _upload_details,
     collect_gradio_input_paths,
     config_from_gradio_values,
     drive_input_interactivity,
+    initial_input_mode,
+    input_mode_options,
     input_section_visibility,
     ui_values_from_config,
 )
@@ -65,6 +68,15 @@ class GradioAppTests(unittest.TestCase):
                 "zip_file_name": "outputs.zip",
                 "max_segment_seconds": 1800,
                 "mount_google_drive": True,
+                "pipeline_chunk_length_s": 0,
+                "pipeline_batch_size": 0,
+                "generate_num_beams": 0,
+                "generate_temperature": "",
+                "generate_condition_on_prev_tokens": "",
+                "generate_compression_ratio_threshold": "",
+                "generate_logprob_threshold": "",
+                "generate_no_speech_threshold": "",
+                "model_attn_implementation": "",
             }
         )
 
@@ -79,6 +91,45 @@ class GradioAppTests(unittest.TestCase):
         self.assertTrue(config.mount_google_drive)
         self.assertFalse(config.use_custom_output_dir)
         self.assertTrue(config.download_zip_on_completion)
+
+    def test_config_from_gradio_values_maps_optional_parameters(self):
+        config = config_from_gradio_values(
+            {
+                "input_mode": INPUT_MODE_DRIVE_FILE_PATHS,
+                "drive_file_paths": "",
+                "drive_folder_path": "/content/drive/MyDrive/input",
+                "drive_recursive": False,
+                "model_id": "openai/whisper-large-v3-turbo",
+                "language": "auto",
+                "custom_language": "",
+                "translate_to_english": False,
+                "include_timestamps": True,
+                "export_excel": True,
+                "audio_output_dir": "/content/audio",
+                "output_dir": DEFAULT_OUTPUT_DIR,
+                "use_custom_output_dir": False,
+                "download_zip_on_completion": True,
+                "zip_file_name": "outputs.zip",
+                "max_segment_seconds": 0,
+                "mount_google_drive": True,
+                "pipeline_chunk_length_s": 30,
+                "pipeline_batch_size": 8,
+                "generate_num_beams": 4,
+                "generate_temperature": "0.1",
+                "generate_condition_on_prev_tokens": "false",
+                "generate_compression_ratio_threshold": "2.4",
+                "generate_logprob_threshold": "-1.0",
+                "generate_no_speech_threshold": "0.6",
+                "model_attn_implementation": "sdpa",
+            }
+        )
+
+        self.assertEqual(config.pipeline_chunk_length_s, 30)
+        self.assertEqual(config.pipeline_batch_size, 8)
+        self.assertEqual(config.generate_num_beams, 4)
+        self.assertEqual(config.generate_temperature, "0.1")
+        self.assertEqual(config.generate_condition_on_prev_tokens, "false")
+        self.assertEqual(config.model_attn_implementation, "sdpa")
 
     def test_drive_input_interactivity_follows_mount_setting(self):
         self.assertEqual(drive_input_interactivity(True), (True, True, True, True))
@@ -96,6 +147,14 @@ class GradioAppTests(unittest.TestCase):
 
             self.assertFalse(_is_drive_picker_available(True, drive_root))
             self.assertFalse(_is_drive_picker_available(False, drive_root))
+
+    def test_input_mode_options_hide_drive_modes_when_drive_is_unavailable(self):
+        self.assertEqual(input_mode_options(False), [("Upload local files", INPUT_MODE_UPLOAD)])
+        self.assertEqual(initial_input_mode(INPUT_MODE_DRIVE_FILE_PICKER, False), INPUT_MODE_UPLOAD)
+        self.assertIn(
+            ("Pick Drive files", INPUT_MODE_DRIVE_FILE_PICKER),
+            input_mode_options(True),
+        )
 
     def test_input_section_visibility_matches_selected_input_mode(self):
         self.assertEqual(
@@ -165,6 +224,29 @@ class GradioAppTests(unittest.TestCase):
             )
 
         self.assertEqual(paths, [folder / "meeting.mp4"])
+
+    def test_drive_folder_picker_expands_multiple_supported_folders(self):
+        with TemporaryDirectory() as temp_dir:
+            drive_root = Path(temp_dir)
+            folder_one = drive_root / "one"
+            folder_two = drive_root / "two"
+            folder_one.mkdir()
+            folder_two.mkdir()
+            (folder_one / "one.mp4").write_bytes(b"video")
+            (folder_two / "two.mp3").write_bytes(b"audio")
+
+            paths = collect_gradio_input_paths(
+                input_mode=INPUT_MODE_DRIVE_FOLDER_PICKER,
+                drive_file_picker=None,
+                drive_folder_picker=["one", "two"],
+                drive_file_paths="",
+                drive_folder_path="",
+                uploaded_files=None,
+                drive_recursive=False,
+                drive_root=drive_root,
+            )
+
+        self.assertEqual(paths, [folder_one / "one.mp4", folder_two / "two.mp3"])
 
     def test_drive_file_picker_rejects_selected_folder(self):
         with TemporaryDirectory() as temp_dir:
@@ -249,6 +331,16 @@ class GradioAppTests(unittest.TestCase):
 
         self.assertEqual(paths, [upload])
 
+    def test_upload_details_shows_file_size_and_completion(self):
+        with TemporaryDirectory() as temp_dir:
+            upload = Path(temp_dir) / "meeting.mp3"
+            upload.write_bytes(b"audio")
+
+            details = _upload_details([SimpleNamespace(name=str(upload))])
+
+        self.assertIn("Upload complete: 100%", details)
+        self.assertIn("meeting.mp3", details)
+
     def test_output_locations_html_lists_output_folders(self):
         html = _build_output_locations_html(
             [
@@ -299,6 +391,15 @@ class GradioAppTests(unittest.TestCase):
                 "outputs.zip",
                 "/content/whisper_audio",
                 True,
+                0,
+                0,
+                0,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
             )
 
         self.assertIn("Processed 1 file", status)

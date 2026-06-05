@@ -9,6 +9,7 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
 - Keeps the notebook small: it only clones the repository and launches the app.
 - Launches a Gradio app in a separate browser tab from one Colab cell.
 - Uses Google Drive picker modes as the main input path.
+- Falls back to upload-only input when Google Drive is not mounted.
 - Converts input audio or video to Whisper-friendly WAV before transcription.
 - Uses `16 kHz / mono / PCM WAV` extraction through `ffmpeg`.
 - Lets you choose `openai/whisper-large-v3-turbo` or `openai/whisper-large-v3`.
@@ -17,6 +18,7 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
 - Saves outputs next to the input files by default, with an option to use a custom output directory.
 - Can download one ZIP archive when transcription completes; the uncompressed outputs remain in the output folder.
 - Can optionally split long extracted audio into fixed-length segments before transcription.
+- Shows transcription progress in the Gradio Status panel while work is running.
 
 Usage instructions are included in `Whisper_v3.ipynb`.
 
@@ -26,9 +28,15 @@ The notebook metadata requests a GPU runtime, and the launch cell requires a CUD
 
 The Gradio share URL is public while the app is running. The app allows Gradio to serve files under `/content/drive/MyDrive`, the output directory, and a temporary ZIP download directory so picker and download features can work. Avoid confidential recordings when using a public share URL.
 
+If `MOUNT_GOOGLE_DRIVE` is disabled or Drive is unavailable, the app hides Drive input modes and leaves only local upload mode available. Upload mode starts transcription automatically after upload completes; the file component shows native upload progress, and the app reports uploaded file sizes once the upload reaches 100%.
+
 By default, transcript files are saved in the same folder as each input file. Uploaded local files are saved under `/content/whisper_outputs` because uploads live in a temporary Colab location. Enable the custom output directory option only when you want all transcript files saved in one folder.
 
 If download on completion is enabled, the app downloads one ZIP archive. Browsers can ask for confirmation when a page starts multiple downloads, so this app does not auto-download individual files.
+
+`Search Drive folders recursively` controls folder modes. When it is enabled, the app scans selected or typed folders and their subfolders. When it is disabled, only files directly inside each selected or typed folder are used.
+
+Colab can still disconnect an idle runtime. A running transcription uses compute and should not count as idle in the same way, but leaving the Gradio app open without work does not guarantee that Colab will keep the runtime alive indefinitely.
 
 The notebook clones this repository from:
 
@@ -61,6 +69,7 @@ Disable `INSTALL_PACKAGES` only when you have already prepared the runtime manua
 
 - Whisper can hallucinate common phrases during silence, especially at the beginning of recordings. This repository does not remove those phrases in post-processing.
 - Very long recordings may fail when the Colab runtime runs out of GPU or system memory.
+- The Drive file picker is filtered toward files, and the Drive folder picker is filtered toward folders, but Gradio may still allow unusual selections in some versions. The app validates selections before transcription and rejects folders in file mode, files in folder mode, and unsupported media extensions.
 - Segmenting long audio with `MAX_SEGMENT_SECONDS` can make long files easier to process, but timestamps are offset by segment length and may be approximate around segment boundaries.
 - `ffmpeg` must be available. It is normally available in Colab, and the runner installs it when needed.
 

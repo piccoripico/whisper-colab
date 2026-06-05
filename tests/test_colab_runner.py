@@ -82,6 +82,29 @@ class ColabRunnerTests(unittest.TestCase):
             {"task": "translate", "language": "japanese"},
         )
 
+    def test_build_generate_kwargs_includes_optional_values_when_set(self):
+        config = ColabTranscriptionConfig(
+            generate_num_beams=4,
+            generate_temperature="0.1",
+            generate_condition_on_prev_tokens="false",
+            generate_compression_ratio_threshold="2.4",
+            generate_logprob_threshold="-1.0",
+            generate_no_speech_threshold="0.6",
+        )
+
+        self.assertEqual(
+            _build_generate_kwargs(config),
+            {
+                "task": "transcribe",
+                "num_beams": 4,
+                "temperature": 0.1,
+                "condition_on_prev_tokens": False,
+                "compression_ratio_threshold": 2.4,
+                "logprob_threshold": -1.0,
+                "no_speech_threshold": 0.6,
+            },
+        )
+
     def test_build_generate_kwargs_preserves_legacy_japanese_flag(self):
         config = ColabTranscriptionConfig(is_japanese_language=True)
 
@@ -198,6 +221,27 @@ class ColabRunnerTests(unittest.TestCase):
             paths = _collect_drive_folder_paths(str(folder), recursive=True)
 
         self.assertEqual([path.name for path in paths], ["meeting.m4a"])
+
+    def test_collect_drive_folder_paths_accepts_multiple_lines(self):
+        with TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            first = root / "first"
+            second = root / "second"
+            first.mkdir()
+            second.mkdir()
+            (first / "first.mp4").write_bytes(b"video")
+            (second / "second.mp3").write_bytes(b"audio")
+
+            paths = _collect_drive_folder_paths(
+                f"{first}\n{second}",
+                recursive=False,
+            )
+
+        self.assertEqual([path.name for path in paths], ["first.mp4", "second.mp3"])
+
+    def test_collect_drive_folder_paths_rejects_empty_value(self):
+        with self.assertRaisesRegex(ValueError, "at least one folder"):
+            _collect_drive_folder_paths("", recursive=False)
 
     def test_validate_media_files_rejects_unsupported_extension(self):
         with TemporaryDirectory() as temp_dir:

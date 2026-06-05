@@ -5,9 +5,9 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FORBIDDEN_LITERALS = [
-    "Aki" + "hiko",
-    "Kita" + "da",
-    "kitada" + "hiko",
+    "".join(chr(code) for code in [65, 107, 105, 104, 105, 107, 111]),
+    "".join(chr(code) for code in [75, 105, 116, 97, 100, 97]),
+    "".join(chr(code) for code in [107, 105, 116, 97, 100, 97, 104, 105, 107, 111]),
     "YOUR_GITHUB" + "_USERNAME",
 ]
 

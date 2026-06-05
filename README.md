@@ -18,6 +18,8 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
 
 Usage instructions are included in `Whisper_v3.ipynb`.
 
+When you open the notebook in Colab, click the play button on the `Open guided UI` cell. The guided form appears after that cell runs.
+
 The notebook clones this repository from:
 
 ```text
@@ -31,6 +33,16 @@ https://github.com/piccoripico/whisper-colab.git
 ```powershell
 python scripts/build_notebook.py
 ```
+
+## UI preview
+
+A static preview of the guided UI can be generated locally:
+
+```powershell
+python scripts/build_ui_preview.py
+```
+
+The preview is written under `output/playwright/`, which is ignored by Git.
 
 ## Colab dependencies
 

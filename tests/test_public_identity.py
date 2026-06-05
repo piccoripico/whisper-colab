@@ -23,7 +23,9 @@ def _read_public_text_files():
     for path in REPO_ROOT.rglob("*"):
         if not path.is_file():
             continue
-        if ".git" in path.parts or ".ruff_cache" in path.parts or "__pycache__" in path.parts:
+        if any(
+            ignored in path.parts for ignored in [".git", ".ruff_cache", "__pycache__", "output"]
+        ):
             continue
         if path.suffix in {".pyc", ".wav", ".mp3", ".mp4", ".xlsx"}:
             continue

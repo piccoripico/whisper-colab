@@ -29,6 +29,9 @@ class NotebookStructureTests(unittest.TestCase):
         self.sources.encode("ascii")
 
     def test_notebook_is_thin_github_launcher(self):
+        self.assertIn("## Start Here", self.sources)
+        self.assertIn("Click the play button on the cell below", self.sources)
+        self.assertIn("#@title Open guided UI", self.sources)
         self.assertIn("https://github.com/piccoripico/whisper-colab.git", self.sources)
         self.assertIn("run_colab_transcription(config)", self.sources)
         self.assertIn("launch_colab_ui(config)", self.sources)
@@ -62,6 +65,11 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertNotIn("IS_JAPANESE_LANGUAGE", self.sources)
         self.assertNotIn("TRANSLATE_INTO_ENGLISH", self.sources)
         self.assertNotIn("YOUR_GITHUB" + "_USERNAME", self.sources)
+
+    def test_notebook_has_one_launch_cell(self):
+        code_cells = [cell for cell in self.notebook["cells"] if cell.get("cell_type") == "code"]
+
+        self.assertEqual(len(code_cells), 1)
 
     def test_notebook_keeps_colab_form_comments(self):
         self.assertIn("#@title", self.sources)

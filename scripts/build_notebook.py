@@ -35,17 +35,19 @@ def build_notebook() -> dict[str, Any]:
                     """
                     # Whisper v3 Colab Transcription
 
-                    This notebook is a thin launcher for `piccoripico/whisper-colab`.
+                    A guided Colab notebook for transcribing audio and video files with Whisper.
 
-                    Only user settings live here. The implementation is cloned from GitHub and imported from `src/whisper_colab`.
+                    ## Start Here
 
-                    ## Usage
+                    Click the play button on the cell below: `Open guided UI`.
 
-                    1. Keep `USE_WIDGET_UI` enabled for the guided form, or disable it to run directly from the parameter values.
-                    2. Run the bootstrap/run cell.
-                    3. In widget mode, review the form and click `Run transcription`.
-                    4. Upload files, or provide Google Drive paths.
-                    5. Download the generated transcript files.
+                    After the cell runs, a guided form appears. Choose your input, model, language, and output settings, then click `Run transcription` inside the form.
+
+                    If the widget UI does not render, set `USE_WIDGET_UI` to `False` in the same cell and run it again. The parameter fallback uses the same settings.
+
+                    ## Details
+
+                    This notebook is a thin launcher for `piccoripico/whisper-colab`. The implementation is cloned from GitHub and imported from `src/whisper_colab`.
 
                     ## Input Modes
 
@@ -76,9 +78,11 @@ def build_notebook() -> dict[str, Any]:
                 "outputs": [],
                 "source": _source_lines(
                     """
-                    #@title 1. Settings
+                    #@title Open guided UI
 
-                    # Keep enabled for the guided widget UI. Disable to run directly from these parameters.
+                    # Click the play button on this cell to open the guided UI.
+
+                    # Keep enabled for the guided widget UI. Disable only if the widget UI does not work.
                     USE_WIDGET_UI = True #@param {type:"boolean"}
 
                     # Input mode.
@@ -111,17 +115,6 @@ def build_notebook() -> dict[str, Any]:
 
                     # Install Python packages and ffmpeg in the Colab runtime when needed.
                     INSTALL_PACKAGES = True #@param {type:"boolean"}
-                    """
-                ),
-            },
-            {
-                "cell_type": "code",
-                "execution_count": None,
-                "metadata": {},
-                "outputs": [],
-                "source": _source_lines(
-                    """
-                    #@title 2. Clone repository and launch
 
                     import subprocess
                     import sys

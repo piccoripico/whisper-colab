@@ -15,22 +15,7 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
 - Saves outputs to a dedicated output directory and can download them as a ZIP archive.
 - Can optionally split long extracted audio into fixed-length segments before transcription.
 
-## Colab usage
-
-1. Open `Whisper_v3.ipynb` in Google Colab.
-2. Edit the settings cell.
-3. Run the bootstrap/run cell.
-4. Choose an input mode:
-   - `upload`: upload local files to the Colab runtime.
-   - `drive_file_paths`: enter one or more Google Drive file paths manually.
-   - `drive_folder_path`: enter a Google Drive folder path and process supported media files in that folder.
-   - `drive_file_picker`: pick one file from mounted Google Drive with a small notebook widget.
-   - `drive_folder_picker`: pick one folder from mounted Google Drive with a small notebook widget.
-5. Leave `LANGUAGE` as `auto` unless you want to force a source language.
-6. Select `custom` and set `CUSTOM_LANGUAGE` only when the language you need is not in the list.
-7. Enable `TRANSLATE_TO_ENGLISH` only when you want Whisper's translation task. Whisper translates speech to English, not to an arbitrary target language.
-8. Keep `MAX_SEGMENT_SECONDS` at `0` for normal runs. Set it to a positive value, such as `1800`, only when a long recording needs to be split before transcription.
-9. Use `OUTPUT_DIR`, `EXPORT_ZIP`, and `DOWNLOAD_INDIVIDUAL_FILES` to control where transcript files are saved and how they are downloaded.
+Usage instructions are included in `Whisper_v3.ipynb`.
 
 The notebook clones this repository from:
 
@@ -98,7 +83,3 @@ python -m unittest
 ```
 
 The same checks run in GitHub Actions on pushes to `main` and on pull requests.
-
-## License
-
-MIT License

@@ -39,12 +39,32 @@ def build_notebook() -> dict[str, Any]:
 
                     Only user settings live here. The implementation is cloned from GitHub and imported from `src/whisper_colab`.
 
-                    Steps:
+                    ## Usage
 
                     1. Edit the settings cell.
                     2. Run the bootstrap/run cell.
                     3. Upload files, or provide Google Drive paths.
                     4. Download the generated transcript files.
+
+                    ## Input Modes
+
+                    - `upload`: upload local files to the Colab runtime.
+                    - `drive_file_paths`: enter one or more Google Drive file paths manually.
+                    - `drive_folder_path`: enter a Google Drive folder path and process supported media files in that folder.
+                    - `drive_file_picker`: pick one file from mounted Google Drive with a small notebook widget.
+                    - `drive_folder_picker`: pick one folder from mounted Google Drive with a small notebook widget.
+
+                    ## Settings Notes
+
+                    - Leave `LANGUAGE` as `auto` unless you want to force a source language.
+                    - Select `custom` and set `CUSTOM_LANGUAGE` only when the language you need is not in the list.
+                    - Enable `TRANSLATE_TO_ENGLISH` only when you want Whisper's translation task. Whisper translates speech to English, not to an arbitrary target language.
+                    - Keep `MAX_SEGMENT_SECONDS` at `0` for normal runs. Set it to a positive value, such as `1800`, only when a long recording needs to be split before transcription.
+                    - Use `OUTPUT_DIR`, `EXPORT_ZIP`, and `DOWNLOAD_INDIVIDUAL_FILES` to control where transcript files are saved and how they are downloaded.
+
+                    This notebook clones:
+
+                    `https://github.com/piccoripico/whisper-colab.git`
                     """
                 ),
             },

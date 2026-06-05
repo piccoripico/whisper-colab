@@ -14,6 +14,8 @@ decisions.md
 
 upgrades_done.flag
 whisper_audio/
+whisper_outputs/
+whisper_outputs.zip
 output/
 transcripts/
 

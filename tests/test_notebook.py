@@ -38,7 +38,14 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertIn('LANGUAGE = "auto"', self.sources)
         self.assertIn('"japanese"', self.sources)
         self.assertIn('"english"', self.sources)
+        self.assertIn('"custom"', self.sources)
+        self.assertIn("CUSTOM_LANGUAGE", self.sources)
         self.assertIn("TRANSLATE_TO_ENGLISH", self.sources)
+        self.assertIn("MAX_SEGMENT_SECONDS", self.sources)
+        self.assertIn("OUTPUT_DIR", self.sources)
+        self.assertIn("EXPORT_ZIP", self.sources)
+        self.assertIn("DOWNLOAD_INDIVIDUAL_FILES", self.sources)
+        self.assertIn("ZIP_FILE_NAME", self.sources)
         for input_mode in [
             "upload",
             "drive_file_paths",

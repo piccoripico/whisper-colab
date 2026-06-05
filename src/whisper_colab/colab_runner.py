@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import shutil
 import subprocess
+import zipfile
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -37,6 +38,19 @@ SUPPORTED_MEDIA_EXTENSIONS = {
     ".webm",
 }
 DRIVE_ROOT = Path("/content/drive/MyDrive")
+REPO_ROOT = Path(__file__).resolve().parents[2]
+COLAB_REQUIREMENTS_PATH = REPO_ROOT / "requirements-colab.txt"
+COLAB_REQUIREMENTS = [
+    "transformers",
+    "accelerate",
+    "datasets[audio]",
+    "pandas",
+    "openpyxl",
+    "ipywidgets",
+]
+DEFAULT_AUDIO_OUTPUT_DIR = "/content/whisper_audio"
+DEFAULT_OUTPUT_DIR = "/content/whisper_outputs"
+DEFAULT_ZIP_FILE_NAME = "whisper_outputs.zip"
 
 MODEL_OPTIONS = [
     "openai/whisper-large-v3-turbo",
@@ -44,23 +58,67 @@ MODEL_OPTIONS = [
 ]
 
 LANGUAGE_AUTO = "auto"
+LANGUAGE_CUSTOM = "custom"
 LANGUAGE_OPTIONS = [
     LANGUAGE_AUTO,
-    "japanese",
-    "english",
-    "chinese",
-    "korean",
-    "spanish",
-    "french",
-    "german",
-    "italian",
-    "portuguese",
-    "russian",
+    LANGUAGE_CUSTOM,
+    "afrikaans",
     "arabic",
+    "armenian",
+    "azerbaijani",
+    "belarusian",
+    "bosnian",
+    "bulgarian",
+    "catalan",
+    "chinese",
+    "croatian",
+    "czech",
+    "danish",
+    "dutch",
+    "english",
+    "estonian",
+    "finnish",
+    "french",
+    "galician",
+    "german",
+    "greek",
+    "hebrew",
     "hindi",
-    "thai",
-    "vietnamese",
+    "hungarian",
+    "icelandic",
     "indonesian",
+    "italian",
+    "japanese",
+    "kannada",
+    "kazakh",
+    "korean",
+    "latvian",
+    "lithuanian",
+    "macedonian",
+    "malay",
+    "marathi",
+    "maori",
+    "nepali",
+    "norwegian",
+    "persian",
+    "polish",
+    "portuguese",
+    "romanian",
+    "russian",
+    "serbian",
+    "slovak",
+    "slovenian",
+    "spanish",
+    "swahili",
+    "swedish",
+    "tagalog",
+    "tamil",
+    "thai",
+    "turkish",
+    "ukrainian",
+    "urdu",
+    "vietnamese",
+    "welsh",
 ]
 
 
@@ -75,18 +133,25 @@ class ColabTranscriptionConfig:
     drive_recursive: bool = False
     model_id: str = "openai/whisper-large-v3-turbo"
     language: str = LANGUAGE_AUTO
+    custom_language: str = ""
     translate_to_english: bool = False
     is_japanese_language: bool = False
     translate_into_english: bool = False
     include_timestamps: bool = True
     export_excel: bool = True
-    audio_output_dir: str = "/content/whisper_audio"
+    audio_output_dir: str = DEFAULT_AUDIO_OUTPUT_DIR
+    output_dir: str = DEFAULT_OUTPUT_DIR
+    export_zip: bool = True
+    download_individual_files: bool = False
+    zip_file_name: str = DEFAULT_ZIP_FILE_NAME
+    max_segment_seconds: int = 0
     install_packages: bool = True
 
 
 def run_colab_transcription(config: ColabTranscriptionConfig) -> list[dict[str, Any]]:
     """Run the full Colab transcription workflow."""
 
+    _validate_config(config)
     _require_colab()
     if config.install_packages:
         install_colab_dependencies()
@@ -95,38 +160,61 @@ def run_colab_transcription(config: ColabTranscriptionConfig) -> list[dict[str, 
     input_paths = _collect_input_paths(config, files_module)
     pipe = _load_whisper_pipeline(config.model_id)
     generate_kwargs = _build_generate_kwargs(config)
+    max_segment_seconds = _normalize_max_segment_seconds(config.max_segment_seconds)
+    output_dir = Path(config.output_dir).expanduser()
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     results: list[dict[str, Any]] = []
-    for source_path in input_paths:
-        print(f"Extracting audio: {source_path}")
+    all_saved_files: list[Path] = []
+    used_output_paths: set[Path] = set()
+    total_files = len(input_paths)
+    for file_index, source_path in enumerate(input_paths, start=1):
+        progress_prefix = f"[{file_index}/{total_files}]"
+        print(f"{progress_prefix} Extracting audio: {source_path}")
         audio_path = extract_audio_for_whisper(
             source_path,
             output_dir=config.audio_output_dir,
         )
 
-        print(f"Transcribing: {audio_path}")
-        transcription = pipe(
+        segment_paths = _split_audio_for_transcription(
             audio_path,
-            return_timestamps=True,
+            output_dir=config.audio_output_dir,
+            max_segment_seconds=max_segment_seconds,
+        )
+        transcription = _transcribe_audio_segments(
+            pipe=pipe,
+            segment_paths=segment_paths,
             generate_kwargs=generate_kwargs,
+            progress_prefix=progress_prefix,
+            max_segment_seconds=max_segment_seconds,
         )
 
-        saved_files = _save_and_download_outputs(
+        saved_files = _save_outputs(
             source_path=source_path,
             transcription=transcription,
             include_timestamps=config.include_timestamps,
             export_excel=config.export_excel,
-            files_module=files_module,
+            output_dir=output_dir,
+            used_output_paths=used_output_paths,
         )
+        all_saved_files.extend(saved_files)
         results.append(
             {
                 "source_path": str(source_path),
                 "audio_path": audio_path,
+                "segment_paths": [str(path) for path in segment_paths],
                 "transcription": transcription,
-                "saved_files": saved_files,
+                "saved_files": [str(path) for path in saved_files],
             }
         )
-        print(f"Finished: {source_path.name}")
+        print(f"{progress_prefix} Finished: {source_path.name}")
+
+    _download_outputs(
+        output_paths=all_saved_files,
+        config=config,
+        output_dir=output_dir,
+        files_module=files_module,
+    )
 
     return results
 
@@ -144,22 +232,49 @@ def install_colab_dependencies() -> None:
         return
 
     subprocess.run(["python", "-m", "pip", "install", "--upgrade", "pip"], check=True)
-    subprocess.run(
-        [
-            "python",
-            "-m",
-            "pip",
-            "install",
-            "--upgrade",
-            "transformers",
-            "accelerate",
-            "datasets[audio]",
-            "pandas",
-            "openpyxl",
-        ],
-        check=True,
-    )
+    if COLAB_REQUIREMENTS_PATH.exists():
+        subprocess.run(
+            [
+                "python",
+                "-m",
+                "pip",
+                "install",
+                "--upgrade",
+                "-r",
+                str(COLAB_REQUIREMENTS_PATH),
+            ],
+            check=True,
+        )
+    else:
+        subprocess.run(
+            ["python", "-m", "pip", "install", "--upgrade", *COLAB_REQUIREMENTS],
+            check=True,
+        )
     flag_path.write_text("Upgrades done", encoding="utf-8")
+
+
+def _validate_config(config: ColabTranscriptionConfig) -> None:
+    _normalize_input_mode(config)
+    if not str(config.model_id).strip():
+        raise ValueError("model_id must not be empty.")
+    _normalize_language(config.language, config.custom_language)
+    if not str(config.audio_output_dir).strip():
+        raise ValueError("audio_output_dir must not be empty.")
+    if not str(config.output_dir).strip():
+        raise ValueError("output_dir must not be empty.")
+    if config.export_zip and not str(config.zip_file_name).strip():
+        raise ValueError("zip_file_name must not be empty when export_zip is enabled.")
+    _normalize_max_segment_seconds(config.max_segment_seconds)
+
+
+def _normalize_max_segment_seconds(value: int) -> int:
+    try:
+        normalized = int(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("max_segment_seconds must be 0 or a positive integer.") from exc
+    if normalized < 0:
+        raise ValueError("max_segment_seconds must be 0 or a positive integer.")
+    return normalized
 
 
 def _require_colab() -> None:
@@ -408,8 +523,145 @@ def _load_whisper_pipeline(model_id: str):
         return pipeline(**pipeline_kwargs, torch_dtype=torch_dtype)
 
 
+def _split_audio_for_transcription(
+    audio_path: str | Path,
+    *,
+    output_dir: str | Path,
+    max_segment_seconds: int,
+) -> list[Path]:
+    audio = Path(audio_path)
+    if max_segment_seconds == 0:
+        return [audio]
+
+    segment_dir = Path(output_dir).expanduser() / "segments" / audio.stem
+    segment_dir.mkdir(parents=True, exist_ok=True)
+    for stale_segment in segment_dir.glob("part*.wav"):
+        stale_segment.unlink()
+
+    output_pattern = segment_dir / "part%03d.wav"
+    command = [
+        "ffmpeg",
+        "-y",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-i",
+        str(audio),
+        "-f",
+        "segment",
+        "-segment_time",
+        str(max_segment_seconds),
+        "-reset_timestamps",
+        "1",
+        "-c",
+        "copy",
+        str(output_pattern),
+    ]
+    _run_segment_command(command)
+
+    segments = sorted(segment_dir.glob("part*.wav"))
+    if not segments:
+        raise RuntimeError(f"ffmpeg did not create audio segments in {segment_dir}.")
+    print(f"Created {len(segments)} audio segment(s).")
+    return segments
+
+
+def _run_segment_command(command: list[str]) -> None:
+    try:
+        completed = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+    except FileNotFoundError as exc:
+        raise RuntimeError("ffmpeg was not found. Install ffmpeg before segmenting audio.") from exc
+
+    if completed.returncode == 0:
+        return
+
+    stderr = (completed.stderr or "").strip()
+    stdout = (completed.stdout or "").strip()
+    detail = stderr or stdout or f"ffmpeg exited with code {completed.returncode}"
+    raise RuntimeError(f"ffmpeg failed to segment audio: {detail}")
+
+
+def _transcribe_audio_segments(
+    *,
+    pipe,
+    segment_paths: list[Path],
+    generate_kwargs: dict[str, str],
+    progress_prefix: str,
+    max_segment_seconds: int,
+) -> dict[str, Any]:
+    transcriptions = []
+    total_segments = len(segment_paths)
+    for segment_index, segment_path in enumerate(segment_paths, start=1):
+        if total_segments == 1:
+            print(f"{progress_prefix} Transcribing: {segment_path}")
+        else:
+            print(
+                f"{progress_prefix} Transcribing segment {segment_index}/{total_segments}: {segment_path}"
+            )
+
+        transcription = pipe(
+            str(segment_path),
+            return_timestamps=True,
+            generate_kwargs=generate_kwargs,
+        )
+        offset_seconds = (segment_index - 1) * max_segment_seconds if total_segments > 1 else 0
+        transcriptions.append(_offset_transcription(transcription, offset_seconds))
+
+    return _merge_transcriptions(transcriptions)
+
+
+def _offset_transcription(transcription: dict[str, Any], offset_seconds: int) -> dict[str, Any]:
+    if offset_seconds == 0:
+        return transcription
+
+    shifted = dict(transcription)
+    shifted_chunks = []
+    for chunk in transcription.get("chunks") or []:
+        shifted_chunk = dict(chunk)
+        timestamp = shifted_chunk.get("timestamp")
+        if isinstance(timestamp, (list, tuple)):
+            shifted_chunk["timestamp"] = tuple(
+                _offset_timestamp_value(value, offset_seconds) for value in timestamp
+            )
+        shifted_chunks.append(shifted_chunk)
+    shifted["chunks"] = shifted_chunks
+    return shifted
+
+
+def _offset_timestamp_value(value: Any, offset_seconds: int) -> Any:
+    if value is None:
+        return None
+    try:
+        return float(value) + offset_seconds
+    except (TypeError, ValueError):
+        return value
+
+
+def _merge_transcriptions(transcriptions: list[dict[str, Any]]) -> dict[str, Any]:
+    if len(transcriptions) == 1:
+        return transcriptions[0]
+
+    chunks = []
+    texts = []
+    for transcription in transcriptions:
+        text = str(transcription.get("text", "")).strip()
+        if text:
+            texts.append(text)
+        chunks.extend(transcription.get("chunks") or [])
+    return {
+        "text": " ".join(texts),
+        "chunks": chunks,
+    }
+
+
 def _build_generate_kwargs(config: ColabTranscriptionConfig) -> dict[str, str]:
-    language = _normalize_language(config.language)
+    language = _normalize_language(config.language, config.custom_language)
     if language is None and config.is_japanese_language:
         language = "japanese"
 
@@ -419,12 +671,17 @@ def _build_generate_kwargs(config: ColabTranscriptionConfig) -> dict[str, str]:
     return kwargs
 
 
-def _normalize_language(language: str | None) -> str | None:
+def _normalize_language(language: str | None, custom_language: str = "") -> str | None:
     if language is None:
         return None
     normalized = language.strip().lower()
     if normalized in {"", LANGUAGE_AUTO, "none"}:
         return None
+    if normalized == LANGUAGE_CUSTOM:
+        custom = custom_language.strip().lower()
+        if not custom:
+            raise ValueError("custom_language must be set when language is custom.")
+        return custom
     return normalized
 
 
@@ -432,33 +689,81 @@ def _should_translate_to_english(config: ColabTranscriptionConfig) -> bool:
     return config.translate_to_english or config.translate_into_english
 
 
-def _save_and_download_outputs(
+def _save_outputs(
     *,
     source_path: Path,
     transcription: dict[str, Any],
     include_timestamps: bool,
     export_excel: bool,
-    files_module,
-) -> list[str]:
-    saved_files: list[str] = []
+    output_dir: Path,
+    used_output_paths: set[Path],
+) -> list[Path]:
+    saved_files: list[Path] = []
 
-    text_path = Path(f"{source_path}.txt")
+    text_path = _unique_output_path(
+        output_dir / f"{source_path.name}.txt",
+        used_output_paths,
+    )
     text_path.write_text(
         _build_transcript(transcription, include_timestamps=include_timestamps),
         encoding="utf-8",
     )
-    files_module.download(str(text_path))
-    saved_files.append(str(text_path))
+    saved_files.append(text_path)
     print(f"Saved: {text_path}")
 
     if export_excel:
-        excel_path = Path(f"{source_path}.xlsx")
+        excel_path = _unique_output_path(
+            output_dir / f"{source_path.name}.xlsx",
+            used_output_paths,
+        )
         _write_excel(transcription, excel_path)
-        files_module.download(str(excel_path))
-        saved_files.append(str(excel_path))
+        saved_files.append(excel_path)
         print(f"Saved: {excel_path}")
 
     return saved_files
+
+
+def _unique_output_path(path: Path, used_output_paths: set[Path]) -> Path:
+    candidate = path
+    counter = 2
+    while candidate in used_output_paths:
+        candidate = path.with_name(f"{path.stem}_{counter}{path.suffix}")
+        counter += 1
+    used_output_paths.add(candidate)
+    candidate.parent.mkdir(parents=True, exist_ok=True)
+    return candidate
+
+
+def _download_outputs(
+    *,
+    output_paths: list[Path],
+    config: ColabTranscriptionConfig,
+    output_dir: Path,
+    files_module,
+) -> None:
+    if not output_paths:
+        return
+
+    if config.download_individual_files:
+        for output_path in output_paths:
+            files_module.download(str(output_path))
+
+    if config.export_zip:
+        zip_path = output_dir / config.zip_file_name
+        _create_zip_archive(output_paths, zip_path)
+        files_module.download(str(zip_path))
+        print(f"Downloaded ZIP archive: {zip_path}")
+
+
+def _create_zip_archive(output_paths: list[Path], zip_path: Path) -> Path:
+    zip_path.parent.mkdir(parents=True, exist_ok=True)
+    if zip_path.exists():
+        zip_path.unlink()
+
+    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        for output_path in output_paths:
+            archive.write(output_path, arcname=output_path.name)
+    return zip_path
 
 
 def _build_transcript(transcription: dict[str, Any], *, include_timestamps: bool) -> str:

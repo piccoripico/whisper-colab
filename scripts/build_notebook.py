@@ -14,7 +14,13 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = REPO_ROOT / "Whisper_v3.ipynb"
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from whisper_colab.colab_runner import LANGUAGE_OPTIONS, MODEL_OPTIONS  # noqa: E402
+from whisper_colab.colab_runner import (  # noqa: E402
+    DEFAULT_AUDIO_OUTPUT_DIR,
+    DEFAULT_OUTPUT_DIR,
+    DEFAULT_ZIP_FILE_NAME,
+    LANGUAGE_OPTIONS,
+    MODEL_OPTIONS,
+)
 
 
 def build_notebook() -> dict[str, Any]:
@@ -66,12 +72,18 @@ def build_notebook() -> dict[str, Any]:
                     # Whisper model and generation settings.
                     MODEL_ID = "openai/whisper-large-v3-turbo" #@param __MODEL_CHOICES__
                     LANGUAGE = "auto" #@param __LANGUAGE_CHOICES__
+                    CUSTOM_LANGUAGE = "" #@param {type:"string"}
                     TRANSLATE_TO_ENGLISH = False #@param {type:"boolean"}
+                    MAX_SEGMENT_SECONDS = 0 #@param {type:"integer"}
 
                     # Output settings.
                     INCLUDE_TIMESTAMPS = True #@param {type:"boolean"}
                     EXPORT_EXCEL = True #@param {type:"boolean"}
-                    AUDIO_OUTPUT_DIR = "/content/whisper_audio" #@param {type:"string"}
+                    AUDIO_OUTPUT_DIR = "__DEFAULT_AUDIO_OUTPUT_DIR__" #@param {type:"string"}
+                    OUTPUT_DIR = "__DEFAULT_OUTPUT_DIR__" #@param {type:"string"}
+                    EXPORT_ZIP = True #@param {type:"boolean"}
+                    DOWNLOAD_INDIVIDUAL_FILES = False #@param {type:"boolean"}
+                    ZIP_FILE_NAME = "__DEFAULT_ZIP_FILE_NAME__" #@param {type:"string"}
 
                     # Install Python packages and ffmpeg in the Colab runtime when needed.
                     INSTALL_PACKAGES = True #@param {type:"boolean"}
@@ -108,10 +120,16 @@ def build_notebook() -> dict[str, Any]:
                         drive_recursive=DRIVE_RECURSIVE,
                         model_id=MODEL_ID,
                         language=LANGUAGE,
+                        custom_language=CUSTOM_LANGUAGE,
                         translate_to_english=TRANSLATE_TO_ENGLISH,
                         include_timestamps=INCLUDE_TIMESTAMPS,
                         export_excel=EXPORT_EXCEL,
                         audio_output_dir=AUDIO_OUTPUT_DIR,
+                        output_dir=OUTPUT_DIR,
+                        export_zip=EXPORT_ZIP,
+                        download_individual_files=DOWNLOAD_INDIVIDUAL_FILES,
+                        zip_file_name=ZIP_FILE_NAME,
+                        max_segment_seconds=MAX_SEGMENT_SECONDS,
                         install_packages=INSTALL_PACKAGES,
                     )
 
@@ -169,6 +187,9 @@ def _source_lines(text: str) -> list[str]:
     replacements = {
         "__MODEL_CHOICES__": _colab_param_choices(MODEL_OPTIONS),
         "__LANGUAGE_CHOICES__": _colab_param_choices(LANGUAGE_OPTIONS),
+        "__DEFAULT_AUDIO_OUTPUT_DIR__": DEFAULT_AUDIO_OUTPUT_DIR,
+        "__DEFAULT_OUTPUT_DIR__": DEFAULT_OUTPUT_DIR,
+        "__DEFAULT_ZIP_FILE_NAME__": DEFAULT_ZIP_FILE_NAME,
     }
     source = dedent(text).lstrip("\n")
     for placeholder, value in replacements.items():

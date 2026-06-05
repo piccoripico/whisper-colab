@@ -1,7 +1,9 @@
+import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+import wave
 from pathlib import Path
 from unittest.mock import patch
 
@@ -95,6 +97,26 @@ class ExtractAudioForWhisperTests(unittest.TestCase):
             ):
                 with self.assertRaisesRegex(AudioExtractionError, "did not create"):
                     extract_audio_for_whisper(source, output_dir=Path(temp_dir) / "audio")
+
+    @unittest.skipUnless(shutil.which("ffmpeg"), "ffmpeg is not installed")
+    def test_real_ffmpeg_extracts_wav_input(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            temp_path = Path(temp_dir)
+            source = temp_path / "tone.wav"
+            _write_silent_wav(source)
+
+            result = Path(extract_audio_for_whisper(source, output_dir=temp_path / "audio"))
+
+            self.assertTrue(result.exists())
+            self.assertGreater(result.stat().st_size, 1_000)
+
+
+def _write_silent_wav(path: Path) -> None:
+    with wave.open(str(path), "wb") as wav_file:
+        wav_file.setnchannels(1)
+        wav_file.setsampwidth(2)
+        wav_file.setframerate(8_000)
+        wav_file.writeframes(b"\x00\x00" * 8_000)
 
 
 if __name__ == "__main__":

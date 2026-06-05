@@ -1,0 +1,6 @@
+transformers
+accelerate
+datasets[audio]
+pandas
+openpyxl
+ipywidgets

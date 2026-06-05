@@ -17,6 +17,9 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertEqual(self.notebook["nbformat"], 4)
         self.assertIn("cells", self.notebook)
 
+    def test_notebook_requests_gpu_runtime(self):
+        self.assertEqual(self.notebook["metadata"]["accelerator"], "GPU")
+
     def test_notebook_has_no_execution_outputs(self):
         for cell in self.notebook["cells"]:
             self.assertIsNone(cell.get("execution_count"))

@@ -21,7 +21,7 @@ Usage instructions are included in `Whisper_v3.ipynb`.
 
 When you open the notebook in Colab, click the play button on the `Launch Whisper Colab App` cell. The cell prints a temporary Gradio URL. Open it in a new tab, pick recordings from Google Drive, then run transcription in the app.
 
-By default, the launch cell requires a CUDA GPU. In Colab, choose `Runtime > Change runtime type > Hardware accelerator > GPU` before launching the app.
+The notebook metadata requests a GPU runtime, and the launch cell requires a CUDA GPU by default. If Colab still opens a CPU runtime, choose `Runtime > Change runtime type > Hardware accelerator > GPU`, then rerun the launch cell.
 
 The Gradio share URL is public while the app is running. The app allows Gradio to serve files under `/content/drive/MyDrive` and the output directory so Drive picker and download features can work. Avoid confidential recordings when using a public share URL.
 
@@ -79,7 +79,7 @@ Use `openai/whisper-large-v3-turbo`, reduce the number of files in one run, or s
 
 ### No GPU is available
 
-Enable a GPU runtime in Colab, then rerun the launch cell. The notebook exits before loading Whisper when `REQUIRE_GPU` is enabled and CUDA is unavailable.
+Enable a GPU runtime in Colab, then rerun the launch cell. The notebook requests GPU through metadata and exits before loading Whisper when `REQUIRE_GPU` is enabled but CUDA is unavailable.
 
 ### Gradio app URL does not appear
 

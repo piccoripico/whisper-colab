@@ -101,6 +101,7 @@ def build_notebook() -> dict[str, Any]:
             },
         ],
         "metadata": {
+            "accelerator": "GPU",
             "colab": {
                 "provenance": [],
             },

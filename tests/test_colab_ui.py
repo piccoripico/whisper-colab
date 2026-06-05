@@ -6,11 +6,7 @@ from src.whisper_colab.colab_runner import (
     INPUT_MODE_DRIVE_FILE_PATHS,
     ColabTranscriptionConfig,
 )
-from src.whisper_colab.colab_ui import (
-    build_ui_preview_html,
-    config_from_ui_values,
-    ui_values_from_config,
-)
+from src.whisper_colab.colab_ui import config_from_ui_values, ui_values_from_config
 
 
 class ColabUiTests(unittest.TestCase):
@@ -61,15 +57,6 @@ class ColabUiTests(unittest.TestCase):
         )
         self.assertEqual(config.custom_language, "Welsh")
         self.assertEqual(config.max_segment_seconds, 1800)
-
-    def test_build_ui_preview_html_contains_main_sections(self):
-        html = build_ui_preview_html()
-
-        self.assertIn("Whisper Colab Transcription", html)
-        self.assertIn("Choose input", html)
-        self.assertIn("Recognition", html)
-        self.assertIn("Run transcription", html)
-        self.assertIn("openai/whisper-large-v3-turbo", html)
 
 
 if __name__ == "__main__":

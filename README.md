@@ -34,16 +34,6 @@ https://github.com/piccoripico/whisper-colab.git
 python scripts/build_notebook.py
 ```
 
-## UI preview
-
-A static preview of the guided UI can be generated locally:
-
-```powershell
-python scripts/build_ui_preview.py
-```
-
-The preview is written under `output/playwright/`, which is ignored by Git.
-
 ## Colab dependencies
 
 Colab runtime dependencies are listed in `requirements-colab.txt`.

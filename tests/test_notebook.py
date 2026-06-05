@@ -31,6 +31,8 @@ class NotebookStructureTests(unittest.TestCase):
     def test_notebook_is_thin_github_launcher(self):
         self.assertIn("https://github.com/piccoripico/whisper-colab.git", self.sources)
         self.assertIn("run_colab_transcription(config)", self.sources)
+        self.assertIn("launch_colab_ui(config)", self.sources)
+        self.assertIn("USE_WIDGET_UI", self.sources)
         self.assertIn("INPUT_MODE", self.sources)
         self.assertIn("MODEL_ID", self.sources)
         self.assertIn('"openai/whisper-large-v3-turbo"', self.sources)

@@ -41,10 +41,11 @@ def build_notebook() -> dict[str, Any]:
 
                     ## Usage
 
-                    1. Edit the settings cell.
+                    1. Keep `USE_WIDGET_UI` enabled for the guided form, or disable it to run directly from the parameter values.
                     2. Run the bootstrap/run cell.
-                    3. Upload files, or provide Google Drive paths.
-                    4. Download the generated transcript files.
+                    3. In widget mode, review the form and click `Run transcription`.
+                    4. Upload files, or provide Google Drive paths.
+                    5. Download the generated transcript files.
 
                     ## Input Modes
 
@@ -76,6 +77,9 @@ def build_notebook() -> dict[str, Any]:
                 "source": _source_lines(
                     """
                     #@title 1. Settings
+
+                    # Keep enabled for the guided widget UI. Disable to run directly from these parameters.
+                    USE_WIDGET_UI = True #@param {type:"boolean"}
 
                     # Input mode.
                     INPUT_MODE = "upload" #@param ["upload", "drive_file_paths", "drive_folder_path", "drive_file_picker", "drive_folder_picker"]
@@ -117,7 +121,7 @@ def build_notebook() -> dict[str, Any]:
                 "outputs": [],
                 "source": _source_lines(
                     """
-                    #@title 2. Clone repository and run transcription
+                    #@title 2. Clone repository and launch
 
                     import subprocess
                     import sys
@@ -131,7 +135,7 @@ def build_notebook() -> dict[str, Any]:
 
                     sys.path.insert(0, str(REPO_DIR / "src"))
 
-                    from whisper_colab import ColabTranscriptionConfig, run_colab_transcription  # noqa: E402
+                    from whisper_colab import ColabTranscriptionConfig, launch_colab_ui, run_colab_transcription  # noqa: E402
 
                     config = ColabTranscriptionConfig(
                         input_mode=INPUT_MODE,
@@ -153,8 +157,11 @@ def build_notebook() -> dict[str, Any]:
                         install_packages=INSTALL_PACKAGES,
                     )
 
-                    results = run_colab_transcription(config)
-                    results
+                    if USE_WIDGET_UI:
+                        ui_state = launch_colab_ui(config)
+                        results = ui_state
+                    else:
+                        results = run_colab_transcription(config)
                     """
                 ),
             },

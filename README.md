@@ -7,6 +7,7 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
 ## What this repository does
 
 - Keeps the notebook small: user settings stay in the notebook, while the workflow lives in `src/whisper_colab`.
+- Includes a guided widget UI in Colab, with the generated parameter cell kept as a fallback.
 - Converts input audio or video to Whisper-friendly WAV before transcription.
 - Uses `16 kHz / mono / PCM WAV` extraction through `ffmpeg`.
 - Lets you choose `openai/whisper-large-v3-turbo` or `openai/whisper-large-v3`.

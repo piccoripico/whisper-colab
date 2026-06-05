@@ -304,21 +304,26 @@ class ColabRunnerTests(unittest.TestCase):
             self.assertEqual(paths, [])
 
     def test_output_dir_defaults_to_source_folder(self):
-        source_path = Path("/content/drive/MyDrive/input/meeting.mp4")
+        with TemporaryDirectory() as temp_dir:
+            source_path = Path(temp_dir) / "input" / "meeting.mp4"
+            source_path.parent.mkdir()
 
-        output_dir = _output_dir_for_source(ColabTranscriptionConfig(), source_path)
+            output_dir = _output_dir_for_source(ColabTranscriptionConfig(), source_path)
 
         self.assertEqual(output_dir, source_path.parent)
 
     def test_output_dir_uses_default_for_upload(self):
-        source_path = Path("/content/meeting.mp4")
+        with TemporaryDirectory() as temp_dir:
+            source_path = Path(temp_dir) / "meeting.mp4"
+            upload_output_dir = Path(temp_dir) / "upload-output"
 
-        output_dir = _output_dir_for_source(
-            ColabTranscriptionConfig(input_mode=INPUT_MODE_UPLOAD),
-            source_path,
-        )
+            with patch("src.whisper_colab.colab_runner.DEFAULT_OUTPUT_DIR", str(upload_output_dir)):
+                output_dir = _output_dir_for_source(
+                    ColabTranscriptionConfig(input_mode=INPUT_MODE_UPLOAD),
+                    source_path,
+                )
 
-        self.assertEqual(output_dir, Path(DEFAULT_OUTPUT_DIR))
+        self.assertEqual(output_dir, upload_output_dir)
 
     def test_output_dir_can_use_custom_folder(self):
         with TemporaryDirectory() as temp_dir:

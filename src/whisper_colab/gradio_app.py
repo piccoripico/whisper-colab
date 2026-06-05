@@ -237,6 +237,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 drive_folder_picker = gr.FileExplorer(
                     root_dir=str(drive_picker_root),
                     glob="**/",
+                    ignore_glob="**/*.*",
                     file_count="multiple",
                     label="Drive folder picker",
                     interactive=drive_folder_picker_interactive,
@@ -249,6 +250,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 drive_file_picker = gr.FileExplorer(
                     root_dir=str(drive_picker_root),
                     glob=media_glob,
+                    ignore_glob="**/",
                     file_count="multiple",
                     label="Drive file picker",
                     interactive=drive_file_picker_interactive,

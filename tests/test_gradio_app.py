@@ -1,3 +1,4 @@
+import inspect
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -13,6 +14,7 @@ from src.whisper_colab.colab_runner import (
     INPUT_MODE_UPLOAD,
 )
 from src.whisper_colab.gradio_app import (
+    _build_gradio_blocks,
     _build_output_locations_html,
     _drive_picker_root,
     _is_drive_picker_available,
@@ -155,6 +157,17 @@ class GradioAppTests(unittest.TestCase):
             ("Pick Drive files", INPUT_MODE_DRIVE_FILE_PICKER),
             input_mode_options(True),
         )
+
+    def test_gradio_source_filters_picker_visibility_and_hides_zip_initially(self):
+        source = inspect.getsource(_build_gradio_blocks)
+
+        self.assertIn('glob="**/"', source)
+        self.assertIn('ignore_glob="**/*.*"', source)
+        self.assertIn('ignore_glob="**/"', source)
+        self.assertIn('visible=values["use_custom_output_dir"]', source)
+        self.assertIn('visible=values["download_zip_on_completion"]', source)
+        self.assertIn("visible=False", source)
+        self.assertIn("outputs are also saved in folders", source)
 
     def test_input_section_visibility_matches_selected_input_mode(self):
         self.assertEqual(

@@ -50,6 +50,7 @@ COLAB_REQUIREMENTS = [
 ]
 DEFAULT_AUDIO_OUTPUT_DIR = "/content/whisper_audio"
 DEFAULT_OUTPUT_DIR = "/content/whisper_outputs"
+DEFAULT_DOWNLOAD_DIR = "/content/whisper_downloads"
 DEFAULT_ZIP_FILE_NAME = "whisper_outputs.zip"
 
 MODEL_OPTIONS = [
@@ -147,6 +148,9 @@ class ColabTranscriptionConfig:
     max_segment_seconds: int = 0
     install_packages: bool = True
     require_gpu: bool = True
+    mount_google_drive: bool = True
+    use_custom_output_dir: bool = False
+    download_zip_on_completion: bool = True
 
 
 def run_colab_transcription(config: ColabTranscriptionConfig) -> list[dict[str, Any]]:
@@ -201,8 +205,6 @@ def _run_transcription_pipeline(
     pipe = _load_whisper_pipeline(config.model_id, require_gpu=config.require_gpu)
     generate_kwargs = _build_generate_kwargs(config)
     max_segment_seconds = _normalize_max_segment_seconds(config.max_segment_seconds)
-    output_dir = Path(config.output_dir).expanduser()
-    output_dir.mkdir(parents=True, exist_ok=True)
 
     results: list[dict[str, Any]] = []
     all_saved_files: list[Path] = []
@@ -229,6 +231,7 @@ def _run_transcription_pipeline(
             max_segment_seconds=max_segment_seconds,
         )
 
+        output_dir = _output_dir_for_source(config, source_path)
         saved_files = _save_outputs(
             source_path=source_path,
             transcription=transcription,
@@ -245,24 +248,26 @@ def _run_transcription_pipeline(
                 "segment_paths": [str(path) for path in segment_paths],
                 "transcription": transcription,
                 "saved_files": [str(path) for path in saved_files],
+                "output_dir": str(output_dir),
             }
         )
         print(f"{progress_prefix} Finished: {source_path.name}")
 
+    fallback_output_dir = Path(config.output_dir).expanduser()
     if download_outputs:
         if files_module is None:
             files_module = _import_colab_files()
         _download_outputs(
             output_paths=all_saved_files,
             config=config,
-            output_dir=output_dir,
+            output_dir=fallback_output_dir,
             files_module=files_module,
         )
     else:
         downloadable_files = _prepare_downloadable_outputs(
             output_paths=all_saved_files,
             config=config,
-            output_dir=output_dir,
+            output_dir=fallback_output_dir,
         )
         for result in results:
             result["downloadable_files"] = [str(path) for path in downloadable_files]
@@ -311,9 +316,11 @@ def _validate_config(config: ColabTranscriptionConfig) -> None:
     _normalize_language(config.language, config.custom_language)
     if not str(config.audio_output_dir).strip():
         raise ValueError("audio_output_dir must not be empty.")
-    if not str(config.output_dir).strip():
+    if config.use_custom_output_dir and not str(config.output_dir).strip():
         raise ValueError("output_dir must not be empty.")
-    if config.export_zip and not str(config.zip_file_name).strip():
+    if (config.export_zip or config.download_zip_on_completion) and not str(
+        config.zip_file_name
+    ).strip():
         raise ValueError("zip_file_name must not be empty when export_zip is enabled.")
     _normalize_max_segment_seconds(config.max_segment_seconds)
 
@@ -346,6 +353,8 @@ def _collect_input_paths(config: ColabTranscriptionConfig, files_module) -> list
     if input_mode == INPUT_MODE_UPLOAD:
         return _collect_uploaded_paths(files_module)
 
+    if not config.mount_google_drive:
+        raise ValueError("Google Drive input modes require mount_google_drive=True.")
     _mount_drive()
 
     if input_mode == INPUT_MODE_DRIVE_FILE_PATHS:
@@ -695,6 +704,17 @@ def _save_outputs(
     return saved_files
 
 
+def _output_dir_for_source(config: ColabTranscriptionConfig, source_path: Path) -> Path:
+    if config.use_custom_output_dir:
+        output_dir = Path(config.output_dir).expanduser()
+    elif config.input_mode == INPUT_MODE_UPLOAD:
+        output_dir = Path(DEFAULT_OUTPUT_DIR)
+    else:
+        output_dir = source_path.parent
+    output_dir.mkdir(parents=True, exist_ok=True)
+    return output_dir
+
+
 def _unique_output_path(path: Path, used_output_paths: set[Path]) -> Path:
     candidate = path
     counter = 2
@@ -736,15 +756,23 @@ def _prepare_downloadable_outputs(
     if not output_paths:
         return []
 
-    downloadable_paths = []
-    if config.download_individual_files or not config.export_zip:
-        downloadable_paths.extend(output_paths)
+    if not config.download_zip_on_completion:
+        return []
 
-    if config.export_zip:
-        zip_path = output_dir / config.zip_file_name
-        downloadable_paths.append(_create_zip_archive(output_paths, zip_path))
+    zip_path = _download_zip_path(config, output_dir)
+    return [_create_zip_archive(output_paths, zip_path)]
 
-    return downloadable_paths
+
+def _download_zip_path(config: ColabTranscriptionConfig, output_dir: Path) -> Path:
+    if _is_colab_path(output_dir):
+        base_dir = Path(DEFAULT_DOWNLOAD_DIR)
+    else:
+        base_dir = output_dir.parent / "whisper_downloads"
+    return base_dir / config.zip_file_name
+
+
+def _is_colab_path(path: Path) -> bool:
+    return path.as_posix().startswith("/content/")
 
 
 def _create_zip_archive(output_paths: list[Path], zip_path: Path) -> Path:

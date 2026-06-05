@@ -13,8 +13,9 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
 - Uses `16 kHz / mono / PCM WAV` extraction through `ffmpeg`.
 - Lets you choose `openai/whisper-large-v3-turbo` or `openai/whisper-large-v3`.
 - Lets Whisper auto-detect the language by default, lets you select a source language, or lets you enter a custom language name.
-- Downloads transcript outputs as `.txt` and, optionally, `.xlsx`.
-- Saves outputs to a dedicated output directory and can download them as a ZIP archive.
+- Saves transcript outputs as `.txt` and, optionally, `.xlsx`.
+- Saves outputs next to the input files by default, with an option to use a custom output directory.
+- Can download one ZIP archive when transcription completes; the uncompressed outputs remain in the output folder.
 - Can optionally split long extracted audio into fixed-length segments before transcription.
 
 Usage instructions are included in `Whisper_v3.ipynb`.
@@ -23,7 +24,11 @@ When you open the notebook in Colab, click the play button on the `Launch Whispe
 
 The notebook metadata requests a GPU runtime, and the launch cell requires a CUDA GPU by default. If Colab still opens a CPU runtime, choose `Runtime > Change runtime type > Hardware accelerator > GPU`, then rerun the launch cell.
 
-The Gradio share URL is public while the app is running. The app allows Gradio to serve files under `/content/drive/MyDrive` and the output directory so Drive picker and download features can work. Avoid confidential recordings when using a public share URL.
+The Gradio share URL is public while the app is running. The app allows Gradio to serve files under `/content/drive/MyDrive`, the output directory, and a temporary ZIP download directory so picker and download features can work. Avoid confidential recordings when using a public share URL.
+
+By default, transcript files are saved in the same folder as each input file. Uploaded local files are saved under `/content/whisper_outputs` because uploads live in a temporary Colab location. Enable the custom output directory option only when you want all transcript files saved in one folder.
+
+If download on completion is enabled, the app downloads one ZIP archive. Browsers can ask for confirmation when a page starts multiple downloads, so this app does not auto-download individual files.
 
 The notebook clones this repository from:
 

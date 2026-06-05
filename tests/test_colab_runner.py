@@ -8,6 +8,7 @@ from unittest.mock import patch
 from src.whisper_colab.colab_runner import (
     COLAB_REQUIREMENTS,
     COLAB_REQUIREMENTS_PATH,
+    DEFAULT_DOWNLOAD_DIR,
     DEFAULT_OUTPUT_DIR,
     INPUT_MODE_DRIVE_FILE_PATHS,
     INPUT_MODE_DRIVE_FOLDER_PATH,
@@ -22,10 +23,12 @@ from src.whisper_colab.colab_runner import (
     _collect_drive_folder_paths,
     _create_zip_archive,
     _download_outputs,
+    _download_zip_path,
     _merge_transcriptions,
     _normalize_input_mode,
     _normalize_language,
     _normalize_max_segment_seconds,
+    _output_dir_for_source,
     _prepare_downloadable_outputs,
     _resolve_torch_device,
     _run_transcription_pipeline,
@@ -47,6 +50,7 @@ class ColabRunnerTests(unittest.TestCase):
         self.assertIn("english", LANGUAGE_OPTIONS)
         self.assertIn("welsh", LANGUAGE_OPTIONS)
         self.assertEqual(ColabTranscriptionConfig().output_dir, DEFAULT_OUTPUT_DIR)
+        self.assertTrue(ColabTranscriptionConfig().download_zip_on_completion)
 
     def test_colab_requirements_file_exists_for_runtime_install(self):
         self.assertTrue(COLAB_REQUIREMENTS_PATH.exists())
@@ -266,7 +270,7 @@ class ColabRunnerTests(unittest.TestCase):
 
             self.assertEqual(files_module.downloaded_paths, [str(output_dir / "bundle.zip")])
 
-    def test_prepare_downloadable_outputs_can_return_only_zip(self):
+    def test_prepare_downloadable_outputs_can_return_temporary_zip(self):
         with TemporaryDirectory() as temp_dir:
             output_dir = Path(temp_dir)
             first = output_dir / "one.txt"
@@ -276,15 +280,67 @@ class ColabRunnerTests(unittest.TestCase):
                 output_paths=[first],
                 config=ColabTranscriptionConfig(
                     output_dir=str(output_dir),
-                    export_zip=True,
-                    download_individual_files=False,
+                    download_zip_on_completion=True,
                     zip_file_name="bundle.zip",
                 ),
                 output_dir=output_dir,
             )
 
-            self.assertEqual(paths, [output_dir / "bundle.zip"])
-            self.assertTrue((output_dir / "bundle.zip").exists())
+            self.assertEqual(paths, [output_dir.parent / "whisper_downloads" / "bundle.zip"])
+            self.assertTrue((output_dir.parent / "whisper_downloads" / "bundle.zip").exists())
+
+    def test_prepare_downloadable_outputs_can_return_no_download(self):
+        with TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir)
+            first = output_dir / "one.txt"
+            first.write_text("one", encoding="utf-8")
+
+            paths = _prepare_downloadable_outputs(
+                output_paths=[first],
+                config=ColabTranscriptionConfig(download_zip_on_completion=False),
+                output_dir=output_dir,
+            )
+
+            self.assertEqual(paths, [])
+
+    def test_output_dir_defaults_to_source_folder(self):
+        source_path = Path("/content/drive/MyDrive/input/meeting.mp4")
+
+        output_dir = _output_dir_for_source(ColabTranscriptionConfig(), source_path)
+
+        self.assertEqual(output_dir, source_path.parent)
+
+    def test_output_dir_uses_default_for_upload(self):
+        source_path = Path("/content/meeting.mp4")
+
+        output_dir = _output_dir_for_source(
+            ColabTranscriptionConfig(input_mode=INPUT_MODE_UPLOAD),
+            source_path,
+        )
+
+        self.assertEqual(output_dir, Path(DEFAULT_OUTPUT_DIR))
+
+    def test_output_dir_can_use_custom_folder(self):
+        with TemporaryDirectory() as temp_dir:
+            custom_dir = Path(temp_dir) / "custom"
+
+            output_dir = _output_dir_for_source(
+                ColabTranscriptionConfig(
+                    use_custom_output_dir=True,
+                    output_dir=str(custom_dir),
+                ),
+                Path("/content/drive/MyDrive/input/meeting.mp4"),
+            )
+
+        self.assertEqual(output_dir, custom_dir)
+
+    def test_colab_download_zip_path_uses_download_dir(self):
+        path = _download_zip_path(
+            ColabTranscriptionConfig(zip_file_name="bundle.zip"),
+            Path("/content/whisper_outputs"),
+        )
+
+        self.assertEqual(path, Path(DEFAULT_DOWNLOAD_DIR) / "bundle.zip")
 
     def test_pipeline_without_download_returns_downloadable_files(self):
         with TemporaryDirectory() as temp_dir:
@@ -308,8 +364,8 @@ class ColabRunnerTests(unittest.TestCase):
                     config=ColabTranscriptionConfig(
                         output_dir=str(temp_path / "out"),
                         export_excel=False,
-                        export_zip=True,
-                        download_individual_files=False,
+                        use_custom_output_dir=True,
+                        download_zip_on_completion=True,
                     ),
                     input_paths=[input_path],
                     download_outputs=False,
@@ -317,8 +373,10 @@ class ColabRunnerTests(unittest.TestCase):
 
             self.assertEqual(
                 results[0]["downloadable_files"],
-                [str(temp_path / "out" / "whisper_outputs.zip")],
+                [str(temp_path / "whisper_downloads" / "whisper_outputs.zip")],
             )
+            self.assertEqual(results[0]["output_dir"], str(temp_path / "out"))
+            self.assertFalse((temp_path / "out" / "whisper_outputs.zip").exists())
 
     def test_split_audio_for_transcription_builds_segment_command(self):
         with TemporaryDirectory() as temp_dir:

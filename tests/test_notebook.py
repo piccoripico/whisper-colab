@@ -39,6 +39,8 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertIn("launch_gradio_app(config, share=True, inline=False)", self.sources)
         self.assertIn("REQUIRE_GPU = True", self.sources)
         self.assertIn("require_gpu=REQUIRE_GPU", self.sources)
+        self.assertIn("MOUNT_GOOGLE_DRIVE = True", self.sources)
+        self.assertIn("mount_google_drive=MOUNT_GOOGLE_DRIVE", self.sources)
         self.assertNotIn("run_colab_transcription(config)", self.sources)
         self.assertNotIn("launch_colab" + "_ui", self.sources)
         self.assertNotIn("USE_WIDGET" + "_UI", self.sources)

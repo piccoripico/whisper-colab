@@ -5,10 +5,14 @@ from __future__ import annotations
 import subprocess
 import sys
 from dataclasses import asdict
+from html import escape
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
 from .colab_runner import (
+    DEFAULT_DOWNLOAD_DIR,
+    DEFAULT_OUTPUT_DIR,
     DRIVE_ROOT,
     INPUT_MODE_DRIVE_FILE_PATHS,
     INPUT_MODE_DRIVE_FILE_PICKER,
@@ -57,16 +61,21 @@ def launch_gradio_app(
         install_colab_dependencies()
     if config.require_gpu:
         require_gpu_available()
-    _mount_drive_for_picker()
+    if config.mount_google_drive:
+        _mount_drive_for_picker()
     gr = _import_gradio(install_packages=config.install_packages)
     demo = _build_gradio_blocks(gr, config)
+    allowed_paths = [
+        str(Path(DEFAULT_DOWNLOAD_DIR).expanduser()),
+        str(Path(DEFAULT_OUTPUT_DIR).expanduser()),
+        str(Path(config.output_dir).expanduser()),
+    ]
+    if config.mount_google_drive:
+        allowed_paths.append(str(DRIVE_ROOT))
     return demo.launch(
         share=share,
         inline=inline,
-        allowed_paths=[
-            str(DRIVE_ROOT),
-            str(Path(config.output_dir).expanduser()),
-        ],
+        allowed_paths=allowed_paths,
     )
 
 
@@ -86,12 +95,15 @@ def config_from_gradio_values(values: dict[str, Any]) -> ColabTranscriptionConfi
         export_excel=bool(values["export_excel"]),
         audio_output_dir=str(values["audio_output_dir"]),
         output_dir=str(values["output_dir"]),
-        export_zip=bool(values["export_zip"]),
-        download_individual_files=bool(values["download_individual_files"]),
+        export_zip=False,
+        download_individual_files=False,
         zip_file_name=str(values["zip_file_name"]),
         max_segment_seconds=int(values["max_segment_seconds"]),
         install_packages=False,
         require_gpu=bool(values.get("require_gpu", True)),
+        mount_google_drive=bool(values.get("mount_google_drive", True)),
+        use_custom_output_dir=bool(values.get("use_custom_output_dir", False)),
+        download_zip_on_completion=bool(values.get("download_zip_on_completion", True)),
     )
 
 
@@ -112,10 +124,13 @@ def collect_gradio_input_paths(
     drive_folder_path: str,
     uploaded_files: Any,
     drive_recursive: bool,
+    mount_google_drive: bool = True,
     drive_root: Path = DRIVE_ROOT,
 ) -> list[Path]:
     """Resolve Gradio input controls into validated media file paths."""
 
+    if input_mode != INPUT_MODE_UPLOAD and not mount_google_drive:
+        raise ValueError("Google Drive input modes require Mount Google Drive to be enabled.")
     if input_mode == INPUT_MODE_DRIVE_FOLDER_PICKER:
         return _paths_from_drive_folder_picker(
             drive_folder_picker,
@@ -137,6 +152,13 @@ def collect_gradio_input_paths(
 def _build_gradio_blocks(gr, config: ColabTranscriptionConfig):
     values = ui_values_from_config(config)
     media_glob = _media_file_glob()
+    drive_enabled = bool(values["mount_google_drive"])
+    (
+        drive_folder_picker_interactive,
+        drive_file_picker_interactive,
+        drive_folder_path_interactive,
+        drive_file_paths_interactive,
+    ) = drive_input_interactivity(drive_enabled)
     with gr.Blocks(title="Whisper Colab") as demo:
         gr.Markdown(
             """
@@ -146,8 +168,13 @@ Pick recordings from Google Drive, choose Whisper settings, and download transcr
 The Drive picker can see files under `/content/drive/MyDrive` after Drive is mounted.
 """
         )
+        gr.Markdown(_drive_mount_message(drive_enabled))
 
         with gr.Tab("Input"):
+            mount_google_drive = gr.Checkbox(
+                value=values["mount_google_drive"],
+                visible=False,
+            )
             input_mode = gr.Dropdown(
                 choices=INPUT_MODE_OPTIONS,
                 value=values["input_mode"],
@@ -156,6 +183,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
             drive_recursive = gr.Checkbox(
                 value=values["drive_recursive"],
                 label="Search Drive folders recursively",
+                interactive=drive_enabled,
             )
             with gr.Group(
                 visible=_is_input_section_visible(
@@ -167,6 +195,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                     glob="**/*",
                     file_count="single",
                     label="Drive folder picker",
+                    interactive=drive_folder_picker_interactive,
                 )
             with gr.Group(
                 visible=_is_input_section_visible(
@@ -178,6 +207,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                     glob=media_glob,
                     file_count="multiple",
                     label="Drive file picker",
+                    interactive=drive_file_picker_interactive,
                 )
             with gr.Group(
                 visible=_is_input_section_visible(
@@ -188,6 +218,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                     value=values["drive_folder_path"],
                     label="Drive folder path",
                     placeholder="/content/drive/MyDrive/whisper-input",
+                    interactive=drive_folder_path_interactive,
                 )
             with gr.Group(
                 visible=_is_input_section_visible(values["input_mode"], INPUT_MODE_DRIVE_FILE_PATHS)
@@ -197,6 +228,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                     label="Drive file paths",
                     lines=5,
                     placeholder="/content/drive/MyDrive/path/to/meeting.mp4",
+                    interactive=drive_file_paths_interactive,
                 )
             with gr.Group(
                 visible=_is_input_section_visible(values["input_mode"], INPUT_MODE_UPLOAD)
@@ -243,17 +275,17 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 value=values["export_excel"],
                 label="Export Excel",
             )
+            use_custom_output_dir = gr.Checkbox(
+                value=values["use_custom_output_dir"],
+                label="Save all outputs to a custom folder",
+            )
             output_dir = gr.Textbox(
                 value=values["output_dir"],
-                label="Output directory",
+                label="Custom output directory",
             )
-            export_zip = gr.Checkbox(
-                value=values["export_zip"],
-                label="Create ZIP archive",
-            )
-            download_individual_files = gr.Checkbox(
-                value=values["download_individual_files"],
-                label="Also expose individual files",
+            download_zip_on_completion = gr.Checkbox(
+                value=values["download_zip_on_completion"],
+                label="Download a ZIP when transcription finishes",
             )
             zip_file_name = gr.Textbox(
                 value=values["zip_file_name"],
@@ -270,7 +302,8 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
 
         run_button = gr.Button("Run transcription", variant="primary")
         status = gr.Textbox(label="Status", lines=8)
-        output_files = gr.File(label="Download outputs", file_count="multiple")
+        output_locations = gr.HTML(label="Output folders")
+        output_files = gr.File(label="ZIP download", file_count="multiple")
 
         run_button.click(
             fn=_run_from_gradio,
@@ -289,14 +322,15 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 max_segment_seconds,
                 include_timestamps,
                 export_excel,
+                mount_google_drive,
+                use_custom_output_dir,
                 output_dir,
-                export_zip,
-                download_individual_files,
+                download_zip_on_completion,
                 zip_file_name,
                 audio_output_dir,
                 require_gpu,
             ],
-            outputs=[status, output_files],
+            outputs=[status, output_locations, output_files],
         )
         input_mode.change(
             fn=_input_visibility_updates,
@@ -310,6 +344,21 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
             ],
         )
     return demo
+
+
+def _drive_mount_message(mount_google_drive: bool) -> str:
+    if mount_google_drive:
+        return "Google Drive mount is enabled. Drive picker and path inputs are available."
+    return (
+        "Google Drive mount is disabled. Drive picker and path inputs are grayed out; use upload."
+    )
+
+
+def drive_input_interactivity(mount_google_drive: bool) -> tuple[bool, bool, bool, bool]:
+    """Return interactive states for Drive folder/file picker and path controls."""
+
+    enabled = bool(mount_google_drive)
+    return (enabled, enabled, enabled, enabled)
 
 
 def _run_from_gradio(
@@ -327,13 +376,14 @@ def _run_from_gradio(
     max_segment_seconds: int,
     include_timestamps: bool,
     export_excel: bool,
+    mount_google_drive: bool,
+    use_custom_output_dir: bool,
     output_dir: str,
-    export_zip: bool,
-    download_individual_files: bool,
+    download_zip_on_completion: bool,
     zip_file_name: str,
     audio_output_dir: str,
     require_gpu: bool,
-) -> tuple[str, list[str]]:
+) -> tuple[str, str, list[str]]:
     values = {
         "input_mode": input_mode,
         "drive_file_paths": drive_file_paths,
@@ -345,10 +395,11 @@ def _run_from_gradio(
         "translate_to_english": translate_to_english,
         "include_timestamps": include_timestamps,
         "export_excel": export_excel,
+        "mount_google_drive": mount_google_drive,
+        "use_custom_output_dir": use_custom_output_dir,
         "audio_output_dir": audio_output_dir,
         "output_dir": output_dir,
-        "export_zip": export_zip,
-        "download_individual_files": download_individual_files,
+        "download_zip_on_completion": download_zip_on_completion,
         "zip_file_name": zip_file_name,
         "max_segment_seconds": int(max_segment_seconds),
         "require_gpu": require_gpu,
@@ -362,11 +413,13 @@ def _run_from_gradio(
         drive_folder_path=drive_folder_path,
         uploaded_files=uploaded_files,
         drive_recursive=drive_recursive,
+        mount_google_drive=mount_google_drive,
     )
     results = run_transcription_for_paths(config, input_paths, download_outputs=False)
     downloadable_files = _downloadable_files_from_results(results)
     status = _build_status_message(results, downloadable_files)
-    return status, downloadable_files
+    output_locations = _build_output_locations_html(results)
+    return status, output_locations, downloadable_files
 
 
 def input_section_visibility(input_mode: str) -> tuple[bool, bool, bool, bool, bool]:
@@ -413,6 +466,24 @@ def _build_status_message(results: list[dict[str, Any]], downloadable_files: lis
     return "\n".join(lines)
 
 
+def _build_output_locations_html(results: list[dict[str, Any]]) -> str:
+    output_dirs = []
+    for result in results:
+        output_dir = result.get("output_dir")
+        if output_dir and output_dir not in output_dirs:
+            output_dirs.append(output_dir)
+
+    if not output_dirs:
+        return "<p>No output folder was created.</p>"
+
+    items = []
+    for output_dir in output_dirs:
+        escaped_path = escape(str(output_dir))
+        href = f"/file={quote(str(output_dir))}"
+        items.append(f'<li><a href="{href}" target="_blank"><code>{escaped_path}</code></a></li>')
+    return "<p>Outputs were saved in:</p><ul>" + "".join(items) + "</ul>"
+
+
 def _paths_from_drive_file_picker(selection: Any, *, drive_root: Path = DRIVE_ROOT) -> list[Path]:
     paths = [
         _normalize_drive_picker_path(value, drive_root=drive_root)
@@ -420,6 +491,9 @@ def _paths_from_drive_file_picker(selection: Any, *, drive_root: Path = DRIVE_RO
     ]
     if not paths:
         raise ValueError("Select one or more Drive files.")
+    for path in paths:
+        if path.is_dir():
+            raise IsADirectoryError(f"Drive file picker selection is a folder: {path}")
     return _validate_media_files(paths)
 
 
@@ -491,7 +565,27 @@ def _flatten_selection(selection: Any) -> list[Any]:
         return []
     if isinstance(selection, (str, Path)):
         return [selection]
-    return list(selection)
+    if isinstance(selection, dict):
+        return _flatten_mapping_selection(selection)
+    if hasattr(selection, "path"):
+        return [selection.path]
+    if hasattr(selection, "name"):
+        return [selection.name]
+    values = []
+    for item in selection:
+        values.extend(_flatten_selection(item))
+    return values
+
+
+def _flatten_mapping_selection(selection: dict[str, Any]) -> list[Any]:
+    for key in ("path", "name", "value"):
+        value = selection.get(key)
+        if value:
+            return _flatten_selection(value)
+    data = selection.get("data")
+    if data:
+        return _flatten_selection(data)
+    return []
 
 
 def _parse_drive_file_paths(value: str) -> list[str]:

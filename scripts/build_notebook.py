@@ -51,8 +51,12 @@ def build_notebook() -> dict[str, Any]:
                     ## Settings Notes
 
                     - Google Drive is the recommended input source.
+                    - Set `MOUNT_GOOGLE_DRIVE` to `False` only when you want upload-only use. Drive picker and path controls are disabled in the app when Drive is not mounted.
+                    - Outputs are saved next to each input file by default. Uploaded local files are saved under `/content/whisper_outputs`.
+                    - Enable the custom output directory option in the app only when you want all outputs saved in one folder.
+                    - If download on completion is enabled, the app downloads one ZIP archive. The uncompressed output files remain in the output folder.
                     - The Gradio share URL is temporary and public while the app is running.
-                    - The app allows Gradio to serve files under `/content/drive/MyDrive` and the output directory so picker and download features can work.
+                    - The app allows Gradio to serve files under `/content/drive/MyDrive`, output directories, and a temporary ZIP download directory so picker and download features can work.
                     - Avoid using confidential recordings with a public share URL.
 
                     This notebook clones:
@@ -76,6 +80,9 @@ def build_notebook() -> dict[str, Any]:
                     # Exit before launching the app if this runtime has no CUDA GPU.
                     REQUIRE_GPU = True #@param {type:"boolean"}
 
+                    # Mount Google Drive and enable Drive picker/path inputs.
+                    MOUNT_GOOGLE_DRIVE = True #@param {type:"boolean"}
+
                     import subprocess
                     import sys
                     from pathlib import Path
@@ -93,6 +100,7 @@ def build_notebook() -> dict[str, Any]:
                     config = ColabTranscriptionConfig(
                         install_packages=INSTALL_PACKAGES,
                         require_gpu=REQUIRE_GPU,
+                        mount_google_drive=MOUNT_GOOGLE_DRIVE,
                     )
 
                     app = launch_gradio_app(config, share=True, inline=False)

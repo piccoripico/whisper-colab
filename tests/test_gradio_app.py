@@ -14,6 +14,8 @@ from src.whisper_colab.colab_runner import (
 )
 from src.whisper_colab.gradio_app import (
     _build_output_locations_html,
+    _drive_picker_root,
+    _is_drive_picker_available,
     collect_gradio_input_paths,
     config_from_gradio_values,
     drive_input_interactivity,
@@ -81,6 +83,19 @@ class GradioAppTests(unittest.TestCase):
     def test_drive_input_interactivity_follows_mount_setting(self):
         self.assertEqual(drive_input_interactivity(True), (True, True, True, True))
         self.assertEqual(drive_input_interactivity(False), (False, False, False, False))
+
+    def test_drive_picker_uses_existing_disabled_root_when_drive_is_unavailable(self):
+        root = _drive_picker_root(False)
+
+        self.assertTrue(root.exists())
+        self.assertTrue(root.is_dir())
+
+    def test_drive_picker_availability_requires_existing_drive_root(self):
+        with TemporaryDirectory() as temp_dir:
+            drive_root = Path(temp_dir) / "missing"
+
+            self.assertFalse(_is_drive_picker_available(True, drive_root))
+            self.assertFalse(_is_drive_picker_available(False, drive_root))
 
     def test_input_section_visibility_matches_selected_input_mode(self):
         self.assertEqual(

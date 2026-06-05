@@ -7,6 +7,7 @@ import sys
 from dataclasses import asdict
 from html import escape
 from pathlib import Path
+from tempfile import gettempdir
 from typing import Any
 from urllib.parse import quote
 
@@ -70,8 +71,10 @@ def launch_gradio_app(
         str(Path(DEFAULT_OUTPUT_DIR).expanduser()),
         str(Path(config.output_dir).expanduser()),
     ]
-    if config.mount_google_drive:
+    if _is_drive_picker_available(config.mount_google_drive):
         allowed_paths.append(str(DRIVE_ROOT))
+    else:
+        allowed_paths.append(str(_drive_picker_root(False)))
     return demo.launch(
         share=share,
         inline=inline,
@@ -152,7 +155,8 @@ def collect_gradio_input_paths(
 def _build_gradio_blocks(gr, config: ColabTranscriptionConfig):
     values = ui_values_from_config(config)
     media_glob = _media_file_glob()
-    drive_enabled = bool(values["mount_google_drive"])
+    drive_enabled = _is_drive_picker_available(bool(values["mount_google_drive"]))
+    drive_picker_root = _drive_picker_root(drive_enabled)
     (
         drive_folder_picker_interactive,
         drive_file_picker_interactive,
@@ -191,7 +195,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 )
             ) as drive_folder_picker_group:
                 drive_folder_picker = gr.FileExplorer(
-                    root_dir=str(DRIVE_ROOT),
+                    root_dir=str(drive_picker_root),
                     glob="**/*",
                     file_count="single",
                     label="Drive folder picker",
@@ -203,7 +207,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 )
             ) as drive_file_picker_group:
                 drive_file_picker = gr.FileExplorer(
-                    root_dir=str(DRIVE_ROOT),
+                    root_dir=str(drive_picker_root),
                     glob=media_glob,
                     file_count="multiple",
                     label="Drive file picker",
@@ -359,6 +363,18 @@ def drive_input_interactivity(mount_google_drive: bool) -> tuple[bool, bool, boo
 
     enabled = bool(mount_google_drive)
     return (enabled, enabled, enabled, enabled)
+
+
+def _is_drive_picker_available(mount_google_drive: bool, drive_root: Path = DRIVE_ROOT) -> bool:
+    return bool(mount_google_drive and drive_root.exists())
+
+
+def _drive_picker_root(drive_picker_available: bool, drive_root: Path = DRIVE_ROOT) -> Path:
+    if drive_picker_available:
+        return drive_root
+    disabled_root = Path(gettempdir()) / "whisper_colab_disabled_drive_picker"
+    disabled_root.mkdir(parents=True, exist_ok=True)
+    return disabled_root
 
 
 def _run_from_gradio(

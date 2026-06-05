@@ -46,7 +46,7 @@ COLAB_REQUIREMENTS = [
     "datasets[audio]",
     "pandas",
     "openpyxl",
-    "ipywidgets",
+    "gradio",
 ]
 DEFAULT_AUDIO_OUTPUT_DIR = "/content/whisper_audio"
 DEFAULT_OUTPUT_DIR = "/content/whisper_outputs"
@@ -126,7 +126,7 @@ LANGUAGE_OPTIONS = [
 class ColabTranscriptionConfig:
     """User-facing settings passed from the thin Colab notebook."""
 
-    input_mode: str = INPUT_MODE_UPLOAD
+    input_mode: str = INPUT_MODE_DRIVE_FOLDER_PICKER
     use_google_drive_files: bool = False
     meeting_file_paths: list[str] = field(default_factory=list)
     drive_folder_path: str = "/content/drive/MyDrive/whisper-input"
@@ -158,6 +158,45 @@ def run_colab_transcription(config: ColabTranscriptionConfig) -> list[dict[str, 
 
     files_module = _import_colab_files()
     input_paths = _collect_input_paths(config, files_module)
+    return _run_transcription_pipeline(
+        config=config,
+        input_paths=input_paths,
+        files_module=files_module,
+        download_outputs=True,
+    )
+
+
+def run_transcription_for_paths(
+    config: ColabTranscriptionConfig,
+    input_paths: Iterable[str | Path],
+    *,
+    download_outputs: bool = False,
+    files_module=None,
+) -> list[dict[str, Any]]:
+    """Run transcription for explicit input paths."""
+
+    _validate_config(config)
+    if config.install_packages:
+        install_colab_dependencies()
+    paths = _validate_media_files(Path(path) for path in input_paths)
+    return _run_transcription_pipeline(
+        config=config,
+        input_paths=paths,
+        files_module=files_module,
+        download_outputs=download_outputs,
+    )
+
+
+def _run_transcription_pipeline(
+    *,
+    config: ColabTranscriptionConfig,
+    input_paths: list[Path],
+    files_module=None,
+    download_outputs: bool,
+) -> list[dict[str, Any]]:
+    if not input_paths:
+        raise ValueError("At least one input file is required.")
+
     pipe = _load_whisper_pipeline(config.model_id)
     generate_kwargs = _build_generate_kwargs(config)
     max_segment_seconds = _normalize_max_segment_seconds(config.max_segment_seconds)
@@ -209,12 +248,23 @@ def run_colab_transcription(config: ColabTranscriptionConfig) -> list[dict[str, 
         )
         print(f"{progress_prefix} Finished: {source_path.name}")
 
-    _download_outputs(
-        output_paths=all_saved_files,
-        config=config,
-        output_dir=output_dir,
-        files_module=files_module,
-    )
+    if download_outputs:
+        if files_module is None:
+            files_module = _import_colab_files()
+        _download_outputs(
+            output_paths=all_saved_files,
+            config=config,
+            output_dir=output_dir,
+            files_module=files_module,
+        )
+    else:
+        downloadable_files = _prepare_downloadable_outputs(
+            output_paths=all_saved_files,
+            config=config,
+            output_dir=output_dir,
+        )
+        for result in results:
+            result["downloadable_files"] = [str(path) for path in downloadable_files]
 
     return results
 
@@ -305,9 +355,12 @@ def _collect_input_paths(config: ColabTranscriptionConfig, files_module) -> list
             recursive=config.drive_recursive,
         )
     if input_mode == INPUT_MODE_DRIVE_FILE_PICKER:
-        return _collect_picker_paths(select_folder=False, recursive=config.drive_recursive)
+        return _collect_manual_drive_file_paths(config.meeting_file_paths)
     if input_mode == INPUT_MODE_DRIVE_FOLDER_PICKER:
-        return _collect_picker_paths(select_folder=True, recursive=config.drive_recursive)
+        return _collect_drive_folder_paths(
+            config.drive_folder_path,
+            recursive=config.drive_recursive,
+        )
 
     raise ValueError(f"Unsupported input_mode: {config.input_mode!r}")
 
@@ -351,13 +404,6 @@ def _collect_drive_folder_paths(folder_path: str, *, recursive: bool) -> list[Pa
     return _find_media_files(folder, recursive=recursive)
 
 
-def _collect_picker_paths(*, select_folder: bool, recursive: bool) -> list[Path]:
-    selected_path = _pick_drive_path(select_folder=select_folder)
-    if select_folder:
-        return _find_media_files(selected_path, recursive=recursive)
-    return _validate_media_files([selected_path])
-
-
 def _find_media_files(folder: Path, *, recursive: bool) -> list[Path]:
     iterator = folder.rglob("*") if recursive else folder.iterdir()
     paths = sorted(
@@ -387,99 +433,6 @@ def _validate_media_files(paths: Iterable[Path]) -> list[Path]:
             )
         valid_paths.append(path)
     return valid_paths
-
-
-def _pick_drive_path(*, select_folder: bool) -> Path:
-    try:
-        import ipywidgets as widgets
-        from IPython.display import clear_output, display
-    except ImportError as exc:
-        raise RuntimeError("Drive picker mode requires ipywidgets in the Colab runtime.") from exc
-
-    start_path = DRIVE_ROOT if DRIVE_ROOT.exists() else Path("/content/drive")
-    state = {"current": start_path, "selected": None}
-    output = widgets.Output()
-    path_label = widgets.HTML()
-    status_label = widgets.HTML()
-    items = widgets.Select(rows=14, layout=widgets.Layout(width="100%"))
-    open_button = widgets.Button(description="Open")
-    parent_button = widgets.Button(description="Parent")
-    select_button = widgets.Button(description="Select")
-
-    def refresh() -> None:
-        current = state["current"]
-        path_label.value = f"<b>Current:</b> {current}"
-        entries = ["./"] if select_folder else []
-        if current.parent != current:
-            entries.append("../")
-        children = sorted(current.iterdir(), key=lambda path: (path.is_file(), path.name.lower()))
-        for child in children:
-            if child.is_dir():
-                entries.append(f"{child.name}/")
-            elif not select_folder and child.suffix.lower() in SUPPORTED_MEDIA_EXTENSIONS:
-                entries.append(child.name)
-        items.options = entries
-        if entries:
-            items.value = entries[0]
-
-    def selected_child() -> Path | None:
-        value = items.value
-        if not value:
-            return None
-        if value == "./":
-            return state["current"]
-        if value == "../":
-            return state["current"].parent
-        return state["current"] / value.rstrip("/")
-
-    def on_open(_button) -> None:
-        child = selected_child()
-        if child and child.is_dir():
-            state["current"] = child
-            refresh()
-
-    def on_parent(_button) -> None:
-        if state["current"].parent != state["current"]:
-            state["current"] = state["current"].parent
-            refresh()
-
-    def on_select(_button) -> None:
-        child = selected_child()
-        if select_folder:
-            selected = child if child and child.is_dir() else state["current"]
-        else:
-            selected = child
-        if selected is None or not selected.exists():
-            status_label.value = "<b>No valid path selected.</b>"
-            return
-        if not select_folder and not selected.is_file():
-            status_label.value = "<b>Select a media file.</b>"
-            return
-        state["selected"] = selected
-        status_label.value = f"<b>Selected:</b> {selected}"
-
-    open_button.on_click(on_open)
-    parent_button.on_click(on_parent)
-    select_button.on_click(on_select)
-    refresh()
-
-    with output:
-        clear_output()
-        display(
-            widgets.VBox(
-                [
-                    path_label,
-                    items,
-                    widgets.HBox([open_button, parent_button, select_button]),
-                    status_label,
-                ]
-            )
-        )
-    display(output)
-
-    while state["selected"] is None:
-        input("Use the picker above, click Select, then press Enter here to continue.")
-    return state["selected"]
 
 
 def _load_whisper_pipeline(model_id: str):
@@ -753,6 +706,26 @@ def _download_outputs(
         _create_zip_archive(output_paths, zip_path)
         files_module.download(str(zip_path))
         print(f"Downloaded ZIP archive: {zip_path}")
+
+
+def _prepare_downloadable_outputs(
+    *,
+    output_paths: list[Path],
+    config: ColabTranscriptionConfig,
+    output_dir: Path,
+) -> list[Path]:
+    if not output_paths:
+        return []
+
+    downloadable_paths = []
+    if config.download_individual_files or not config.export_zip:
+        downloadable_paths.extend(output_paths)
+
+    if config.export_zip:
+        zip_path = output_dir / config.zip_file_name
+        downloadable_paths.append(_create_zip_archive(output_paths, zip_path))
+
+    return downloadable_paths
 
 
 def _create_zip_archive(output_paths: list[Path], zip_path: Path) -> Path:

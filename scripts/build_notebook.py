@@ -12,15 +12,6 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = REPO_ROOT / "Whisper_v3.ipynb"
-sys.path.insert(0, str(REPO_ROOT / "src"))
-
-from whisper_colab.colab_runner import (  # noqa: E402
-    DEFAULT_AUDIO_OUTPUT_DIR,
-    DEFAULT_OUTPUT_DIR,
-    DEFAULT_ZIP_FILE_NAME,
-    LANGUAGE_OPTIONS,
-    MODEL_OPTIONS,
-)
 
 
 def build_notebook() -> dict[str, Any]:
@@ -39,11 +30,9 @@ def build_notebook() -> dict[str, Any]:
 
                     ## Start Here
 
-                    Click the play button on the cell below: `Open guided UI`.
+                    Click the play button on the cell below: `Launch Whisper Colab App`.
 
-                    After the cell runs, a guided form appears. Choose your input, model, language, and output settings, then click `Run transcription` inside the form.
-
-                    If the widget UI does not render, set `USE_WIDGET_UI` to `False` in the same cell and run it again. The parameter fallback uses the same settings.
+                    After the cell runs, Colab prints a Gradio URL. Open that URL in a new tab, pick files from Google Drive, choose model and output settings, then click `Run transcription` in the app.
 
                     ## Details
 
@@ -51,19 +40,18 @@ def build_notebook() -> dict[str, Any]:
 
                     ## Input Modes
 
-                    - `upload`: upload local files to the Colab runtime.
+                    - `drive_folder_picker`: pick a Google Drive folder from the Gradio app.
+                    - `drive_file_picker`: pick one or more Google Drive files from the Gradio app.
+                    - `drive_folder_path`: enter a Google Drive folder path manually.
                     - `drive_file_paths`: enter one or more Google Drive file paths manually.
-                    - `drive_folder_path`: enter a Google Drive folder path and process supported media files in that folder.
-                    - `drive_file_picker`: pick one file from mounted Google Drive with a small notebook widget.
-                    - `drive_folder_picker`: pick one folder from mounted Google Drive with a small notebook widget.
+                    - `upload`: upload local files to the Colab runtime.
 
                     ## Settings Notes
 
-                    - Leave `LANGUAGE` as `auto` unless you want to force a source language.
-                    - Select `custom` and set `CUSTOM_LANGUAGE` only when the language you need is not in the list.
-                    - Enable `TRANSLATE_TO_ENGLISH` only when you want Whisper's translation task. Whisper translates speech to English, not to an arbitrary target language.
-                    - Keep `MAX_SEGMENT_SECONDS` at `0` for normal runs. Set it to a positive value, such as `1800`, only when a long recording needs to be split before transcription.
-                    - Use `OUTPUT_DIR`, `EXPORT_ZIP`, and `DOWNLOAD_INDIVIDUAL_FILES` to control where transcript files are saved and how they are downloaded.
+                    - Google Drive is the recommended input source.
+                    - The Gradio share URL is temporary and public while the app is running.
+                    - The app allows Gradio to serve files under `/content/drive/MyDrive` and the output directory so picker and download features can work.
+                    - Avoid using confidential recordings with a public share URL.
 
                     This notebook clones:
 
@@ -78,40 +66,7 @@ def build_notebook() -> dict[str, Any]:
                 "outputs": [],
                 "source": _source_lines(
                     """
-                    #@title Open guided UI
-
-                    # Click the play button on this cell to open the guided UI.
-
-                    # Keep enabled for the guided widget UI. Disable only if the widget UI does not work.
-                    USE_WIDGET_UI = True #@param {type:"boolean"}
-
-                    # Input mode.
-                    INPUT_MODE = "upload" #@param ["upload", "drive_file_paths", "drive_folder_path", "drive_file_picker", "drive_folder_picker"]
-
-                    # Used only when INPUT_MODE is "drive_file_paths".
-                    MEETING_FILE_PATHS = [
-                        "/content/drive/MyDrive/path/to/meeting.mp4",
-                    ]
-
-                    # Used only when INPUT_MODE is "drive_folder_path".
-                    DRIVE_FOLDER_PATH = "/content/drive/MyDrive/whisper-input" #@param {type:"string"}
-                    DRIVE_RECURSIVE = False #@param {type:"boolean"}
-
-                    # Whisper model and generation settings.
-                    MODEL_ID = "openai/whisper-large-v3-turbo" #@param __MODEL_CHOICES__
-                    LANGUAGE = "auto" #@param __LANGUAGE_CHOICES__
-                    CUSTOM_LANGUAGE = "" #@param {type:"string"}
-                    TRANSLATE_TO_ENGLISH = False #@param {type:"boolean"}
-                    MAX_SEGMENT_SECONDS = 0 #@param {type:"integer"}
-
-                    # Output settings.
-                    INCLUDE_TIMESTAMPS = True #@param {type:"boolean"}
-                    EXPORT_EXCEL = True #@param {type:"boolean"}
-                    AUDIO_OUTPUT_DIR = "__DEFAULT_AUDIO_OUTPUT_DIR__" #@param {type:"string"}
-                    OUTPUT_DIR = "__DEFAULT_OUTPUT_DIR__" #@param {type:"string"}
-                    EXPORT_ZIP = True #@param {type:"boolean"}
-                    DOWNLOAD_INDIVIDUAL_FILES = False #@param {type:"boolean"}
-                    ZIP_FILE_NAME = "__DEFAULT_ZIP_FILE_NAME__" #@param {type:"string"}
+                    #@title Launch Whisper Colab App
 
                     # Install Python packages and ffmpeg in the Colab runtime when needed.
                     INSTALL_PACKAGES = True #@param {type:"boolean"}
@@ -128,33 +83,13 @@ def build_notebook() -> dict[str, Any]:
 
                     sys.path.insert(0, str(REPO_DIR / "src"))
 
-                    from whisper_colab import ColabTranscriptionConfig, launch_colab_ui, run_colab_transcription  # noqa: E402
+                    from whisper_colab import ColabTranscriptionConfig, launch_gradio_app  # noqa: E402
 
                     config = ColabTranscriptionConfig(
-                        input_mode=INPUT_MODE,
-                        meeting_file_paths=MEETING_FILE_PATHS,
-                        drive_folder_path=DRIVE_FOLDER_PATH,
-                        drive_recursive=DRIVE_RECURSIVE,
-                        model_id=MODEL_ID,
-                        language=LANGUAGE,
-                        custom_language=CUSTOM_LANGUAGE,
-                        translate_to_english=TRANSLATE_TO_ENGLISH,
-                        include_timestamps=INCLUDE_TIMESTAMPS,
-                        export_excel=EXPORT_EXCEL,
-                        audio_output_dir=AUDIO_OUTPUT_DIR,
-                        output_dir=OUTPUT_DIR,
-                        export_zip=EXPORT_ZIP,
-                        download_individual_files=DOWNLOAD_INDIVIDUAL_FILES,
-                        zip_file_name=ZIP_FILE_NAME,
-                        max_segment_seconds=MAX_SEGMENT_SECONDS,
                         install_packages=INSTALL_PACKAGES,
                     )
 
-                    if USE_WIDGET_UI:
-                        ui_state = launch_colab_ui(config)
-                        results = ui_state
-                    else:
-                        results = run_colab_transcription(config)
+                    app = launch_gradio_app(config, share=True, inline=False)
                     """
                 ),
             },
@@ -204,21 +139,8 @@ def check_notebook(output_path: Path) -> int:
 
 
 def _source_lines(text: str) -> list[str]:
-    replacements = {
-        "__MODEL_CHOICES__": _colab_param_choices(MODEL_OPTIONS),
-        "__LANGUAGE_CHOICES__": _colab_param_choices(LANGUAGE_OPTIONS),
-        "__DEFAULT_AUDIO_OUTPUT_DIR__": DEFAULT_AUDIO_OUTPUT_DIR,
-        "__DEFAULT_OUTPUT_DIR__": DEFAULT_OUTPUT_DIR,
-        "__DEFAULT_ZIP_FILE_NAME__": DEFAULT_ZIP_FILE_NAME,
-    }
     source = dedent(text).lstrip("\n")
-    for placeholder, value in replacements.items():
-        source = source.replace(placeholder, value)
     return source.splitlines(keepends=True)
-
-
-def _colab_param_choices(values: list[str]) -> str:
-    return json.dumps(values)
 
 
 def main() -> int:

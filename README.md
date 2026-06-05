@@ -6,8 +6,9 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
 
 ## What this repository does
 
-- Keeps the notebook small: user settings stay in the notebook, while the workflow lives in `src/whisper_colab`.
-- Includes a guided widget UI in Colab, with the generated parameter cell kept as a fallback.
+- Keeps the notebook small: it only clones the repository and launches the app.
+- Launches a Gradio app in a separate browser tab from one Colab cell.
+- Uses Google Drive picker modes as the main input path.
 - Converts input audio or video to Whisper-friendly WAV before transcription.
 - Uses `16 kHz / mono / PCM WAV` extraction through `ffmpeg`.
 - Lets you choose `openai/whisper-large-v3-turbo` or `openai/whisper-large-v3`.
@@ -18,7 +19,9 @@ A thin Google Colab notebook for transcribing audio and video files with Whisper
 
 Usage instructions are included in `Whisper_v3.ipynb`.
 
-When you open the notebook in Colab, click the play button on the `Open guided UI` cell. The guided form appears after that cell runs.
+When you open the notebook in Colab, click the play button on the `Launch Whisper Colab App` cell. The cell prints a temporary Gradio URL. Open it in a new tab, pick recordings from Google Drive, then run transcription in the app.
+
+The Gradio share URL is public while the app is running. The app allows Gradio to serve files under `/content/drive/MyDrive` and the output directory so Drive picker and download features can work. Avoid confidential recordings when using a public share URL.
 
 The notebook clones this repository from:
 
@@ -72,9 +75,9 @@ For Google Drive modes, mount Drive in Colab and check that paths begin with `/c
 
 Use `openai/whisper-large-v3-turbo`, reduce the number of files in one run, or set `MAX_SEGMENT_SECONDS` to split long extracted audio.
 
-### Picker mode does not appear
+### Gradio app URL does not appear
 
-Picker modes require `ipywidgets`. Keep `INSTALL_PACKAGES` enabled, rerun the notebook cell, and reload the Colab page if the widget still does not render.
+Keep `INSTALL_PACKAGES` enabled and rerun the launch cell. If Drive authorization is shown, complete it before opening the Gradio URL.
 
 ## Local tests
 

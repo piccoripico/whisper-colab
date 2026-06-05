@@ -1,4 +1,5 @@
 import re
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -18,12 +19,34 @@ class PublicIdentityTests(unittest.TestCase):
             self.assertNotIn(literal, text)
         self.assertIsNone(re.search(r"\bpic" + r"cori\b", text))
 
+    def test_tracked_text_does_not_contain_removed_widget_ui_terms(self):
+        text = "\n".join(_read_tracked_text_files())
+        for literal in ["ipy" + "widgets", "launch_colab" + "_ui"]:
+            self.assertNotIn(literal, text)
+
 
 def _read_public_text_files():
     for path in REPO_ROOT.rglob("*"):
         if not path.is_file():
             continue
         if ".git" in path.parts or ".ruff_cache" in path.parts or "__pycache__" in path.parts:
+            continue
+        if path.suffix in {".pyc", ".wav", ".mp3", ".mp4", ".xlsx"}:
+            continue
+        yield path.read_text(encoding="utf-8")
+
+
+def _read_tracked_text_files():
+    completed = subprocess.run(
+        ["git", "ls-files"],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    for relative_path in completed.stdout.splitlines():
+        path = REPO_ROOT / relative_path
+        if not path.exists():
             continue
         if path.suffix in {".pyc", ".wav", ".mp3", ".mp4", ".xlsx"}:
             continue

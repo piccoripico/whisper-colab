@@ -25,6 +25,8 @@ from src.whisper_colab.colab_runner import (
     _normalize_input_mode,
     _normalize_language,
     _normalize_max_segment_seconds,
+    _prepare_downloadable_outputs,
+    _run_transcription_pipeline,
     _save_outputs,
     _split_audio_for_transcription,
     _transcribe_audio_segments,
@@ -239,6 +241,60 @@ class ColabRunnerTests(unittest.TestCase):
             )
 
             self.assertEqual(files_module.downloaded_paths, [str(output_dir / "bundle.zip")])
+
+    def test_prepare_downloadable_outputs_can_return_only_zip(self):
+        with TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir)
+            first = output_dir / "one.txt"
+            first.write_text("one", encoding="utf-8")
+
+            paths = _prepare_downloadable_outputs(
+                output_paths=[first],
+                config=ColabTranscriptionConfig(
+                    output_dir=str(output_dir),
+                    export_zip=True,
+                    download_individual_files=False,
+                    zip_file_name="bundle.zip",
+                ),
+                output_dir=output_dir,
+            )
+
+            self.assertEqual(paths, [output_dir / "bundle.zip"])
+            self.assertTrue((output_dir / "bundle.zip").exists())
+
+    def test_pipeline_without_download_returns_downloadable_files(self):
+        with TemporaryDirectory() as temp_dir:
+            temp_path = Path(temp_dir)
+            input_path = temp_path / "meeting.mp4"
+            input_path.write_bytes(b"video")
+
+            with (
+                patch(
+                    "src.whisper_colab.colab_runner.extract_audio_for_whisper",
+                    return_value=temp_path / "meeting.wav",
+                ),
+                patch(
+                    "src.whisper_colab.colab_runner._split_audio_for_transcription",
+                    return_value=[temp_path / "meeting.wav"],
+                ),
+                patch("src.whisper_colab.colab_runner._load_whisper_pipeline") as load_pipe,
+            ):
+                load_pipe.return_value = lambda *_args, **_kwargs: {"text": "done"}
+                results = _run_transcription_pipeline(
+                    config=ColabTranscriptionConfig(
+                        output_dir=str(temp_path / "out"),
+                        export_excel=False,
+                        export_zip=True,
+                        download_individual_files=False,
+                    ),
+                    input_paths=[input_path],
+                    download_outputs=False,
+                )
+
+            self.assertEqual(
+                results[0]["downloadable_files"],
+                [str(temp_path / "out" / "whisper_outputs.zip")],
+            )
 
     def test_split_audio_for_transcription_builds_segment_command(self):
         with TemporaryDirectory() as temp_dir:

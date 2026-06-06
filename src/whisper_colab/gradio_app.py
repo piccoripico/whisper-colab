@@ -10,10 +10,10 @@ import time
 from collections.abc import Callable
 from dataclasses import asdict
 from html import escape
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from tempfile import gettempdir
 from typing import Any
-from urllib.parse import quote, unquote
+from urllib.parse import unquote
 
 from .colab_runner import (
     DEFAULT_DOWNLOAD_DIR,
@@ -219,15 +219,28 @@ def _build_gradio_blocks(gr, config: ColabTranscriptionConfig):
     ) = drive_input_interactivity(drive_enabled)
     with gr.Blocks(title="Whisper Colab App") as demo:
 
-        def drive_folder_select_to_path_lines(selection, evt: gr.SelectData):
-            return _selection_event_to_path_lines(
+        def drive_folder_selection_to_path_lines(selection, current_paths):
+            return _selection_to_path_lines_and_state(
+                selection,
+                current_paths,
+                drop_descendants=True,
+            )
+
+        def drive_file_selection_to_path_lines(selection, current_paths):
+            return _selection_to_path_lines_and_state(selection, current_paths)
+
+        def drive_folder_select_to_path_lines(current_paths, selection, evt: gr.SelectData):
+            return _selection_event_to_path_lines_and_state(
+                current_paths,
                 selection,
                 evt,
                 ignored_values={"Drive folder picker"},
+                drop_descendants=True,
             )
 
-        def drive_file_select_to_path_lines(selection, evt: gr.SelectData):
-            return _selection_event_to_path_lines(
+        def drive_file_select_to_path_lines(current_paths, selection, evt: gr.SelectData):
+            return _selection_event_to_path_lines_and_state(
+                current_paths,
                 selection,
                 evt,
                 ignored_values={"Drive file picker"},
@@ -316,6 +329,7 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                     ),
                     interactive=drive_folder_path_interactive,
                 )
+                drive_folder_picker_paths_state = gr.State([])
             with gr.Group(
                 visible=_is_input_section_visible(
                     values["input_mode"], INPUT_MODE_DRIVE_FILE_PICKER
@@ -340,6 +354,7 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                     ),
                     interactive=drive_file_paths_interactive,
                 )
+                drive_file_picker_paths_state = gr.State([])
             with gr.Group(
                 visible=_is_input_section_visible(
                     values["input_mode"], INPUT_MODE_DRIVE_FOLDER_PATH
@@ -534,7 +549,7 @@ These settings are optional. Leave each field blank or at zero to use the model 
         )
         status = gr.Textbox(label="Status", lines=8)
         output_locations = gr.HTML(label="Output folders")
-        auto_download = gr.HTML(label="ZIP download link", visible=False)
+        auto_download = gr.HTML(label="ZIP download instructions", visible=False)
         output_files = gr.File(label="ZIP download", file_count="multiple", visible=False)
         zip_download_visible = gr.State(False)
 
@@ -649,34 +664,34 @@ These settings are optional. Leave each field blank or at zero to use the model 
             outputs=custom_language_group,
         )
         drive_folder_picker.change(
-            fn=_selection_to_path_lines,
-            inputs=drive_folder_picker,
-            outputs=drive_folder_picker_paths,
+            fn=drive_folder_selection_to_path_lines,
+            inputs=[drive_folder_picker, drive_folder_picker_paths_state],
+            outputs=[drive_folder_picker_paths, drive_folder_picker_paths_state],
         )
         drive_folder_picker.input(
-            fn=_selection_to_path_lines,
-            inputs=drive_folder_picker,
-            outputs=drive_folder_picker_paths,
+            fn=drive_folder_selection_to_path_lines,
+            inputs=[drive_folder_picker, drive_folder_picker_paths_state],
+            outputs=[drive_folder_picker_paths, drive_folder_picker_paths_state],
         )
         drive_folder_picker.select(
             fn=drive_folder_select_to_path_lines,
-            inputs=drive_folder_picker,
-            outputs=drive_folder_picker_paths,
+            inputs=[drive_folder_picker_paths_state, drive_folder_picker],
+            outputs=[drive_folder_picker_paths, drive_folder_picker_paths_state],
         )
         drive_file_picker.change(
-            fn=_selection_to_path_lines,
-            inputs=drive_file_picker,
-            outputs=drive_file_picker_paths,
+            fn=drive_file_selection_to_path_lines,
+            inputs=[drive_file_picker, drive_file_picker_paths_state],
+            outputs=[drive_file_picker_paths, drive_file_picker_paths_state],
         )
         drive_file_picker.input(
-            fn=_selection_to_path_lines,
-            inputs=drive_file_picker,
-            outputs=drive_file_picker_paths,
+            fn=drive_file_selection_to_path_lines,
+            inputs=[drive_file_picker, drive_file_picker_paths_state],
+            outputs=[drive_file_picker_paths, drive_file_picker_paths_state],
         )
         drive_file_picker.select(
             fn=drive_file_select_to_path_lines,
-            inputs=drive_file_picker,
-            outputs=drive_file_picker_paths,
+            inputs=[drive_file_picker_paths_state, drive_file_picker],
+            outputs=[drive_file_picker_paths, drive_file_picker_paths_state],
         )
     return demo
 
@@ -993,23 +1008,13 @@ def _build_auto_download_html(downloadable_files: list[str]) -> str:
         return ""
 
     zip_path = downloadable_files[0]
-    href = f"/file={quote(str(zip_path))}"
     escaped_path = escape(str(zip_path))
     return f"""
 <p>
-  ZIP download is ready:
-  <a id="whisper-colab-zip-download" href="{href}" download>download the ZIP file</a>.
-  Some browsers block automatic downloads after a long background task, so use this link if the download does not start.
+  ZIP download is ready. Use the ZIP download panel below.
+  Gradio creates a browser-safe download URL for the ZIP there.
 </p>
 <p><code>{escaped_path}</code></p>
-<script>
-setTimeout(() => {{
-  const link = document.getElementById("whisper-colab-zip-download");
-  if (link) {{
-    link.click();
-  }}
-}}, 800);
-</script>
 """
 
 
@@ -1042,28 +1047,105 @@ def _format_file_size(size_bytes: int) -> str:
 
 
 def _selection_to_path_lines(selection: Any) -> str:
-    return "\n".join(str(value) for value in _flatten_selection(selection))
+    return "\n".join(_deduplicate_path_strings(_flatten_selection(selection)))
 
 
-def _selection_event_to_path_lines(
+def _selection_to_path_lines_and_state(
+    selection: Any,
+    current_paths: Any,
+    *,
+    drop_descendants: bool = False,
+) -> tuple[str, list[str]]:
+    selected_values = _flatten_selection(selection)
+    if selected_values:
+        next_paths = _deduplicate_path_strings(
+            selected_values,
+            drop_descendants=drop_descendants,
+        )
+    else:
+        next_paths = _deduplicate_path_strings(
+            _flatten_selection(current_paths),
+            drop_descendants=drop_descendants,
+        )
+    return "\n".join(next_paths), next_paths
+
+
+def _selection_event_to_path_lines_and_state(
+    current_paths: Any,
     selection: Any,
     event_data: Any,
     *,
     ignored_values: set[str] | None = None,
-) -> str:
-    selected_values = _flatten_selection(selection)
-    if selected_values:
-        return "\n".join(str(value) for value in selected_values)
-
-    if getattr(event_data, "selected", True) is False:
-        return ""
-
+    drop_descendants: bool = False,
+) -> tuple[str, list[str]]:
+    current = _deduplicate_path_strings(
+        _flatten_selection(current_paths),
+        drop_descendants=drop_descendants,
+    )
     ignored_values = ignored_values or set()
+    selected_values = [
+        value for value in _flatten_selection(selection) if str(value) not in ignored_values
+    ]
     event_value = getattr(event_data, "value", None)
     event_values = [
         value for value in _flatten_selection(event_value) if str(value) not in ignored_values
     ]
-    return "\n".join(str(value) for value in event_values)
+    if len(selected_values) > 1:
+        next_paths = _deduplicate_path_strings(
+            selected_values,
+            drop_descendants=drop_descendants,
+        )
+        return "\n".join(next_paths), next_paths
+
+    changed_values = event_values or selected_values
+    if getattr(event_data, "selected", True) is False:
+        next_paths = [
+            path for path in current if path not in set(_deduplicate_path_strings(changed_values))
+        ]
+    else:
+        next_paths = _deduplicate_path_strings(
+            [*current, *changed_values],
+            drop_descendants=drop_descendants,
+        )
+    return "\n".join(next_paths), next_paths
+
+
+def _deduplicate_path_strings(
+    values: Any,
+    *,
+    drop_descendants: bool = False,
+) -> list[str]:
+    deduplicated = []
+    seen = set()
+    for value in _flatten_selection(values):
+        path = str(value).strip()
+        if not path or path in seen:
+            continue
+        seen.add(path)
+        deduplicated.append(path)
+    if drop_descendants:
+        return _drop_descendant_path_strings(deduplicated)
+    return deduplicated
+
+
+def _drop_descendant_path_strings(values: list[str]) -> list[str]:
+    kept = []
+    for candidate in values:
+        candidate_path = PurePosixPath(candidate)
+        if any(_is_posix_descendant(candidate_path, PurePosixPath(parent)) for parent in values):
+            continue
+        kept.append(candidate)
+    return kept
+
+
+def _is_posix_descendant(candidate: PurePosixPath, parent: PurePosixPath) -> bool:
+    if candidate == parent:
+        return False
+    try:
+        candidate.relative_to(parent)
+        return True
+    except ValueError:
+        return False
 
 
 def _paths_from_drive_file_picker(
@@ -1114,6 +1196,7 @@ def _paths_from_drive_folder_picker(
             "Select one or more Drive folders in the picker, or paste folder paths into "
             "'Selected Drive folder paths'. Opening a folder is not enough; it must appear as selected."
         )
+    paths = _drop_descendant_paths(paths)
     media_files = []
     for folder in paths:
         if not folder.is_dir():
@@ -1243,6 +1326,15 @@ def _deduplicate_paths(paths: list[Path]) -> list[Path]:
             seen.add(path)
             deduplicated.append(path)
     return deduplicated
+
+
+def _drop_descendant_paths(paths: list[Path]) -> list[Path]:
+    kept = []
+    for candidate in paths:
+        if any(candidate != parent and _is_relative_to(candidate, parent) for parent in paths):
+            continue
+        kept.append(candidate)
+    return kept
 
 
 def _mount_drive_for_picker() -> None:

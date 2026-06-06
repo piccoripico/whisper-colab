@@ -20,7 +20,7 @@ from src.whisper_colab.gradio_app import (
     _build_output_locations_html,
     _drive_picker_root,
     _is_drive_picker_available,
-    _selection_event_to_path_lines,
+    _selection_event_to_path_lines_and_state,
     _upload_details,
     collect_gradio_input_paths,
     config_from_gradio_values,
@@ -191,8 +191,10 @@ class GradioAppTests(unittest.TestCase):
         self.assertIn("Auto-filled when FileExplorer reports a selection", source)
         self.assertIn("drive_file_picker.input(", source)
         self.assertIn("drive_file_picker.select(", source)
+        self.assertIn("drive_file_picker_paths_state", source)
         self.assertIn("drive_folder_picker.input(", source)
         self.assertIn("drive_folder_picker.select(", source)
+        self.assertIn("drive_folder_picker_paths_state", source)
         self.assertIn('label="Split seconds"', source)
         self.assertIn("Batch size used by the ASR pipeline", source)
         self.assertIn("Fallback threshold for repeated/compressed text", source)
@@ -294,26 +296,56 @@ class GradioAppTests(unittest.TestCase):
 
         self.assertEqual(paths, [file_path])
 
-    def test_selection_event_to_path_lines_uses_event_value_when_component_value_empty(self):
+    def test_selection_event_to_path_lines_adds_event_value_to_state(self):
         event_data = SimpleNamespace(value="meeting.mp4", selected=True)
 
-        self.assertEqual(
-            _selection_event_to_path_lines([], event_data, ignored_values={"Drive file picker"}),
-            "meeting.mp4",
+        path_lines, state = _selection_event_to_path_lines_and_state(
+            ["first.mp4"],
+            [],
+            event_data,
+            ignored_values={"Drive file picker"},
         )
+
+        self.assertEqual(path_lines, "first.mp4\nmeeting.mp4")
+        self.assertEqual(state, ["first.mp4", "meeting.mp4"])
 
     def test_selection_event_to_path_lines_ignores_component_label_values(self):
         event_data = SimpleNamespace(value="Drive file picker", selected=True)
 
-        self.assertEqual(
-            _selection_event_to_path_lines([], event_data, ignored_values={"Drive file picker"}),
-            "",
+        path_lines, state = _selection_event_to_path_lines_and_state(
+            [],
+            ["Drive file picker"],
+            event_data,
+            ignored_values={"Drive file picker"},
         )
+
+        self.assertEqual(path_lines, "")
+        self.assertEqual(state, [])
 
     def test_selection_event_to_path_lines_clears_on_deselect(self):
         event_data = SimpleNamespace(value="meeting.mp4", selected=False)
 
-        self.assertEqual(_selection_event_to_path_lines([], event_data), "")
+        path_lines, state = _selection_event_to_path_lines_and_state(
+            ["meeting.mp4", "other.mp4"],
+            [],
+            event_data,
+        )
+
+        self.assertEqual(path_lines, "other.mp4")
+        self.assertEqual(state, ["other.mp4"])
+
+    def test_selection_event_to_path_lines_drops_folder_descendants(self):
+        event_data = SimpleNamespace(value="parent/child", selected=True)
+
+        path_lines, state = _selection_event_to_path_lines_and_state(
+            ["parent"],
+            [],
+            event_data,
+            drop_descendants=True,
+        )
+
+        self.assertEqual(path_lines, "parent")
+        self.assertEqual(state, ["parent"])
 
     def test_drive_file_picker_accepts_file_url_like_selection(self):
         with TemporaryDirectory() as temp_dir:
@@ -396,6 +428,28 @@ class GradioAppTests(unittest.TestCase):
             )
 
         self.assertEqual(paths, [folder_one / "one.mp4", folder_two / "two.mp3"])
+
+    def test_drive_folder_picker_drops_child_folder_when_parent_is_selected(self):
+        with TemporaryDirectory() as temp_dir:
+            drive_root = Path(temp_dir)
+            parent = drive_root / "parent"
+            child = parent / "child"
+            child.mkdir(parents=True)
+            (parent / "parent.mp4").write_bytes(b"video")
+            (child / "child.mp4").write_bytes(b"video")
+
+            paths = collect_gradio_input_paths(
+                input_mode=INPUT_MODE_DRIVE_FOLDER_PICKER,
+                drive_file_picker=None,
+                drive_folder_picker=["parent", "parent/child"],
+                drive_file_paths="",
+                drive_folder_path="",
+                uploaded_files=None,
+                drive_recursive=False,
+                drive_root=drive_root,
+            )
+
+        self.assertEqual(paths, [parent / "parent.mp4"])
 
     def test_drive_file_picker_rejects_selected_folder(self):
         with TemporaryDirectory() as temp_dir:
@@ -553,10 +607,10 @@ class GradioAppTests(unittest.TestCase):
     def test_auto_download_html_includes_script_and_manual_link(self):
         html = _build_auto_download_html(["/content/whisper_downloads/outputs.zip"])
 
-        self.assertIn("download the ZIP file", html)
-        self.assertIn("Some browsers block automatic downloads", html)
-        self.assertIn("link.click()", html)
-        self.assertIn("/file=", html)
+        self.assertIn("Use the ZIP download panel below", html)
+        self.assertIn("browser-safe download URL", html)
+        self.assertNotIn("link.click()", html)
+        self.assertNotIn("/file=", html)
 
     def test_gradio_run_returns_status_locations_and_zip_without_colab_download(self):
         from src.whisper_colab import gradio_app

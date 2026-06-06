@@ -185,13 +185,18 @@ class GradioAppTests(unittest.TestCase):
             source.index('label="Search Drive folders recursively"'),
         )
         self.assertIn("For better transcription accuracy", source)
+        self.assertIn("Selected Drive file paths", source)
+        self.assertIn("Selected Drive folder paths", source)
+        self.assertIn("Auto-filled when FileExplorer reports a selection", source)
         self.assertIn('label="Split seconds"', source)
+        self.assertIn("Batch size used by the ASR pipeline", source)
+        self.assertIn("Fallback threshold for repeated/compressed text", source)
         self.assertIn("visible=False", source)
         self.assertIn('label="Require GPU"', source)
         self.assertIn('title="Whisper Colab App"', source)
         self.assertIn("visible=False", source)
         self.assertIn("outputs are also saved in folders", source)
-        self.assertNotIn("info=", source)
+        self.assertIn("info=", source)
 
     def test_input_section_visibility_matches_selected_input_mode(self):
         self.assertEqual(
@@ -259,6 +264,26 @@ class GradioAppTests(unittest.TestCase):
                 drive_folder_path="",
                 uploaded_files=None,
                 drive_recursive=False,
+                drive_root=drive_root,
+            )
+
+        self.assertEqual(paths, [file_path])
+
+    def test_drive_file_picker_uses_selected_path_text_fallback(self):
+        with TemporaryDirectory() as temp_dir:
+            drive_root = Path(temp_dir)
+            file_path = drive_root / "meeting.mp4"
+            file_path.write_bytes(b"video")
+
+            paths = collect_gradio_input_paths(
+                input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
+                drive_file_picker=[],
+                drive_folder_picker=None,
+                drive_file_paths="",
+                drive_folder_path="",
+                uploaded_files=None,
+                drive_recursive=False,
+                drive_file_picker_paths=str(file_path),
                 drive_root=drive_root,
             )
 
@@ -364,7 +389,7 @@ class GradioAppTests(unittest.TestCase):
                 )
 
     def test_drive_file_picker_empty_selection_explains_manual_fallback(self):
-        with self.assertRaisesRegex(ValueError, "Enter Drive file paths"):
+        with self.assertRaisesRegex(ValueError, "Selected Drive file paths"):
             collect_gradio_input_paths(
                 input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
                 drive_file_picker=[],
@@ -374,6 +399,28 @@ class GradioAppTests(unittest.TestCase):
                 uploaded_files=None,
                 drive_recursive=False,
             )
+
+    def test_drive_folder_picker_uses_selected_path_text_fallback(self):
+        with TemporaryDirectory() as temp_dir:
+            drive_root = Path(temp_dir)
+            folder = drive_root / "recordings"
+            folder.mkdir()
+            file_path = folder / "meeting.mp4"
+            file_path.write_bytes(b"video")
+
+            paths = collect_gradio_input_paths(
+                input_mode=INPUT_MODE_DRIVE_FOLDER_PICKER,
+                drive_file_picker=None,
+                drive_folder_picker=[],
+                drive_file_paths="",
+                drive_folder_path="",
+                uploaded_files=None,
+                drive_recursive=False,
+                drive_folder_picker_paths=str(folder),
+                drive_root=drive_root,
+            )
+
+        self.assertEqual(paths, [file_path])
 
     def test_drive_folder_picker_rejects_selected_file(self):
         with TemporaryDirectory() as temp_dir:
@@ -393,7 +440,7 @@ class GradioAppTests(unittest.TestCase):
                 )
 
     def test_drive_folder_picker_empty_selection_explains_manual_fallback(self):
-        with self.assertRaisesRegex(ValueError, "Enter Drive folder paths"):
+        with self.assertRaisesRegex(ValueError, "Selected Drive folder paths"):
             collect_gradio_input_paths(
                 input_mode=INPUT_MODE_DRIVE_FOLDER_PICKER,
                 drive_file_picker=None,
@@ -504,6 +551,8 @@ class GradioAppTests(unittest.TestCase):
                 INPUT_MODE_DRIVE_FILE_PICKER,
                 None,
                 ["meeting.mp4"],
+                "",
+                "",
                 "",
                 "",
                 None,

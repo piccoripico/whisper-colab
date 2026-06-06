@@ -179,6 +179,12 @@ class GradioAppTests(unittest.TestCase):
         self.assertIn('visible=values["download_zip_on_completion"]', source)
         self.assertIn('visible=values["language"] == "custom"', source)
         self.assertIn('label="Source language"', source)
+        self.assertLess(source.index('label="Input mode"'), source.index('label="Source language"'))
+        self.assertLess(
+            source.index('label="Source language"'),
+            source.index('label="Search Drive folders recursively"'),
+        )
+        self.assertIn("For better transcription accuracy", source)
         self.assertIn('label="Split seconds"', source)
         self.assertIn("visible=False", source)
         self.assertIn('label="Require GPU"', source)
@@ -225,6 +231,29 @@ class GradioAppTests(unittest.TestCase):
             paths = collect_gradio_input_paths(
                 input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
                 drive_file_picker=[SimpleNamespace(name="meeting.mp4")],
+                drive_folder_picker=None,
+                drive_file_paths="",
+                drive_folder_path="",
+                uploaded_files=None,
+                drive_recursive=False,
+                drive_root=drive_root,
+            )
+
+        self.assertEqual(paths, [file_path])
+
+    def test_drive_file_picker_collects_model_dump_selection(self):
+        with TemporaryDirectory() as temp_dir:
+            drive_root = Path(temp_dir)
+            file_path = drive_root / "meeting.mp4"
+            file_path.write_bytes(b"video")
+
+            class Selection:
+                def model_dump(self):
+                    return {"selected": ["meeting.mp4"]}
+
+            paths = collect_gradio_input_paths(
+                input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
+                drive_file_picker=Selection(),
                 drive_folder_picker=None,
                 drive_file_paths="",
                 drive_folder_path="",
@@ -334,6 +363,18 @@ class GradioAppTests(unittest.TestCase):
                     drive_root=drive_root,
                 )
 
+    def test_drive_file_picker_empty_selection_explains_manual_fallback(self):
+        with self.assertRaisesRegex(ValueError, "Enter Drive file paths"):
+            collect_gradio_input_paths(
+                input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
+                drive_file_picker=[],
+                drive_folder_picker=None,
+                drive_file_paths="",
+                drive_folder_path="",
+                uploaded_files=None,
+                drive_recursive=False,
+            )
+
     def test_drive_folder_picker_rejects_selected_file(self):
         with TemporaryDirectory() as temp_dir:
             drive_root = Path(temp_dir)
@@ -350,6 +391,18 @@ class GradioAppTests(unittest.TestCase):
                     drive_recursive=False,
                     drive_root=drive_root,
                 )
+
+    def test_drive_folder_picker_empty_selection_explains_manual_fallback(self):
+        with self.assertRaisesRegex(ValueError, "Enter Drive folder paths"):
+            collect_gradio_input_paths(
+                input_mode=INPUT_MODE_DRIVE_FOLDER_PICKER,
+                drive_file_picker=None,
+                drive_folder_picker=[],
+                drive_file_paths="",
+                drive_folder_path="",
+                uploaded_files=None,
+                drive_recursive=False,
+            )
 
     def test_drive_input_requires_mount_enabled(self):
         with self.assertRaisesRegex(ValueError, "Mount Google Drive"):
@@ -421,12 +474,14 @@ class GradioAppTests(unittest.TestCase):
 
         self.assertIn("/content/drive/MyDrive/one", html)
         self.assertIn("/content/drive/MyDrive/two", html)
-        self.assertIn("<a href=", html)
+        self.assertNotIn("<a href=", html)
+        self.assertIn("cannot browse folders", html)
 
     def test_auto_download_html_includes_script_and_manual_link(self):
         html = _build_auto_download_html(["/content/whisper_downloads/outputs.zip"])
 
-        self.assertIn("download the ZIP file manually", html)
+        self.assertIn("download the ZIP file", html)
+        self.assertIn("Some browsers block automatic downloads", html)
         self.assertIn("link.click()", html)
         self.assertIn("/file=", html)
 

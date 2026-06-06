@@ -235,6 +235,21 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                 value=selected_input_mode,
                 label="Input mode",
             )
+            language = gr.Dropdown(
+                choices=LANGUAGE_CHOICES,
+                value=values["language"],
+                label="Source language",
+            )
+            gr.Markdown(
+                "For better transcription accuracy, select the language being spoken when you know it. "
+                "Use Auto only when the source language is unknown."
+            )
+            with gr.Group(visible=values["language"] == "custom") as custom_language_group:
+                custom_language = gr.Textbox(
+                    value=values["custom_language"],
+                    label="Custom source language",
+                    placeholder="Example: welsh",
+                )
             drive_recursive = gr.Checkbox(
                 value=values["drive_recursive"],
                 label="Search Drive folders recursively",
@@ -322,21 +337,10 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                 value=values["model_id"],
                 label="Whisper model",
             )
-            language = gr.Dropdown(
-                choices=LANGUAGE_CHOICES,
-                value=values["language"],
-                label="Source language",
-            )
             gr.Markdown(
-                "Turbo is faster and is the default. Leave Source language as Auto for "
-                "language detection, or select the known source language for more stable recognition."
+                "Turbo is faster and is the default. Large v3 is available when you prefer "
+                "the non-Turbo model."
             )
-            with gr.Group(visible=values["language"] == "custom") as custom_language_group:
-                custom_language = gr.Textbox(
-                    value=values["custom_language"],
-                    label="Custom source language",
-                    placeholder="Example: welsh",
-                )
             translate_to_english = gr.Checkbox(
                 value=values["translate_to_english"],
                 label="Translate to English",
@@ -461,7 +465,7 @@ These settings are optional. Leave each field blank or at zero to use the model 
         )
         status = gr.Textbox(label="Status", lines=8)
         output_locations = gr.HTML(label="Output folders")
-        auto_download = gr.HTML(label="Automatic ZIP download", visible=False)
+        auto_download = gr.HTML(label="ZIP download link", visible=False)
         output_files = gr.File(label="ZIP download", file_count="multiple", visible=False)
         zip_download_visible = gr.State(False)
 
@@ -869,9 +873,12 @@ def _build_output_locations_html(results: list[dict[str, Any]]) -> str:
     items = []
     for output_dir in output_dirs:
         escaped_path = escape(str(output_dir))
-        href = f"/file={quote(str(output_dir))}"
-        items.append(f'<li><a href="{href}" target="_blank"><code>{escaped_path}</code></a></li>')
-    return "<p>Outputs were saved in:</p><ul>" + "".join(items) + "</ul>"
+        items.append(f"<li><code>{escaped_path}</code></li>")
+    return (
+        "<p>Outputs were saved in the folder path(s) below. "
+        "Gradio cannot browse folders through a `/file=` link; use Drive or the ZIP panel to retrieve files.</p>"
+        "<ul>" + "".join(items) + "</ul>"
+    )
 
 
 def _build_auto_download_html(downloadable_files: list[str]) -> str:
@@ -883,8 +890,9 @@ def _build_auto_download_html(downloadable_files: list[str]) -> str:
     escaped_path = escape(str(zip_path))
     return f"""
 <p>
-  ZIP download is ready. If it does not start automatically,
-  <a id="whisper-colab-zip-download" href="{href}" download>download the ZIP file manually</a>.
+  ZIP download is ready:
+  <a id="whisper-colab-zip-download" href="{href}" download>download the ZIP file</a>.
+  Some browsers block automatic downloads after a long background task, so use this link if the download does not start.
 </p>
 <p><code>{escaped_path}</code></p>
 <script>
@@ -932,7 +940,10 @@ def _paths_from_drive_file_picker(selection: Any, *, drive_root: Path = DRIVE_RO
         for value in _flatten_selection(selection)
     ]
     if not paths:
-        raise ValueError("Select one or more Drive files.")
+        raise ValueError(
+            "Select one or more Drive files in the picker. Opening or previewing a file is not enough; "
+            "it must appear as selected. If the picker still returns nothing, use 'Enter Drive file paths'."
+        )
     for path in paths:
         if path.is_dir():
             raise IsADirectoryError(f"Drive file picker selection is a folder: {path}")
@@ -950,7 +961,10 @@ def _paths_from_drive_folder_picker(
         for value in _flatten_selection(selection)
     ]
     if not paths:
-        raise ValueError("Select one or more Drive folders.")
+        raise ValueError(
+            "Select one or more Drive folders in the picker. Opening a folder is not enough; "
+            "it must appear as selected. If the picker still returns nothing, use 'Enter Drive folder paths'."
+        )
     media_files = []
     for folder in paths:
         if not folder.is_dir():
@@ -1029,6 +1043,20 @@ def _flatten_selection(selection: Any) -> list[Any]:
         return [selection]
     if isinstance(selection, dict):
         return _flatten_mapping_selection(selection)
+    if hasattr(selection, "model_dump"):
+        return _flatten_selection(selection.model_dump())
+    if hasattr(selection, "dict"):
+        return _flatten_selection(selection.dict())
+    if hasattr(selection, "root"):
+        return _flatten_selection(selection.root)
+    if hasattr(selection, "value"):
+        return _flatten_selection(selection.value)
+    if hasattr(selection, "selected"):
+        return _flatten_selection(selection.selected)
+    if hasattr(selection, "files"):
+        return _flatten_selection(selection.files)
+    if hasattr(selection, "folders"):
+        return _flatten_selection(selection.folders)
     if hasattr(selection, "path"):
         return [selection.path]
     if hasattr(selection, "name"):
@@ -1040,7 +1068,7 @@ def _flatten_selection(selection: Any) -> list[Any]:
 
 
 def _flatten_mapping_selection(selection: dict[str, Any]) -> list[Any]:
-    for key in ("path", "name", "value", "selected", "files", "folders"):
+    for key in ("path", "name", "value", "selected", "files", "folders", "root"):
         value = selection.get(key)
         if value:
             return _flatten_selection(value)

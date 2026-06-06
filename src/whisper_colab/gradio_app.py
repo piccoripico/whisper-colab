@@ -1019,7 +1019,7 @@ def _normalize_drive_picker_path(value: str | Path, *, drive_root: Path = DRIVE_
     if not path.is_absolute():
         path = root / path
     path = path.expanduser().resolve()
-    if not _is_relative_to(path, root):
+    if not path.exists() and not _is_relative_to(path, root):
         root_relative_path = root / str(normalized_value).lstrip("/")
         root_relative_path = root_relative_path.expanduser().resolve()
         if _is_relative_to(root_relative_path, root):

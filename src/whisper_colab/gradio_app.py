@@ -217,17 +217,17 @@ def _build_gradio_blocks(gr, config: ColabTranscriptionConfig):
     ) = drive_input_interactivity(drive_enabled)
     with gr.Blocks(title="Whisper Colab App") as demo:
 
-        def drive_browser_refresh(current_dir, selected_paths):
-            return _drive_browser_refresh(current_dir, selected_paths)
+        def drive_browser_refresh(current_dir, selected_paths, expanded_paths):
+            return _drive_browser_refresh(current_dir, selected_paths, expanded_paths)
 
-        def drive_browser_go_up(current_dir, selected_paths):
-            return _drive_browser_go_up(current_dir, selected_paths)
-
-        def drive_browser_open_focused(current_dir, focused_path, selected_paths):
-            return _drive_browser_open_focused(current_dir, focused_path, selected_paths)
-
-        def drive_browser_select(rows, current_dir, selected_paths, evt: gr.SelectData):
-            return _drive_browser_select(rows, current_dir, selected_paths, evt)
+        def drive_browser_select(
+            rows,
+            current_dir,
+            selected_paths,
+            expanded_paths,
+            evt: gr.SelectData,
+        ):
+            return _drive_browser_select(rows, current_dir, selected_paths, expanded_paths, evt)
 
         drive_browser_select.__annotations__["evt"] = gr.SelectData
 
@@ -275,15 +275,6 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                     placeholder="Example: welsh",
                     info="Use this only when the language is not listed above.",
                 )
-            drive_recursive = gr.Checkbox(
-                value=values["drive_recursive"],
-                label="Search Drive folders recursively",
-                info=(
-                    "When enabled, selected folders also scan subfolders. "
-                    "When disabled, only files directly inside selected folders are used."
-                ),
-                interactive=drive_enabled,
-            )
             drive_folder_picker = gr.State(None)
             drive_file_picker = gr.State(None)
             drive_folder_picker_paths = gr.State("")
@@ -305,19 +296,25 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                     info="Paste a Drive folder path here, then click Refresh.",
                     interactive=drive_file_paths_interactive,
                 )
-                with gr.Row():
-                    drive_browser_refresh_button = gr.Button("Refresh")
-                    drive_browser_up_button = gr.Button("Up one folder")
-                    drive_browser_open_button = gr.Button("Open selected folder")
-                initial_browser_rows = _drive_browser_rows(drive_picker_root, [])
+                drive_recursive = gr.Checkbox(
+                    value=values["drive_recursive"],
+                    label="Search Drive folders recursively",
+                    info=(
+                        "When enabled, selected folders also scan subfolders. "
+                        "When disabled, only files directly inside selected folders are used."
+                    ),
+                    interactive=drive_enabled,
+                )
+                drive_browser_refresh_button = gr.Button("Refresh")
+                initial_browser_rows = _drive_browser_rows(drive_picker_root, [], [])
                 drive_browser_table = gr.Dataframe(
                     value=initial_browser_rows,
-                    headers=["Selected", "Type", "Name", "Path"],
-                    datatype=["str", "str", "str", "str"],
+                    headers=["Action", "Selected", "Type", "Name", "Path"],
+                    datatype=["str", "str", "str", "str", "str"],
                     interactive=False,
                     label="Google Drive picker",
                     row_count=(0, "dynamic"),
-                    col_count=(4, "fixed"),
+                    col_count=(5, "fixed"),
                 )
                 drive_file_picker_paths = gr.Textbox(
                     label="Selected Google Drive paths",
@@ -330,7 +327,7 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                     interactive=drive_file_paths_interactive,
                 )
                 drive_file_picker_paths_state = gr.State([])
-                drive_browser_focused_path = gr.State("")
+                drive_browser_expanded_paths_state = gr.State([])
             with gr.Group(
                 visible=_is_input_section_visible(
                     values["input_mode"], INPUT_MODE_DRIVE_FOLDER_PATH
@@ -641,32 +638,35 @@ These settings are optional. Leave each field blank or at zero to use the model 
         )
         drive_browser_refresh_button.click(
             fn=drive_browser_refresh,
-            inputs=[drive_browser_dir, drive_file_picker_paths_state],
-            outputs=[drive_browser_table, drive_browser_dir],
-        )
-        drive_browser_up_button.click(
-            fn=drive_browser_go_up,
-            inputs=[drive_browser_dir, drive_file_picker_paths_state],
-            outputs=[drive_browser_table, drive_browser_dir],
-        )
-        drive_browser_open_button.click(
-            fn=drive_browser_open_focused,
-            inputs=[drive_browser_dir, drive_browser_focused_path, drive_file_picker_paths_state],
-            outputs=[drive_browser_table, drive_browser_dir],
+            inputs=[
+                drive_browser_dir,
+                drive_file_picker_paths_state,
+                drive_browser_expanded_paths_state,
+            ],
+            outputs=[drive_browser_table, drive_browser_dir, drive_browser_expanded_paths_state],
         )
         drive_browser_table.select(
             fn=drive_browser_select,
-            inputs=[drive_browser_table, drive_browser_dir, drive_file_picker_paths_state],
+            inputs=[
+                drive_browser_table,
+                drive_browser_dir,
+                drive_file_picker_paths_state,
+                drive_browser_expanded_paths_state,
+            ],
             outputs=[
                 drive_browser_table,
                 drive_file_picker_paths,
                 drive_file_picker_paths_state,
-                drive_browser_focused_path,
+                drive_browser_expanded_paths_state,
             ],
         )
         drive_file_picker_paths.change(
             fn=_manual_path_lines_to_state,
-            inputs=[drive_file_picker_paths, drive_browser_dir],
+            inputs=[
+                drive_file_picker_paths,
+                drive_browser_dir,
+                drive_browser_expanded_paths_state,
+            ],
             outputs=[drive_file_picker_paths_state, drive_browser_table],
         )
     return demo
@@ -714,76 +714,99 @@ def _drive_picker_root(drive_picker_available: bool, drive_root: Path = DRIVE_RO
 def _drive_browser_rows(
     current_dir: str | Path,
     selected_paths: Any,
+    expanded_paths: Any | None = None,
     *,
     drive_root: Path = DRIVE_ROOT,
 ) -> list[list[str]]:
     current_path = _normalize_drive_browser_dir(current_dir, drive_root=drive_root)
     selected = set(_deduplicate_path_strings(selected_paths, drop_descendants=True))
-    rows = []
-    for child in sorted(
-        current_path.iterdir(), key=lambda path: (path.is_file(), path.name.lower())
-    ):
-        if child.is_dir():
-            row_type = "folder"
-        elif child.is_file() and child.suffix.lower() in SUPPORTED_MEDIA_EXTENSIONS:
-            row_type = "file"
-        else:
-            continue
-        display_path = _drive_display_path(child, drive_root=drive_root)
-        rows.append(
-            [
-                "selected" if display_path in selected else "",
-                row_type,
-                child.name,
-                display_path,
-            ]
-        )
+    expanded = set(_deduplicate_path_strings(expanded_paths or []))
+    rows: list[list[str]] = []
+
+    def append_children(parent: Path, depth: int) -> None:
+        for child in sorted(parent.iterdir(), key=lambda path: (path.is_file(), path.name.lower())):
+            row = _drive_browser_row(child, selected, expanded, depth, drive_root=drive_root)
+            if row is None:
+                continue
+            rows.append(row)
+            display_path = row[4]
+            if child.is_dir() and display_path in expanded:
+                append_children(child, depth + 1)
+
+    append_children(current_path, 0)
     return rows
 
 
-def _drive_browser_refresh(current_dir: str, selected_paths: Any) -> tuple[list[list[str]], str]:
-    current_path = _normalize_drive_browser_dir(current_dir)
-    return _drive_browser_rows(current_path, selected_paths), str(current_path)
+def _drive_browser_row(
+    path: Path,
+    selected: set[str],
+    expanded: set[str],
+    depth: int,
+    *,
+    drive_root: Path = DRIVE_ROOT,
+) -> list[str] | None:
+    if path.is_dir():
+        row_type = "folder"
+    elif path.is_file() and path.suffix.lower() in SUPPORTED_MEDIA_EXTENSIONS:
+        row_type = "file"
+    else:
+        return None
+
+    display_path = _drive_display_path(path, drive_root=drive_root)
+    if row_type == "folder":
+        action = "collapse" if display_path in expanded else "expand"
+    else:
+        action = ""
+    return [
+        action,
+        "selected" if display_path in selected else "",
+        row_type,
+        f"{'  ' * depth}{path.name}",
+        display_path,
+    ]
 
 
-def _drive_browser_go_up(current_dir: str, selected_paths: Any) -> tuple[list[list[str]], str]:
-    current_path = _normalize_drive_browser_dir(current_dir)
-    drive_root = DRIVE_ROOT.expanduser().resolve()
-    next_dir = current_path if current_path == drive_root else current_path.parent
-    if not _is_relative_to(next_dir, drive_root):
-        next_dir = drive_root
-    return _drive_browser_rows(next_dir, selected_paths), str(next_dir)
-
-
-def _drive_browser_open_focused(
+def _drive_browser_refresh(
     current_dir: str,
-    focused_path: str,
     selected_paths: Any,
-) -> tuple[list[list[str]], str]:
-    if not str(focused_path).strip():
-        return _drive_browser_refresh(current_dir, selected_paths)
-    next_dir = _normalize_drive_picker_path(focused_path)
-    if not next_dir.is_dir():
-        return _drive_browser_refresh(current_dir, selected_paths)
-    return _drive_browser_rows(next_dir, selected_paths), str(next_dir)
+    expanded_paths: Any,
+) -> tuple[list[list[str]], str, list[str]]:
+    current_path = _normalize_drive_browser_dir(current_dir)
+    expanded = _deduplicate_path_strings(expanded_paths)
+    return _drive_browser_rows(current_path, selected_paths, expanded), str(current_path), expanded
 
 
 def _drive_browser_select(
     rows: Any,
     current_dir: str,
     selected_paths: Any,
+    expanded_paths: Any,
     event_data: Any,
-) -> tuple[list[list[str]], str, list[str], str]:
+) -> tuple[list[list[str]], str, list[str], list[str]]:
     row = _drive_browser_selected_row(rows, event_data)
+    selected = _deduplicate_path_strings(selected_paths, drop_descendants=True)
+    expanded = _deduplicate_path_strings(expanded_paths)
     if row is None:
-        selected = _deduplicate_path_strings(selected_paths, drop_descendants=True)
-        return _drive_browser_rows(current_dir, selected), "\n".join(selected), selected, ""
+        return (
+            _drive_browser_rows(current_dir, selected, expanded),
+            "\n".join(selected),
+            selected,
+            expanded,
+        )
 
-    row_type = str(row[1])
-    path = str(row[3])
-    selected = _toggle_path_selection(selected_paths, path)
-    focused_path = path if row_type == "folder" else ""
-    return _drive_browser_rows(current_dir, selected), "\n".join(selected), selected, focused_path
+    column_index = _drive_browser_selected_column_index(event_data)
+    row_type = str(row[2])
+    path = str(row[4])
+    if column_index == 0 and row_type == "folder":
+        expanded = _toggle_expanded_path(expanded, path)
+    else:
+        selected = _toggle_path_selection(selected, path)
+    return (
+        _drive_browser_rows(current_dir, selected, expanded),
+        "\n".join(selected),
+        selected,
+        expanded,
+    )
 
 
 def _drive_browser_selected_row(rows: Any, event_data: Any) -> list[Any] | None:
@@ -792,7 +815,7 @@ def _drive_browser_selected_row(rows: Any, event_data: Any) -> list[Any] | None:
     if row_index is None or row_index < 0 or row_index >= len(table_rows):
         return None
     row = table_rows[row_index]
-    if len(row) < 4:
+    if len(row) < 5:
         return None
     return row
 
@@ -806,6 +829,13 @@ def _drive_browser_selected_row_index(event_data: Any) -> int | None:
     if index is None:
         return None
     return int(index)
+
+
+def _drive_browser_selected_column_index(event_data: Any) -> int | None:
+    index = getattr(event_data, "index", None)
+    if isinstance(index, (list, tuple)) and len(index) > 1:
+        return int(index[1])
+    return None
 
 
 def _dataframe_rows(rows: Any) -> list[list[Any]]:
@@ -828,11 +858,19 @@ def _toggle_path_selection(selected_paths: Any, path: str) -> list[str]:
     return selected
 
 
+def _toggle_expanded_path(expanded_paths: Any, path: str) -> list[str]:
+    expanded = _deduplicate_path_strings(expanded_paths)
+    if path in expanded:
+        return [expanded_path for expanded_path in expanded if expanded_path != path]
+    return _deduplicate_path_strings([*expanded, path])
+
+
 def _manual_path_lines_to_state(
-    path_lines: str, current_dir: str
+    path_lines: str, current_dir: str, expanded_paths: Any
 ) -> tuple[list[str], list[list[str]]]:
     selected = _deduplicate_path_strings(_parse_drive_file_paths(path_lines), drop_descendants=True)
-    return selected, _drive_browser_rows(current_dir, selected)
+    expanded = _deduplicate_path_strings(expanded_paths)
+    return selected, _drive_browser_rows(current_dir, selected, expanded)
 
 
 def _normalize_drive_browser_dir(current_dir: str | Path, *, drive_root: Path = DRIVE_ROOT) -> Path:

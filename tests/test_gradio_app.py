@@ -175,8 +175,8 @@ class GradioAppTests(unittest.TestCase):
         source = inspect.getsource(_build_gradio_blocks)
 
         self.assertIn("Google Drive picker", source)
-        self.assertIn("Open selected folder", source)
         self.assertIn("Click a row to add it to or remove it", source)
+        self.assertIn('headers=["Action", "Selected", "Type", "Name", "Path"]', source)
         self.assertIn('visible=values["use_custom_output_dir"]', source)
         self.assertIn('visible=values["download_zip_on_completion"]', source)
         self.assertIn('visible=values["language"] == "custom"', source)
@@ -184,6 +184,10 @@ class GradioAppTests(unittest.TestCase):
         self.assertLess(source.index('label="Input mode"'), source.index('label="Source language"'))
         self.assertLess(
             source.index('label="Source language"'),
+            source.index('label="Search Drive folders recursively"'),
+        )
+        self.assertLess(
+            source.index('label="Current Google Drive folder"'),
             source.index('label="Search Drive folders recursively"'),
         )
         self.assertIn("For better transcription accuracy", source)
@@ -345,33 +349,54 @@ class GradioAppTests(unittest.TestCase):
     def test_drive_browser_select_toggles_selected_file(self):
         from src.whisper_colab import gradio_app
 
-        rows = [["", "file", "meeting.mp4", "meeting.mp4"]]
-        event_data = SimpleNamespace(index=(0, 0))
+        rows = [["", "", "file", "meeting.mp4", "meeting.mp4"]]
+        event_data = SimpleNamespace(index=(0, 1))
 
         with patch.object(gradio_app, "_drive_browser_rows", return_value=[]) as browser_rows:
-            next_rows, path_lines, state, focused_path = _drive_browser_select(
+            next_rows, path_lines, state, expanded = _drive_browser_select(
                 rows,
                 "/content/drive/MyDrive",
+                [],
                 [],
                 event_data,
             )
 
         self.assertEqual(path_lines, "meeting.mp4")
         self.assertEqual(state, ["meeting.mp4"])
-        self.assertEqual(focused_path, "")
+        self.assertEqual(expanded, [])
         self.assertEqual(next_rows, [])
         self.assertEqual(browser_rows.call_args.args[1], ["meeting.mp4"])
 
         with patch.object(gradio_app, "_drive_browser_rows", return_value=[]):
-            _next_rows, path_lines, state, _focused_path = _drive_browser_select(
+            _next_rows, path_lines, state, _expanded = _drive_browser_select(
                 rows,
                 "/content/drive/MyDrive",
                 state,
+                [],
                 event_data,
             )
 
         self.assertEqual(path_lines, "")
         self.assertEqual(state, [])
+
+    def test_drive_browser_select_expands_folder_from_action_column(self):
+        from src.whisper_colab import gradio_app
+
+        rows = [["expand", "", "folder", "folder", "folder"]]
+        event_data = SimpleNamespace(index=(0, 0))
+
+        with patch.object(gradio_app, "_drive_browser_rows", return_value=[]):
+            _rows, path_lines, state, expanded = _drive_browser_select(
+                rows,
+                "/content/drive/MyDrive",
+                [],
+                [],
+                event_data,
+            )
+
+        self.assertEqual(path_lines, "")
+        self.assertEqual(state, [])
+        self.assertEqual(expanded, ["folder"])
 
     def test_drive_browser_rows_marks_selected_paths(self):
         with TemporaryDirectory() as temp_dir:
@@ -386,9 +411,26 @@ class GradioAppTests(unittest.TestCase):
                 drive_root=drive_root,
             )
 
-        self.assertIn(["selected", "file", "meeting.mp4", "meeting.mp4"], rows)
-        self.assertIn(["", "folder", "folder", "folder"], rows)
-        self.assertNotIn("notes.txt", [row[2] for row in rows])
+        self.assertIn(["", "selected", "file", "meeting.mp4", "meeting.mp4"], rows)
+        self.assertIn(["expand", "", "folder", "folder", "folder"], rows)
+        self.assertNotIn("notes.txt", [row[3] for row in rows])
+
+    def test_drive_browser_rows_marks_expanded_folders(self):
+        with TemporaryDirectory() as temp_dir:
+            drive_root = Path(temp_dir)
+            folder = drive_root / "folder"
+            folder.mkdir()
+            (folder / "meeting.mp4").write_bytes(b"video")
+
+            rows = _drive_browser_rows(
+                drive_root,
+                [],
+                ["folder"],
+                drive_root=drive_root,
+            )
+
+        self.assertIn(["collapse", "", "folder", "folder", "folder"], rows)
+        self.assertIn(["", "", "file", "  meeting.mp4", "folder/meeting.mp4"], rows)
 
     def test_drive_file_picker_accepts_file_url_like_selection(self):
         with TemporaryDirectory() as temp_dir:

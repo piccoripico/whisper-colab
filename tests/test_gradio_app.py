@@ -14,6 +14,8 @@ from src.whisper_colab.colab_runner import (
     INPUT_MODE_UPLOAD,
 )
 from src.whisper_colab.gradio_app import (
+    LANGUAGE_CHOICES,
+    _build_auto_download_html,
     _build_gradio_blocks,
     _build_output_locations_html,
     _drive_picker_root,
@@ -157,6 +159,15 @@ class GradioAppTests(unittest.TestCase):
             ("Pick Drive files", INPUT_MODE_DRIVE_FILE_PICKER),
             input_mode_options(True),
         )
+        self.assertIn(
+            ("Pick Drive folders", INPUT_MODE_DRIVE_FOLDER_PICKER),
+            input_mode_options(True),
+        )
+
+    def test_language_choices_use_title_case_labels_and_lowercase_values(self):
+        self.assertIn(("Auto", "auto"), LANGUAGE_CHOICES)
+        self.assertIn(("Custom", "custom"), LANGUAGE_CHOICES)
+        self.assertIn(("Japanese", "japanese"), LANGUAGE_CHOICES)
 
     def test_gradio_source_filters_picker_visibility_and_hides_zip_initially(self):
         source = inspect.getsource(_build_gradio_blocks)
@@ -166,6 +177,12 @@ class GradioAppTests(unittest.TestCase):
         self.assertIn('ignore_glob="**/"', source)
         self.assertIn('visible=values["use_custom_output_dir"]', source)
         self.assertIn('visible=values["download_zip_on_completion"]', source)
+        self.assertIn('visible=values["language"] == "custom"', source)
+        self.assertIn('label="Source language"', source)
+        self.assertIn('label="Split seconds"', source)
+        self.assertIn("visible=False", source)
+        self.assertIn('label="Require GPU"', source)
+        self.assertIn('title="Whisper Colab App"', source)
         self.assertIn("visible=False", source)
         self.assertIn("outputs are also saved in folders", source)
 
@@ -207,6 +224,44 @@ class GradioAppTests(unittest.TestCase):
             paths = collect_gradio_input_paths(
                 input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
                 drive_file_picker=[SimpleNamespace(name="meeting.mp4")],
+                drive_folder_picker=None,
+                drive_file_paths="",
+                drive_folder_path="",
+                uploaded_files=None,
+                drive_recursive=False,
+                drive_root=drive_root,
+            )
+
+        self.assertEqual(paths, [file_path])
+
+    def test_drive_file_picker_accepts_file_url_like_selection(self):
+        with TemporaryDirectory() as temp_dir:
+            drive_root = Path(temp_dir)
+            file_path = drive_root / "meeting.mp4"
+            file_path.write_bytes(b"video")
+
+            paths = collect_gradio_input_paths(
+                input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
+                drive_file_picker=[f"file={file_path.as_posix()}"],
+                drive_folder_picker=None,
+                drive_file_paths="",
+                drive_folder_path="",
+                uploaded_files=None,
+                drive_recursive=False,
+                drive_root=drive_root,
+            )
+
+        self.assertEqual(paths, [file_path])
+
+    def test_drive_file_picker_accepts_root_relative_absolute_selection(self):
+        with TemporaryDirectory() as temp_dir:
+            drive_root = Path(temp_dir)
+            file_path = drive_root / "meeting.mp4"
+            file_path.write_bytes(b"video")
+
+            paths = collect_gradio_input_paths(
+                input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
+                drive_file_picker=["/meeting.mp4"],
                 drive_folder_picker=None,
                 drive_file_paths="",
                 drive_folder_path="",
@@ -366,6 +421,13 @@ class GradioAppTests(unittest.TestCase):
         self.assertIn("/content/drive/MyDrive/one", html)
         self.assertIn("/content/drive/MyDrive/two", html)
         self.assertIn("<a href=", html)
+
+    def test_auto_download_html_includes_script_and_manual_link(self):
+        html = _build_auto_download_html(["/content/whisper_downloads/outputs.zip"])
+
+        self.assertIn("download the ZIP file manually", html)
+        self.assertIn("link.click()", html)
+        self.assertIn("/file=", html)
 
     def test_gradio_run_returns_status_locations_and_zip_without_colab_download(self):
         from src.whisper_colab import gradio_app

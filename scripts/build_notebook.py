@@ -24,51 +24,30 @@ def build_notebook() -> dict[str, Any]:
                 "metadata": {},
                 "source": _source_lines(
                     """
-                    # Whisper v3 Colab Transcription
+                    # Whisper Colab App
 
-                    A guided Colab notebook for transcribing audio and video files with Whisper.
+                    Use this notebook to launch the Whisper Colab App.
 
-                    ## Start Here
+                    ## Steps
 
-                    Click the play button on the cell below: `Launch Whisper Colab App`.
+                    1. Click `Runtime > Run all`. Change the flags in the launch cell first if needed.
+                    2. Wait for the setup to finish. This can take a few minutes. If Colab asks for confirmation, such as Google Drive access, approve it.
+                    3. When an address like `https://xxxxxxxxx.gradio.live` appears below, click it to open the app.
 
-                    After the cell runs, Colab prints a Gradio URL. Open that URL in a new tab, pick files from Google Drive, choose model and output settings, then click `Run transcription` in the app.
+                    Keep this Colab notebook open while using the app. Closing or disconnecting the notebook stops the app.
 
-                    This notebook requires a CUDA GPU by default. In Colab, choose `Runtime > Change runtime type > Hardware accelerator > GPU` before launching the app.
+                    ## Launch Flags
 
-                    ## Details
-
-                    This notebook is a thin launcher for `piccoripico/whisper-colab`. The implementation is cloned from GitHub and imported from `src/whisper_colab`.
-
-                    ## Input Modes
-
-                    - `drive_folder_picker`: pick a Google Drive folder from the Gradio app.
-                    - `drive_file_picker`: pick one or more Google Drive files from the Gradio app.
-                    - `drive_folder_path`: enter a Google Drive folder path manually.
-                    - `drive_file_paths`: enter one or more Google Drive file paths manually.
-                    - `upload`: upload local files to the Colab runtime.
-
-                    ## Settings Notes
-
-                    - Google Drive is the recommended input source.
-                    - Set `MOUNT_GOOGLE_DRIVE` to `False` only when you want upload-only use. Drive picker and path controls are disabled in the app when Drive is not mounted.
-                    - Outputs are saved next to each input file by default. Uploaded local files are saved under `/content/whisper_outputs`.
-                    - Enable the custom output directory option in the app only when you want all outputs saved in one folder.
-                    - If download on completion is enabled, the app downloads one ZIP archive. The uncompressed output files remain in the output folder.
-                    - The Gradio share URL is temporary and public while the app is running.
-                    - The app allows Gradio to serve files under `/content/drive/MyDrive`, output directories, and a temporary ZIP download directory so picker and download features can work.
-                    - Avoid using confidential recordings with a public share URL.
-
-                    This notebook clones:
-
-                    `https://github.com/piccoripico/whisper-colab.git`
+                    - `INSTALL_PACKAGES`: install or update packages and `ffmpeg` in the Colab runtime.
+                    - `REQUIRE_GPU`: stop early if no CUDA GPU is available. Recommended for Whisper large models.
+                    - `MOUNT_GOOGLE_DRIVE`: mount Google Drive and enable Drive picker/path modes. Turn this off for upload-only use.
                     """
                 ),
             },
             {
                 "cell_type": "code",
                 "execution_count": None,
-                "metadata": {},
+                "metadata": {"cellView": "form"},
                 "outputs": [],
                 "source": _source_lines(
                     """

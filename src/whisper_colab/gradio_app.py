@@ -13,7 +13,7 @@ from html import escape
 from pathlib import Path
 from tempfile import gettempdir
 from typing import Any
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 from .colab_runner import (
     DEFAULT_DOWNLOAD_DIR,
@@ -37,9 +37,9 @@ from .colab_runner import (
 )
 
 INPUT_MODE_LABELS = {
-    INPUT_MODE_DRIVE_FOLDER_PICKER: "Pick a Drive folder",
+    INPUT_MODE_DRIVE_FOLDER_PICKER: "Pick Drive folders",
     INPUT_MODE_DRIVE_FILE_PICKER: "Pick Drive files",
-    INPUT_MODE_DRIVE_FOLDER_PATH: "Enter a Drive folder path",
+    INPUT_MODE_DRIVE_FOLDER_PATH: "Enter Drive folder paths",
     INPUT_MODE_DRIVE_FILE_PATHS: "Enter Drive file paths",
     INPUT_MODE_UPLOAD: "Upload local files",
 }
@@ -68,6 +68,17 @@ ATTENTION_IMPLEMENTATION_OPTIONS = [
     ("flash_attention_2", "flash_attention_2"),
     ("eager", "eager"),
 ]
+
+
+def _language_label(language: str) -> str:
+    if language == "auto":
+        return "Auto"
+    if language == "custom":
+        return "Custom"
+    return language.title()
+
+
+LANGUAGE_CHOICES = [(_language_label(language), language) for language in LANGUAGE_OPTIONS]
 
 
 def launch_gradio_app(
@@ -199,13 +210,17 @@ def _build_gradio_blocks(gr, config: ColabTranscriptionConfig):
         drive_folder_path_interactive,
         drive_file_paths_interactive,
     ) = drive_input_interactivity(drive_enabled)
-    with gr.Blocks(title="Whisper Colab") as demo:
+    with gr.Blocks(title="Whisper Colab App") as demo:
         gr.Markdown(
             """
-# Whisper Colab
+# Whisper Colab App
 
-Pick recordings from Google Drive, choose Whisper settings, and download transcripts.
-The Drive picker can see files under `/content/drive/MyDrive` after Drive is mounted.
+1. Keep the Colab notebook open while using this app.
+2. Pick recordings from Google Drive or upload local files.
+3. Choose recognition and output settings, then run transcription.
+
+As a rough guide, a one-hour recording may take around 10 minutes on a GPU runtime.
+The exact time depends on file length, model choice, GPU availability, and Colab load.
 """
         )
         gr.Markdown(_drive_mount_message(drive_enabled))
@@ -219,6 +234,10 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 choices=input_mode_choices,
                 value=selected_input_mode,
                 label="Input mode",
+                info=(
+                    "Choose how to provide input files. Drive modes require Drive to be "
+                    "mounted from the launch notebook."
+                ),
             )
             drive_recursive = gr.Checkbox(
                 value=values["drive_recursive"],
@@ -240,6 +259,10 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                     ignore_glob="**/*.*",
                     file_count="multiple",
                     label="Drive folder picker",
+                    info=(
+                        "Select one or more Drive folders. The app transcribes supported "
+                        "media files inside each selected folder."
+                    ),
                     interactive=drive_folder_picker_interactive,
                 )
             with gr.Group(
@@ -253,6 +276,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                     ignore_glob="**/",
                     file_count="multiple",
                     label="Drive file picker",
+                    info="Select one or more audio or video files from Google Drive.",
                     interactive=drive_file_picker_interactive,
                 )
             with gr.Group(
@@ -265,6 +289,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                     label="Drive folder paths",
                     lines=5,
                     placeholder="/content/drive/MyDrive/whisper-input\n/content/drive/MyDrive/another-folder",
+                    info="Enter one or more Drive folder paths, one per line.",
                     interactive=drive_folder_path_interactive,
                 )
             with gr.Group(
@@ -275,6 +300,7 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                     label="Drive file paths",
                     lines=5,
                     placeholder="/content/drive/MyDrive/path/to/meeting.mp4",
+                    info="Enter one or more Drive file paths, one per line.",
                     interactive=drive_file_paths_interactive,
                 )
             with gr.Group(
@@ -284,6 +310,10 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                     file_count="multiple",
                     type="filepath",
                     label="Upload local files",
+                    info=(
+                        "Upload local files to the temporary Colab runtime. "
+                        "Transcription starts automatically after upload completes."
+                    ),
                 )
                 upload_details = gr.Textbox(
                     label="Upload details",
@@ -296,32 +326,50 @@ The Drive picker can see files under `/content/drive/MyDrive` after Drive is mou
                 choices=MODEL_OPTIONS,
                 value=values["model_id"],
                 label="Whisper model",
+                info=(
+                    "Turbo is faster and is the default. Large v3 may be useful when "
+                    "you prefer the non-Turbo model."
+                ),
             )
             language = gr.Dropdown(
-                choices=LANGUAGE_OPTIONS,
+                choices=LANGUAGE_CHOICES,
                 value=values["language"],
                 label="Source language",
+                info=(
+                    "Leave Auto for language detection. Select the known source language "
+                    "when possible for more stable recognition."
+                ),
             )
-            custom_language = gr.Textbox(
-                value=values["custom_language"],
-                label="Custom source language",
-                placeholder="Example: welsh",
-            )
+            with gr.Group(visible=values["language"] == "custom") as custom_language_group:
+                custom_language = gr.Textbox(
+                    value=values["custom_language"],
+                    label="Custom source language",
+                    placeholder="Example: welsh",
+                    info="Use this only when the language is not listed above.",
+                )
             translate_to_english = gr.Checkbox(
                 value=values["translate_to_english"],
                 label="Translate to English",
-            )
-            max_segment_seconds = gr.Number(
-                value=values["max_segment_seconds"],
-                label="Split seconds",
-                precision=0,
-                minimum=0,
+                info=(
+                    "Whisper translate mode translates the recognized speech to English. "
+                    "It does not translate to arbitrary target languages."
+                ),
             )
             with gr.Accordion("Optional Whisper parameters", open=False):
                 gr.Markdown(
                     """
 These settings are optional. Leave each field blank or at zero to use the model default.
 """
+                )
+                max_segment_seconds = gr.Number(
+                    value=values["max_segment_seconds"],
+                    label="Split seconds",
+                    info=(
+                        "Set a positive number to split extracted audio into fixed-length "
+                        "segments before transcription. 0 disables this repository-level split."
+                    ),
+                    precision=0,
+                    minimum=0,
                 )
                 pipeline_chunk_length_s = gr.Number(
                     value=values["pipeline_chunk_length_s"],
@@ -388,36 +436,50 @@ These settings are optional. Leave each field blank or at zero to use the model 
             include_timestamps = gr.Checkbox(
                 value=values["include_timestamps"],
                 label="Include timestamps",
+                info="Add approximate segment timestamps to text and Excel outputs.",
             )
             export_excel = gr.Checkbox(
                 value=values["export_excel"],
                 label="Export Excel",
+                info="Also save an `.xlsx` file with timestamp and text columns.",
             )
             use_custom_output_dir = gr.Checkbox(
                 value=values["use_custom_output_dir"],
-                label="Save all outputs to a custom folder",
+                label="Save all outputs to a custom folder instead of each source folder",
+                info=(
+                    "Off: save outputs next to each input file. "
+                    "On: save all outputs to the custom folder below."
+                ),
             )
             with gr.Group(visible=values["use_custom_output_dir"]) as output_dir_group:
                 output_dir = gr.Textbox(
                     value=values["output_dir"],
                     label="Custom output directory",
+                    info="Used only when custom output folder is enabled.",
                 )
             download_zip_on_completion = gr.Checkbox(
                 value=values["download_zip_on_completion"],
                 label="Download a ZIP when transcription finishes (outputs are also saved in folders)",
+                info=(
+                    "When enabled, the app prepares one ZIP download after processing. "
+                    "The original `.txt` and `.xlsx` outputs remain in their output folders."
+                ),
             )
             with gr.Group(visible=values["download_zip_on_completion"]) as zip_file_name_group:
                 zip_file_name = gr.Textbox(
                     value=values["zip_file_name"],
                     label="ZIP file name",
+                    info="Name of the temporary ZIP download file.",
                 )
             audio_output_dir = gr.Textbox(
                 value=values["audio_output_dir"],
                 label="Temporary audio directory",
+                info="Temporary location for normalized WAV files and optional split segments.",
             )
             require_gpu = gr.Checkbox(
                 value=values["require_gpu"],
                 label="Require GPU",
+                visible=False,
             )
 
         run_button = gr.Button(
@@ -427,6 +489,7 @@ These settings are optional. Leave each field blank or at zero to use the model 
         )
         status = gr.Textbox(label="Status", lines=8)
         output_locations = gr.HTML(label="Output folders")
+        auto_download = gr.HTML(label="Automatic ZIP download", visible=False)
         output_files = gr.File(label="ZIP download", file_count="multiple", visible=False)
         zip_download_visible = gr.State(False)
 
@@ -465,7 +528,7 @@ These settings are optional. Leave each field blank or at zero to use the model 
                 model_attn_implementation,
                 zip_download_visible,
             ],
-            outputs=[status, output_locations, output_files, zip_download_visible],
+            outputs=[status, output_locations, auto_download, output_files, zip_download_visible],
         )
         uploaded_files.upload(
             fn=_upload_details,
@@ -507,7 +570,7 @@ These settings are optional. Leave each field blank or at zero to use the model 
                 model_attn_implementation,
                 zip_download_visible,
             ],
-            outputs=[status, output_locations, output_files, zip_download_visible],
+            outputs=[status, output_locations, auto_download, output_files, zip_download_visible],
         )
         input_mode.change(
             fn=_input_visibility_updates,
@@ -530,6 +593,11 @@ These settings are optional. Leave each field blank or at zero to use the model 
             fn=_single_visibility_update,
             inputs=download_zip_on_completion,
             outputs=zip_file_name_group,
+        )
+        language.change(
+            fn=_custom_language_visibility_update,
+            inputs=language,
+            outputs=custom_language_group,
         )
     return demo
 
@@ -665,6 +733,7 @@ def _run_from_gradio_stream(*args):
     result_queue: queue.Queue[tuple[str, Any]] = queue.Queue()
     status_lines = _initial_status_lines(run_args)
     current_locations = ""
+    current_auto_download = gr.update(visible=zip_download_visible)
     current_files_update = gr.update(visible=zip_download_visible)
 
     def progress_callback(message: str) -> None:
@@ -683,7 +752,13 @@ def _run_from_gradio_stream(*args):
 
     thread = threading.Thread(target=worker, daemon=True)
     thread.start()
-    yield "\n".join(status_lines), current_locations, current_files_update, zip_download_visible
+    yield (
+        "\n".join(status_lines),
+        current_locations,
+        current_auto_download,
+        current_files_update,
+        zip_download_visible,
+    )
 
     while thread.is_alive() or not progress_messages.empty():
         changed = _drain_progress_messages(progress_messages, status_lines)
@@ -691,6 +766,7 @@ def _run_from_gradio_stream(*args):
             yield (
                 "\n".join(status_lines),
                 current_locations,
+                current_auto_download,
                 current_files_update,
                 zip_download_visible,
             )
@@ -699,15 +775,31 @@ def _run_from_gradio_stream(*args):
     status, payload = result_queue.get()
     if status == "error":
         status_lines.append(f"Error: {payload}")
-        yield "\n".join(status_lines), current_locations, current_files_update, zip_download_visible
+        yield (
+            "\n".join(status_lines),
+            current_locations,
+            current_auto_download,
+            current_files_update,
+            zip_download_visible,
+        )
         return
 
     final_status, current_locations, downloadable_files = payload
     status_lines.append("")
     status_lines.append(final_status)
     next_zip_visible = zip_download_visible or bool(downloadable_files)
+    current_auto_download = gr.update(
+        value=_build_auto_download_html(downloadable_files),
+        visible=next_zip_visible,
+    )
     current_files_update = gr.update(value=downloadable_files or None, visible=next_zip_visible)
-    yield "\n".join(status_lines), current_locations, current_files_update, next_zip_visible
+    yield (
+        "\n".join(status_lines),
+        current_locations,
+        current_auto_download,
+        current_files_update,
+        next_zip_visible,
+    )
 
 
 def _initial_status_lines(run_args: tuple[Any, ...]) -> list[str]:
@@ -760,6 +852,12 @@ def _single_visibility_update(visible: bool):
     return gr.update(visible=bool(visible))
 
 
+def _custom_language_visibility_update(language: str):
+    import gradio as gr
+
+    return gr.update(visible=language == "custom")
+
+
 def _is_input_section_visible(input_mode: str, target_mode: str) -> bool:
     return input_mode == target_mode
 
@@ -802,6 +900,30 @@ def _build_output_locations_html(results: list[dict[str, Any]]) -> str:
         href = f"/file={quote(str(output_dir))}"
         items.append(f'<li><a href="{href}" target="_blank"><code>{escaped_path}</code></a></li>')
     return "<p>Outputs were saved in:</p><ul>" + "".join(items) + "</ul>"
+
+
+def _build_auto_download_html(downloadable_files: list[str]) -> str:
+    if not downloadable_files:
+        return ""
+
+    zip_path = downloadable_files[0]
+    href = f"/file={quote(str(zip_path))}"
+    escaped_path = escape(str(zip_path))
+    return f"""
+<p>
+  ZIP download is ready. If it does not start automatically,
+  <a id="whisper-colab-zip-download" href="{href}" download>download the ZIP file manually</a>.
+</p>
+<p><code>{escaped_path}</code></p>
+<script>
+setTimeout(() => {{
+  const link = document.getElementById("whisper-colab-zip-download");
+  if (link) {{
+    link.click();
+  }}
+}}, 800);
+</script>
+"""
 
 
 def _upload_details(uploaded_files: Any) -> str:
@@ -891,13 +1013,33 @@ def _uploaded_file_to_path(file: Any) -> Path:
 
 def _normalize_drive_picker_path(value: str | Path, *, drive_root: Path = DRIVE_ROOT) -> Path:
     root = drive_root.expanduser().resolve()
-    path = Path(value)
+    raw_value = str(value)
+    normalized_value = _clean_picker_path_value(raw_value, root)
+    path = Path(normalized_value)
     if not path.is_absolute():
         path = root / path
     path = path.expanduser().resolve()
     if not _is_relative_to(path, root):
+        root_relative_path = root / str(normalized_value).lstrip("/")
+        root_relative_path = root_relative_path.expanduser().resolve()
+        if _is_relative_to(root_relative_path, root):
+            path = root_relative_path
+    if not _is_relative_to(path, root):
         raise ValueError(f"Drive picker path is outside the allowed Drive root: {path}")
     return path
+
+
+def _clean_picker_path_value(value: str, drive_root: Path) -> str:
+    cleaned = unquote(str(value).strip())
+    if cleaned.startswith("file="):
+        cleaned = cleaned.removeprefix("file=")
+    if "/file=" in cleaned:
+        cleaned = cleaned.split("/file=", 1)[1]
+    drive_root_text = drive_root.as_posix()
+    drive_root_without_slash = drive_root_text.lstrip("/")
+    if cleaned.startswith(drive_root_without_slash):
+        cleaned = "/" + cleaned
+    return cleaned
 
 
 def _is_relative_to(path: Path, root: Path) -> bool:
@@ -926,7 +1068,7 @@ def _flatten_selection(selection: Any) -> list[Any]:
 
 
 def _flatten_mapping_selection(selection: dict[str, Any]) -> list[Any]:
-    for key in ("path", "name", "value"):
+    for key in ("path", "name", "value", "selected", "files", "folders"):
         value = selection.get(key)
         if value:
             return _flatten_selection(value)

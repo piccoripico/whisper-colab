@@ -32,8 +32,14 @@ class NotebookStructureTests(unittest.TestCase):
         self.sources.encode("ascii")
 
     def test_notebook_is_thin_github_launcher(self):
-        self.assertIn("## Start Here", self.sources)
-        self.assertIn("Click the play button on the cell below", self.sources)
+        self.assertIn("## Steps", self.sources)
+        self.assertIn("Runtime > Run all", self.sources)
+        self.assertIn("https://xxxxxxxxx.gradio.live", self.sources)
+        self.assertIn("Keep this Colab notebook open", self.sources)
+        self.assertIn("## Launch Flags", self.sources)
+        self.assertIn("INSTALL_PACKAGES", self.sources)
+        self.assertIn("REQUIRE_GPU", self.sources)
+        self.assertIn("MOUNT_GOOGLE_DRIVE", self.sources)
         self.assertIn("#@title Launch Whisper Colab App", self.sources)
         self.assertIn("https://github.com/piccoripico/whisper-colab.git", self.sources)
         self.assertIn("launch_gradio_app(config, share=True, inline=False)", self.sources)
@@ -47,14 +53,8 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertNotIn("ipy" + "widgets", self.sources)
         self.assertNotIn("INPUT_MODE", self.sources)
         self.assertNotIn("MODEL_ID", self.sources)
-        for input_mode in [
-            "upload",
-            "drive_file_paths",
-            "drive_folder_path",
-            "drive_file_picker",
-            "drive_folder_picker",
-        ]:
-            self.assertIn(input_mode, self.sources)
+        self.assertNotIn("## Input Modes", self.sources)
+        self.assertNotIn("## Settings Notes", self.sources)
         self.assertNotIn("pipeline(", self.sources)
         self.assertNotIn("extract_audio_for_whisper(", self.sources)
         self.assertNotIn("chunk_length_s", self.sources)
@@ -66,6 +66,11 @@ class NotebookStructureTests(unittest.TestCase):
         code_cells = [cell for cell in self.notebook["cells"] if cell.get("cell_type") == "code"]
 
         self.assertEqual(len(code_cells), 1)
+
+    def test_launch_cell_uses_colab_form_view(self):
+        code_cells = [cell for cell in self.notebook["cells"] if cell.get("cell_type") == "code"]
+
+        self.assertEqual(code_cells[0]["metadata"].get("cellView"), "form")
 
     def test_notebook_keeps_colab_form_comments(self):
         self.assertIn("#@title", self.sources)

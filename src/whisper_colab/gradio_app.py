@@ -253,16 +253,16 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                     values["input_mode"], INPUT_MODE_DRIVE_FOLDER_PICKER
                 )
             ) as drive_folder_picker_group:
+                gr.Markdown(
+                    "Select one or more Drive folders. The app transcribes supported "
+                    "media files inside each selected folder."
+                )
                 drive_folder_picker = gr.FileExplorer(
                     root_dir=str(drive_picker_root),
                     glob="**/",
                     ignore_glob="**/*.*",
                     file_count="multiple",
                     label="Drive folder picker",
-                    info=(
-                        "Select one or more Drive folders. The app transcribes supported "
-                        "media files inside each selected folder."
-                    ),
                     interactive=drive_folder_picker_interactive,
                 )
             with gr.Group(
@@ -270,13 +270,13 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                     values["input_mode"], INPUT_MODE_DRIVE_FILE_PICKER
                 )
             ) as drive_file_picker_group:
+                gr.Markdown("Select one or more audio or video files from Google Drive.")
                 drive_file_picker = gr.FileExplorer(
                     root_dir=str(drive_picker_root),
                     glob=media_glob,
                     ignore_glob="**/",
                     file_count="multiple",
                     label="Drive file picker",
-                    info="Select one or more audio or video files from Google Drive.",
                     interactive=drive_file_picker_interactive,
                 )
             with gr.Group(

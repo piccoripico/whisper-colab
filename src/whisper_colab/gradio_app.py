@@ -218,6 +218,24 @@ def _build_gradio_blocks(gr, config: ColabTranscriptionConfig):
         drive_file_paths_interactive,
     ) = drive_input_interactivity(drive_enabled)
     with gr.Blocks(title="Whisper Colab App") as demo:
+
+        def drive_folder_select_to_path_lines(selection, evt: gr.SelectData):
+            return _selection_event_to_path_lines(
+                selection,
+                evt,
+                ignored_values={"Drive folder picker"},
+            )
+
+        def drive_file_select_to_path_lines(selection, evt: gr.SelectData):
+            return _selection_event_to_path_lines(
+                selection,
+                evt,
+                ignored_values={"Drive file picker"},
+            )
+
+        drive_folder_select_to_path_lines.__annotations__["evt"] = gr.SelectData
+        drive_file_select_to_path_lines.__annotations__["evt"] = gr.SelectData
+
         gr.Markdown(
             """
 # Whisper Colab App
@@ -635,8 +653,28 @@ These settings are optional. Leave each field blank or at zero to use the model 
             inputs=drive_folder_picker,
             outputs=drive_folder_picker_paths,
         )
+        drive_folder_picker.input(
+            fn=_selection_to_path_lines,
+            inputs=drive_folder_picker,
+            outputs=drive_folder_picker_paths,
+        )
+        drive_folder_picker.select(
+            fn=drive_folder_select_to_path_lines,
+            inputs=drive_folder_picker,
+            outputs=drive_folder_picker_paths,
+        )
         drive_file_picker.change(
             fn=_selection_to_path_lines,
+            inputs=drive_file_picker,
+            outputs=drive_file_picker_paths,
+        )
+        drive_file_picker.input(
+            fn=_selection_to_path_lines,
+            inputs=drive_file_picker,
+            outputs=drive_file_picker_paths,
+        )
+        drive_file_picker.select(
+            fn=drive_file_select_to_path_lines,
             inputs=drive_file_picker,
             outputs=drive_file_picker_paths,
         )
@@ -1005,6 +1043,27 @@ def _format_file_size(size_bytes: int) -> str:
 
 def _selection_to_path_lines(selection: Any) -> str:
     return "\n".join(str(value) for value in _flatten_selection(selection))
+
+
+def _selection_event_to_path_lines(
+    selection: Any,
+    event_data: Any,
+    *,
+    ignored_values: set[str] | None = None,
+) -> str:
+    selected_values = _flatten_selection(selection)
+    if selected_values:
+        return "\n".join(str(value) for value in selected_values)
+
+    if getattr(event_data, "selected", True) is False:
+        return ""
+
+    ignored_values = ignored_values or set()
+    event_value = getattr(event_data, "value", None)
+    event_values = [
+        value for value in _flatten_selection(event_value) if str(value) not in ignored_values
+    ]
+    return "\n".join(str(value) for value in event_values)
 
 
 def _paths_from_drive_file_picker(

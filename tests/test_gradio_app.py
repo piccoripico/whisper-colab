@@ -20,6 +20,7 @@ from src.whisper_colab.gradio_app import (
     _build_output_locations_html,
     _drive_picker_root,
     _is_drive_picker_available,
+    _selection_event_to_path_lines,
     _upload_details,
     collect_gradio_input_paths,
     config_from_gradio_values,
@@ -188,6 +189,10 @@ class GradioAppTests(unittest.TestCase):
         self.assertIn("Selected Drive file paths", source)
         self.assertIn("Selected Drive folder paths", source)
         self.assertIn("Auto-filled when FileExplorer reports a selection", source)
+        self.assertIn("drive_file_picker.input(", source)
+        self.assertIn("drive_file_picker.select(", source)
+        self.assertIn("drive_folder_picker.input(", source)
+        self.assertIn("drive_folder_picker.select(", source)
         self.assertIn('label="Split seconds"', source)
         self.assertIn("Batch size used by the ASR pipeline", source)
         self.assertIn("Fallback threshold for repeated/compressed text", source)
@@ -288,6 +293,27 @@ class GradioAppTests(unittest.TestCase):
             )
 
         self.assertEqual(paths, [file_path])
+
+    def test_selection_event_to_path_lines_uses_event_value_when_component_value_empty(self):
+        event_data = SimpleNamespace(value="meeting.mp4", selected=True)
+
+        self.assertEqual(
+            _selection_event_to_path_lines([], event_data, ignored_values={"Drive file picker"}),
+            "meeting.mp4",
+        )
+
+    def test_selection_event_to_path_lines_ignores_component_label_values(self):
+        event_data = SimpleNamespace(value="Drive file picker", selected=True)
+
+        self.assertEqual(
+            _selection_event_to_path_lines([], event_data, ignored_values={"Drive file picker"}),
+            "",
+        )
+
+    def test_selection_event_to_path_lines_clears_on_deselect(self):
+        event_data = SimpleNamespace(value="meeting.mp4", selected=False)
+
+        self.assertEqual(_selection_event_to_path_lines([], event_data), "")
 
     def test_drive_file_picker_accepts_file_url_like_selection(self):
         with TemporaryDirectory() as temp_dir:

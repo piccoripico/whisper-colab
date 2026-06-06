@@ -37,7 +37,7 @@ class NotebookStructureTests(unittest.TestCase):
         self.assertIn("https://xxxxxxxxx.gradio.live", self.sources)
         self.assertIn("Keep this Colab notebook open", self.sources)
         self.assertIn("## Launch Flags", self.sources)
-        self.assertIn("INSTALL_PACKAGES", self.sources)
+        self.assertNotIn("INSTALL_PACKAGES", self.sources)
         self.assertIn("REQUIRE_GPU", self.sources)
         self.assertIn("MOUNT_GOOGLE_DRIVE", self.sources)
         self.assertIn("#@title Launch Whisper Colab App", self.sources)

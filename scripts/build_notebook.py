@@ -38,7 +38,6 @@ def build_notebook() -> dict[str, Any]:
 
                     ## Launch Flags
 
-                    - `INSTALL_PACKAGES`: install or update packages and `ffmpeg` in the Colab runtime.
                     - `REQUIRE_GPU`: stop early if no CUDA GPU is available. Recommended for Whisper large models.
                     - `MOUNT_GOOGLE_DRIVE`: mount Google Drive and enable Drive picker/path modes. Turn this off for upload-only use.
                     """
@@ -52,9 +51,6 @@ def build_notebook() -> dict[str, Any]:
                 "source": _source_lines(
                     """
                     #@title Launch Whisper Colab App
-
-                    # Install Python packages and ffmpeg in the Colab runtime when needed.
-                    INSTALL_PACKAGES = True #@param {type:"boolean"}
 
                     # Exit before launching the app if this runtime has no CUDA GPU.
                     REQUIRE_GPU = True #@param {type:"boolean"}
@@ -77,7 +73,6 @@ def build_notebook() -> dict[str, Any]:
                     from whisper_colab import ColabTranscriptionConfig, launch_gradio_app  # noqa: E402
 
                     config = ColabTranscriptionConfig(
-                        install_packages=INSTALL_PACKAGES,
                         require_gpu=REQUIRE_GPU,
                         mount_google_drive=MOUNT_GOOGLE_DRIVE,
                     )

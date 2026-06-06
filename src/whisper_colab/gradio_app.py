@@ -26,6 +26,7 @@ from .colab_runner import (
     INPUT_MODE_UPLOAD,
     LANGUAGE_OPTIONS,
     MODEL_OPTIONS,
+    SUPPORTED_MEDIA_EXTENSIONS,
     ColabTranscriptionConfig,
     _collect_drive_folder_paths,
     _collect_manual_drive_file_paths,
@@ -38,17 +39,14 @@ from .colab_runner import (
 
 INPUT_MODE_LABELS = {
     INPUT_MODE_DRIVE_FOLDER_PICKER: "Pick Drive folders",
-    INPUT_MODE_DRIVE_FILE_PICKER: "Pick Drive files",
+    INPUT_MODE_DRIVE_FILE_PICKER: "Pick Google Drive files",
     INPUT_MODE_DRIVE_FOLDER_PATH: "Enter Drive folder paths",
     INPUT_MODE_DRIVE_FILE_PATHS: "Enter Drive file paths",
     INPUT_MODE_UPLOAD: "Upload local files",
 }
 
 INPUT_MODE_OPTIONS = [
-    (INPUT_MODE_LABELS[INPUT_MODE_DRIVE_FOLDER_PICKER], INPUT_MODE_DRIVE_FOLDER_PICKER),
     (INPUT_MODE_LABELS[INPUT_MODE_DRIVE_FILE_PICKER], INPUT_MODE_DRIVE_FILE_PICKER),
-    (INPUT_MODE_LABELS[INPUT_MODE_DRIVE_FOLDER_PATH], INPUT_MODE_DRIVE_FOLDER_PATH),
-    (INPUT_MODE_LABELS[INPUT_MODE_DRIVE_FILE_PATHS], INPUT_MODE_DRIVE_FILE_PATHS),
     (INPUT_MODE_LABELS[INPUT_MODE_UPLOAD], INPUT_MODE_UPLOAD),
 ]
 
@@ -188,9 +186,10 @@ def collect_gradio_input_paths(
             drive_root=drive_root,
         )
     if input_mode == INPUT_MODE_DRIVE_FILE_PICKER:
-        return _paths_from_drive_file_picker(
+        return _paths_from_drive_mixed_picker(
             drive_file_picker,
             fallback_file_paths=drive_file_picker_paths,
+            recursive=drive_recursive,
             drive_root=drive_root,
         )
     if input_mode == INPUT_MODE_DRIVE_FOLDER_PATH:
@@ -205,7 +204,6 @@ def collect_gradio_input_paths(
 
 def _build_gradio_blocks(gr, config: ColabTranscriptionConfig):
     values = ui_values_from_config(config)
-    media_glob = _media_file_glob()
     drive_enabled = _is_drive_picker_available(bool(values["mount_google_drive"]))
     drive_picker_root = _drive_picker_root(drive_enabled)
     input_mode_choices = input_mode_options(drive_enabled)
@@ -219,35 +217,19 @@ def _build_gradio_blocks(gr, config: ColabTranscriptionConfig):
     ) = drive_input_interactivity(drive_enabled)
     with gr.Blocks(title="Whisper Colab App") as demo:
 
-        def drive_folder_selection_to_path_lines(selection, current_paths):
-            return _selection_to_path_lines_and_state(
-                selection,
-                current_paths,
-                drop_descendants=True,
-            )
+        def drive_browser_refresh(current_dir, selected_paths):
+            return _drive_browser_refresh(current_dir, selected_paths)
 
-        def drive_file_selection_to_path_lines(selection, current_paths):
-            return _selection_to_path_lines_and_state(selection, current_paths)
+        def drive_browser_go_up(current_dir, selected_paths):
+            return _drive_browser_go_up(current_dir, selected_paths)
 
-        def drive_folder_select_to_path_lines(current_paths, selection, evt: gr.SelectData):
-            return _selection_event_to_path_lines_and_state(
-                current_paths,
-                selection,
-                evt,
-                ignored_values={"Drive folder picker"},
-                drop_descendants=True,
-            )
+        def drive_browser_open_focused(current_dir, focused_path, selected_paths):
+            return _drive_browser_open_focused(current_dir, focused_path, selected_paths)
 
-        def drive_file_select_to_path_lines(current_paths, selection, evt: gr.SelectData):
-            return _selection_event_to_path_lines_and_state(
-                current_paths,
-                selection,
-                evt,
-                ignored_values={"Drive file picker"},
-            )
+        def drive_browser_select(rows, current_dir, selected_paths, evt: gr.SelectData):
+            return _drive_browser_select(rows, current_dir, selected_paths, evt)
 
-        drive_folder_select_to_path_lines.__annotations__["evt"] = gr.SelectData
-        drive_file_select_to_path_lines.__annotations__["evt"] = gr.SelectData
+        drive_browser_select.__annotations__["evt"] = gr.SelectData
 
         gr.Markdown(
             """
@@ -297,64 +279,58 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                 value=values["drive_recursive"],
                 label="Search Drive folders recursively",
                 info=(
-                    "When enabled, folder modes also scan subfolders. "
-                    "When disabled, only files directly inside each selected folder are used."
+                    "When enabled, selected folders also scan subfolders. "
+                    "When disabled, only files directly inside selected folders are used."
                 ),
                 interactive=drive_enabled,
             )
-            with gr.Group(
-                visible=_is_input_section_visible(
-                    values["input_mode"], INPUT_MODE_DRIVE_FOLDER_PICKER
-                )
-            ) as drive_folder_picker_group:
-                gr.Markdown(
-                    "Select one or more Drive folders. The app transcribes supported "
-                    "media files inside each selected folder."
-                )
-                drive_folder_picker = gr.FileExplorer(
-                    root_dir=str(drive_picker_root),
-                    glob="**/",
-                    ignore_glob="**/*.*",
-                    file_count="multiple",
-                    label="Drive folder picker",
-                    interactive=drive_folder_picker_interactive,
-                )
-                drive_folder_picker_paths = gr.Textbox(
-                    label="Selected Drive folder paths",
-                    lines=4,
-                    placeholder="/content/drive/MyDrive/path/to/folder",
-                    info=(
-                        "Auto-filled when FileExplorer reports a selection. "
-                        "You can also paste one or more folder paths here, one per line."
-                    ),
-                    interactive=drive_folder_path_interactive,
-                )
-                drive_folder_picker_paths_state = gr.State([])
+            drive_folder_picker = gr.State(None)
+            drive_file_picker = gr.State(None)
+            drive_folder_picker_paths = gr.State("")
+            with gr.Group(visible=False) as drive_folder_picker_group:
+                gr.Markdown("")
             with gr.Group(
                 visible=_is_input_section_visible(
                     values["input_mode"], INPUT_MODE_DRIVE_FILE_PICKER
                 )
             ) as drive_file_picker_group:
-                gr.Markdown("Select one or more audio or video files from Google Drive.")
-                drive_file_picker = gr.FileExplorer(
-                    root_dir=str(drive_picker_root),
-                    glob=media_glob,
-                    ignore_glob="**/",
-                    file_count="multiple",
-                    label="Drive file picker",
-                    interactive=drive_file_picker_interactive,
+                gr.Markdown(
+                    "Pick Google Drive files or folders. Click a row to add it to or remove it from "
+                    "the selected paths below. If you select a folder, the app transcribes supported "
+                    "media files inside that folder; recursive folder scanning follows the checkbox above."
+                )
+                drive_browser_dir = gr.Textbox(
+                    value=str(drive_picker_root),
+                    label="Current Google Drive folder",
+                    info="Paste a Drive folder path here, then click Refresh.",
+                    interactive=drive_file_paths_interactive,
+                )
+                with gr.Row():
+                    drive_browser_refresh_button = gr.Button("Refresh")
+                    drive_browser_up_button = gr.Button("Up one folder")
+                    drive_browser_open_button = gr.Button("Open selected folder")
+                initial_browser_rows = _drive_browser_rows(drive_picker_root, [])
+                drive_browser_table = gr.Dataframe(
+                    value=initial_browser_rows,
+                    headers=["Selected", "Type", "Name", "Path"],
+                    datatype=["str", "str", "str", "str"],
+                    interactive=False,
+                    label="Google Drive picker",
+                    row_count=(0, "dynamic"),
+                    col_count=(4, "fixed"),
                 )
                 drive_file_picker_paths = gr.Textbox(
-                    label="Selected Drive file paths",
+                    label="Selected Google Drive paths",
                     lines=4,
-                    placeholder="/content/drive/MyDrive/path/to/meeting.mp4",
+                    placeholder="/content/drive/MyDrive/path/to/meeting.mp4\n/content/drive/MyDrive/path/to/folder",
                     info=(
-                        "Auto-filled when FileExplorer reports a selection. "
-                        "You can also paste one or more file paths here, one per line."
+                        "These paths are passed to Run transcription. "
+                        "You can also paste files or folders here, one per line."
                     ),
                     interactive=drive_file_paths_interactive,
                 )
                 drive_file_picker_paths_state = gr.State([])
+                drive_browser_focused_path = gr.State("")
             with gr.Group(
                 visible=_is_input_section_visible(
                     values["input_mode"], INPUT_MODE_DRIVE_FOLDER_PATH
@@ -663,35 +639,35 @@ These settings are optional. Leave each field blank or at zero to use the model 
             inputs=language,
             outputs=custom_language_group,
         )
-        drive_folder_picker.change(
-            fn=drive_folder_selection_to_path_lines,
-            inputs=[drive_folder_picker, drive_folder_picker_paths_state],
-            outputs=[drive_folder_picker_paths, drive_folder_picker_paths_state],
+        drive_browser_refresh_button.click(
+            fn=drive_browser_refresh,
+            inputs=[drive_browser_dir, drive_file_picker_paths_state],
+            outputs=[drive_browser_table, drive_browser_dir],
         )
-        drive_folder_picker.input(
-            fn=drive_folder_selection_to_path_lines,
-            inputs=[drive_folder_picker, drive_folder_picker_paths_state],
-            outputs=[drive_folder_picker_paths, drive_folder_picker_paths_state],
+        drive_browser_up_button.click(
+            fn=drive_browser_go_up,
+            inputs=[drive_browser_dir, drive_file_picker_paths_state],
+            outputs=[drive_browser_table, drive_browser_dir],
         )
-        drive_folder_picker.select(
-            fn=drive_folder_select_to_path_lines,
-            inputs=[drive_folder_picker_paths_state, drive_folder_picker],
-            outputs=[drive_folder_picker_paths, drive_folder_picker_paths_state],
+        drive_browser_open_button.click(
+            fn=drive_browser_open_focused,
+            inputs=[drive_browser_dir, drive_browser_focused_path, drive_file_picker_paths_state],
+            outputs=[drive_browser_table, drive_browser_dir],
         )
-        drive_file_picker.change(
-            fn=drive_file_selection_to_path_lines,
-            inputs=[drive_file_picker, drive_file_picker_paths_state],
-            outputs=[drive_file_picker_paths, drive_file_picker_paths_state],
+        drive_browser_table.select(
+            fn=drive_browser_select,
+            inputs=[drive_browser_table, drive_browser_dir, drive_file_picker_paths_state],
+            outputs=[
+                drive_browser_table,
+                drive_file_picker_paths,
+                drive_file_picker_paths_state,
+                drive_browser_focused_path,
+            ],
         )
-        drive_file_picker.input(
-            fn=drive_file_selection_to_path_lines,
-            inputs=[drive_file_picker, drive_file_picker_paths_state],
-            outputs=[drive_file_picker_paths, drive_file_picker_paths_state],
-        )
-        drive_file_picker.select(
-            fn=drive_file_select_to_path_lines,
-            inputs=[drive_file_picker_paths_state, drive_file_picker],
-            outputs=[drive_file_picker_paths, drive_file_picker_paths_state],
+        drive_file_picker_paths.change(
+            fn=_manual_path_lines_to_state,
+            inputs=[drive_file_picker_paths, drive_browser_dir],
+            outputs=[drive_file_picker_paths_state, drive_browser_table],
         )
     return demo
 
@@ -703,6 +679,8 @@ def input_mode_options(drive_available: bool) -> list[tuple[str, str]]:
 
 
 def initial_input_mode(input_mode: str, drive_available: bool) -> str:
+    if drive_available and input_mode != INPUT_MODE_UPLOAD:
+        return INPUT_MODE_DRIVE_FILE_PICKER
     if drive_available:
         return input_mode
     return INPUT_MODE_UPLOAD
@@ -731,6 +709,147 @@ def _drive_picker_root(drive_picker_available: bool, drive_root: Path = DRIVE_RO
     disabled_root = Path(gettempdir()) / "whisper_colab_disabled_drive_picker"
     disabled_root.mkdir(parents=True, exist_ok=True)
     return disabled_root
+
+
+def _drive_browser_rows(
+    current_dir: str | Path,
+    selected_paths: Any,
+    *,
+    drive_root: Path = DRIVE_ROOT,
+) -> list[list[str]]:
+    current_path = _normalize_drive_browser_dir(current_dir, drive_root=drive_root)
+    selected = set(_deduplicate_path_strings(selected_paths, drop_descendants=True))
+    rows = []
+    for child in sorted(
+        current_path.iterdir(), key=lambda path: (path.is_file(), path.name.lower())
+    ):
+        if child.is_dir():
+            row_type = "folder"
+        elif child.is_file() and child.suffix.lower() in SUPPORTED_MEDIA_EXTENSIONS:
+            row_type = "file"
+        else:
+            continue
+        display_path = _drive_display_path(child, drive_root=drive_root)
+        rows.append(
+            [
+                "selected" if display_path in selected else "",
+                row_type,
+                child.name,
+                display_path,
+            ]
+        )
+    return rows
+
+
+def _drive_browser_refresh(current_dir: str, selected_paths: Any) -> tuple[list[list[str]], str]:
+    current_path = _normalize_drive_browser_dir(current_dir)
+    return _drive_browser_rows(current_path, selected_paths), str(current_path)
+
+
+def _drive_browser_go_up(current_dir: str, selected_paths: Any) -> tuple[list[list[str]], str]:
+    current_path = _normalize_drive_browser_dir(current_dir)
+    drive_root = DRIVE_ROOT.expanduser().resolve()
+    next_dir = current_path if current_path == drive_root else current_path.parent
+    if not _is_relative_to(next_dir, drive_root):
+        next_dir = drive_root
+    return _drive_browser_rows(next_dir, selected_paths), str(next_dir)
+
+
+def _drive_browser_open_focused(
+    current_dir: str,
+    focused_path: str,
+    selected_paths: Any,
+) -> tuple[list[list[str]], str]:
+    if not str(focused_path).strip():
+        return _drive_browser_refresh(current_dir, selected_paths)
+    next_dir = _normalize_drive_picker_path(focused_path)
+    if not next_dir.is_dir():
+        return _drive_browser_refresh(current_dir, selected_paths)
+    return _drive_browser_rows(next_dir, selected_paths), str(next_dir)
+
+
+def _drive_browser_select(
+    rows: Any,
+    current_dir: str,
+    selected_paths: Any,
+    event_data: Any,
+) -> tuple[list[list[str]], str, list[str], str]:
+    row = _drive_browser_selected_row(rows, event_data)
+    if row is None:
+        selected = _deduplicate_path_strings(selected_paths, drop_descendants=True)
+        return _drive_browser_rows(current_dir, selected), "\n".join(selected), selected, ""
+
+    row_type = str(row[1])
+    path = str(row[3])
+    selected = _toggle_path_selection(selected_paths, path)
+    focused_path = path if row_type == "folder" else ""
+    return _drive_browser_rows(current_dir, selected), "\n".join(selected), selected, focused_path
+
+
+def _drive_browser_selected_row(rows: Any, event_data: Any) -> list[Any] | None:
+    row_index = _drive_browser_selected_row_index(event_data)
+    table_rows = _dataframe_rows(rows)
+    if row_index is None or row_index < 0 or row_index >= len(table_rows):
+        return None
+    row = table_rows[row_index]
+    if len(row) < 4:
+        return None
+    return row
+
+
+def _drive_browser_selected_row_index(event_data: Any) -> int | None:
+    index = getattr(event_data, "index", None)
+    if isinstance(index, (list, tuple)):
+        if not index:
+            return None
+        return int(index[0])
+    if index is None:
+        return None
+    return int(index)
+
+
+def _dataframe_rows(rows: Any) -> list[list[Any]]:
+    if rows is None:
+        return []
+    if hasattr(rows, "values"):
+        return rows.values.tolist()
+    if isinstance(rows, dict):
+        data = rows.get("data")
+        return data if isinstance(data, list) else []
+    return list(rows)
+
+
+def _toggle_path_selection(selected_paths: Any, path: str) -> list[str]:
+    selected = _deduplicate_path_strings(selected_paths, drop_descendants=True)
+    if path in selected:
+        selected = [selected_path for selected_path in selected if selected_path != path]
+    else:
+        selected = _deduplicate_path_strings([*selected, path], drop_descendants=True)
+    return selected
+
+
+def _manual_path_lines_to_state(
+    path_lines: str, current_dir: str
+) -> tuple[list[str], list[list[str]]]:
+    selected = _deduplicate_path_strings(_parse_drive_file_paths(path_lines), drop_descendants=True)
+    return selected, _drive_browser_rows(current_dir, selected)
+
+
+def _normalize_drive_browser_dir(current_dir: str | Path, *, drive_root: Path = DRIVE_ROOT) -> Path:
+    path = _normalize_drive_picker_path(str(current_dir), drive_root=drive_root)
+    if not path.exists():
+        raise FileNotFoundError(f"Drive folder does not exist: {path}")
+    if not path.is_dir():
+        raise NotADirectoryError(f"Drive browser path is not a folder: {path}")
+    return path
+
+
+def _drive_display_path(path: Path, *, drive_root: Path = DRIVE_ROOT) -> str:
+    root = drive_root.expanduser().resolve()
+    resolved = path.expanduser().resolve()
+    if _is_relative_to(resolved, root):
+        return resolved.relative_to(root).as_posix()
+    return resolved.as_posix()
 
 
 def _run_from_gradio(
@@ -1173,6 +1292,39 @@ def _paths_from_drive_file_picker(
         if path.is_dir():
             raise IsADirectoryError(f"Drive file picker selection is a folder: {path}")
     return _validate_media_files(paths)
+
+
+def _paths_from_drive_mixed_picker(
+    selection: Any,
+    *,
+    fallback_file_paths: str = "",
+    recursive: bool,
+    drive_root: Path = DRIVE_ROOT,
+) -> list[Path]:
+    selected_values = _flatten_selection(selection)
+    if fallback_file_paths.strip():
+        selected_values = _parse_drive_file_paths(fallback_file_paths)
+    paths = [
+        _normalize_drive_picker_path(value, drive_root=drive_root) for value in selected_values
+    ]
+    if not paths:
+        raise ValueError(
+            "Pick one or more Google Drive files or folders, or paste paths into "
+            "'Selected Google Drive paths'."
+        )
+
+    file_paths = []
+    folder_paths = []
+    for path in paths:
+        if path.is_dir():
+            folder_paths.append(path)
+        else:
+            file_paths.append(path)
+
+    media_files = _validate_media_files(file_paths)
+    for folder in _drop_descendant_paths(folder_paths):
+        media_files.extend(_find_media_files(folder, recursive=recursive))
+    return _deduplicate_paths(media_files)
 
 
 def _paths_from_drive_folder_picker(

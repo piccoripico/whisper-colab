@@ -7,7 +7,7 @@ Run Whisper from a Google Colab notebook and transcribe audio or video files wit
 ## What It Does
 
 - Launches a Gradio app from one Colab notebook.
-- Uses Google Drive picker modes as the main input path.
+- Uses a Google Drive picker as the main input path for files and folders.
 - Falls back to upload-only input when Google Drive is not mounted.
 - Converts audio or video to Whisper-friendly `16 kHz / mono / PCM WAV`.
 - Runs `openai/whisper-large-v3-turbo` by default, with `openai/whisper-large-v3` also available.

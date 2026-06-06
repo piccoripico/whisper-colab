@@ -18,6 +18,8 @@ from src.whisper_colab.gradio_app import (
     _build_auto_download_html,
     _build_gradio_blocks,
     _build_output_locations_html,
+    _drive_browser_rows,
+    _drive_browser_select,
     _drive_picker_root,
     _is_drive_picker_available,
     _selection_event_to_path_lines_and_state,
@@ -156,13 +158,12 @@ class GradioAppTests(unittest.TestCase):
     def test_input_mode_options_hide_drive_modes_when_drive_is_unavailable(self):
         self.assertEqual(input_mode_options(False), [("Upload local files", INPUT_MODE_UPLOAD)])
         self.assertEqual(initial_input_mode(INPUT_MODE_DRIVE_FILE_PICKER, False), INPUT_MODE_UPLOAD)
-        self.assertIn(
-            ("Pick Drive files", INPUT_MODE_DRIVE_FILE_PICKER),
+        self.assertEqual(
             input_mode_options(True),
-        )
-        self.assertIn(
-            ("Pick Drive folders", INPUT_MODE_DRIVE_FOLDER_PICKER),
-            input_mode_options(True),
+            [
+                ("Pick Google Drive files", INPUT_MODE_DRIVE_FILE_PICKER),
+                ("Upload local files", INPUT_MODE_UPLOAD),
+            ],
         )
 
     def test_language_choices_use_title_case_labels_and_lowercase_values(self):
@@ -173,9 +174,9 @@ class GradioAppTests(unittest.TestCase):
     def test_gradio_source_filters_picker_visibility_and_hides_zip_initially(self):
         source = inspect.getsource(_build_gradio_blocks)
 
-        self.assertIn('glob="**/"', source)
-        self.assertIn('ignore_glob="**/*.*"', source)
-        self.assertIn('ignore_glob="**/"', source)
+        self.assertIn("Google Drive picker", source)
+        self.assertIn("Open selected folder", source)
+        self.assertIn("Click a row to add it to or remove it", source)
         self.assertIn('visible=values["use_custom_output_dir"]', source)
         self.assertIn('visible=values["download_zip_on_completion"]', source)
         self.assertIn('visible=values["language"] == "custom"', source)
@@ -186,15 +187,9 @@ class GradioAppTests(unittest.TestCase):
             source.index('label="Search Drive folders recursively"'),
         )
         self.assertIn("For better transcription accuracy", source)
-        self.assertIn("Selected Drive file paths", source)
-        self.assertIn("Selected Drive folder paths", source)
-        self.assertIn("Auto-filled when FileExplorer reports a selection", source)
-        self.assertIn("drive_file_picker.input(", source)
-        self.assertIn("drive_file_picker.select(", source)
+        self.assertIn("Selected Google Drive paths", source)
+        self.assertIn("drive_browser_table.select(", source)
         self.assertIn("drive_file_picker_paths_state", source)
-        self.assertIn("drive_folder_picker.input(", source)
-        self.assertIn("drive_folder_picker.select(", source)
-        self.assertIn("drive_folder_picker_paths_state", source)
         self.assertIn('label="Split seconds"', source)
         self.assertIn("Batch size used by the ASR pipeline", source)
         self.assertIn("Fallback threshold for repeated/compressed text", source)
@@ -347,6 +342,54 @@ class GradioAppTests(unittest.TestCase):
         self.assertEqual(path_lines, "parent")
         self.assertEqual(state, ["parent"])
 
+    def test_drive_browser_select_toggles_selected_file(self):
+        from src.whisper_colab import gradio_app
+
+        rows = [["", "file", "meeting.mp4", "meeting.mp4"]]
+        event_data = SimpleNamespace(index=(0, 0))
+
+        with patch.object(gradio_app, "_drive_browser_rows", return_value=[]) as browser_rows:
+            next_rows, path_lines, state, focused_path = _drive_browser_select(
+                rows,
+                "/content/drive/MyDrive",
+                [],
+                event_data,
+            )
+
+        self.assertEqual(path_lines, "meeting.mp4")
+        self.assertEqual(state, ["meeting.mp4"])
+        self.assertEqual(focused_path, "")
+        self.assertEqual(next_rows, [])
+        self.assertEqual(browser_rows.call_args.args[1], ["meeting.mp4"])
+
+        with patch.object(gradio_app, "_drive_browser_rows", return_value=[]):
+            _next_rows, path_lines, state, _focused_path = _drive_browser_select(
+                rows,
+                "/content/drive/MyDrive",
+                state,
+                event_data,
+            )
+
+        self.assertEqual(path_lines, "")
+        self.assertEqual(state, [])
+
+    def test_drive_browser_rows_marks_selected_paths(self):
+        with TemporaryDirectory() as temp_dir:
+            drive_root = Path(temp_dir)
+            (drive_root / "folder").mkdir()
+            (drive_root / "meeting.mp4").write_bytes(b"video")
+            (drive_root / "notes.txt").write_text("skip", encoding="utf-8")
+
+            rows = _drive_browser_rows(
+                drive_root,
+                ["meeting.mp4"],
+                drive_root=drive_root,
+            )
+
+        self.assertIn(["selected", "file", "meeting.mp4", "meeting.mp4"], rows)
+        self.assertIn(["", "folder", "folder", "folder"], rows)
+        self.assertNotIn("notes.txt", [row[2] for row in rows])
+
     def test_drive_file_picker_accepts_file_url_like_selection(self):
         with TemporaryDirectory() as temp_dir:
             drive_root = Path(temp_dir)
@@ -451,25 +494,29 @@ class GradioAppTests(unittest.TestCase):
 
         self.assertEqual(paths, [parent / "parent.mp4"])
 
-    def test_drive_file_picker_rejects_selected_folder(self):
+    def test_drive_file_picker_expands_selected_folder(self):
         with TemporaryDirectory() as temp_dir:
             drive_root = Path(temp_dir)
-            (drive_root / "folder").mkdir()
+            folder = drive_root / "folder"
+            folder.mkdir()
+            media_file = folder / "meeting.mp4"
+            media_file.write_bytes(b"video")
 
-            with self.assertRaisesRegex(IsADirectoryError, "selection is a folder"):
-                collect_gradio_input_paths(
-                    input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
-                    drive_file_picker=["folder"],
-                    drive_folder_picker=None,
-                    drive_file_paths="",
-                    drive_folder_path="",
-                    uploaded_files=None,
-                    drive_recursive=False,
-                    drive_root=drive_root,
-                )
+            paths = collect_gradio_input_paths(
+                input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
+                drive_file_picker=["folder"],
+                drive_folder_picker=None,
+                drive_file_paths="",
+                drive_folder_path="",
+                uploaded_files=None,
+                drive_recursive=False,
+                drive_root=drive_root,
+            )
+
+        self.assertEqual(paths, [media_file])
 
     def test_drive_file_picker_empty_selection_explains_manual_fallback(self):
-        with self.assertRaisesRegex(ValueError, "Selected Drive file paths"):
+        with self.assertRaisesRegex(ValueError, "Selected Google Drive paths"):
             collect_gradio_input_paths(
                 input_mode=INPUT_MODE_DRIVE_FILE_PICKER,
                 drive_file_picker=[],

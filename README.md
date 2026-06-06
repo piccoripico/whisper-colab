@@ -25,7 +25,7 @@ Usage instructions are included in `Whisper_v3.ipynb`. Open the notebook, choose
 - For Japanese or other known-language recordings, selecting the source language can improve stability and avoid language-detection mistakes.
 - The WAV extraction step normalizes audio for Whisper and should not meaningfully reduce speech-recognition quality. It uses `16 kHz / mono / PCM WAV`, which is the expected Whisper input format.
 - Very long recordings may fail when the Colab runtime runs out of GPU or system memory.
-- Browser security may block automatic downloads. If the ZIP does not download automatically, use the ZIP download panel shown after processing.
+- ZIP downloads are provided through Gradio's ZIP download panel shown after processing.
 
 ## Generated Notebook
 

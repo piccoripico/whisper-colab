@@ -234,19 +234,16 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                 choices=input_mode_choices,
                 value=selected_input_mode,
                 label="Input mode",
-                info=(
-                    "Choose how to provide input files. Drive modes require Drive to be "
-                    "mounted from the launch notebook."
-                ),
             )
             drive_recursive = gr.Checkbox(
                 value=values["drive_recursive"],
                 label="Search Drive folders recursively",
-                info=(
-                    "When enabled, folder modes also scan subfolders. "
-                    "When disabled, only files directly inside each selected folder are used."
-                ),
                 interactive=drive_enabled,
+            )
+            gr.Markdown(
+                "Input mode chooses how to provide files. Drive modes require Drive to "
+                "be mounted from the launch notebook. Recursive folder search scans "
+                "subfolders; when it is off, only files directly inside selected folders are used."
             )
             with gr.Group(
                 visible=_is_input_section_visible(
@@ -289,7 +286,6 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                     label="Drive folder paths",
                     lines=5,
                     placeholder="/content/drive/MyDrive/whisper-input\n/content/drive/MyDrive/another-folder",
-                    info="Enter one or more Drive folder paths, one per line.",
                     interactive=drive_folder_path_interactive,
                 )
             with gr.Group(
@@ -300,20 +296,19 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                     label="Drive file paths",
                     lines=5,
                     placeholder="/content/drive/MyDrive/path/to/meeting.mp4",
-                    info="Enter one or more Drive file paths, one per line.",
                     interactive=drive_file_paths_interactive,
                 )
             with gr.Group(
                 visible=_is_input_section_visible(values["input_mode"], INPUT_MODE_UPLOAD)
             ) as uploaded_files_group:
+                gr.Markdown(
+                    "Upload local files to the temporary Colab runtime. "
+                    "Transcription starts automatically after upload completes."
+                )
                 uploaded_files = gr.File(
                     file_count="multiple",
                     type="filepath",
                     label="Upload local files",
-                    info=(
-                        "Upload local files to the temporary Colab runtime. "
-                        "Transcription starts automatically after upload completes."
-                    ),
                 )
                 upload_details = gr.Textbox(
                     label="Upload details",
@@ -326,34 +321,29 @@ The exact time depends on file length, model choice, GPU availability, and Colab
                 choices=MODEL_OPTIONS,
                 value=values["model_id"],
                 label="Whisper model",
-                info=(
-                    "Turbo is faster and is the default. Large v3 may be useful when "
-                    "you prefer the non-Turbo model."
-                ),
             )
             language = gr.Dropdown(
                 choices=LANGUAGE_CHOICES,
                 value=values["language"],
                 label="Source language",
-                info=(
-                    "Leave Auto for language detection. Select the known source language "
-                    "when possible for more stable recognition."
-                ),
+            )
+            gr.Markdown(
+                "Turbo is faster and is the default. Leave Source language as Auto for "
+                "language detection, or select the known source language for more stable recognition."
             )
             with gr.Group(visible=values["language"] == "custom") as custom_language_group:
                 custom_language = gr.Textbox(
                     value=values["custom_language"],
                     label="Custom source language",
                     placeholder="Example: welsh",
-                    info="Use this only when the language is not listed above.",
                 )
             translate_to_english = gr.Checkbox(
                 value=values["translate_to_english"],
                 label="Translate to English",
-                info=(
-                    "Whisper translate mode translates the recognized speech to English. "
-                    "It does not translate to arbitrary target languages."
-                ),
+            )
+            gr.Markdown(
+                "Translate mode translates recognized speech to English. "
+                "It does not translate to arbitrary target languages."
             )
             with gr.Accordion("Optional Whisper parameters", open=False):
                 gr.Markdown(
@@ -364,117 +354,99 @@ These settings are optional. Leave each field blank or at zero to use the model 
                 max_segment_seconds = gr.Number(
                     value=values["max_segment_seconds"],
                     label="Split seconds",
-                    info=(
-                        "Set a positive number to split extracted audio into fixed-length "
-                        "segments before transcription. 0 disables this repository-level split."
-                    ),
                     precision=0,
                     minimum=0,
                 )
                 pipeline_chunk_length_s = gr.Number(
                     value=values["pipeline_chunk_length_s"],
                     label="Pipeline chunk_length_s",
-                    info=(
-                        "Splits long audio inside the Transformers pipeline. "
-                        "0 leaves it unset; the separate Split seconds option is usually safer."
-                    ),
                     precision=0,
                     minimum=0,
                 )
                 pipeline_batch_size = gr.Number(
                     value=values["pipeline_batch_size"],
                     label="Pipeline batch_size",
-                    info="Batch size used by the ASR pipeline. 0 leaves it unset.",
                     precision=0,
                     minimum=0,
                 )
                 generate_num_beams = gr.Number(
                     value=values["generate_num_beams"],
                     label="Generate num_beams",
-                    info="Beam-search width. 0 leaves it unset.",
                     precision=0,
                     minimum=0,
                 )
                 generate_temperature = gr.Textbox(
                     value=values["generate_temperature"],
                     label="Generate temperature",
-                    info="Sampling temperature. Blank leaves it unset.",
                     placeholder="Example: 0.0",
                 )
                 generate_condition_on_prev_tokens = gr.Dropdown(
                     choices=OPTIONAL_BOOL_CHOICES,
                     value=values["generate_condition_on_prev_tokens"],
                     label="Generate condition_on_prev_tokens",
-                    info=(
-                        "Whether each generation conditions on previous text. "
-                        "Model default is usually best."
-                    ),
                 )
                 generate_compression_ratio_threshold = gr.Textbox(
                     value=values["generate_compression_ratio_threshold"],
                     label="Generate compression_ratio_threshold",
-                    info="Fallback threshold for repeated/compressed text. Blank leaves it unset.",
                 )
                 generate_logprob_threshold = gr.Textbox(
                     value=values["generate_logprob_threshold"],
                     label="Generate logprob_threshold",
-                    info="Fallback threshold for low-confidence text. Blank leaves it unset.",
                 )
                 generate_no_speech_threshold = gr.Textbox(
                     value=values["generate_no_speech_threshold"],
                     label="Generate no_speech_threshold",
-                    info="Threshold for no-speech detection. Blank leaves it unset.",
                 )
                 model_attn_implementation = gr.Dropdown(
                     choices=ATTENTION_IMPLEMENTATION_OPTIONS,
                     value=values["model_attn_implementation"],
                     label="Model attn_implementation",
-                    info="Optional attention backend passed to model loading.",
+                )
+                gr.Markdown(
+                    "Split seconds performs repository-level audio splitting before Whisper. "
+                    "`pipeline_chunk_length_s` and `pipeline_batch_size` are Transformers pipeline options. "
+                    "`num_beams`, `temperature`, and the threshold fields are Whisper generation options. "
+                    "Blank or 0 leaves each option unset."
                 )
 
         with gr.Tab("Outputs"):
             include_timestamps = gr.Checkbox(
                 value=values["include_timestamps"],
                 label="Include timestamps",
-                info="Add approximate segment timestamps to text and Excel outputs.",
             )
             export_excel = gr.Checkbox(
                 value=values["export_excel"],
                 label="Export Excel",
-                info="Also save an `.xlsx` file with timestamp and text columns.",
             )
             use_custom_output_dir = gr.Checkbox(
                 value=values["use_custom_output_dir"],
                 label="Save all outputs to a custom folder instead of each source folder",
-                info=(
-                    "Off: save outputs next to each input file. "
-                    "On: save all outputs to the custom folder below."
-                ),
+            )
+            gr.Markdown(
+                "Timestamps are approximate. Export Excel saves an `.xlsx` file. "
+                "If custom output is off, outputs are saved next to each source file."
             )
             with gr.Group(visible=values["use_custom_output_dir"]) as output_dir_group:
                 output_dir = gr.Textbox(
                     value=values["output_dir"],
                     label="Custom output directory",
-                    info="Used only when custom output folder is enabled.",
                 )
             download_zip_on_completion = gr.Checkbox(
                 value=values["download_zip_on_completion"],
                 label="Download a ZIP when transcription finishes (outputs are also saved in folders)",
-                info=(
-                    "When enabled, the app prepares one ZIP download after processing. "
-                    "The original `.txt` and `.xlsx` outputs remain in their output folders."
-                ),
+            )
+            gr.Markdown(
+                "When ZIP download is enabled, the app prepares one temporary ZIP after processing. "
+                "The original `.txt` and `.xlsx` outputs remain in their output folders."
             )
             with gr.Group(visible=values["download_zip_on_completion"]) as zip_file_name_group:
                 zip_file_name = gr.Textbox(
                     value=values["zip_file_name"],
                     label="ZIP file name",
-                    info="Name of the temporary ZIP download file.",
                 )
             audio_output_dir = gr.Textbox(
                 value=values["audio_output_dir"],
                 label="Temporary audio directory",
-                info="Temporary location for normalized WAV files and optional split segments.",
             )
             require_gpu = gr.Checkbox(
                 value=values["require_gpu"],

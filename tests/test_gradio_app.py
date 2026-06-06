@@ -185,14 +185,7 @@ class GradioAppTests(unittest.TestCase):
         self.assertIn('title="Whisper Colab App"', source)
         self.assertIn("visible=False", source)
         self.assertIn("outputs are also saved in folders", source)
-        self.assertNotIn(
-            'gr.FileExplorer(\n                    root_dir=str(drive_picker_root),\n                    glob="**/",\n                    ignore_glob="**/*.*",\n                    file_count="multiple",\n                    label="Drive folder picker",\n                    info=',
-            source,
-        )
-        self.assertNotIn(
-            'gr.FileExplorer(\n                    root_dir=str(drive_picker_root),\n                    glob=media_glob,\n                    ignore_glob="**/",\n                    file_count="multiple",\n                    label="Drive file picker",\n                    info=',
-            source,
-        )
+        self.assertNotIn("info=", source)
 
     def test_input_section_visibility_matches_selected_input_mode(self):
         self.assertEqual(

@@ -1,0 +1,144 @@
+{
+  "language": "az",
+  "display_name": "Azerbaijani",
+  "native_name": "Azerbaijani",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Parametrlər",
+    "cell1.section_title": "# 1. Parametrlər",
+    "cell2.title": "# @title 2. Fayl seçimi / Google Drivemontaj",
+    "cell2.section_title": "# 2. Fayl seçimi / Google Drivemontaj",
+    "cell3.title": "# @title 3. GPUyoxlama və asılılıq quraşdırılması",
+    "cell3.section_title": "# 3. GPUyoxlama və asılılıq quraşdırılması",
+    "cell4.title": "# @title 4. Köməkçi funksiyalar",
+    "cell4.section_title": "# 4. Köməkçi funksiyalar",
+    "cell5.title": "# @title 5. Whisperyükləyin və transkripsiyanı işə salın",
+    "cell5.section_title": "# 5. Whisperyükləyin və transkripsiyanı işə salın",
+    "cell6.title": "# @title 6. Zip və yükləmə çıxışları",
+    "cell6.section_title": "# 6. Zip və yükləmə çıxışları",
+    "settings.input_heading": "# @markdown ## Giriş",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Yerli fayllar üçün `upload`və ya artıq Google Driveünvanında saxlanılan fayllar üçün `google_drive`istifadə edin.",
+    "settings.drive_heading": "# @markdown ### Google Drivegirişi",
+    "settings.drive_help": "# @markdown Bu parametrlər yalnız `INPUT_MODE == \"google_drive\"`olduqda istifadə olunur.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Adətən bu dəsti `/content/drive/MyDrive`olaraq saxlayın.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: MyDrive altında fayl və ya qovluq yolu. Üst səviyyə MyDrive qovluğundan istifadə etmək üçün boş buraxın.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Sürücü daxiletmə yolu qovluqdursa, alt qovluqları da axtarın.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Əlavə fayl adı alt sətir filtri.",
+    "settings.model_heading": "# @markdown ## Whispermodeli",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodel ID. Turbo daha sürətli; large-v3bəzi fayllar üçün daha stabil ola bilər.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Naməlum olduqda `auto`istifadə edin və ya məlum mənbə dilini seçin.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: İngilis dilini çıxarmaq üçün Whispertərcümə rejimindən istifadə edin.",
+    "settings.output_heading": "# @markdown ## Çıxış",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Disk girişindən istifadə edildikdə çıxışları Google Drivealtında saxlayın.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Sonda bir ZIParxiv yaradın və endirin.",
+    "settings.formats_help": "# @markdown - Çıxış formatları aşağıdakı booleanlar tərəfindən idarə olunur.",
+    "settings.advanced_heading": "# ## Qabaqcıl",
+    "settings.advanced_help": "# Bu defoltlar Colab üçün mühafizəkardır. Adi istifadəçilər adətən onları redaktə etməyə ehtiyac duymurlar.",
+    "settings.loaded_message": "Parametrlər yükləndi.",
+    "messages.choose_files": "\"Faylları seçin\" üzərinə klikləyin və bir və ya daha çox audio/video faylı yükləyin.",
+    "messages.selected_files": "Seçilmiş fayllar:",
+    "messages.dependencies_done": "Asılılığın quraşdırılması tamamlandı.",
+    "messages.model_loaded": "Whispermodeli yükləndi.",
+    "messages.transcription_complete": "Transkripsiya tamamlandı.",
+    "errors.no_supported_files": "Heç bir dəstəklənən audio/video faylı seçilməyib.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nBu notebook audio və ya video faylları Whisperilə transkripsiya edir.\n\n## Xüsusiyyətlər\n\n- **İstifadəsi pulsuzdur:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.\n- **Sabit notebook tərəfində fayl ölçüsü məhdudiyyəti yoxdur:** Böyük audio və video faylları emal edilə bilər.\n- **Toplu emal:** Bir neçə audio və video faylı bir işdə emal etmək olar.\n- **Google Drivedəstəyi:** Fayllar birbaşa yüklənə bilər və ya Google Driveünvanında saxlanılan audio/video faylları emal edilə bilər.\n- **Tam onlayn:** Yükləmələr və emal Google Colabüzərində həyata keçirilir. Heç bir yerli hesablama resurslarından istifadə edilmir.\n- **Çoxlu çıxış formatları:** Noutbuk orijinal JSONtranskriptini və əldə edilən TXT, CSV, Markdown, Excelvə SRTaltyazı fayllarını çıxarır.\n\n## Necə istifadə etmək olar\n\n1. **1-də. Parametrlər**, `INPUT_MODE`seçin və lazım olduqda modeli və ya çıxış seçimlərini tənzimləyin.\n2. **İş vaxtı -> Hamısını işlət** seçin.\n3. `INPUT_MODE = \"upload\"`varsa, **2-ə qədər gözləyin. Fayl seçimi / Google Drivemount** başlayır, sonra həmin xananın çıxış sahəsində **Faylları seçin** üzərinə klikləyin.\n4. Emal tamamlandıqda, `AUTO_DOWNLOAD_ZIP`aktivdirsə, çıxış faylları sıxılır və endirilir.\n\n## Qeydlər\n\n- Google Colabulsuz GPUmövcudluq məhduddur. Əgər GPUmövcud deyilsə və `REQUIRE_CUDA = True`, notebook transkripsiyadan əvvəl dayanır.\n- Emal vaxt tələb edir. large-v3-turbomodelindən istifadə edərkən təxmini bələdçi olaraq, 60 dəqiqəlik audio və ya video faylı transkripsiya etmək təxminən 5-10 dəqiqə çəkə bilər. Faylları birbaşa yükləsəniz, yükləmə vaxtı da tələb olunur.\n- Emal zamanı bu notebooku açıq saxlayın. Transkripsiya zamanı notebooku bağlasanız, emal dayanır.",
+    "settings.source_language_default": "azerbaijani"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Whispertranskripsiyası üçün çoxdilli Google Colabnoutbukları.",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Sabit notebook tərəfində fayl ölçüsü məhdudiyyəti yoxdur:** Böyük audio və video faylları emal edilə bilər.",
+      "**Toplu emal:** Bir neçə audio və video faylı bir işdə emal etmək olar.",
+      "**Google Drivedəstəyi:** Fayllar birbaşa yüklənə bilər və ya Google Driveünvanında saxlanılan audio/video faylları emal edilə bilər.",
+      "**Tam onlayn:** Yükləmələr və emal Google Colabüzərində həyata keçirilir. Heç bir yerli hesablama resurslarından istifadə edilmir.",
+      "**Çoxlu çıxış formatları:** Noutbuk orijinal JSONtranskriptini və əldə edilən TXT, CSV, Markdown, Excelvə SRTaltyazı fayllarını çıxarır."
+    ],
+    "template_note": "Kök READMEİngilis giriş nöqtəsidir və docs/READMEyaradılan lokallaşdırılmış READMEfaylları ehtiva edir. Şablon dəftəri mənbə dəftəridir və `{{cell1.title}}`kimi yer tutucuları ehtiva edir. Yerli fayllar dilə xas READMEvə Colab-a baxan surəti təmin edir. Yaradılmış noutbuklar Colab bağlantılarının sabit qalması üçün öhdəlik götürür.",
+    "checks_note": "CI iş axını READMEfaylları və notebookları şablon və yerli fayllardan yenidən qurur, notebook JSONyoxlayır, boş çıxışları yoxlayır, kod xanalarında Python sintaksisini yoxlayır, aşkar təsadüfi sirləri skan edir və yaradılan fayllar yerinə yetirilmədikdə uğursuz olur.",
+    "ci_items": [
+      "Yerli fayllardan READMEnəsil",
+      "şablon və yerli fayllardan notebook yaradılması",
+      "notebook JSONetibarlılıq",
+      "boş icra çıxışları",
+      "Kod hüceyrələrində Python sintaksisi",
+      "aşkar təsadüfi sirlər",
+      "törədilmiş READMEvə mənbələrə uyğun notebook faylları"
+    ],
+    "ci_limit": "Tam transkripsiya yolu Colab-a məxsus API-lər, model endirmələri, GPUmövcudluğu və istifadəçi tərəfindən təmin edilən media fayllarını tələb edir. Yaradılmış fayl yoxlamaları keçdikdən sonra bu yola əl ilə Colab tüstü sınağı kimi baxın.",
+    "license_note": "Bu repozitoriyanın READMEgeneratoru, notebook şablonu, yerli fayllar, yaradılan notebooklar və texniki xidmət skriptləri MITLisenziyası altında buraxılır. Whispermodelləri və üçüncü tərəf asılılıqları onların müvafiq lisenziyaları ilə idarə olunur.",
+    "feature_labels": [
+      "İstifadəsi pulsuzdur",
+      "Sabit notebook tərəfində fayl ölçüsü məhdudiyyəti yoxdur",
+      "Toplu emal",
+      "Google Drivedəstəyi",
+      "Tam onlayn",
+      "Çoxlu çıxış formatları"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Böyük audio və video faylları emal edilə bilər.",
+      "Bir neçə audio və video faylı bir işdə emal etmək olar.",
+      "Fayllar birbaşa yüklənə bilər və ya Google Driveünvanında saxlanılan audio/video faylları emal edilə bilər.",
+      "Yükləmələr və emal Google Colabüzərində həyata keçirilir. Heç bir yerli hesablama resurslarından istifadə edilmir.",
+      "Noutbuk orijinal JSONtranskriptini və əldə edilən TXT, CSV, Markdown, Excelvə SRTaltyazı fayllarını çıxarır."
+    ]
+  },
+  "labels": {
+    "features": "Xüsusiyyətlər",
+    "languages": "Dillər",
+    "language": "Dil",
+    "readme": "README",
+    "notebook": "Notebook",
+    "repository_layout": "Repository Layout",
+    "build": "qurmaq",
+    "checks": "Çeklər",
+    "what_ci_can_test": "CI nəyi sınaya bilər",
+    "license": "Lisenziya"
+  },
+  "translation_source": "google:az; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Bu notebook audio və ya video faylları Whisperilə transkripsiya edir.",
+    "features_heading": "Xüsusiyyətlər",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Sabit notebook tərəfində fayl ölçüsü məhdudiyyəti yoxdur:** Böyük audio və video faylları emal edilə bilər.",
+      "**Toplu emal:** Bir neçə audio və video faylı bir işdə emal etmək olar.",
+      "**Google Drivedəstəyi:** Fayllar birbaşa yüklənə bilər və ya Google Driveünvanında saxlanılan audio/video faylları emal edilə bilər.",
+      "**Tam onlayn:** Yükləmələr və emal Google Colabüzərində həyata keçirilir. Heç bir yerli hesablama resurslarından istifadə edilmir.",
+      "**Çoxlu çıxış formatları:** Noutbuk orijinal JSONtranskriptini və əldə edilən TXT, CSV, Markdown, Excelvə SRTaltyazı fayllarını çıxarır."
+    ],
+    "how_to_use_heading": "Necə istifadə etmək olar",
+    "how_to_use_steps": [
+      "**1-də. Parametrlər**, `INPUT_MODE`seçin və lazım olduqda modeli və ya çıxış seçimlərini tənzimləyin.",
+      "**İş vaxtı -> Hamısını işlət** seçin.",
+      "`INPUT_MODE = \"upload\"`varsa, **2-ə qədər gözləyin. Fayl seçimi / Google Drivemount** başlayır, sonra həmin xananın çıxış sahəsində **Faylları seçin** üzərinə klikləyin.",
+      "Emal tamamlandıqda, `AUTO_DOWNLOAD_ZIP`aktivdirsə, çıxış faylları sıxılır və endirilir."
+    ],
+    "notes_heading": "Qeydlər",
+    "notes": [
+      "Google Colabulsuz GPUmövcudluq məhduddur. Əgər GPUmövcud deyilsə və `REQUIRE_CUDA = True`, notebook transkripsiyadan əvvəl dayanır.",
+      "Emal vaxt tələb edir. large-v3-turbomodelindən istifadə edərkən təxmini bələdçi olaraq, 60 dəqiqəlik audio və ya video faylı transkripsiya etmək təxminən 5-10 dəqiqə çəkə bilər. Faylları birbaşa yükləsəniz, yükləmə vaxtı da tələb olunur.",
+      "Emal zamanı bu notebooku açıq saxlayın. Transkripsiya zamanı notebooku bağlasanız, emal dayanır."
+    ],
+    "feature_labels": [
+      "İstifadəsi pulsuzdur",
+      "Sabit notebook tərəfində fayl ölçüsü məhdudiyyəti yoxdur",
+      "Toplu emal",
+      "Google Drivedəstəyi",
+      "Tam onlayn",
+      "Çoxlu çıxış formatları"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Böyük audio və video faylları emal edilə bilər.",
+      "Bir neçə audio və video faylı bir işdə emal etmək olar.",
+      "Fayllar birbaşa yüklənə bilər və ya Google Driveünvanında saxlanılan audio/video faylları emal edilə bilər.",
+      "Yükləmələr və emal Google Colabüzərində həyata keçirilir. Heç bir yerli hesablama resurslarından istifadə edilmir.",
+      "Noutbuk orijinal JSONtranskriptini və əldə edilən TXT, CSV, Markdown, Excelvə SRTaltyazı fayllarını çıxarır."
+    ]
+  }
+}

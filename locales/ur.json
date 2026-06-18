@@ -1,0 +1,144 @@
+{
+  "language": "ur",
+  "display_name": "Urdu",
+  "native_name": "Urdu",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. ترتیبات",
+    "cell1.section_title": "# 1. ترتیبات",
+    "cell2.title": "# @title 2. فائل کا انتخاب / Google Driveماؤنٹ",
+    "cell2.section_title": "# 2. فائل کا انتخاب / Google Driveماؤنٹ",
+    "cell3.title": "# @title 3. GPUچیک اور انحصار کی تنصیب",
+    "cell3.section_title": "# 3. GPUچیک اور انحصار کی تنصیب",
+    "cell4.title": "# @title 4. مددگار کے افعال",
+    "cell4.section_title": "# 4. مددگار کے افعال",
+    "cell5.title": "# @title 5. Whisperلوڈ کریں اور ٹرانسکرپشن چلائیں۔",
+    "cell5.section_title": "# 5. Whisperلوڈ کریں اور ٹرانسکرپشن چلائیں۔",
+    "cell6.title": "# @title 6. زپ اور ڈاؤن لوڈ آؤٹ پٹ",
+    "cell6.section_title": "# 6. زپ اور ڈاؤن لوڈ آؤٹ پٹ",
+    "settings.input_heading": "# @markdown ## ان پٹ",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: مقامی فائلوں کے لیے `upload`یا Google Driveمیں پہلے سے محفوظ فائلوں کے لیے `google_drive`استعمال کریں۔",
+    "settings.drive_heading": "# @markdown ### Google Driveان پٹ",
+    "settings.drive_help": "# @markdown یہ ترتیبات صرف اس وقت استعمال ہوتی ہیں جب `INPUT_MODE == \"google_drive\"`۔",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: عام طور پر اس سیٹ کو `/content/drive/MyDrive`پر رکھیں۔",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: MyDrive کے تحت فائل یا فولڈر کا راستہ۔ ٹاپ لیول MyDrive فولڈر استعمال کرنے کے لیے خالی چھوڑ دیں۔",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: اگر ڈرائیو ان پٹ پاتھ ایک فولڈر ہے تو ذیلی فولڈرز کو بھی تلاش کریں۔",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: اختیاری فائل نام سبسٹرنگ فلٹر۔",
+    "settings.model_heading": "# @markdown ## Whisperماڈل",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Faceماڈل ID۔ ٹربو تیز ہے؛ large-v3کچھ فائلوں کے لیے زیادہ مستحکم ہو سکتے ہیں۔",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: نامعلوم ہونے پر `auto`استعمال کریں، یا معلوم ماخذ کی زبان منتخب کریں۔",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: انگریزی کو آؤٹ پٹ کرنے کے لیے Whisperترجمہ موڈ استعمال کریں۔",
+    "settings.output_heading": "# @markdown ## آؤٹ پٹ",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ڈرائیو ان پٹ استعمال ہونے پر آؤٹ پٹ کو Google Driveکے تحت محفوظ کریں۔",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: آخر میں ایک ZIPآرکائیو بنائیں اور ڈاؤن لوڈ کریں۔",
+    "settings.formats_help": "# @markdown - آؤٹ پٹ فارمیٹس کو نیچے دیے گئے بولین کے ذریعے کنٹرول کیا جاتا ہے۔",
+    "settings.advanced_heading": "# ## اعلی درجے کی",
+    "settings.advanced_help": "# یہ ڈیفالٹس Colab کے لیے قدامت پسند ہیں۔ عام صارفین کو عموماً ان میں ترمیم کرنے کی ضرورت نہیں ہوتی۔",
+    "settings.loaded_message": "ترتیبات لوڈ ہو گئیں۔",
+    "messages.choose_files": "'فائلوں کا انتخاب کریں' پر کلک کریں اور ایک یا زیادہ آڈیو/ویڈیو فائلیں اپ لوڈ کریں۔",
+    "messages.selected_files": "منتخب فائلیں:",
+    "messages.dependencies_done": "انحصار کی تنصیب ختم ہوگئی۔",
+    "messages.model_loaded": "Whisperماڈل لوڈ ہو گیا۔",
+    "messages.transcription_complete": "نقل مکمل۔",
+    "errors.no_supported_files": "کوئی تعاون یافتہ آڈیو/ویڈیو فائلیں منتخب نہیں کی گئیں۔",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Whisperکولاب نوٹ بک\n\nیہ نوٹ بک آڈیو یا ویڈیو فائلوں کو Whisperکے ساتھ نقل کرتی ہے۔\n\n## خصوصیات\n\n- **استعمال کرنے کے لیے مفت:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **نوٹ بک سائیڈ فائل سائز کی کوئی مقررہ حد نہیں۔:** بڑی آڈیو اور ویڈیو فائلوں پر کارروائی کی جا سکتی ہے۔\n- **بیچ پروسیسنگ:** ایک سے زیادہ آڈیو اور ویڈیو فائلوں کو ایک رن میں پروسیس کیا جا سکتا ہے۔\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **مکمل طور پر آن لائن:** Downloads and processing are performed on Google Colab. کوئی مقامی کمپیوٹنگ وسائل استعمال نہیں کیے جاتے ہیں۔\n- **متعدد آؤٹ پٹ فارمیٹس:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## استعمال کرنے کا طریقہ\n\n1. **1 میں۔ ترتیبات**، `INPUT_MODE`کا انتخاب کریں اور اگر ضرورت ہو تو ماڈل یا آؤٹ پٹ کے اختیارات کو ایڈجسٹ کریں۔\n2. **رن ٹائم -> سب چلائیں** کو منتخب کریں۔\n3. اگر `INPUT_MODE = \"upload\"`، **2 تک انتظار کریں۔ فائل کا انتخاب / Google Driveماؤنٹ** شروع ہوتا ہے، پھر اس سیل کے آؤٹ پٹ ایریا میں **فائلوں کو منتخب کریں** پر کلک کریں۔\n4. پروسیسنگ مکمل ہونے پر، اگر `AUTO_DOWNLOAD_ZIP`فعال ہو تو آؤٹ پٹ فائلز زپ اور ڈاؤن لوڈ ہو جاتی ہیں۔\n\n## نوٹس\n\n- Google Colabمفت GPUدستیابی محدود ہے۔ اگر کوئی GPUدستیاب نہیں ہے اور `REQUIRE_CUDA = True`، نوٹ بک نقل سے پہلے رک جاتی ہے۔\n- پروسیسنگ میں وقت لگتا ہے۔ As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. اگر آپ فائلیں براہ راست اپ لوڈ کرتے ہیں تو اپ لوڈ کا وقت بھی درکار ہے۔\n- پروسیسنگ کے دوران اس نوٹ بک کو کھلا رکھیں۔ اگر آپ ٹرانسکرپشن کے دوران نوٹ بک بند کر دیتے ہیں، تو پروسیسنگ رک جاتی ہے۔",
+    "settings.source_language_default": "urdu"
+  },
+  "readme": {
+    "title": "Whisperکولاب",
+    "subtitle": "Whisperنقل کے لیے کثیر لسانی Google Colabنوٹ بکس۔",
+    "features": [
+      "**استعمال کرنے کے لیے مفت:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**نوٹ بک سائیڈ فائل سائز کی کوئی مقررہ حد نہیں۔:** بڑی آڈیو اور ویڈیو فائلوں پر کارروائی کی جا سکتی ہے۔",
+      "**بیچ پروسیسنگ:** ایک سے زیادہ آڈیو اور ویڈیو فائلوں کو ایک رن میں پروسیس کیا جا سکتا ہے۔",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**مکمل طور پر آن لائن:** Downloads and processing are performed on Google Colab. کوئی مقامی کمپیوٹنگ وسائل استعمال نہیں کیے جاتے ہیں۔",
+      "**متعدد آؤٹ پٹ فارمیٹس:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "روٹ READMEانگریزی انٹری پوائنٹ ہے، اور docs/READMEجنریٹڈ لوکلائزڈ READMEفائلوں پر مشتمل ہے۔ ٹیمپلیٹ نوٹ بک سورس نوٹ بک ہے اور اس میں پلیس ہولڈرز جیسے `{{cell1.title}}`شامل ہیں۔ لوکل فائلز زبان کے لیے مخصوص READMEاور Colab کا سامنا کرنے والی کاپی فراہم کرتی ہیں۔ جنریٹڈ نوٹ بکس پرعزم ہیں تاکہ Colab لنکس مستحکم رہیں۔",
+    "checks_note": "CI ورک فلو ٹیمپلیٹ اور لوکیل فائلوں سے READMEفائلوں اور نوٹ بکوں کو دوبارہ بناتا ہے، نوٹ بک JSONکو چیک کرتا ہے، خالی آؤٹ پٹ کی تصدیق کرتا ہے، کوڈ سیلز میں Python نحو کو چیک کرتا ہے، واضح حادثاتی رازوں کے لیے اسکین کرتا ہے، اور جب فائلیں تیار نہیں کی جاتی ہیں تو ناکام ہوجاتی ہیں۔",
+    "ci_items": [
+      "READMEلوکل فائلوں سے جنریشن",
+      "ٹیمپلیٹ اور لوکل فائلوں سے نوٹ بک جنریشن",
+      "نوٹ بک JSONدرستگی",
+      "خالی ایگزیکیوشن آؤٹ پٹس",
+      "کوڈ سیلز میں ازگر کا نحو",
+      "واضح حادثاتی راز",
+      "کمٹڈ تیار کردہ READMEاور ذرائع سے مماثل نوٹ بک فائلیں۔"
+    ],
+    "ci_limit": "مکمل ٹرانسکرپشن پاتھ کے لیے Colab کے لیے مخصوص APIs، ماڈل ڈاؤن لوڈز، GPUدستیابی، اور صارف کی فراہم کردہ میڈیا فائلز کی ضرورت ہوتی ہے۔ جنریٹڈ فائل چیک پاس ہونے کے بعد اس راستے کو دستی Colab اسموک ٹیسٹ کی طرح سمجھیں۔",
+    "license_note": "اس ذخیرے کا READMEجنریٹر، نوٹ بک ٹیمپلیٹ، لوکل فائلیں، تیار کردہ نوٹ بک، اور دیکھ بھال کے اسکرپٹ MITلائسنس کے تحت جاری کیے گئے ہیں۔ Whisperماڈلز اور تھرڈ پارٹی انحصار ان کے متعلقہ لائسنسوں کے ذریعے چلائے جاتے ہیں۔",
+    "feature_labels": [
+      "استعمال کرنے کے لیے مفت",
+      "نوٹ بک سائیڈ فائل سائز کی کوئی مقررہ حد نہیں۔",
+      "بیچ پروسیسنگ",
+      "Google Drivesupport",
+      "مکمل طور پر آن لائن",
+      "متعدد آؤٹ پٹ فارمیٹس"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "بڑی آڈیو اور ویڈیو فائلوں پر کارروائی کی جا سکتی ہے۔",
+      "ایک سے زیادہ آڈیو اور ویڈیو فائلوں کو ایک رن میں پروسیس کیا جا سکتا ہے۔",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. کوئی مقامی کمپیوٹنگ وسائل استعمال نہیں کیے جاتے ہیں۔",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "خصوصیات",
+    "languages": "زبانیں",
+    "language": "زبان",
+    "readme": "README",
+    "notebook": "نوٹ بک",
+    "repository_layout": "ذخیرہ لے آؤٹ",
+    "build": "تعمیر کریں۔",
+    "checks": "چیک کرتا ہے۔",
+    "what_ci_can_test": "CI کیا جانچ سکتا ہے۔",
+    "license": "لائسنس"
+  },
+  "translation_source": "google:ur; machine-translated from en",
+  "notebook": {
+    "title": "Whisperکولاب نوٹ بک",
+    "description": "یہ نوٹ بک آڈیو یا ویڈیو فائلوں کو Whisperکے ساتھ نقل کرتی ہے۔",
+    "features_heading": "خصوصیات",
+    "features": [
+      "**استعمال کرنے کے لیے مفت:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**نوٹ بک سائیڈ فائل سائز کی کوئی مقررہ حد نہیں۔:** بڑی آڈیو اور ویڈیو فائلوں پر کارروائی کی جا سکتی ہے۔",
+      "**بیچ پروسیسنگ:** ایک سے زیادہ آڈیو اور ویڈیو فائلوں کو ایک رن میں پروسیس کیا جا سکتا ہے۔",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**مکمل طور پر آن لائن:** Downloads and processing are performed on Google Colab. کوئی مقامی کمپیوٹنگ وسائل استعمال نہیں کیے جاتے ہیں۔",
+      "**متعدد آؤٹ پٹ فارمیٹس:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "استعمال کرنے کا طریقہ",
+    "how_to_use_steps": [
+      "**1 میں۔ ترتیبات**، `INPUT_MODE`کا انتخاب کریں اور اگر ضرورت ہو تو ماڈل یا آؤٹ پٹ کے اختیارات کو ایڈجسٹ کریں۔",
+      "**رن ٹائم -> سب چلائیں** کو منتخب کریں۔",
+      "اگر `INPUT_MODE = \"upload\"`، **2 تک انتظار کریں۔ فائل کا انتخاب / Google Driveماؤنٹ** شروع ہوتا ہے، پھر اس سیل کے آؤٹ پٹ ایریا میں **فائلوں کو منتخب کریں** پر کلک کریں۔",
+      "پروسیسنگ مکمل ہونے پر، اگر `AUTO_DOWNLOAD_ZIP`فعال ہو تو آؤٹ پٹ فائلز زپ اور ڈاؤن لوڈ ہو جاتی ہیں۔"
+    ],
+    "notes_heading": "نوٹس",
+    "notes": [
+      "Google Colabمفت GPUدستیابی محدود ہے۔ اگر کوئی GPUدستیاب نہیں ہے اور `REQUIRE_CUDA = True`، نوٹ بک نقل سے پہلے رک جاتی ہے۔",
+      "پروسیسنگ میں وقت لگتا ہے۔ As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. اگر آپ فائلیں براہ راست اپ لوڈ کرتے ہیں تو اپ لوڈ کا وقت بھی درکار ہے۔",
+      "پروسیسنگ کے دوران اس نوٹ بک کو کھلا رکھیں۔ اگر آپ ٹرانسکرپشن کے دوران نوٹ بک بند کر دیتے ہیں، تو پروسیسنگ رک جاتی ہے۔"
+    ],
+    "feature_labels": [
+      "استعمال کرنے کے لیے مفت",
+      "نوٹ بک سائیڈ فائل سائز کی کوئی مقررہ حد نہیں۔",
+      "بیچ پروسیسنگ",
+      "Google Drivesupport",
+      "مکمل طور پر آن لائن",
+      "متعدد آؤٹ پٹ فارمیٹس"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "بڑی آڈیو اور ویڈیو فائلوں پر کارروائی کی جا سکتی ہے۔",
+      "ایک سے زیادہ آڈیو اور ویڈیو فائلوں کو ایک رن میں پروسیس کیا جا سکتا ہے۔",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. کوئی مقامی کمپیوٹنگ وسائل استعمال نہیں کیے جاتے ہیں۔",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

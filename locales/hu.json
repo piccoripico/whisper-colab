@@ -1,0 +1,144 @@
+{
+  "language": "hu",
+  "display_name": "Hungarian",
+  "native_name": "Hungarian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Beállítások elemre",
+    "cell1.section_title": "# 1. Beállítások elemre",
+    "cell2.title": "# @title 2. Fájl kiválasztása / Google Drivemount",
+    "cell2.section_title": "# 2. Fájl kiválasztása / Google Drivemount",
+    "cell3.title": "# @title 3. GPUellenőrzés és függőségi telepítés",
+    "cell3.section_title": "# 3. GPUellenőrzés és függőségi telepítés",
+    "cell4.title": "# @title 4. Segítő funkciók",
+    "cell4.section_title": "# 4. Segítő funkciók",
+    "cell5.title": "# @title 5. Töltse be a Whisper-t, és futtassa az átírást",
+    "cell5.section_title": "# 5. Töltse be a Whisper-t, és futtassa az átírást",
+    "cell6.title": "# @title 6. Zip és letöltés kimenetek",
+    "cell6.section_title": "# 6. Zip és letöltés kimenetek",
+    "settings.input_heading": "# @markdown ## Bemenet",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Használja a `upload`-t helyi fájlokhoz, vagy a `google_drive`-t a Google Drive-ban már tárolt fájlokhoz.",
+    "settings.drive_heading": "# @markdown ### Google Drivebemenet",
+    "settings.drive_help": "# @markdown Ezeket a beállításokat csak akkor használja, ha `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Általában tartsa ezt a beállítást `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Fájl vagy mappa elérési útja a MyDrive alatt. Hagyja üresen a legfelső szintű MyDrive mappa használatához.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Ha a meghajtó beviteli útvonala egy mappa, akkor az almappákban is keressen.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Opcionális fájlnév-alsztring szűrő.",
+    "settings.model_heading": "# @markdown ## Whispermodell",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodellazonosító. A turbó gyorsabb; A large-v3stabilabb lehet bizonyos fájloknál.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Ha ismeretlen, használja a `auto`lehetőséget, vagy válasszon egy ismert forrásnyelvet.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Használja a Whisperfordítói módot az angol nyelvhez.",
+    "settings.output_heading": "# @markdown ## Kimenet",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Mentse a kimeneteket a Google Drivealá, ha meghajtó bemenetet használ.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Hozzon létre és töltsön le egy ZIParchívumot a végén.",
+    "settings.formats_help": "# @markdown - A kimeneti formátumokat az alábbi logikai értékek szabályozzák.",
+    "settings.advanced_heading": "# ## Haladó",
+    "settings.advanced_help": "# Ezek az alapértelmezett értékek óvatosak a Colab esetében. Az átlagos felhasználóknak általában nem kell szerkeszteniük őket.",
+    "settings.loaded_message": "Beállítások betöltve.",
+    "messages.choose_files": "Kattintson a \"Fájlok kiválasztása\" gombra, és töltsön fel egy vagy több audio-/videofájlt.",
+    "messages.selected_files": "Kiválasztott fájlok:",
+    "messages.dependencies_done": "A függőség telepítése befejeződött.",
+    "messages.model_loaded": "Whispermodell betöltve.",
+    "messages.transcription_complete": "Az átírás kész.",
+    "errors.no_supported_files": "Nincsenek támogatott audio-/videofájlok kiválasztva.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Jegyzetfüzet\n\nEz a notebook hang- és videofájlokat ír át Whisperjellel.\n\n## Jellemzők\n\n- **Ingyenesen használható:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **Nincs rögzített notebookoldali fájlméret-korlátozás:** Nagyméretű audio- és videofájlok feldolgozhatók.\n- **Kötegelt feldolgozás:** Több audio- és videofájl is feldolgozható egy futással.\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **Teljesen online:** Downloads and processing are performed on Google Colab. Nem használnak helyi számítási erőforrásokat.\n- **Több kimeneti formátum:** A jegyzetfüzet az eredeti JSONátiratot és a származtatott TXT, CSV, Markdown, Excelés SRTfeliratfájlokat adja ki.\n\n## Hogyan kell használni\n\n1. **1-ben. Beállítások**, válassza a `INPUT_MODE`lehetőséget, és szükség esetén módosítsa a modellt vagy a kimeneti beállításokat.\n2. Válassza a **Runtime -> Run all** lehetőséget.\n3. Ha `INPUT_MODE = \"upload\"`, várjon **2-ig. A fájlkiválasztás / Google Drivemount** elindul, majd kattintson a **Fájlok kiválasztása** lehetőségre az adott cella kimeneti területén.\n4. A feldolgozás befejeztével a kimeneti fájlok tömörítve lesznek és letöltődnek, ha a `AUTO_DOWNLOAD_ZIP`engedélyezve van.\n\n## Megjegyzések\n\n- Google Colabingyenes GPUelérhetőség korlátozott. Ha nem elérhető GPUés `REQUIRE_CUDA = True`, a notebook leáll az átírás előtt.\n- A feldolgozás időt vesz igénybe. A large-v3-turbomodell használatakor durva útmutatóként elmondható, hogy egy 60 perces hang- vagy videofájl átírása körülbelül 5-10 percig tarthat. Ha közvetlenül tölt fel fájlokat, akkor a feltöltési idő is szükséges.\n- Feldolgozás közben tartsa nyitva ezt a jegyzetfüzetet. Ha átírás közben bezárja a notebookot, a feldolgozás leáll.",
+    "settings.source_language_default": "hungarian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Többnyelvű Google Colabjegyzetfüzetek Whisperátíráshoz.",
+    "features": [
+      "**Ingyenesen használható:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Nincs rögzített notebookoldali fájlméret-korlátozás:** Nagyméretű audio- és videofájlok feldolgozhatók.",
+      "**Kötegelt feldolgozás:** Több audio- és videofájl is feldolgozható egy futással.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Teljesen online:** Downloads and processing are performed on Google Colab. Nem használnak helyi számítási erőforrásokat.",
+      "**Több kimeneti formátum:** A jegyzetfüzet az eredeti JSONátiratot és a származtatott TXT, CSV, Markdown, Excelés SRTfeliratfájlokat adja ki."
+    ],
+    "template_note": "A gyökér READMEaz angol belépési pont, és a docs/READMEgenerált lokalizált READMEfájlokat tartalmaz. A sablon jegyzetfüzet a forrásjegyzetfüzet, és helyőrzőket tartalmaz, például `{{cell1.title}}`. A nyelvi fájlok nyelvspecifikus READMEés Colab-oldali másolatot biztosítanak. A generált jegyzetfüzetek elkötelezettek, így a Colab-linkek stabilak maradnak.",
+    "checks_note": "A CI munkafolyamat újraépíti a READMEfájlokat és jegyzetfüzeteket a sablon- és területi beállításokból, ellenőrzi a JSONjegyzetfüzetet, ellenőrzi az üres kimeneteket, ellenőrzi a Python szintaxisát a kódcellákban, átvizsgálja a nyilvánvaló véletlen titkokat, és meghiúsul, ha a generált fájlok nincsenek véglegesítve.",
+    "ci_items": [
+      "READMEgenerálás területi fájlokból",
+      "jegyzetfüzet generálása a sablon- és területi fájlokból",
+      "notebook JSONérvényessége",
+      "üres végrehajtási kimenetek",
+      "Python szintaxis kódcellákban",
+      "nyilvánvaló véletlen titkok",
+      "elkötelezett generált READMEés a forrásoknak megfelelő jegyzetfüzetfájlok"
+    ],
+    "ci_limit": "A teljes átírási útvonalhoz Colab-specifikus API-k, modellletöltések, GPUelérhetőség és a felhasználó által biztosított médiafájlok szükségesek. Kezelje ezt az elérési utat manuális Colab füsttesztként, miután a generált fájl ellenőrzése sikeres.",
+    "license_note": "Ennek a tárolónak a READMEgenerátora, jegyzetfüzet-sablonja, területi beállítási fájljai, generált jegyzetfüzetei és karbantartási szkriptjei a MITlicenc alatt kerülnek kiadásra. A Whispermodellekre és a harmadik féltől származó függőségekre a megfelelő licencek vonatkoznak.",
+    "feature_labels": [
+      "Ingyenesen használható",
+      "Nincs rögzített notebookoldali fájlméret-korlátozás",
+      "Kötegelt feldolgozás",
+      "Google Drivesupport",
+      "Teljesen online",
+      "Több kimeneti formátum"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Nagyméretű audio- és videofájlok feldolgozhatók.",
+      "Több audio- és videofájl is feldolgozható egy futással.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Nem használnak helyi számítási erőforrásokat.",
+      "A jegyzetfüzet az eredeti JSONátiratot és a származtatott TXT, CSV, Markdown, Excelés SRTfeliratfájlokat adja ki."
+    ]
+  },
+  "labels": {
+    "features": "Jellemzők",
+    "languages": "Nyelvek",
+    "language": "Nyelv",
+    "readme": "README",
+    "notebook": "Jegyzetfüzet",
+    "repository_layout": "Repository Layout",
+    "build": "Építsd meg",
+    "checks": "Ellenőrzések",
+    "what_ci_can_test": "Mit tesztelhet a CI",
+    "license": "Licenc"
+  },
+  "translation_source": "google:hu; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Jegyzetfüzet",
+    "description": "Ez a notebook hang- és videofájlokat ír át Whisperjellel.",
+    "features_heading": "Jellemzők",
+    "features": [
+      "**Ingyenesen használható:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Nincs rögzített notebookoldali fájlméret-korlátozás:** Nagyméretű audio- és videofájlok feldolgozhatók.",
+      "**Kötegelt feldolgozás:** Több audio- és videofájl is feldolgozható egy futással.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Teljesen online:** Downloads and processing are performed on Google Colab. Nem használnak helyi számítási erőforrásokat.",
+      "**Több kimeneti formátum:** A jegyzetfüzet az eredeti JSONátiratot és a származtatott TXT, CSV, Markdown, Excelés SRTfeliratfájlokat adja ki."
+    ],
+    "how_to_use_heading": "Hogyan kell használni",
+    "how_to_use_steps": [
+      "**1-ben. Beállítások**, válassza a `INPUT_MODE`lehetőséget, és szükség esetén módosítsa a modellt vagy a kimeneti beállításokat.",
+      "Válassza a **Runtime -> Run all** lehetőséget.",
+      "Ha `INPUT_MODE = \"upload\"`, várjon **2-ig. A fájlkiválasztás / Google Drivemount** elindul, majd kattintson a **Fájlok kiválasztása** lehetőségre az adott cella kimeneti területén.",
+      "A feldolgozás befejeztével a kimeneti fájlok tömörítve lesznek és letöltődnek, ha a `AUTO_DOWNLOAD_ZIP`engedélyezve van."
+    ],
+    "notes_heading": "Megjegyzések",
+    "notes": [
+      "Google Colabingyenes GPUelérhetőség korlátozott. Ha nem elérhető GPUés `REQUIRE_CUDA = True`, a notebook leáll az átírás előtt.",
+      "A feldolgozás időt vesz igénybe. A large-v3-turbomodell használatakor durva útmutatóként elmondható, hogy egy 60 perces hang- vagy videofájl átírása körülbelül 5-10 percig tarthat. Ha közvetlenül tölt fel fájlokat, akkor a feltöltési idő is szükséges.",
+      "Feldolgozás közben tartsa nyitva ezt a jegyzetfüzetet. Ha átírás közben bezárja a notebookot, a feldolgozás leáll."
+    ],
+    "feature_labels": [
+      "Ingyenesen használható",
+      "Nincs rögzített notebookoldali fájlméret-korlátozás",
+      "Kötegelt feldolgozás",
+      "Google Drivesupport",
+      "Teljesen online",
+      "Több kimeneti formátum"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Nagyméretű audio- és videofájlok feldolgozhatók.",
+      "Több audio- és videofájl is feldolgozható egy futással.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Nem használnak helyi számítási erőforrásokat.",
+      "A jegyzetfüzet az eredeti JSONátiratot és a származtatott TXT, CSV, Markdown, Excelés SRTfeliratfájlokat adja ki."
+    ]
+  }
+}

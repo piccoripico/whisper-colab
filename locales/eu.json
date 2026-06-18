@@ -1,0 +1,144 @@
+{
+  "language": "eu",
+  "display_name": "Basque",
+  "native_name": "Basque",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Ezarpenak",
+    "cell1.section_title": "# 1. Ezarpenak",
+    "cell2.title": "# @title 2. Fitxategiaren hautaketa / Google Drivemuntatu",
+    "cell2.section_title": "# 2. Fitxategiaren hautaketa / Google Drivemuntatu",
+    "cell3.title": "# @title 3. GPUegiaztatu eta mendekotasun-instalazioa",
+    "cell3.section_title": "# 3. GPUegiaztatu eta mendekotasun-instalazioa",
+    "cell4.title": "# @title 4. Laguntzaile funtzioak",
+    "cell4.section_title": "# 4. Laguntzaile funtzioak",
+    "cell5.title": "# @title 5. Kargatu Whispereta exekutatu transkripzioa",
+    "cell5.section_title": "# 5. Kargatu Whispereta exekutatu transkripzioa",
+    "cell6.title": "# @title 6. Zip eta deskargatu irteerak",
+    "cell6.section_title": "# 6. Zip eta deskargatu irteerak",
+    "settings.input_heading": "# @markdown ## Sarrera",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Use `upload` for local files or `google_drive` for files already stored in Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivesarrera",
+    "settings.drive_help": "# @markdown Ezarpen hauek `INPUT_MODE == \"google_drive\"`denean bakarrik erabiltzen dira.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Normalean multzo hau `/content/drive/MyDrive`-n mantendu.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: MyDrive azpian dagoen fitxategi edo karpeta bide bat. Utzi hutsik goi-mailako MyDrive karpeta erabiltzeko.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Drive sarrerako bidea karpeta bat bada, bilatu azpikarpetak ere.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Fitxategi-izenaren azpikatearen aukerako iragazkia.",
+    "settings.model_heading": "# @markdown ## Whispereredua",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Faceereduaren ID. Turbo azkarragoa da; large-v3egonkorragoa izan daiteke fitxategi batzuentzat.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Erabili `auto`ezezaguna denean, edo hautatu iturri-hizkuntza ezagun bat.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: erabili Whisperitzultzeko modua ingelesa ateratzeko.",
+    "settings.output_heading": "# @markdown ## Irteera",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Gorde irteerak Google Driveazpian Drive sarrera erabiltzen denean.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Sortu eta deskargatu ZIPartxibo bat amaieran.",
+    "settings.formats_help": "# @markdown - Irteerako formatuak beheko boolearrek kontrolatzen dituzte.",
+    "settings.advanced_heading": "# ## Aurreratua",
+    "settings.advanced_help": "# Lehenetsi hauek kontserbadoreak dira Colabentzat. Erabiltzaile arruntek normalean ez dituzte editatu behar.",
+    "settings.loaded_message": "Ezarpenak kargatu dira.",
+    "messages.choose_files": "Sakatu 'Aukeratu fitxategiak' eta kargatu audio/bideo fitxategi bat edo gehiago.",
+    "messages.selected_files": "Hautatutako fitxategiak:",
+    "messages.dependencies_done": "Mendekotasunaren instalazioa amaitu da.",
+    "messages.model_loaded": "Whispereredua kargatu da.",
+    "messages.transcription_complete": "Transkripzioa osatuta.",
+    "errors.no_supported_files": "Ez da onartutako audio/bideo fitxategirik hautatu.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Koadernoa\n\nKoaderno honek audio edo bideo fitxategiak transkribatzen ditu Whisper-rekin.\n\n## Ezaugarriak\n\n- **Doan erabiltzeko:** Koaderno honek [openai/whisper](https://github.com/openai/whisper)erabiltzen du, OpenAI2023ko urtarrilaren 17an kode irekia lortu zuena, Google Colab-ren doako GPUexekuzio-denborarekin batera.\n- **Ez dago koadernoaren alboko fitxategien tamaina muga finkorik:** Audio eta bideo fitxategi handiak prozesatu daitezke.\n- **Batch prozesatzea:** Audio eta bideo fitxategi anitz prozesatu daitezke korrika batean.\n- **Google Drivelaguntza:** Fitxategiak zuzenean kargatu daitezke, edo Google Drive-n gordetako audio/bideo fitxategiak prozesatu daitezke.\n- **Guztiz sarean:** Deskargak eta prozesatzea Google Colab-n egiten dira. Ez da tokiko baliabide informatikorik erabiltzen.\n- **Irteera formatu anitz:** Koadernoak JSONjatorrizko transkripzioa eta TXT, CSV, Markdown, Exceleta SRTazpititulu fitxategiak ateratzen ditu.\n\n## Nola erabili\n\n1. **1ean. Ezarpenak**, aukeratu `INPUT_MODE`eta egokitu eredua edo irteera aukerak behar izanez gero.\n2. Hautatu **Exekutatu -> Exekutatu guztiak**.\n3. `INPUT_MODE = \"upload\"`bada, itxaron **2 arte. Fitxategien hautaketa / Google Drivemuntaketa** hasten da, eta, ondoren, sakatu **Aukeratu fitxategiak** gelaxka horren irteera-eremuan.\n4. Prozesatzea amaitzean, irteerako fitxategiak konprimitu eta deskargatuko dira `AUTO_DOWNLOAD_ZIP`gaituta badago.\n\n## Oharrak\n\n- Google Colabdoan GPUerabilgarritasuna mugatua da. GPUez badago erabilgarri eta `REQUIRE_CUDA = True`, koadernoa transkripzioa baino lehen geldituko da.\n- Prozesatzeko denbora behar da. large-v3-turboeredua erabiltzen denean, 60 minutuko audio- edo bideo-fitxategiak 5-10 minutu inguru behar izan ditzake transkribatzeko. Fitxategiak zuzenean kargatzen badituzu, kargatzeko denbora ere beharrezkoa da.\n- Mantendu koaderno hau irekita prozesatzen ari zaren bitartean. Transkripzioan koadernoa ixten baduzu, prozesatzea gelditzen da.",
+    "settings.source_language_default": "basque"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Google Colabkoaderno eleaniztunak Whispertranskripziorako.",
+    "features": [
+      "**Doan erabiltzeko:** Koaderno honek [openai/whisper](https://github.com/openai/whisper)erabiltzen du, OpenAI2023ko urtarrilaren 17an kode irekia lortu zuena, Google Colab-ren doako GPUexekuzio-denborarekin batera.",
+      "**Ez dago koadernoaren alboko fitxategien tamaina muga finkorik:** Audio eta bideo fitxategi handiak prozesatu daitezke.",
+      "**Batch prozesatzea:** Audio eta bideo fitxategi anitz prozesatu daitezke korrika batean.",
+      "**Google Drivelaguntza:** Fitxategiak zuzenean kargatu daitezke, edo Google Drive-n gordetako audio/bideo fitxategiak prozesatu daitezke.",
+      "**Guztiz sarean:** Deskargak eta prozesatzea Google Colab-n egiten dira. Ez da tokiko baliabide informatikorik erabiltzen.",
+      "**Irteera formatu anitz:** Koadernoak JSONjatorrizko transkripzioa eta TXT, CSV, Markdown, Exceleta SRTazpititulu fitxategiak ateratzen ditu."
+    ],
+    "template_note": "READMEerroa ingeleseko sarrera-puntua da, eta docs/READMEsortutako READMEfitxategi lokalizatuak ditu. Txantiloi-koadernoa iturburuko koadernoa da eta `{{cell1.title}}`bezalako leku-markak ditu. Tokiko fitxategiek READMEhizkuntzari buruzko espezifikoak eta Colab-eko kopiak eskaintzen dituzte. Sortutako koadernoak konprometituta daude, Colab-en estekak egonkor egon daitezen.",
+    "checks_note": "CI lan-fluxuak READMEfitxategiak eta koadernoak berreraikitzen ditu txantiloietatik eta tokiko fitxategietatik, JSONkoadernoa egiaztatzen du, hutsik dauden irteerak egiaztatzen ditu, Python-en sintaxia egiaztatzen du kode-gelaxketan, ustekabeko sekretuak bilatzen ditu eta huts egiten du sortutako fitxategiak konprometitzen ez direnean.",
+    "ci_items": [
+      "READMElokalizazio fitxategietatik sortu",
+      "koadernoa sortzea txantiloietatik eta tokiko fitxategietatik",
+      "koadernoa JSONbaliozkotasuna",
+      "exekuzio irteera hutsak",
+      "Python sintaxia kode-gelaxketan",
+      "ustekabeko sekretu nabariak",
+      "konprometituak sortutako READMEeta iturriekin bat datozen koaderno fitxategiak"
+    ],
+    "ci_limit": "Transkripzio bide osoak Colab-en berariazko APIak, modeloen deskargak, GPUerabilgarritasuna eta erabiltzaileak emandako multimedia-fitxategiak behar ditu. Tratatu bide hori Colab eskuzko kearen proba gisa, sortutako fitxategien egiaztapenak gainditu ondoren.",
+    "license_note": "Biltegi honen READMEsorgailua, koaderno txantiloia, tokiko fitxategiak, sortutako koadernoak eta mantentze-gidoiak MITLizentziapean kaleratzen dira. Whisperereduak eta hirugarrenen menpekotasunak dagozkien lizentzien arabera arautzen dira.",
+    "feature_labels": [
+      "Doan erabiltzeko",
+      "Ez dago koadernoaren alboko fitxategien tamaina muga finkorik",
+      "Batch prozesatzea",
+      "Google Drivelaguntza",
+      "Guztiz sarean",
+      "Irteera formatu anitz"
+    ],
+    "feature_bodies": [
+      "Koaderno honek [openai/whisper](https://github.com/openai/whisper)erabiltzen du, OpenAI2023ko urtarrilaren 17an kode irekia lortu zuena, Google Colab-ren doako GPUexekuzio-denborarekin batera.",
+      "Audio eta bideo fitxategi handiak prozesatu daitezke.",
+      "Audio eta bideo fitxategi anitz prozesatu daitezke korrika batean.",
+      "Fitxategiak zuzenean kargatu daitezke, edo Google Drive-n gordetako audio/bideo fitxategiak prozesatu daitezke.",
+      "Deskargak eta prozesatzea Google Colab-n egiten dira. Ez da tokiko baliabide informatikorik erabiltzen.",
+      "Koadernoak JSONjatorrizko transkripzioa eta TXT, CSV, Markdown, Exceleta SRTazpititulu fitxategiak ateratzen ditu."
+    ]
+  },
+  "labels": {
+    "features": "Ezaugarriak",
+    "languages": "Hizkuntzak",
+    "language": "Hizkuntza",
+    "readme": "README",
+    "notebook": "Koadernoa",
+    "repository_layout": "Biltegiaren diseinua",
+    "build": "Eraiki",
+    "checks": "Txekeak",
+    "what_ci_can_test": "Zer proba dezake CIk",
+    "license": "Lizentzia"
+  },
+  "translation_source": "google:eu; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Koadernoa",
+    "description": "Koaderno honek audio edo bideo fitxategiak transkribatzen ditu Whisper-rekin.",
+    "features_heading": "Ezaugarriak",
+    "features": [
+      "**Doan erabiltzeko:** Koaderno honek [openai/whisper](https://github.com/openai/whisper)erabiltzen du, OpenAI2023ko urtarrilaren 17an kode irekia lortu zuena, Google Colab-ren doako GPUexekuzio-denborarekin batera.",
+      "**Ez dago koadernoaren alboko fitxategien tamaina muga finkorik:** Audio eta bideo fitxategi handiak prozesatu daitezke.",
+      "**Batch prozesatzea:** Audio eta bideo fitxategi anitz prozesatu daitezke korrika batean.",
+      "**Google Drivelaguntza:** Fitxategiak zuzenean kargatu daitezke, edo Google Drive-n gordetako audio/bideo fitxategiak prozesatu daitezke.",
+      "**Guztiz sarean:** Deskargak eta prozesatzea Google Colab-n egiten dira. Ez da tokiko baliabide informatikorik erabiltzen.",
+      "**Irteera formatu anitz:** Koadernoak JSONjatorrizko transkripzioa eta TXT, CSV, Markdown, Exceleta SRTazpititulu fitxategiak ateratzen ditu."
+    ],
+    "how_to_use_heading": "Nola erabili",
+    "how_to_use_steps": [
+      "**1ean. Ezarpenak**, aukeratu `INPUT_MODE`eta egokitu eredua edo irteera aukerak behar izanez gero.",
+      "Hautatu **Exekutatu -> Exekutatu guztiak**.",
+      "`INPUT_MODE = \"upload\"`bada, itxaron **2 arte. Fitxategien hautaketa / Google Drivemuntaketa** hasten da, eta, ondoren, sakatu **Aukeratu fitxategiak** gelaxka horren irteera-eremuan.",
+      "Prozesatzea amaitzean, irteerako fitxategiak konprimitu eta deskargatuko dira `AUTO_DOWNLOAD_ZIP`gaituta badago."
+    ],
+    "notes_heading": "Oharrak",
+    "notes": [
+      "Google Colabdoan GPUerabilgarritasuna mugatua da. GPUez badago erabilgarri eta `REQUIRE_CUDA = True`, koadernoa transkripzioa baino lehen geldituko da.",
+      "Prozesatzeko denbora behar da. large-v3-turboeredua erabiltzen denean, 60 minutuko audio- edo bideo-fitxategiak 5-10 minutu inguru behar izan ditzake transkribatzeko. Fitxategiak zuzenean kargatzen badituzu, kargatzeko denbora ere beharrezkoa da.",
+      "Mantendu koaderno hau irekita prozesatzen ari zaren bitartean. Transkripzioan koadernoa ixten baduzu, prozesatzea gelditzen da."
+    ],
+    "feature_labels": [
+      "Doan erabiltzeko",
+      "Ez dago koadernoaren alboko fitxategien tamaina muga finkorik",
+      "Batch prozesatzea",
+      "Google Drivelaguntza",
+      "Guztiz sarean",
+      "Irteera formatu anitz"
+    ],
+    "feature_bodies": [
+      "Koaderno honek [openai/whisper](https://github.com/openai/whisper)erabiltzen du, OpenAI2023ko urtarrilaren 17an kode irekia lortu zuena, Google Colab-ren doako GPUexekuzio-denborarekin batera.",
+      "Audio eta bideo fitxategi handiak prozesatu daitezke.",
+      "Audio eta bideo fitxategi anitz prozesatu daitezke korrika batean.",
+      "Fitxategiak zuzenean kargatu daitezke, edo Google Drive-n gordetako audio/bideo fitxategiak prozesatu daitezke.",
+      "Deskargak eta prozesatzea Google Colab-n egiten dira. Ez da tokiko baliabide informatikorik erabiltzen.",
+      "Koadernoak JSONjatorrizko transkripzioa eta TXT, CSV, Markdown, Exceleta SRTazpititulu fitxategiak ateratzen ditu."
+    ]
+  }
+}

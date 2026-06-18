@@ -1,0 +1,144 @@
+{
+  "language": "vi",
+  "display_name": "Vietnamese",
+  "native_name": "Vietnamese",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Cài đặt",
+    "cell1.section_title": "# 1. Cài đặt",
+    "cell2.title": "# @title 2. Lựa chọn tập tin / gắn kết Google Drive",
+    "cell2.section_title": "# 2. Lựa chọn tập tin / gắn kết Google Drive",
+    "cell3.title": "# @title 3. GPUkiểm tra và cài đặt phụ thuộc",
+    "cell3.section_title": "# 3. GPUkiểm tra và cài đặt phụ thuộc",
+    "cell4.title": "# @title 4. Chức năng trợ giúp",
+    "cell4.section_title": "# 4. Chức năng trợ giúp",
+    "cell5.title": "# @title 5. Tải Whispervà chạy phiên âm",
+    "cell5.section_title": "# 5. Tải Whispervà chạy phiên âm",
+    "cell6.title": "# @title 6. Đầu ra nén và tải xuống",
+    "cell6.section_title": "# 6. Đầu ra nén và tải xuống",
+    "settings.input_heading": "# @markdown ## đầu vào",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Sử dụng `upload`cho các tệp cục bộ hoặc `google_drive`cho các tệp đã được lưu trữ trong Google Drive.",
+    "settings.drive_heading": "# @markdown ### đầu vào Google Drive",
+    "settings.drive_help": "# @markdown Những cài đặt này chỉ được sử dụng khi `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Thường giữ giá trị này ở mức `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Đường dẫn tệp hoặc thư mục trong MyDrive. Để trống để sử dụng thư mục MyDrive cấp cao nhất.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Nếu đường dẫn đầu vào Drive là một thư mục, hãy tìm kiếm cả các thư mục con.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Bộ lọc chuỗi con tên tệp tùy chọn.",
+    "settings.model_heading": "# @markdown ## mô hình Whisper",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID mẫu. Turbo nhanh hơn; large-v3có thể ổn định hơn đối với một số tệp.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Sử dụng `auto`khi không xác định hoặc chọn ngôn ngữ nguồn đã biết.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Sử dụng chế độ dịch Whisperđể xuất ra tiếng Anh.",
+    "settings.output_heading": "# @markdown ## đầu ra",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Lưu đầu ra trong Google Drivekhi sử dụng đầu vào Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Tạo và tải xuống một kho lưu trữ ZIPở cuối.",
+    "settings.formats_help": "# @markdown - Các định dạng đầu ra được kiểm soát bởi các boolean bên dưới.",
+    "settings.advanced_heading": "# ## Nâng cao",
+    "settings.advanced_help": "# Những giá trị mặc định này mang tính thận trọng đối với Colab. Người dùng thông thường thường không cần chỉnh sửa chúng.",
+    "settings.loaded_message": "Đã tải cài đặt.",
+    "messages.choose_files": "Nhấp vào 'Chọn tệp' và tải lên một hoặc nhiều tệp âm thanh/video.",
+    "messages.selected_files": "Các tập tin đã chọn:",
+    "messages.dependencies_done": "Quá trình cài đặt phụ thuộc đã hoàn tất.",
+    "messages.model_loaded": "Đã tải mô hình Whisper.",
+    "messages.transcription_complete": "Phiên âm hoàn tất.",
+    "errors.no_supported_files": "Không có tệp âm thanh/video được hỗ trợ nào được chọn.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperSổ tay Colab\n\nSổ ghi chép này ghi lại các tệp âm thanh hoặc video với Whisper.\n\n## Tính năng\n\n- **Miễn phí sử dụng:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **Không có giới hạn kích thước tệp bên máy tính xách tay cố định:** Các tập tin âm thanh và video lớn có thể được xử lý.\n- **Xử lý hàng loạt:** Nhiều tệp âm thanh và video có thể được xử lý trong một lần chạy.\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **Fully online:** Downloads and processing are performed on Google Colab. Không có tài nguyên máy tính cục bộ được sử dụng.\n- **Nhiều định dạng đầu ra:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## Cách sử dụng\n\n1. Trong **1. Cài đặt**, chọn `INPUT_MODE`và điều chỉnh kiểu máy hoặc tùy chọn đầu ra nếu cần.\n2. Chọn **Thời gian chạy -> Chạy tất cả**.\n3. Nếu `INPUT_MODE = \"upload\"`, hãy đợi đến **2. Lựa chọn tệp / Google Drivemount** bắt đầu, sau đó nhấp vào **Chọn tệp** trong vùng đầu ra của ô đó.\n4. Khi quá trình xử lý hoàn tất, các tệp đầu ra sẽ được nén và tải xuống nếu `AUTO_DOWNLOAD_ZIP`được bật.\n\n## Ghi chú\n\n- Google Colabmiễn phí GPUtính khả dụng có hạn. Nếu không có GPUvà `REQUIRE_CUDA = True`, sổ ghi chép sẽ dừng trước khi phiên âm.\n- Việc xử lý cần có thời gian. Theo hướng dẫn sơ bộ khi sử dụng mô hình large-v3-turbo, tệp âm thanh hoặc video dài 60 phút có thể mất khoảng 5-10 phút để chép lời. Nếu bạn tải tập tin trực tiếp lên, thời gian tải lên cũng được yêu cầu.\n- Giữ sổ ghi chép này mở trong khi xử lý. Nếu bạn đóng sổ ghi chép trong khi phiên âm, quá trình xử lý sẽ dừng lại.",
+    "settings.source_language_default": "vietnamese"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Sổ ghi chép đa ngôn ngữ Google Colabđể phiên âm Whisper.",
+    "features": [
+      "**Miễn phí sử dụng:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Không có giới hạn kích thước tệp bên máy tính xách tay cố định:** Các tập tin âm thanh và video lớn có thể được xử lý.",
+      "**Xử lý hàng loạt:** Nhiều tệp âm thanh và video có thể được xử lý trong một lần chạy.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Fully online:** Downloads and processing are performed on Google Colab. Không có tài nguyên máy tính cục bộ được sử dụng.",
+      "**Nhiều định dạng đầu ra:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "Gốc READMElà điểm vào tiếng Anh và docs/READMEchứa các tệp READMEđược bản địa hóa được tạo. Sổ tay mẫu là sổ tay nguồn và chứa các phần giữ chỗ như `{{cell1.title}}`. Tệp ngôn ngữ cung cấp bản sao READMEvà bản sao hướng tới Colab dành riêng cho ngôn ngữ. Sổ ghi chép đã tạo được cam kết để liên kết Colab luôn ổn định.",
+    "checks_note": "Quy trình làm việc CI xây dựng lại các tệp READMEvà sổ ghi chép từ tệp mẫu và tệp ngôn ngữ, kiểm tra sổ ghi chép JSON, xác minh các kết quả đầu ra trống, kiểm tra cú pháp Python trong các ô mã, quét để tìm các bí mật vô tình rõ ràng và không thành công khi các tệp được tạo không được cam kết.",
+    "ci_items": [
+      "READMEtạo từ các tệp ngôn ngữ",
+      "tạo sổ ghi chép từ tệp mẫu và tệp ngôn ngữ",
+      "sổ ghi chép JSONhiệu lực",
+      "đầu ra thực thi trống",
+      "Cú pháp Python trong các ô mã",
+      "những bí mật tình cờ hiển nhiên",
+      "đã cam kết tạo các tệp READMEvà sổ ghi chép phù hợp với các nguồn"
+    ],
+    "ci_limit": "Đường dẫn phiên âm đầy đủ yêu cầu các API dành riêng cho Colab, nội dung tải xuống mô hình, tính khả dụng GPUvà các tệp phương tiện do người dùng cung cấp. Hãy coi đường dẫn đó như một thử nghiệm khói Colab thủ công sau khi vượt qua quá trình kiểm tra tệp được tạo.",
+    "license_note": "Trình tạo READMEcủa kho lưu trữ này, mẫu sổ ghi chép, tệp ngôn ngữ, sổ ghi chép được tạo và tập lệnh bảo trì được phát hành theo Giấy phép MIT. Các mô hình Whispervà các phần phụ thuộc của bên thứ ba chịu sự điều chỉnh của giấy phép tương ứng.",
+    "feature_labels": [
+      "Miễn phí sử dụng",
+      "Không có giới hạn kích thước tệp bên máy tính xách tay cố định",
+      "Xử lý hàng loạt",
+      "Google Drivesupport",
+      "Fully online",
+      "Nhiều định dạng đầu ra"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Các tập tin âm thanh và video lớn có thể được xử lý.",
+      "Nhiều tệp âm thanh và video có thể được xử lý trong một lần chạy.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Không có tài nguyên máy tính cục bộ được sử dụng.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "Tính năng",
+    "languages": "Ngôn ngữ",
+    "language": "Ngôn ngữ",
+    "readme": "README",
+    "notebook": "Sổ tay",
+    "repository_layout": "Bố cục kho lưu trữ",
+    "build": "xây dựng",
+    "checks": "Séc",
+    "what_ci_can_test": "CI có thể kiểm tra những gì",
+    "license": "Giấy phép"
+  },
+  "translation_source": "google:vi; machine-translated from en",
+  "notebook": {
+    "title": "WhisperSổ tay Colab",
+    "description": "Sổ ghi chép này ghi lại các tệp âm thanh hoặc video với Whisper.",
+    "features_heading": "Tính năng",
+    "features": [
+      "**Miễn phí sử dụng:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Không có giới hạn kích thước tệp bên máy tính xách tay cố định:** Các tập tin âm thanh và video lớn có thể được xử lý.",
+      "**Xử lý hàng loạt:** Nhiều tệp âm thanh và video có thể được xử lý trong một lần chạy.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Fully online:** Downloads and processing are performed on Google Colab. Không có tài nguyên máy tính cục bộ được sử dụng.",
+      "**Nhiều định dạng đầu ra:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "Cách sử dụng",
+    "how_to_use_steps": [
+      "Trong **1. Cài đặt**, chọn `INPUT_MODE`và điều chỉnh kiểu máy hoặc tùy chọn đầu ra nếu cần.",
+      "Chọn **Thời gian chạy -> Chạy tất cả**.",
+      "Nếu `INPUT_MODE = \"upload\"`, hãy đợi đến **2. Lựa chọn tệp / Google Drivemount** bắt đầu, sau đó nhấp vào **Chọn tệp** trong vùng đầu ra của ô đó.",
+      "Khi quá trình xử lý hoàn tất, các tệp đầu ra sẽ được nén và tải xuống nếu `AUTO_DOWNLOAD_ZIP`được bật."
+    ],
+    "notes_heading": "Ghi chú",
+    "notes": [
+      "Google Colabmiễn phí GPUtính khả dụng có hạn. Nếu không có GPUvà `REQUIRE_CUDA = True`, sổ ghi chép sẽ dừng trước khi phiên âm.",
+      "Việc xử lý cần có thời gian. Theo hướng dẫn sơ bộ khi sử dụng mô hình large-v3-turbo, tệp âm thanh hoặc video dài 60 phút có thể mất khoảng 5-10 phút để chép lời. Nếu bạn tải tập tin trực tiếp lên, thời gian tải lên cũng được yêu cầu.",
+      "Giữ sổ ghi chép này mở trong khi xử lý. Nếu bạn đóng sổ ghi chép trong khi phiên âm, quá trình xử lý sẽ dừng lại."
+    ],
+    "feature_labels": [
+      "Miễn phí sử dụng",
+      "Không có giới hạn kích thước tệp bên máy tính xách tay cố định",
+      "Xử lý hàng loạt",
+      "Google Drivesupport",
+      "Fully online",
+      "Nhiều định dạng đầu ra"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Các tập tin âm thanh và video lớn có thể được xử lý.",
+      "Nhiều tệp âm thanh và video có thể được xử lý trong một lần chạy.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Không có tài nguyên máy tính cục bộ được sử dụng.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

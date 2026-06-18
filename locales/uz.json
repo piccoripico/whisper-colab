@@ -1,0 +1,144 @@
+{
+  "language": "uz",
+  "display_name": "Uzbek",
+  "native_name": "Uzbek",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Sozlamalar",
+    "cell1.section_title": "# 1. Sozlamalar",
+    "cell2.title": "# @title 2. Fayl tanlash / Google Driveo'rnatish",
+    "cell2.section_title": "# 2. Fayl tanlash / Google Driveo'rnatish",
+    "cell3.title": "# @title 3. GPUtekshirish va qaramlikni o'rnatish",
+    "cell3.section_title": "# 3. GPUtekshirish va qaramlikni o'rnatish",
+    "cell4.title": "# @title 4. Yordamchi funktsiyalari",
+    "cell4.section_title": "# 4. Yordamchi funktsiyalari",
+    "cell5.title": "# @title 5. Whisperyuklang va transkripsiyani ishga tushiring",
+    "cell5.section_title": "# 5. Whisperyuklang va transkripsiyani ishga tushiring",
+    "cell6.title": "# @title 6. Zip va yuklab olish natijalari",
+    "cell6.section_title": "# 6. Zip va yuklab olish natijalari",
+    "settings.input_heading": "# @markdown ## Kirish",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Mahalliy fayllar uchun `upload`yoki Google Driveda saqlangan fayllar uchun `google_drive`dan foydalaning.",
+    "settings.drive_heading": "# @markdown ### Google Drivekiritish",
+    "settings.drive_help": "# @markdown Bu sozlamalar faqat `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Odatda bu toʻplamni `/content/drive/MyDrive`sifatida saqlang.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: MyDrive ostidagi fayl yoki jild yoʻli. Yuqori darajadagi MyDrive jildidan foydalanish uchun bo'sh qoldiring.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Agar Drive kiritish yoʻli jild boʻlsa, pastki papkalarni ham qidiring.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: ixtiyoriy fayl nomi pastki qator filtri.",
+    "settings.model_heading": "# @markdown ## Whispermodeli",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodel identifikatori. Turbo tezroq; large-v3ba'zi fayllar uchun barqarorroq bo'lishi mumkin.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Noma'lum bo'lsa `auto`dan foydalaning yoki ma'lum manba tilini tanlang.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Ingliz tilini chiqarish uchun Whispertarjima rejimidan foydalaning.",
+    "settings.output_heading": "# @markdown ## Chiqish",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Disk kiritishidan foydalanilganda chiqishlarni Google Driveostida saqlang.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Oxirida bitta ZIParxiv yarating va yuklab oling.",
+    "settings.formats_help": "# @markdown - Chiqarish formatlari quyida joylashgan booleanlar tomonidan boshqariladi.",
+    "settings.advanced_heading": "# ## Murakkab",
+    "settings.advanced_help": "# Bu standart sozlamalar Colab uchun konservativ hisoblanadi. Oddiy foydalanuvchilar odatda ularni tahrirlashlari shart emas.",
+    "settings.loaded_message": "Sozlamalar yuklandi.",
+    "messages.choose_files": "\"Fayllarni tanlash\" tugmasini bosing va bir yoki bir nechta audio/video fayllarni yuklang.",
+    "messages.selected_files": "Tanlangan fayllar:",
+    "messages.dependencies_done": "Bog'liqlikni o'rnatish tugallandi.",
+    "messages.model_loaded": "Whispermodeli yuklangan.",
+    "messages.transcription_complete": "Transkripsiya tugallandi.",
+    "errors.no_supported_files": "Qo'llab-quvvatlanadigan audio/video fayllar tanlanmagan.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab daftarchasi\n\nUshbu daftar audio yoki video fayllarni Whisperbilan transkripsiya qiladi.\n\n## Xususiyatlari\n\n- **Foydalanish bepul:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.\n- **Noutbuk tomonidagi fayl oʻlchamiga aniq cheklov yoʻq:** Katta hajmdagi audio va video fayllarni qayta ishlash mumkin.\n- **To'plamni qayta ishlash:** Bir ishga tushirishda bir nechta audio va video fayllarni qayta ishlash mumkin.\n- **Google Driveqo'llab-quvvatlash:** Fayllarni toʻgʻridan-toʻgʻri yuklash yoki Google Driveda saqlangan audio/video fayllarni qayta ishlash mumkin.\n- **To'liq onlayn:** Yuklab olish va qayta ishlash Google Colaborqali amalga oshiriladi. Mahalliy hisoblash resurslaridan foydalanilmaydi.\n- **Bir nechta chiqish formatlari:** Notebook asl JSONtranskriptini va olingan TXT, CSV, Markdown, Excelva SRTsubtitr fayllarini chiqaradi.\n\n## Qanday foydalanish kerak\n\n1. **1 da. Sozlamalar**, `INPUT_MODE`ni tanlang va agar kerak bo'lsa, model yoki chiqish parametrlarini sozlang.\n2. Select **Runtime -> Run all**.\n3. If `INPUT_MODE = \"upload\"`, wait until **2. Fayl tanlash / Google Driveo'rnatish** boshlanadi, so'ngra o'sha katakning chiqish maydonidagi **Fayllarni tanlash** tugmasini bosing.\n4. Qayta ishlash tugallangach, `AUTO_DOWNLOAD_ZIP`yoqilgan bo'lsa, chiqish fayllari ziplanadi va yuklab olinadi.\n\n## Eslatmalar\n\n- Google Colabbepul GPUmavjudligi cheklangan. Agar GPUmavjud boʻlmasa va `REQUIRE_CUDA = True`, daftar transkripsiyadan oldin toʻxtaydi.\n- Qayta ishlash vaqt talab etadi. large-v3-turbomodelidan foydalanishda qoʻpol qoʻllanma sifatida 60 daqiqalik audio yoki video faylni transkripsiya qilish uchun taxminan 5-10 daqiqa vaqt ketishi mumkin. Agar siz to'g'ridan-to'g'ri fayllarni yuklasangiz, yuklash vaqti ham talab qilinadi.\n- Keep this notebook open while processing. Transkripsiya paytida daftarni yopsangiz, ishlov berish to'xtaydi.",
+    "settings.source_language_default": "uzbek"
+  },
+  "readme": {
+    "title": "WhisperKolab",
+    "subtitle": "Whispertranskripsiyasi uchun ko'p tilli Google Colabnoutbuklari.",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Noutbuk tomonidagi fayl oʻlchamiga aniq cheklov yoʻq:** Katta hajmdagi audio va video fayllarni qayta ishlash mumkin.",
+      "**To'plamni qayta ishlash:** Bir ishga tushirishda bir nechta audio va video fayllarni qayta ishlash mumkin.",
+      "**Google Driveqo'llab-quvvatlash:** Fayllarni toʻgʻridan-toʻgʻri yuklash yoki Google Driveda saqlangan audio/video fayllarni qayta ishlash mumkin.",
+      "**To'liq onlayn:** Yuklab olish va qayta ishlash Google Colaborqali amalga oshiriladi. Mahalliy hisoblash resurslaridan foydalanilmaydi.",
+      "**Bir nechta chiqish formatlari:** Notebook asl JSONtranskriptini va olingan TXT, CSV, Markdown, Excelva SRTsubtitr fayllarini chiqaradi."
+    ],
+    "template_note": "READMEildizi inglizcha kirish nuqtasi boʻlib, docs/READMEmahalliylashtirilgan READMEfayllarini oʻz ichiga oladi. Daftar daftar manba daftar bo‘lib, `{{cell1.title}}`kabi to‘ldiruvchilarni o‘z ichiga oladi. Mahalliy fayllar tilga xos READMEva Colab-ga tegishli nusxani taqdim etadi. Yaratilgan noutbuklar Colab havolalari barqaror bo'lib qolishi uchun sodiqdir.",
+    "checks_note": "CI ish jarayoni READMEfayllari va daftarlarini shablon va mahalliy fayllardan qayta tiklaydi, JSONdaftarini tekshiradi, boʻsh chiqishlarni tekshiradi, kod hujayralarida Python sintaksisini tekshiradi, aniq tasodifiy sirlarni skanerlaydi va yaratilgan fayllar bajarilmaganda muvaffaqiyatsiz boʻladi.",
+    "ci_items": [
+      "Mahalliy fayllardan READMEyaratish",
+      "shablon va mahalliy fayllardan notebook yaratish",
+      "daftar JSONamal qilish muddati",
+      "bo'sh ijro natijalari",
+      "Kod hujayralarida Python sintaksisi",
+      "aniq tasodifiy sirlar",
+      "yaratilgan READMEva manbalarga mos keladigan notebook fayllari"
+    ],
+    "ci_limit": "Toʻliq transkripsiya yoʻli uchun Colab-ga xos API’lar, yuklab olish modellari, GPUmavjudligi va foydalanuvchi tomonidan taqdim etilgan media fayllar kerak boʻladi. Yaratilgan fayl tekshiruvlaridan o'tgandan so'ng, bu yo'lni qo'lda Colab tutun sinovi sifatida ko'ring.",
+    "license_note": "Ushbu omborning READMEgeneratori, daftar shabloni, mahalliy fayllar, yaratilgan noutbuklar va texnik xizmat koʻrsatish skriptlari MITlitsenziyasi ostida chiqariladi. Whispermodellari va uchinchi tomon bog'liqliklari tegishli litsenziyalari bilan boshqariladi.",
+    "feature_labels": [
+      "Foydalanish bepul",
+      "Noutbuk tomonidagi fayl oʻlchamiga aniq cheklov yoʻq",
+      "To'plamni qayta ishlash",
+      "Google Driveqo'llab-quvvatlash",
+      "To'liq onlayn",
+      "Bir nechta chiqish formatlari"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Katta hajmdagi audio va video fayllarni qayta ishlash mumkin.",
+      "Bir ishga tushirishda bir nechta audio va video fayllarni qayta ishlash mumkin.",
+      "Fayllarni toʻgʻridan-toʻgʻri yuklash yoki Google Driveda saqlangan audio/video fayllarni qayta ishlash mumkin.",
+      "Yuklab olish va qayta ishlash Google Colaborqali amalga oshiriladi. Mahalliy hisoblash resurslaridan foydalanilmaydi.",
+      "Notebook asl JSONtranskriptini va olingan TXT, CSV, Markdown, Excelva SRTsubtitr fayllarini chiqaradi."
+    ]
+  },
+  "labels": {
+    "features": "Xususiyatlari",
+    "languages": "Tillar",
+    "language": "Til",
+    "readme": "README",
+    "notebook": "Daftar",
+    "repository_layout": "Repozitoriy tartibi",
+    "build": "Qurish",
+    "checks": "Tekshiruvlar",
+    "what_ci_can_test": "CI nimani sinab ko'rishi mumkin",
+    "license": "Litsenziya"
+  },
+  "translation_source": "google:uz; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab daftarchasi",
+    "description": "Ushbu daftar audio yoki video fayllarni Whisperbilan transkripsiya qiladi.",
+    "features_heading": "Xususiyatlari",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Noutbuk tomonidagi fayl oʻlchamiga aniq cheklov yoʻq:** Katta hajmdagi audio va video fayllarni qayta ishlash mumkin.",
+      "**To'plamni qayta ishlash:** Bir ishga tushirishda bir nechta audio va video fayllarni qayta ishlash mumkin.",
+      "**Google Driveqo'llab-quvvatlash:** Fayllarni toʻgʻridan-toʻgʻri yuklash yoki Google Driveda saqlangan audio/video fayllarni qayta ishlash mumkin.",
+      "**To'liq onlayn:** Yuklab olish va qayta ishlash Google Colaborqali amalga oshiriladi. Mahalliy hisoblash resurslaridan foydalanilmaydi.",
+      "**Bir nechta chiqish formatlari:** Notebook asl JSONtranskriptini va olingan TXT, CSV, Markdown, Excelva SRTsubtitr fayllarini chiqaradi."
+    ],
+    "how_to_use_heading": "Qanday foydalanish kerak",
+    "how_to_use_steps": [
+      "**1 da. Sozlamalar**, `INPUT_MODE`ni tanlang va agar kerak bo'lsa, model yoki chiqish parametrlarini sozlang.",
+      "Select **Runtime -> Run all**.",
+      "If `INPUT_MODE = \"upload\"`, wait until **2. Fayl tanlash / Google Driveo'rnatish** boshlanadi, so'ngra o'sha katakning chiqish maydonidagi **Fayllarni tanlash** tugmasini bosing.",
+      "Qayta ishlash tugallangach, `AUTO_DOWNLOAD_ZIP`yoqilgan bo'lsa, chiqish fayllari ziplanadi va yuklab olinadi."
+    ],
+    "notes_heading": "Eslatmalar",
+    "notes": [
+      "Google Colabbepul GPUmavjudligi cheklangan. Agar GPUmavjud boʻlmasa va `REQUIRE_CUDA = True`, daftar transkripsiyadan oldin toʻxtaydi.",
+      "Qayta ishlash vaqt talab etadi. large-v3-turbomodelidan foydalanishda qoʻpol qoʻllanma sifatida 60 daqiqalik audio yoki video faylni transkripsiya qilish uchun taxminan 5-10 daqiqa vaqt ketishi mumkin. Agar siz to'g'ridan-to'g'ri fayllarni yuklasangiz, yuklash vaqti ham talab qilinadi.",
+      "Keep this notebook open while processing. Transkripsiya paytida daftarni yopsangiz, ishlov berish to'xtaydi."
+    ],
+    "feature_labels": [
+      "Foydalanish bepul",
+      "Noutbuk tomonidagi fayl oʻlchamiga aniq cheklov yoʻq",
+      "To'plamni qayta ishlash",
+      "Google Driveqo'llab-quvvatlash",
+      "To'liq onlayn",
+      "Bir nechta chiqish formatlari"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Katta hajmdagi audio va video fayllarni qayta ishlash mumkin.",
+      "Bir ishga tushirishda bir nechta audio va video fayllarni qayta ishlash mumkin.",
+      "Fayllarni toʻgʻridan-toʻgʻri yuklash yoki Google Driveda saqlangan audio/video fayllarni qayta ishlash mumkin.",
+      "Yuklab olish va qayta ishlash Google Colaborqali amalga oshiriladi. Mahalliy hisoblash resurslaridan foydalanilmaydi.",
+      "Notebook asl JSONtranskriptini va olingan TXT, CSV, Markdown, Excelva SRTsubtitr fayllarini chiqaradi."
+    ]
+  }
+}

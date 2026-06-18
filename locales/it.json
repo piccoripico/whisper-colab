@@ -1,0 +1,144 @@
+{
+  "language": "it",
+  "display_name": "Italian",
+  "native_name": "Italian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Impostazioni",
+    "cell1.section_title": "# 1. Impostazioni",
+    "cell2.title": "# @title 2. Selezione file / montaggio Google Drive",
+    "cell2.section_title": "# 2. Selezione file / montaggio Google Drive",
+    "cell3.title": "# @title 3. GPUverifica e installazione delle dipendenze",
+    "cell3.section_title": "# 3. GPUverifica e installazione delle dipendenze",
+    "cell4.title": "# @title 4. Funzioni di aiuto",
+    "cell4.section_title": "# 4. Funzioni di aiuto",
+    "cell5.title": "# @title 5. Carica Whispered esegui la trascrizione",
+    "cell5.section_title": "# 5. Carica Whispered esegui la trascrizione",
+    "cell6.title": "# @title 6. Comprimi e scarica gli output",
+    "cell6.section_title": "# 6. Comprimi e scarica gli output",
+    "settings.input_heading": "# @markdown ## Ingresso",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: utilizzare `upload`er file locali o `google_drive`er file già memorizzati in Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveingresso",
+    "settings.drive_help": "# @markdown Queste impostazioni vengono utilizzate solo quando `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Solitamente mantenere questo impostato su `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: percorso di un file o di una cartella in MyDrive. Lascia vuoto per utilizzare la cartella MyDrive di livello superiore.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Se il percorso di input dell'azionamento è una cartella, cercare anche nelle sottocartelle.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: filtro opzionale della sottostringa del nome file.",
+    "settings.model_heading": "# @markdown ## Whispermodello",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID modello. Il Turbo è più veloce; large-v3uò essere più stabile per alcuni file.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: utilizzare `auto`quando sconosciuto oppure selezionare una lingua di origine conosciuta.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: utilizzare la modalità di traduzione Whisperer produrre l'inglese.",
+    "settings.output_heading": "# @markdown ## Uscita",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Salva le uscite in Google Drivequando viene utilizzato l'ingresso dell'azionamento.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: crea e scarica un archivio ZIPalla fine.",
+    "settings.formats_help": "# @markdown - I formati di output sono controllati dai valori booleani riportati di seguito.",
+    "settings.advanced_heading": "# ## Avanzato",
+    "settings.advanced_help": "# Queste impostazioni predefinite sono prudenti per Colab. Gli utenti ordinari di solito non hanno bisogno di modificarli.",
+    "settings.loaded_message": "Impostazioni caricate.",
+    "messages.choose_files": "Fai clic su \"Scegli file\" e carica uno o più file audio/video.",
+    "messages.selected_files": "File selezionati:",
+    "messages.dependencies_done": "Installazione della dipendenza completata.",
+    "messages.model_loaded": "Whispermodello caricato.",
+    "messages.transcription_complete": "Trascrizione completata.",
+    "errors.no_supported_files": "Non è stato selezionato alcun file audio/video supportato.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperTaccuino Colab\n\nQuesto taccuino trascrive file audio o video con Whisper.\n\n## Caratteristiche\n\n- **Gratuito da usare:** Questo notebook utilizza [openai/whisper](https://github.com/openai/whisper), reso open source da OpenAI il 17 gennaio 2023, insieme al runtime GPU gratuito di Google Colab.\n- **Nessun limite fisso per le dimensioni dei file sul lato notebook:** È possibile elaborare file audio e video di grandi dimensioni.\n- **Elaborazione batch:** È possibile elaborare più file audio e video in un'unica esecuzione.\n- **Supporto per Google Drive:** I file possono essere caricati direttamente oppure i file audio/video archiviati in Google Drive possono essere elaborati.\n- **Completamente online:** I download e l'elaborazione vengono eseguiti su Google Colab. Non vengono utilizzate risorse informatiche locali.\n- **Formati di output multipli:** Il notebook genera la trascrizione JSON originale e i file di sottotitoli TXT, CSV, Markdown, Excel e SRT derivati.\n\n## Come usare\n\n1. Nel **1. Impostazioni**, scegli `INPUT_MODE`e regola il modello o le opzioni di output, se necessario.\n2. Seleziona **Runtime -> Esegui tutto**.\n3. Se `INPUT_MODE = \"upload\"`, attendere fino a **2. Viene avviata la selezione dei file / Google Drivemount**, quindi fare clic su **Scegli file** nell'area di output della cella.\n4. Al termine dell'elaborazione, i file di output vengono compressi e scaricati se `AUTO_DOWNLOAD_ZIP`è abilitato.\n\n## Note\n\n- Google Colabgratuito GPUla disponibilità è limitata. Se non è disponibile GPUe `REQUIRE_CUDA = True`, il taccuino si ferma prima della trascrizione.\n- L'elaborazione richiede tempo. Come guida approssimativa quando si utilizza il modello large-v3-turbo, la trascrizione di un file audio o video di 60 minuti potrebbe richiedere circa 5-10 minuti. Se carichi i file direttamente, è necessario anche il tempo di caricamento.\n- Tieni questo taccuino aperto durante l'elaborazione. Se chiudi il taccuino durante la trascrizione, l'elaborazione si interrompe.",
+    "settings.source_language_default": "italian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Quaderni multilingue Google Colaber la trascrizione Whisper.",
+    "features": [
+      "**Gratuito da usare:** Questo notebook utilizza [openai/whisper](https://github.com/openai/whisper), reso open source da OpenAI il 17 gennaio 2023, insieme al runtime GPU gratuito di Google Colab.",
+      "**Nessun limite fisso per le dimensioni dei file sul lato notebook:** È possibile elaborare file audio e video di grandi dimensioni.",
+      "**Elaborazione batch:** È possibile elaborare più file audio e video in un'unica esecuzione.",
+      "**Supporto per Google Drive:** I file possono essere caricati direttamente oppure i file audio/video archiviati in Google Drive possono essere elaborati.",
+      "**Completamente online:** I download e l'elaborazione vengono eseguiti su Google Colab. Non vengono utilizzate risorse informatiche locali.",
+      "**Formati di output multipli:** Il notebook genera la trascrizione JSON originale e i file di sottotitoli TXT, CSV, Markdown, Excel e SRT derivati."
+    ],
+    "template_note": "The root READMEis the English entry point, and docs/READMEcontains generated localized READMEfiles. The template notebook is the source notebook and contains placeholders such as `{{cell1.title}}`. Locale files provide language-specific READMEand Colab-facing copy. I taccuini generati vengono impegnati in modo che i collegamenti Colab rimangano stabili.",
+    "checks_note": "Il flusso di lavoro CI ricostruisce file READMEe notebook dal modello e dai file locali, controlla il notebook JSON, verifica gli output vuoti, controlla la sintassi Python nelle celle di codice, esegue la scansione per evidenti segreti accidentali e fallisce quando i file generati non vengono sottoposti a commit.",
+    "ci_items": [
+      "READMEgenerazione dai file locali",
+      "notebook generation from the template and locale files",
+      "taccuino JSONvalidità",
+      "output di esecuzione vuoti",
+      "Sintassi Python nelle celle di codice",
+      "evidenti segreti accidentali",
+      "committed generated READMEand notebook files matching the sources"
+    ],
+    "ci_limit": "Il percorso di trascrizione completo richiede API specifiche di Colab, download di modelli, disponibilità GPUe file multimediali forniti dall'utente. Treat that path as a manual Colab smoke test after generated-file checks pass.",
+    "license_note": "Il generatore README, il modello di notebook, i file locali, i notebook generati e gli script di manutenzione di questo repository sono rilasciati con la licenza MIT. Whispermodels and third-party dependencies are governed by their respective licenses.",
+    "feature_labels": [
+      "Gratuito da usare",
+      "Nessun limite fisso per le dimensioni dei file sul lato notebook",
+      "Elaborazione batch",
+      "Supporto per Google Drive",
+      "Completamente online",
+      "Formati di output multipli"
+    ],
+    "feature_bodies": [
+      "Questo notebook utilizza [openai/whisper](https://github.com/openai/whisper), reso open source da OpenAI il 17 gennaio 2023, insieme al runtime GPU gratuito di Google Colab.",
+      "È possibile elaborare file audio e video di grandi dimensioni.",
+      "È possibile elaborare più file audio e video in un'unica esecuzione.",
+      "I file possono essere caricati direttamente oppure i file audio/video archiviati in Google Drive possono essere elaborati.",
+      "I download e l'elaborazione vengono eseguiti su Google Colab. Non vengono utilizzate risorse informatiche locali.",
+      "Il notebook genera la trascrizione JSON originale e i file di sottotitoli TXT, CSV, Markdown, Excel e SRT derivati."
+    ]
+  },
+  "labels": {
+    "features": "Caratteristiche",
+    "languages": "Lingue",
+    "language": "Lingua",
+    "readme": "README",
+    "notebook": "Taccuino",
+    "repository_layout": "Disposizione del deposito",
+    "build": "Costruisci",
+    "checks": "Controlli",
+    "what_ci_can_test": "Cosa può testare l'IC",
+    "license": "Licenza"
+  },
+  "translation_source": "google:it; machine-translated from en",
+  "notebook": {
+    "title": "WhisperTaccuino Colab",
+    "description": "Questo taccuino trascrive file audio o video con Whisper.",
+    "features_heading": "Caratteristiche",
+    "features": [
+      "**Gratuito da usare:** Questo notebook utilizza [openai/whisper](https://github.com/openai/whisper), reso open source da OpenAI il 17 gennaio 2023, insieme al runtime GPU gratuito di Google Colab.",
+      "**Nessun limite fisso per le dimensioni dei file sul lato notebook:** È possibile elaborare file audio e video di grandi dimensioni.",
+      "**Elaborazione batch:** È possibile elaborare più file audio e video in un'unica esecuzione.",
+      "**Supporto per Google Drive:** I file possono essere caricati direttamente oppure i file audio/video archiviati in Google Drive possono essere elaborati.",
+      "**Completamente online:** I download e l'elaborazione vengono eseguiti su Google Colab. Non vengono utilizzate risorse informatiche locali.",
+      "**Formati di output multipli:** Il notebook genera la trascrizione JSON originale e i file di sottotitoli TXT, CSV, Markdown, Excel e SRT derivati."
+    ],
+    "how_to_use_heading": "Come usare",
+    "how_to_use_steps": [
+      "Nel **1. Impostazioni**, scegli `INPUT_MODE`e regola il modello o le opzioni di output, se necessario.",
+      "Seleziona **Runtime -> Esegui tutto**.",
+      "Se `INPUT_MODE = \"upload\"`, attendere fino a **2. Viene avviata la selezione dei file / Google Drivemount**, quindi fare clic su **Scegli file** nell'area di output della cella.",
+      "Al termine dell'elaborazione, i file di output vengono compressi e scaricati se `AUTO_DOWNLOAD_ZIP`è abilitato."
+    ],
+    "notes_heading": "Note",
+    "notes": [
+      "Google Colabgratuito GPUla disponibilità è limitata. Se non è disponibile GPUe `REQUIRE_CUDA = True`, il taccuino si ferma prima della trascrizione.",
+      "L'elaborazione richiede tempo. Come guida approssimativa quando si utilizza il modello large-v3-turbo, la trascrizione di un file audio o video di 60 minuti potrebbe richiedere circa 5-10 minuti. Se carichi i file direttamente, è necessario anche il tempo di caricamento.",
+      "Tieni questo taccuino aperto durante l'elaborazione. Se chiudi il taccuino durante la trascrizione, l'elaborazione si interrompe."
+    ],
+    "feature_labels": [
+      "Gratuito da usare",
+      "Nessun limite fisso per le dimensioni dei file sul lato notebook",
+      "Elaborazione batch",
+      "Supporto per Google Drive",
+      "Completamente online",
+      "Formati di output multipli"
+    ],
+    "feature_bodies": [
+      "Questo notebook utilizza [openai/whisper](https://github.com/openai/whisper), reso open source da OpenAI il 17 gennaio 2023, insieme al runtime GPU gratuito di Google Colab.",
+      "È possibile elaborare file audio e video di grandi dimensioni.",
+      "È possibile elaborare più file audio e video in un'unica esecuzione.",
+      "I file possono essere caricati direttamente oppure i file audio/video archiviati in Google Drive possono essere elaborati.",
+      "I download e l'elaborazione vengono eseguiti su Google Colab. Non vengono utilizzate risorse informatiche locali.",
+      "Il notebook genera la trascrizione JSON originale e i file di sottotitoli TXT, CSV, Markdown, Excel e SRT derivati."
+    ]
+  }
+}

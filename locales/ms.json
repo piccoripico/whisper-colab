@@ -1,0 +1,144 @@
+{
+  "language": "ms",
+  "display_name": "Malay",
+  "native_name": "Malay",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. tetapan",
+    "cell1.section_title": "# 1. tetapan",
+    "cell2.title": "# @title 2. Pemilihan fail / Google Drivelekap",
+    "cell2.section_title": "# 2. Pemilihan fail / Google Drivelekap",
+    "cell3.title": "# @title 3. GPUcek dan pemasangan pergantungan",
+    "cell3.section_title": "# 3. GPUcek dan pemasangan pergantungan",
+    "cell4.title": "# @title 4. Fungsi pembantu",
+    "cell4.section_title": "# 4. Fungsi pembantu",
+    "cell5.title": "# @title 5. Muatkan Whisperdan jalankan transkripsi",
+    "cell5.section_title": "# 5. Muatkan Whisperdan jalankan transkripsi",
+    "cell6.title": "# @title 6. Zip dan muat turun output",
+    "cell6.section_title": "# 6. Zip dan muat turun output",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Gunakan `upload`untuk fail tempatan atau `google_drive`untuk fail yang telah disimpan dalam Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveinput",
+    "settings.drive_help": "# @markdown Tetapan ini digunakan hanya apabila `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Biasanya simpan set ini ke `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Satu laluan fail atau folder di bawah MyDrive. Biarkan kosong untuk menggunakan folder MyDrive peringkat atas.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Jika laluan input Drive ialah folder, cari juga subfolder.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Penapis subrentetan nama fail pilihan.",
+    "settings.model_heading": "# @markdown ## Whispermodel",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID model. Turbo lebih pantas; large-v3boleh menjadi lebih stabil untuk sesetengah fail.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Gunakan `auto`apabila tidak diketahui, atau pilih bahasa sumber yang diketahui.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Gunakan Whispermod terjemah untuk mengeluarkan bahasa Inggeris.",
+    "settings.output_heading": "# @markdown ## Keluaran",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Simpan output di bawah Google Driveapabila input Drive digunakan.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Cipta dan muat turun satu arkib ZIPdi penghujung.",
+    "settings.formats_help": "# @markdown - Format output dikawal oleh boolean di bawah.",
+    "settings.advanced_heading": "# ## Maju",
+    "settings.advanced_help": "# Lalai ini adalah konservatif untuk Colab. Pengguna biasa biasanya tidak perlu mengeditnya.",
+    "settings.loaded_message": "Tetapan dimuatkan.",
+    "messages.choose_files": "Klik 'Pilih Fail' dan muat naik satu atau lebih fail audio/video.",
+    "messages.selected_files": "Fail yang dipilih:",
+    "messages.dependencies_done": "Pemasangan kebergantungan selesai.",
+    "messages.model_loaded": "Whispermodel dimuatkan.",
+    "messages.transcription_complete": "Transkripsi selesai.",
+    "errors.no_supported_files": "Tiada fail audio/video yang disokong dipilih.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperBuku Nota Colab\n\nBuku nota ini menyalin fail audio atau video dengan Whisper.\n\n## Ciri-ciri\n\n- **Percuma untuk digunakan:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **Tiada had saiz fail sisi buku nota tetap:** Fail audio dan video yang besar boleh diproses.\n- **Pemprosesan kelompok:** Berbilang fail audio dan video boleh diproses dalam satu larian.\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **Dalam talian sepenuhnya:** Muat turun dan pemprosesan dilakukan pada Google Colab. Tiada sumber pengkomputeran tempatan digunakan.\n- **Pelbagai format output:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## Cara menggunakan\n\n1. Dalam **1. Tetapan**, pilih `INPUT_MODE`dan laraskan model atau pilihan output jika perlu.\n2. Pilih **Waktu Jalan -> Jalankan semua**.\n3. Jika `INPUT_MODE = \"upload\"`, tunggu sehingga **2. Pemilihan fail / Google Drivemount** bermula, kemudian klik **Choose Files** dalam kawasan output sel tersebut.\n4. Apabila pemprosesan selesai, fail output dizip dan dimuat turun jika `AUTO_DOWNLOAD_ZIP`didayakan.\n\n## Nota\n\n- Google Colabercuma GPUketersediaan adalah terhad. Jika tiada GPUtersedia dan `REQUIRE_CUDA = True`, buku nota berhenti sebelum transkripsi.\n- Pemprosesan mengambil masa. Sebagai panduan kasar apabila menggunakan model large-v3-turbo, fail audio atau video selama 60 minit mungkin mengambil masa kira-kira 5-10 minit untuk ditranskripsikan. Jika anda memuat naik fail secara terus, masa muat naik juga diperlukan.\n- Pastikan buku nota ini terbuka semasa memproses. Jika anda menutup buku nota semasa transkripsi, pemprosesan akan berhenti.",
+    "settings.source_language_default": "malay"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Buku nota Google Colabberbilang bahasa untuk transkripsi Whisper.",
+    "features": [
+      "**Percuma untuk digunakan:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Tiada had saiz fail sisi buku nota tetap:** Fail audio dan video yang besar boleh diproses.",
+      "**Pemprosesan kelompok:** Berbilang fail audio dan video boleh diproses dalam satu larian.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Dalam talian sepenuhnya:** Muat turun dan pemprosesan dilakukan pada Google Colab. Tiada sumber pengkomputeran tempatan digunakan.",
+      "**Pelbagai format output:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "Punca READMEialah titik masuk bahasa Inggeris dan docs/READMEmengandungi fail READMEsetempat yang dijana. Buku nota templat ialah buku nota sumber dan mengandungi pemegang tempat seperti `{{cell1.title}}`. Fail setempat menyediakan salinan khusus bahasa READMEdan Colab. Buku nota yang dijana adalah komited supaya pautan Colab kekal stabil.",
+    "checks_note": "Aliran kerja CI membina semula READMEfail dan buku nota daripada templat dan fail setempat, menyemak buku nota JSON, mengesahkan output kosong, menyemak sintaks Python dalam sel kod, mengimbas rahsia tidak sengaja yang jelas dan gagal apabila fail yang dijana tidak dilakukan.",
+    "ci_items": [
+      "READMEenjanaan daripada fail setempat",
+      "penjanaan buku nota daripada templat dan fail setempat",
+      "buku nota JSONkesahan",
+      "output pelaksanaan kosong",
+      "Sintaks Python dalam sel kod",
+      "rahsia tidak sengaja yang jelas",
+      "komited menghasilkan READMEdan fail buku nota yang sepadan dengan sumber"
+    ],
+    "ci_limit": "Laluan transkripsi penuh memerlukan API khusus Colab, muat turun model, ketersediaan GPUdan fail media yang disediakan pengguna. Anggap laluan itu sebagai ujian asap Colab manual selepas semakan fail terjana lulus.",
+    "license_note": "Penjana README, templat buku nota, fail setempat, buku nota yang dijana dan skrip penyelenggaraan repositori ini dikeluarkan di bawah Lesen MIT. Whispermodel dan tanggungan pihak ketiga dikawal oleh lesen masing-masing.",
+    "feature_labels": [
+      "Percuma untuk digunakan",
+      "Tiada had saiz fail sisi buku nota tetap",
+      "Pemprosesan kelompok",
+      "Google Drivesupport",
+      "Dalam talian sepenuhnya",
+      "Pelbagai format output"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Fail audio dan video yang besar boleh diproses.",
+      "Berbilang fail audio dan video boleh diproses dalam satu larian.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Muat turun dan pemprosesan dilakukan pada Google Colab. Tiada sumber pengkomputeran tempatan digunakan.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "Ciri-ciri",
+    "languages": "Bahasa",
+    "language": "Bahasa",
+    "readme": "README",
+    "notebook": "Buku nota",
+    "repository_layout": "Susun atur Repositori",
+    "build": "bina",
+    "checks": "Cek",
+    "what_ci_can_test": "Apa yang CI Boleh Uji",
+    "license": "Lesen"
+  },
+  "translation_source": "google:ms; machine-translated from en",
+  "notebook": {
+    "title": "WhisperBuku Nota Colab",
+    "description": "Buku nota ini menyalin fail audio atau video dengan Whisper.",
+    "features_heading": "Ciri-ciri",
+    "features": [
+      "**Percuma untuk digunakan:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Tiada had saiz fail sisi buku nota tetap:** Fail audio dan video yang besar boleh diproses.",
+      "**Pemprosesan kelompok:** Berbilang fail audio dan video boleh diproses dalam satu larian.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Dalam talian sepenuhnya:** Muat turun dan pemprosesan dilakukan pada Google Colab. Tiada sumber pengkomputeran tempatan digunakan.",
+      "**Pelbagai format output:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "Cara menggunakan",
+    "how_to_use_steps": [
+      "Dalam **1. Tetapan**, pilih `INPUT_MODE`dan laraskan model atau pilihan output jika perlu.",
+      "Pilih **Waktu Jalan -> Jalankan semua**.",
+      "Jika `INPUT_MODE = \"upload\"`, tunggu sehingga **2. Pemilihan fail / Google Drivemount** bermula, kemudian klik **Choose Files** dalam kawasan output sel tersebut.",
+      "Apabila pemprosesan selesai, fail output dizip dan dimuat turun jika `AUTO_DOWNLOAD_ZIP`didayakan."
+    ],
+    "notes_heading": "Nota",
+    "notes": [
+      "Google Colabercuma GPUketersediaan adalah terhad. Jika tiada GPUtersedia dan `REQUIRE_CUDA = True`, buku nota berhenti sebelum transkripsi.",
+      "Pemprosesan mengambil masa. Sebagai panduan kasar apabila menggunakan model large-v3-turbo, fail audio atau video selama 60 minit mungkin mengambil masa kira-kira 5-10 minit untuk ditranskripsikan. Jika anda memuat naik fail secara terus, masa muat naik juga diperlukan.",
+      "Pastikan buku nota ini terbuka semasa memproses. Jika anda menutup buku nota semasa transkripsi, pemprosesan akan berhenti."
+    ],
+    "feature_labels": [
+      "Percuma untuk digunakan",
+      "Tiada had saiz fail sisi buku nota tetap",
+      "Pemprosesan kelompok",
+      "Google Drivesupport",
+      "Dalam talian sepenuhnya",
+      "Pelbagai format output"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Fail audio dan video yang besar boleh diproses.",
+      "Berbilang fail audio dan video boleh diproses dalam satu larian.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Muat turun dan pemprosesan dilakukan pada Google Colab. Tiada sumber pengkomputeran tempatan digunakan.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

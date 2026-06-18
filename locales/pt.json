@@ -1,0 +1,144 @@
+{
+  "language": "pt",
+  "display_name": "Portuguese",
+  "native_name": "Portuguese",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Configurações",
+    "cell1.section_title": "# 1. Configurações",
+    "cell2.title": "# @title 2. Seleção de arquivo / montagem Google Drive",
+    "cell2.section_title": "# 2. Seleção de arquivo / montagem Google Drive",
+    "cell3.title": "# @title 3. GPUverificação e instalação de dependências",
+    "cell3.section_title": "# 3. GPUverificação e instalação de dependências",
+    "cell4.title": "# @title 4. Funções auxiliares",
+    "cell4.section_title": "# 4. Funções auxiliares",
+    "cell5.title": "# @title 5. Carregue Whispere execute a transcrição",
+    "cell5.section_title": "# 5. Carregue Whispere execute a transcrição",
+    "cell6.title": "# @title 6. Compactar e baixar resultados",
+    "cell6.section_title": "# 6. Compactar e baixar resultados",
+    "settings.input_heading": "# @markdown ## Entrada",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Utilize `upload`ara arquivos locais ou `google_drive`ara arquivos já armazenados em Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveentrada",
+    "settings.drive_help": "# @markdown Essas configurações são usadas somente quando `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Normalmente mantenha definido como `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: um caminho de arquivo ou pasta no MyDrive. Deixe em branco para usar a pasta MyDrive de nível superior.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Se o caminho de entrada do Drive for uma pasta, pesquise também as subpastas.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Filtro de substring de nome de arquivo opcional.",
+    "settings.model_heading": "# @markdown ## Modelo Whisper",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID do modelo. Turbo é mais rápido; large-v3ode ser mais estável para alguns arquivos.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Use `auto`quando desconhecido ou selecione um idioma de origem conhecido.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Use o modo de tradução Whisperara gerar o inglês.",
+    "settings.output_heading": "# @markdown ## Saída",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Salve as saídas em Google Drivequando a entrada do Drive for usada.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Crie e baixe um arquivo ZIPno final.",
+    "settings.formats_help": "# @markdown - Os formatos de saída são controlados pelos booleanos abaixo.",
+    "settings.advanced_heading": "# ## Avançado",
+    "settings.advanced_help": "# Esses padrões são conservadores para o Colab. Os usuários comuns geralmente não precisam editá-los.",
+    "settings.loaded_message": "Configurações carregadas.",
+    "messages.choose_files": "Clique em 'Escolher arquivos' e carregue um ou mais arquivos de áudio/vídeo.",
+    "messages.selected_files": "Arquivos selecionados:",
+    "messages.dependencies_done": "A instalação da dependência foi concluída.",
+    "messages.model_loaded": "Modelo Whispercarregado.",
+    "messages.transcription_complete": "Transcrição concluída.",
+    "errors.no_supported_files": "Nenhum arquivo de áudio/vídeo compatível foi selecionado.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperCaderno Colab\n\nEste notebook transcreve arquivos de áudio ou vídeo com Whisper.\n\n## Recursos\n\n- **Grátis para usar:** Este notebook usa [openai/whisper](https://github.com/openai/whisper), que OpenAIfoi de código aberto em 17 de janeiro de 2023, junto com o tempo de execução gratuito GPUde Google Colab.\n- **Não há limite fixo de tamanho de arquivo no notebook:** Grandes arquivos de áudio e vídeo podem ser processados.\n- **Processamento em lote:** Vários arquivos de áudio e vídeo podem ser processados em uma única execução.\n- **Google Drivesuporte:** Os arquivos podem ser carregados diretamente ou os arquivos de áudio/vídeo armazenados em Google Driveodem ser processados.\n- **Totalmente on-line:** Os downloads e o processamento são realizados em Google Colab. Nenhum recurso de computação local é usado.\n- **Vários formatos de saída:** O notebook gera a transcrição JSONoriginal e os arquivos de legenda derivados TXT, CSV, Markdown, Excele SRT.\n\n## Como usar\n\n1. Em **1. Configurações**, escolha `INPUT_MODE`e ajuste o modelo ou as opções de saída, se necessário.\n2. Selecione **Tempo de execução -> Executar tudo**.\n3. Se `INPUT_MODE = \"upload\"`, aguarde até **2. A seleção de arquivo / Google Drivemount** é iniciada e clique em **Escolher arquivos** na área de saída dessa célula.\n4. Quando o processamento for concluído, os arquivos de saída serão compactados e baixados se `AUTO_DOWNLOAD_ZIP`estiver ativado.\n\n## Notas\n\n- Google Colabgratuito GPUa disponibilidade é limitada. Se nenhum GPUestiver disponível e `REQUIRE_CUDA = True`, o notebook para antes da transcrição.\n- O processamento leva tempo. Como um guia aproximado ao usar o modelo large-v3-turbo, um arquivo de áudio ou vídeo de 60 minutos pode levar de 5 a 10 minutos para ser transcrito. Se você fizer upload de arquivos diretamente, o tempo de upload também será necessário.\n- Mantenha este bloco de notas aberto durante o processamento. Se você fechar o bloco de anotações durante a transcrição, o processamento será interrompido.",
+    "settings.source_language_default": "portuguese"
+  },
+  "readme": {
+    "title": "WhisperColaboração",
+    "subtitle": "Cadernos Google Colabmultilíngues para transcrição Whisper.",
+    "features": [
+      "**Grátis para usar:** Este notebook usa [openai/whisper](https://github.com/openai/whisper), que OpenAIfoi de código aberto em 17 de janeiro de 2023, junto com o tempo de execução gratuito GPUde Google Colab.",
+      "**Não há limite fixo de tamanho de arquivo no notebook:** Grandes arquivos de áudio e vídeo podem ser processados.",
+      "**Processamento em lote:** Vários arquivos de áudio e vídeo podem ser processados em uma única execução.",
+      "**Google Drivesuporte:** Os arquivos podem ser carregados diretamente ou os arquivos de áudio/vídeo armazenados em Google Driveodem ser processados.",
+      "**Totalmente on-line:** Os downloads e o processamento são realizados em Google Colab. Nenhum recurso de computação local é usado.",
+      "**Vários formatos de saída:** O notebook gera a transcrição JSONoriginal e os arquivos de legenda derivados TXT, CSV, Markdown, Excele SRT."
+    ],
+    "template_note": "A raiz READMEé o ponto de entrada em inglês e docs/READMEcontém arquivos READMElocalizados gerados. O bloco de notas modelo é o bloco de notas de origem e contém espaços reservados como `{{cell1.title}}`. Os arquivos de localidade fornecem READMEespecífico do idioma e cópia voltada para Colab. Os notebooks gerados são confirmados para que os links do Colab permaneçam estáveis.",
+    "checks_note": "O fluxo de trabalho de CI reconstrói arquivos e notebooks READMEa partir dos arquivos de modelo e de localidade, verifica o notebook JSON, verifica saídas vazias, verifica a sintaxe do Python em células de código, verifica segredos acidentais óbvios e falha quando os arquivos gerados não são confirmados.",
+    "ci_items": [
+      "READMEgeração a partir de arquivos de localidade",
+      "geração de notebook a partir dos arquivos de modelo e localidade",
+      "caderno JSONvalidade",
+      "saídas de execução vazias",
+      "Sintaxe Python em células de código",
+      "segredos acidentais óbvios",
+      "commit gerado READMEe arquivos de notebook correspondentes às fontes"
+    ],
+    "ci_limit": "O caminho de transcrição completo requer APIs específicas do Colab, downloads de modelos, disponibilidade GPUe arquivos de mídia fornecidos pelo usuário. Trate esse caminho como um teste de fumaça manual do Colab após a aprovação nas verificações dos arquivos gerados.",
+    "license_note": "O gerador READMEdeste repositório, modelo de notebook, arquivos de localidade, notebooks gerados e scripts de manutenção são lançados sob a licença MIT. Os modelos Whispere dependências de terceiros são regidos por suas respectivas licenças.",
+    "feature_labels": [
+      "Grátis para usar",
+      "Não há limite fixo de tamanho de arquivo no notebook",
+      "Processamento em lote",
+      "Google Drivesuporte",
+      "Totalmente on-line",
+      "Vários formatos de saída"
+    ],
+    "feature_bodies": [
+      "Este notebook usa [openai/whisper](https://github.com/openai/whisper), que OpenAIfoi de código aberto em 17 de janeiro de 2023, junto com o tempo de execução gratuito GPUde Google Colab.",
+      "Grandes arquivos de áudio e vídeo podem ser processados.",
+      "Vários arquivos de áudio e vídeo podem ser processados em uma única execução.",
+      "Os arquivos podem ser carregados diretamente ou os arquivos de áudio/vídeo armazenados em Google Driveodem ser processados.",
+      "Os downloads e o processamento são realizados em Google Colab. Nenhum recurso de computação local é usado.",
+      "O notebook gera a transcrição JSONoriginal e os arquivos de legenda derivados TXT, CSV, Markdown, Excele SRT."
+    ]
+  },
+  "labels": {
+    "features": "Recursos",
+    "languages": "Idiomas",
+    "language": "Idioma",
+    "readme": "README",
+    "notebook": "Caderno",
+    "repository_layout": "Layout do repositório",
+    "build": "Construir",
+    "checks": "Cheques",
+    "what_ci_can_test": "O que o CI pode testar",
+    "license": "Licença"
+  },
+  "translation_source": "google:pt; machine-translated from en",
+  "notebook": {
+    "title": "WhisperCaderno Colab",
+    "description": "Este notebook transcreve arquivos de áudio ou vídeo com Whisper.",
+    "features_heading": "Recursos",
+    "features": [
+      "**Grátis para usar:** Este notebook usa [openai/whisper](https://github.com/openai/whisper), que OpenAIfoi de código aberto em 17 de janeiro de 2023, junto com o tempo de execução gratuito GPUde Google Colab.",
+      "**Não há limite fixo de tamanho de arquivo no notebook:** Grandes arquivos de áudio e vídeo podem ser processados.",
+      "**Processamento em lote:** Vários arquivos de áudio e vídeo podem ser processados em uma única execução.",
+      "**Google Drivesuporte:** Os arquivos podem ser carregados diretamente ou os arquivos de áudio/vídeo armazenados em Google Driveodem ser processados.",
+      "**Totalmente on-line:** Os downloads e o processamento são realizados em Google Colab. Nenhum recurso de computação local é usado.",
+      "**Vários formatos de saída:** O notebook gera a transcrição JSONoriginal e os arquivos de legenda derivados TXT, CSV, Markdown, Excele SRT."
+    ],
+    "how_to_use_heading": "Como usar",
+    "how_to_use_steps": [
+      "Em **1. Configurações**, escolha `INPUT_MODE`e ajuste o modelo ou as opções de saída, se necessário.",
+      "Selecione **Tempo de execução -> Executar tudo**.",
+      "Se `INPUT_MODE = \"upload\"`, aguarde até **2. A seleção de arquivo / Google Drivemount** é iniciada e clique em **Escolher arquivos** na área de saída dessa célula.",
+      "Quando o processamento for concluído, os arquivos de saída serão compactados e baixados se `AUTO_DOWNLOAD_ZIP`estiver ativado."
+    ],
+    "notes_heading": "Notas",
+    "notes": [
+      "Google Colabgratuito GPUa disponibilidade é limitada. Se nenhum GPUestiver disponível e `REQUIRE_CUDA = True`, o notebook para antes da transcrição.",
+      "O processamento leva tempo. Como um guia aproximado ao usar o modelo large-v3-turbo, um arquivo de áudio ou vídeo de 60 minutos pode levar de 5 a 10 minutos para ser transcrito. Se você fizer upload de arquivos diretamente, o tempo de upload também será necessário.",
+      "Mantenha este bloco de notas aberto durante o processamento. Se você fechar o bloco de anotações durante a transcrição, o processamento será interrompido."
+    ],
+    "feature_labels": [
+      "Grátis para usar",
+      "Não há limite fixo de tamanho de arquivo no notebook",
+      "Processamento em lote",
+      "Google Drivesuporte",
+      "Totalmente on-line",
+      "Vários formatos de saída"
+    ],
+    "feature_bodies": [
+      "Este notebook usa [openai/whisper](https://github.com/openai/whisper), que OpenAIfoi de código aberto em 17 de janeiro de 2023, junto com o tempo de execução gratuito GPUde Google Colab.",
+      "Grandes arquivos de áudio e vídeo podem ser processados.",
+      "Vários arquivos de áudio e vídeo podem ser processados em uma única execução.",
+      "Os arquivos podem ser carregados diretamente ou os arquivos de áudio/vídeo armazenados em Google Driveodem ser processados.",
+      "Os downloads e o processamento são realizados em Google Colab. Nenhum recurso de computação local é usado.",
+      "O notebook gera a transcrição JSONoriginal e os arquivos de legenda derivados TXT, CSV, Markdown, Excele SRT."
+    ]
+  }
+}

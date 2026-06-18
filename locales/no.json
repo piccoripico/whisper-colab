@@ -1,0 +1,144 @@
+{
+  "language": "no",
+  "display_name": "Norwegian",
+  "native_name": "Norwegian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Innstillinger",
+    "cell1.section_title": "# 1. Innstillinger",
+    "cell2.title": "# @title 2. Filvalg / Google Drivefeste",
+    "cell2.section_title": "# 2. Filvalg / Google Drivefeste",
+    "cell3.title": "# @title 3. GPUsjekk og avhengighetsinstallasjon",
+    "cell3.section_title": "# 3. GPUsjekk og avhengighetsinstallasjon",
+    "cell4.title": "# @title 4. Hjelpefunksjoner",
+    "cell4.section_title": "# 4. Hjelpefunksjoner",
+    "cell5.title": "# @title 5. Last inn Whisperog kjør transkripsjon",
+    "cell5.section_title": "# 5. Last inn Whisperog kjør transkripsjon",
+    "cell6.title": "# @title 6. Zip og last ned utganger",
+    "cell6.section_title": "# 6. Zip og last ned utganger",
+    "settings.input_heading": "# @markdown ## Inndata",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Bruk `upload`for lokale filer eller `google_drive`for filer som allerede er lagret i Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveinndata",
+    "settings.drive_help": "# @markdown Disse innstillingene brukes bare når `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Hold vanligvis dette satt til `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: En fil- eller mappebane under MyDrive. La stå tomt for å bruke MyDrive-mappen på toppnivå.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Hvis inndatabanen for Drive er en mappe, søk også i undermapper.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Valgfritt filnavn understrengfilter.",
+    "settings.model_heading": "# @markdown ## Whispermodell",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodell-ID. Turbo er raskere; large-v3kan være mer stabil for noen filer.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Bruk `auto`når ukjent, eller velg et kjent kildespråk.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Bruk Whisperoversettelsesmodus for å skrive ut engelsk.",
+    "settings.output_heading": "# @markdown ## Utgang",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Lagre utganger under Google Drivenår stasjonsinngang brukes.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Opprett og last ned ett ZIP-arkiv på slutten.",
+    "settings.formats_help": "# @markdown - Utdataformater styres av boolene nedenfor.",
+    "settings.advanced_heading": "# ## Avansert",
+    "settings.advanced_help": "# Disse standardinnstillingene er konservative for Colab. Vanlige brukere trenger vanligvis ikke å redigere dem.",
+    "settings.loaded_message": "Innstillinger lastet.",
+    "messages.choose_files": "Klikk \"Velg filer\" og last opp en eller flere lyd-/videofiler.",
+    "messages.selected_files": "Valgte filer:",
+    "messages.dependencies_done": "Avhengighetsinstallasjonen er ferdig.",
+    "messages.model_loaded": "Whispermodell lastet.",
+    "messages.transcription_complete": "Transkripsjon fullført.",
+    "errors.no_supported_files": "Ingen støttede lyd-/videofiler ble valgt.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nDenne notatboken transkriberer lyd- eller videofiler med Whisper.\n\n## Funksjoner\n\n- **Gratis å bruke:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **Ingen fast filstørrelsesgrense på notatboksiden:** Large audio and video files can be processed.\n- **Batchbehandling:** Flere lyd- og videofiler kan behandles i en kjøring.\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **Helt på nett:** Downloads and processing are performed on Google Colab. Ingen lokale dataressurser brukes.\n- **Flere utdataformater:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## Hvordan bruke\n\n1. I **1. Innstillinger**, velg `INPUT_MODE`og juster modellen eller utgangsalternativene om nødvendig.\n2. Velg **Kjøretid -> Kjør alle**.\n3. Hvis `INPUT_MODE = \"upload\"`, vent til **2. Filvalg / Google Drivemount** starter, og klikk deretter på **Velg filer** i den cellens utdataområde.\n4. Når behandlingen er fullført, blir utdatafilene zippet og lastet ned hvis `AUTO_DOWNLOAD_ZIP`er aktivert.\n\n## Notater\n\n- Google Colabgratis GPUtilgjengeligheten er begrenset. Hvis ingen GPUer tilgjengelig og `REQUIRE_CUDA = True`, stopper notisboken før transkripsjon.\n- Behandlingen tar tid. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Hvis du laster opp filer direkte, kreves det også opplastingstid.\n- Hold denne notatboken åpen under behandling. Hvis du lukker notatblokken under transkripsjon, stopper behandlingen.",
+    "settings.source_language_default": "norwegian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Flerspråklige Google Colabnotatbøker for Whispertranskripsjon.",
+    "features": [
+      "**Gratis å bruke:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Ingen fast filstørrelsesgrense på notatboksiden:** Large audio and video files can be processed.",
+      "**Batchbehandling:** Flere lyd- og videofiler kan behandles i en kjøring.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Helt på nett:** Downloads and processing are performed on Google Colab. Ingen lokale dataressurser brukes.",
+      "**Flere utdataformater:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "Roten READMEer det engelske inngangspunktet, og docs/READMEinneholder genererte lokaliserte README-filer. Malnotatboken er kildenotatboken og inneholder plassholdere som `{{cell1.title}}`. Lokale filer gir språkspesifikk READMEog Colab-vendt kopi. Genererte notatbøker er forpliktet slik at Colab-lenker forblir stabile.",
+    "checks_note": "CI-arbeidsflyten gjenoppbygger READMEfiler og notatbøker fra malen og lokalitetsfilene, sjekker notatboken JSON, verifiserer tomme utdata, sjekker Python-syntaks i kodeceller, skanner etter åpenbare tilfeldige hemmeligheter, og mislykkes når genererte filer ikke er committert.",
+    "ci_items": [
+      "READMEgenerasjon fra lokalitetsfiler",
+      "notatbokgenerering fra mal- og lokalitetsfilene",
+      "notatbok JSONgyldighet",
+      "tomme utførelsesutganger",
+      "Python-syntaks i kodeceller",
+      "åpenbare tilfeldige hemmeligheter",
+      "committed genererte READMEog notatbokfiler som samsvarer med kildene"
+    ],
+    "ci_limit": "Den fullstendige transkripsjonsbanen krever Colab-spesifikke APIer, modellnedlastinger, GPUtilgjengelighet og brukerleverte mediefiler. Behandle denne banen som en manuell Colab-røyktest etter at kontroller av genererte filer er bestått.",
+    "license_note": "Dette depotets README-generator, notatbokmal, lokalitetsfiler, genererte notatbøker og vedlikeholdsskript er utgitt under MIT-lisensen. Whispermodeller og tredjepartsavhengigheter styres av deres respektive lisenser.",
+    "feature_labels": [
+      "Gratis å bruke",
+      "Ingen fast filstørrelsesgrense på notatboksiden",
+      "Batchbehandling",
+      "Google Drivesupport",
+      "Helt på nett",
+      "Flere utdataformater"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Large audio and video files can be processed.",
+      "Flere lyd- og videofiler kan behandles i en kjøring.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Ingen lokale dataressurser brukes.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "Funksjoner",
+    "languages": "Språk",
+    "language": "Språk",
+    "readme": "README",
+    "notebook": "Notatbok",
+    "repository_layout": "Lagringsoppsett",
+    "build": "Bygg",
+    "checks": "Sjekker",
+    "what_ci_can_test": "Hva CI kan teste",
+    "license": "Lisens"
+  },
+  "translation_source": "google:no; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Denne notatboken transkriberer lyd- eller videofiler med Whisper.",
+    "features_heading": "Funksjoner",
+    "features": [
+      "**Gratis å bruke:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Ingen fast filstørrelsesgrense på notatboksiden:** Large audio and video files can be processed.",
+      "**Batchbehandling:** Flere lyd- og videofiler kan behandles i en kjøring.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Helt på nett:** Downloads and processing are performed on Google Colab. Ingen lokale dataressurser brukes.",
+      "**Flere utdataformater:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "Hvordan bruke",
+    "how_to_use_steps": [
+      "I **1. Innstillinger**, velg `INPUT_MODE`og juster modellen eller utgangsalternativene om nødvendig.",
+      "Velg **Kjøretid -> Kjør alle**.",
+      "Hvis `INPUT_MODE = \"upload\"`, vent til **2. Filvalg / Google Drivemount** starter, og klikk deretter på **Velg filer** i den cellens utdataområde.",
+      "Når behandlingen er fullført, blir utdatafilene zippet og lastet ned hvis `AUTO_DOWNLOAD_ZIP`er aktivert."
+    ],
+    "notes_heading": "Notater",
+    "notes": [
+      "Google Colabgratis GPUtilgjengeligheten er begrenset. Hvis ingen GPUer tilgjengelig og `REQUIRE_CUDA = True`, stopper notisboken før transkripsjon.",
+      "Behandlingen tar tid. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Hvis du laster opp filer direkte, kreves det også opplastingstid.",
+      "Hold denne notatboken åpen under behandling. Hvis du lukker notatblokken under transkripsjon, stopper behandlingen."
+    ],
+    "feature_labels": [
+      "Gratis å bruke",
+      "Ingen fast filstørrelsesgrense på notatboksiden",
+      "Batchbehandling",
+      "Google Drivesupport",
+      "Helt på nett",
+      "Flere utdataformater"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Large audio and video files can be processed.",
+      "Flere lyd- og videofiler kan behandles i en kjøring.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Ingen lokale dataressurser brukes.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

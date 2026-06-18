@@ -1,0 +1,144 @@
+{
+  "language": "tk",
+  "display_name": "Turkmen",
+  "native_name": "Turkmen",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Sazlamalar",
+    "cell1.section_title": "# 1. Sazlamalar",
+    "cell2.title": "# @title 2. Faýl saýlamak / Google Drivedakmak",
+    "cell2.section_title": "# 2. Faýl saýlamak / Google Drivedakmak",
+    "cell3.title": "# @title 3. GPUbarlamak we garaşlylygy gurmak",
+    "cell3.section_title": "# 3. GPUbarlamak we garaşlylygy gurmak",
+    "cell4.title": "# @title 4. Kömekçi funksiýalary",
+    "cell4.section_title": "# 4. Kömekçi funksiýalary",
+    "cell5.title": "# @title 5. Whisperýükläň we transkripsiýany işlediň",
+    "cell5.section_title": "# 5. Whisperýükläň we transkripsiýany işlediň",
+    "cell6.title": "# @title 6. Netijeleri göçürip alyň",
+    "cell6.section_title": "# 6. Netijeleri göçürip alyň",
+    "settings.input_heading": "# @markdown ## Giriş",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: fileserli faýllar üçin `upload`ýa-da Google Driveeýýäm saklanan faýllar üçin `google_drive`ulanyň.",
+    "settings.drive_heading": "# @markdown ### Google Drivegiriş",
+    "settings.drive_help": "# @markdown Bu sazlamalar diňe `INPUT_MODE == \"google_drive\"`bolanda ulanylýar.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Adatça bu toplumy `/content/drive/MyDrive`edip saklaň.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: MyDrive-iň aşagyndaky faýl ýa-da bukja ýoly. Iň ýokary derejeli MyDrive bukjasyny ulanmak üçin boş goýuň.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Sürüjiniň giriş ýoly bukja bolsa, aşaky bukjalary hem gözläň.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Goşmaça faýl ady substring süzgüji.",
+    "settings.model_heading": "# @markdown ## Whispermodeli",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodel belgisi. Turbo has çalt; large-v3käbir faýllar üçin has durnukly bolup biler.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Näbelli bolanda `auto`ulanyň ýa-da belli çeşme dilini saýlaň.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Iňlis dilini çykarmak üçin Whisperterjime tertibini ulanyň.",
+    "settings.output_heading": "# @markdown ## Çykyş",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Drive giriş ulanylanda netijeleri Google Driveastynda saklaň.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Soňunda bir ZIParhiwini dörediň we göçürip alyň.",
+    "settings.formats_help": "# @markdown - Çykyş formatlary aşakdaky “booleans” tarapyndan dolandyrylýar.",
+    "settings.advanced_heading": "# ## Ösen",
+    "settings.advanced_help": "# Bu defoltlar Colab üçin konserwatiwdir. Dinönekeý ulanyjylar, adatça, olary redaktirlemegiň zerurlygy ýok.",
+    "settings.loaded_message": "Sazlamalar ýüklendi.",
+    "messages.choose_files": "'Faýllary saýlaň' düwmesine basyň we bir ýa-da birnäçe ses / wideo faýly ýükläň.",
+    "messages.selected_files": "Saýlanan faýllar:",
+    "messages.dependencies_done": "Baglylyk gurmak tamamlandy.",
+    "messages.model_loaded": "Whispermodeli ýüklendi.",
+    "messages.transcription_complete": "Transkripsiýa tamamlandy",
+    "errors.no_supported_files": "Goldanýan ses / wideo faýllary saýlanmady.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperKolab depderçesi\n\nBu depder, ses ýa-da wideo faýllaryny Whisperbilen ýazýar.\n\n## Aýratynlyklary\n\n- **Ulanmak üçin mugt:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.\n- **Bellenen depderçäniň gapdalyndaky faýl ölçeg çäkleri ýok:** Uly ses we wideo faýllary gaýtadan işlenip bilner.\n- **Topary gaýtadan işlemek:** Bir gezekde birnäçe ses we wideo faýly gaýtadan işläp bolýar.\n- **Google Drivegoldaw:** Faýllary gönüden-göni ýükläp bolýar, ýa-da Google Drive-da saklanýan ses / wideo faýllaryny gaýtadan işläp bolýar.\n- **Doly onlaýn:** @ Üklemeler we gaýtadan işlemek Google Colab. Localerli hasaplaýyş çeşmeleri ulanylmaýar.\n- **Birnäçe çykyş formatlary:** Notebook asyl JSONtranskripsiýasyny çykarýar we alnan TXT, CSV, Markdown, Excelwe SRTsubtitr faýllaryny alýar.\n\n## Nädip ulanmaly\n\n1. **1-de. Sazlamalar**, `INPUT_MODE`saýlaň we zerur bolsa modeli ýa-da çykyş opsiýalaryny sazlaň.\n2. **Iş wagty -> Hemmesini işlediň** saýlaň.\n3. `INPUT_MODE = \"upload\"`bolsa, **2-e çenli garaşyň. Faýl saýlamak / Google Drivemonta** başlaýar, soňra şol öýjügiň çykýan ýerindäki **Faýllary saýlaň** düwmesine basyň.\n4. Işlemek tamamlanandan soň, `AUTO_DOWNLOAD_ZIP`açyk bolsa, çykyş faýllary ziplenýär we göçürilýär.\n\n## Bellikler\n\n- Google Colabmugt GPUelýeterliligi çäklidir. Eger GPUýok bolsa we `REQUIRE_CUDA = True`ýok bolsa, depder ýazgydan öň saklanýar.\n- Gaýtadan işlemek wagt talap edýär. large-v3-turbomodelini ulananyňyzda gödek gollanma hökmünde 60 minutlyk ses ýa-da wideo faýly transkripsiýa üçin 5-10 minut töweregi wagt alyp biler. Faýllary gönüden-göni ýüklän bolsaňyz, ýüklemek wagty hem talap edilýär.\n- Işlenýän wagtyňyz bu depderçäni açyk saklaň. Transkripsiýa wagtynda depderçäni ýapsaňyz, gaýtadan işlemek bes edilýär.",
+    "settings.source_language_default": "turkmen"
+  },
+  "readme": {
+    "title": "WhisperKolab",
+    "subtitle": "Köp dilli Google Colabtranskripsiýasy üçin depderler.",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Bellenen depderçäniň gapdalyndaky faýl ölçeg çäkleri ýok:** Uly ses we wideo faýllary gaýtadan işlenip bilner.",
+      "**Topary gaýtadan işlemek:** Bir gezekde birnäçe ses we wideo faýly gaýtadan işläp bolýar.",
+      "**Google Drivegoldaw:** Faýllary gönüden-göni ýükläp bolýar, ýa-da Google Drive-da saklanýan ses / wideo faýllaryny gaýtadan işläp bolýar.",
+      "**Doly onlaýn:** @ Üklemeler we gaýtadan işlemek Google Colab. Localerli hasaplaýyş çeşmeleri ulanylmaýar.",
+      "**Birnäçe çykyş formatlary:** Notebook asyl JSONtranskripsiýasyny çykarýar we alnan TXT, CSV, Markdown, Excelwe SRTsubtitr faýllaryny alýar."
+    ],
+    "template_note": "Kök READMEiňlisçe giriş nokady, we resminamalar / READMEdöredilen lokallaşdyrylan READMEfaýllary bar. Şablon depderçesi çeşme depderçesi bolup, `{{cell1.title}}`ýaly ýer eýelerini öz içine alýar. Fileerli faýllar dile mahsus READMEwe Colab-yň göçürmesini üpjün edýär. Döredilen depderçeler, şonuň üçin Colab baglanyşyklary durnukly bolar.",
+    "checks_note": "CI iş tertibi şablondan we ýerli faýllardan READMEfaýllary we depderçeleri täzeden gurýar, depderini JSONbarlaýar, boş netijeleri barlaýar, kod öýjüklerinde Python sintaksisini barlaýar, tötänleýin syrlary gözden geçirýär we döredilen faýllar ýerine ýetirilmedik ýagdaýynda şowsuz bolýar.",
+    "ci_items": [
+      "Localerli faýllardan README nesli",
+      "şablondan we ýerli faýllardan depder ýazmak",
+      "depder JSONgüýji",
+      "boş ýerine ýetiriş netijeleri",
+      "Kod öýjüklerinde Python sintaksis",
+      "aç-açan tötänleýin syrlar",
+      "döredilen READMEwe çeşmelere gabat gelýän depder faýllary"
+    ],
+    "ci_limit": "Doly transkripsiýa ýoly, Colab-a mahsus API-leri, modeli göçürip almagy, GPUelýeterliligini we ulanyjy tarapyndan üpjün edilen media faýllaryny talap edýär. Döredilen faýl barlaglaryndan soň, bu ýoly el bilen Colab tüsse synagy hökmünde görüň.",
+    "license_note": "Bu ammaryň READMEgeneratory, depder şablony, ýerli faýllar, döredilen depderler we tehniki hyzmat ýazgylary MITYgtyýarnamasy boýunça goýberilýär. Whispermodeller we üçünji taraplara baglylyklar degişli ygtyýarnamalary bilen dolandyrylýar.",
+    "feature_labels": [
+      "Ulanmak üçin mugt",
+      "Bellenen depderçäniň gapdalyndaky faýl ölçeg çäkleri ýok",
+      "Topary gaýtadan işlemek",
+      "Google Drivegoldaw",
+      "Doly onlaýn",
+      "Birnäçe çykyş formatlary"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Uly ses we wideo faýllary gaýtadan işlenip bilner.",
+      "Bir gezekde birnäçe ses we wideo faýly gaýtadan işläp bolýar.",
+      "Faýllary gönüden-göni ýükläp bolýar, ýa-da Google Drive-da saklanýan ses / wideo faýllaryny gaýtadan işläp bolýar.",
+      "@ Üklemeler we gaýtadan işlemek Google Colab. Localerli hasaplaýyş çeşmeleri ulanylmaýar.",
+      "Notebook asyl JSONtranskripsiýasyny çykarýar we alnan TXT, CSV, Markdown, Excelwe SRTsubtitr faýllaryny alýar."
+    ]
+  },
+  "labels": {
+    "features": "Aýratynlyklary",
+    "languages": "Diller",
+    "language": "Dil",
+    "readme": "README",
+    "notebook": "Notebook",
+    "repository_layout": "Ammar ýerleşişi",
+    "build": "Gurmak",
+    "checks": "Çekler",
+    "what_ci_can_test": "CI synag edip biljek zady",
+    "license": "Ygtyýarnama"
+  },
+  "translation_source": "google:tk; machine-translated from en",
+  "notebook": {
+    "title": "WhisperKolab depderçesi",
+    "description": "Bu depder, ses ýa-da wideo faýllaryny Whisperbilen ýazýar.",
+    "features_heading": "Aýratynlyklary",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Bellenen depderçäniň gapdalyndaky faýl ölçeg çäkleri ýok:** Uly ses we wideo faýllary gaýtadan işlenip bilner.",
+      "**Topary gaýtadan işlemek:** Bir gezekde birnäçe ses we wideo faýly gaýtadan işläp bolýar.",
+      "**Google Drivegoldaw:** Faýllary gönüden-göni ýükläp bolýar, ýa-da Google Drive-da saklanýan ses / wideo faýllaryny gaýtadan işläp bolýar.",
+      "**Doly onlaýn:** @ Üklemeler we gaýtadan işlemek Google Colab. Localerli hasaplaýyş çeşmeleri ulanylmaýar.",
+      "**Birnäçe çykyş formatlary:** Notebook asyl JSONtranskripsiýasyny çykarýar we alnan TXT, CSV, Markdown, Excelwe SRTsubtitr faýllaryny alýar."
+    ],
+    "how_to_use_heading": "Nädip ulanmaly",
+    "how_to_use_steps": [
+      "** 1-de. Sazlamalar **, `INPUT_MODE`saýlaň we zerur bolsa modeli ýa-da çykyş opsiýalaryny sazlaň.",
+      "** Iş wagty -> Hemmesini işlediň ** saýlaň.",
+      "`INPUT_MODE = \"upload\"`bolsa, ** 2-e çenli garaşyň. Faýl saýlamak / Google Drivemonta ** başlaýar, soňra şol öýjügiň çykýan ýerindäki ** Faýllary saýlaň ** düwmesine basyň.",
+      "Işlemek tamamlanandan soň, `AUTO_DOWNLOAD_ZIP`açyk bolsa, çykyş faýllary ziplenýär we göçürilýär."
+    ],
+    "notes_heading": "Bellikler",
+    "notes": [
+      "Google Colabmugt GPUelýeterliligi çäklidir. Eger GPUýok bolsa we `REQUIRE_CUDA = True`ýok bolsa, depder ýazgydan öň saklanýar.",
+      "Gaýtadan işlemek wagt talap edýär. large-v3-turbomodelini ulananyňyzda gödek gollanma hökmünde 60 minutlyk ses ýa-da wideo faýly transkripsiýa üçin 5-10 minut töweregi wagt alyp biler. Faýllary gönüden-göni ýüklän bolsaňyz, ýüklemek wagty hem talap edilýär.",
+      "Işlenýän wagtyňyz bu depderçäni açyk saklaň. Transkripsiýa wagtynda depderçäni ýapsaňyz, gaýtadan işlemek bes edilýär."
+    ],
+    "feature_labels": [
+      "Ulanmak üçin mugt",
+      "Bellenen depderçäniň gapdalyndaky faýl ölçeg çäkleri ýok",
+      "Topary gaýtadan işlemek",
+      "Google Drivegoldaw",
+      "Doly onlaýn",
+      "Birnäçe çykyş formatlary"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Uly ses we wideo faýllary gaýtadan işlenip bilner.",
+      "Bir gezekde birnäçe ses we wideo faýly gaýtadan işläp bolýar.",
+      "Faýllary gönüden-göni ýükläp bolýar, ýa-da Google Drive-da saklanýan ses / wideo faýllaryny gaýtadan işläp bolýar.",
+      "@ Üklemeler we gaýtadan işlemek Google Colab. Localerli hasaplaýyş çeşmeleri ulanylmaýar.",
+      "Notebook asyl JSONtranskripsiýasyny çykarýar we alnan TXT, CSV, Markdown, Excelwe SRTsubtitr faýllaryny alýar."
+    ]
+  }
+}

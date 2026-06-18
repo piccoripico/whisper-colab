@@ -1,0 +1,144 @@
+{
+  "language": "ro",
+  "display_name": "Romanian",
+  "native_name": "Romanian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Setări",
+    "cell1.section_title": "# 1. Setări",
+    "cell2.title": "# @title 2. Selectare fișier / Google Drivemontare",
+    "cell2.section_title": "# 2. Selectare fișier / Google Drivemontare",
+    "cell3.title": "# @title 3. GPUverificarea și instalarea dependenței",
+    "cell3.section_title": "# 3. GPUverificarea și instalarea dependenței",
+    "cell4.title": "# @title 4. Funcții de ajutor",
+    "cell4.section_title": "# 4. Funcții de ajutor",
+    "cell5.title": "# @title 5. Încărcați Whisperși rulați transcrierea",
+    "cell5.section_title": "# 5. Încărcați Whisperși rulați transcrierea",
+    "cell6.title": "# @title 6. Zip și descărcați ieșirile",
+    "cell6.section_title": "# 6. Zip și descărcați ieșirile",
+    "settings.input_heading": "# @markdown ## Intrare",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Utilizați `upload`entru fișierele locale sau `google_drive`entru fișierele deja stocate în Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveintrare",
+    "settings.drive_help": "# @markdown Aceste setări sunt utilizate numai când `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: De obicei, păstrați această setare la `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: O cale de fișier sau folder sub MyDrive. Lăsați necompletat pentru a utiliza folderul MyDrive de nivel superior.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Dacă calea de intrare Drive este un dosar, căutați și subfoldere.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Filtru opțional de subșir de nume de fișier.",
+    "settings.model_heading": "# @markdown ## Whispermodel",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID model. Turbo este mai rapid; large-v3oate fi mai stabil pentru unele fișiere.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Folosiți `auto`când nu este cunoscută sau selectați o limbă sursă cunoscută.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Utilizați modul de traducere Whisperentru a ieși în limba engleză.",
+    "settings.output_heading": "# @markdown ## Ieșire",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Salvați ieșirile sub Google Drivecând este utilizată intrarea Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Creați și descărcați o arhivă ZIPla sfârșit.",
+    "settings.formats_help": "# @markdown - Formatele de ieșire sunt controlate de valorile booleene de mai jos.",
+    "settings.advanced_heading": "# ## Avansat",
+    "settings.advanced_help": "# Aceste valori implicite sunt conservatoare pentru Colab. De obicei, utilizatorii obișnuiți nu trebuie să le editeze.",
+    "settings.loaded_message": "Setările au fost încărcate.",
+    "messages.choose_files": "Faceți clic pe „Alegeți fișiere” și încărcați unul sau mai multe fișiere audio/video.",
+    "messages.selected_files": "Fișiere selectate:",
+    "messages.dependencies_done": "Instalarea dependenței s-a terminat.",
+    "messages.model_loaded": "Whispermodelul este încărcat.",
+    "messages.transcription_complete": "Transcriere completă.",
+    "errors.no_supported_files": "Nu au fost selectate fișiere audio/video acceptate.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperCaietul Colab\n\nAcest notebook transcrie fișiere audio sau video cu Whisper.\n\n## Caracteristici\n\n- **Gratuit de utilizat:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **Fără limită fixă de dimensiune a fișierelor pe partea de notebook:** Pot fi procesate fișiere audio și video mari.\n- **Procesare în lot:** Mai multe fișiere audio și video pot fi procesate într-o singură rulare.\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **Complet online:** Downloads and processing are performed on Google Colab. Nu sunt folosite resurse de calcul locale.\n- **Mai multe formate de ieșire:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## Cum se utilizează\n\n1. În **1. Setări**, alegeți `INPUT_MODE`și ajustați modelul sau opțiunile de ieșire dacă este necesar.\n2. Selectați **Runtime -> Run all**.\n3. Dacă `INPUT_MODE = \"upload\"`, așteptați până la **2. Selecția fișierului / Google Drivemontarea** începe, apoi faceți clic pe **Alege fișiere** în zona de ieșire a celulei respective.\n4. Când procesarea este completă, fișierele de ieșire sunt arhivate și descărcate dacă `AUTO_DOWNLOAD_ZIP`este activat.\n\n## Note\n\n- Google Colabgratuit GPUDisponibilitatea este limitată. Dacă nu este disponibil GPUși `REQUIRE_CUDA = True`, blocnotesul se oprește înainte de transcriere.\n- Procesarea necesită timp. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Dacă încărcați fișiere direct, este necesar și timpul de încărcare.\n- Păstrați acest blocnotes deschis în timpul procesării. Dacă închideți blocnotesul în timpul transcripției, procesarea se oprește.",
+    "settings.source_language_default": "romanian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Caiete multilingve Google Colabentru transcrierea Whisper.",
+    "features": [
+      "**Gratuit de utilizat:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Fără limită fixă de dimensiune a fișierelor pe partea de notebook:** Pot fi procesate fișiere audio și video mari.",
+      "**Procesare în lot:** Mai multe fișiere audio și video pot fi procesate într-o singură rulare.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Complet online:** Downloads and processing are performed on Google Colab. Nu sunt folosite resurse de calcul locale.",
+      "**Mai multe formate de ieșire:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "Rădăcina READMEeste punctul de intrare în limba engleză, iar docs/READMEconține fișiere READMElocalizate generate. Caietul șablon este caietul sursă și conține substituenți precum `{{cell1.title}}`. Fișierele locale oferă READMEspecifice limbii și o copie pentru Colab. Notebook-urile generate sunt angajate, astfel încât legăturile Colab să rămână stabile.",
+    "checks_note": "Fluxul de lucru CI reconstruiește fișierele READMEși blocnotesurile din fișierele șablon și locale, verifică blocnotesul JSON, verifică ieșirile goale, verifică sintaxa Python în celulele de cod, scanează pentru secrete evidente accidentale și eșuează atunci când fișierele generate nu sunt comise.",
+    "ci_items": [
+      "READMEgenerare din fișierele locale",
+      "generarea notebook-ului din fișierele șablon și locale",
+      "valabilitate caietul JSON",
+      "ieșiri de execuție goale",
+      "Sintaxa Python în celulele codului",
+      "secrete evidente accidentale",
+      "committed generate READMEși fișierele notebook care se potrivesc cu sursele"
+    ],
+    "ci_limit": "Calea de transcriere completă necesită API-uri specifice Colab, descărcări de model, disponibilitate GPUși fișiere media furnizate de utilizator. Tratați acea cale ca pe un test manual de fum Colab după ce verificările fișierelor generate trec.",
+    "license_note": "Generatorul READMEal acestui depozit, șablonul de notebook, fișierele locale, blocnotesurile generate și scripturile de întreținere sunt lansate sub Licența MIT. Modelele Whisperși dependențele de la terți sunt guvernate de licențele respective.",
+    "feature_labels": [
+      "Gratuit de utilizat",
+      "Fără limită fixă de dimensiune a fișierelor pe partea de notebook",
+      "Procesare în lot",
+      "Google Drivesupport",
+      "Complet online",
+      "Mai multe formate de ieșire"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Pot fi procesate fișiere audio și video mari.",
+      "Mai multe fișiere audio și video pot fi procesate într-o singură rulare.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Nu sunt folosite resurse de calcul locale.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "Caracteristici",
+    "languages": "Limbi",
+    "language": "Limba",
+    "readme": "README",
+    "notebook": "Caiet",
+    "repository_layout": "Aspectul depozitului",
+    "build": "Construiește",
+    "checks": "Cecuri",
+    "what_ci_can_test": "Ce poate testa CI",
+    "license": "Licență"
+  },
+  "translation_source": "google:ro; machine-translated from en",
+  "notebook": {
+    "title": "WhisperCaietul Colab",
+    "description": "Acest notebook transcrie fișiere audio sau video cu Whisper.",
+    "features_heading": "Caracteristici",
+    "features": [
+      "**Gratuit de utilizat:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Fără limită fixă de dimensiune a fișierelor pe partea de notebook:** Pot fi procesate fișiere audio și video mari.",
+      "**Procesare în lot:** Mai multe fișiere audio și video pot fi procesate într-o singură rulare.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Complet online:** Downloads and processing are performed on Google Colab. Nu sunt folosite resurse de calcul locale.",
+      "**Mai multe formate de ieșire:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "Cum se utilizează",
+    "how_to_use_steps": [
+      "În **1. Setări**, alegeți `INPUT_MODE`și ajustați modelul sau opțiunile de ieșire dacă este necesar.",
+      "Selectați **Runtime -> Run all**.",
+      "Dacă `INPUT_MODE = \"upload\"`, așteptați până la **2. Selecția fișierului / Google Drivemontarea** începe, apoi faceți clic pe **Alege fișiere** în zona de ieșire a celulei respective.",
+      "Când procesarea este completă, fișierele de ieșire sunt arhivate și descărcate dacă `AUTO_DOWNLOAD_ZIP`este activat."
+    ],
+    "notes_heading": "Note",
+    "notes": [
+      "Google Colabgratuit GPUDisponibilitatea este limitată. Dacă nu este disponibil GPUși `REQUIRE_CUDA = True`, blocnotesul se oprește înainte de transcriere.",
+      "Procesarea necesită timp. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Dacă încărcați fișiere direct, este necesar și timpul de încărcare.",
+      "Păstrați acest blocnotes deschis în timpul procesării. Dacă închideți blocnotesul în timpul transcripției, procesarea se oprește."
+    ],
+    "feature_labels": [
+      "Gratuit de utilizat",
+      "Fără limită fixă de dimensiune a fișierelor pe partea de notebook",
+      "Procesare în lot",
+      "Google Drivesupport",
+      "Complet online",
+      "Mai multe formate de ieșire"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Pot fi procesate fișiere audio și video mari.",
+      "Mai multe fișiere audio și video pot fi procesate într-o singură rulare.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Nu sunt folosite resurse de calcul locale.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

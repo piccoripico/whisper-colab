@@ -1,0 +1,144 @@
+{
+  "language": "ta",
+  "display_name": "Tamil",
+  "native_name": "Tamil",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. அமைப்புகள்",
+    "cell1.section_title": "# 1. அமைப்புகள்",
+    "cell2.title": "# @title 2. கோப்பு தேர்வு / Google Driveமவுண்ட்",
+    "cell2.section_title": "# 2. கோப்பு தேர்வு / Google Driveமவுண்ட்",
+    "cell3.title": "# @title 3. GPUசரிபார்ப்பு மற்றும் சார்பு நிறுவல்",
+    "cell3.section_title": "# 3. GPUசரிபார்ப்பு மற்றும் சார்பு நிறுவல்",
+    "cell4.title": "# @title 4. உதவி செயல்பாடுகள்",
+    "cell4.section_title": "# 4. உதவி செயல்பாடுகள்",
+    "cell5.title": "# @title 5. Whisperஐ ஏற்றி, டிரான்ஸ்கிரிப்ஷனை இயக்கவும்",
+    "cell5.section_title": "# 5. Whisperஐ ஏற்றி, டிரான்ஸ்கிரிப்ஷனை இயக்கவும்",
+    "cell6.title": "# @title 6. வெளியீடுகளை ஜிப் செய்து பதிவிறக்கவும்",
+    "cell6.section_title": "# 6. வெளியீடுகளை ஜிப் செய்து பதிவிறக்கவும்",
+    "settings.input_heading": "# @markdown ## உள்ளீடு",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: உள்ளூர் கோப்புகளுக்கு `upload`அல்லது ஏற்கனவே Google Driveஇல் சேமிக்கப்பட்ட கோப்புகளுக்கு `google_drive`ஐப் பயன்படுத்தவும்.",
+    "settings.drive_heading": "# @markdown ### Google Driveஉள்ளீடு",
+    "settings.drive_help": "# @markdown இந்த அமைப்புகள் `INPUT_MODE == \"google_drive\"`என்ற போது மட்டுமே பயன்படுத்தப்படும்.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: பொதுவாக இதை `/content/drive/MyDrive`என அமைக்கவும்.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: MyDrive இன் கீழ் ஒரு கோப்பு அல்லது கோப்புறை பாதை. உயர்மட்ட MyDrive கோப்புறையைப் பயன்படுத்த, காலியாக விடவும்.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: டிரைவ் உள்ளீட்டு பாதை ஒரு கோப்புறையாக இருந்தால், துணை கோப்புறைகளையும் தேடவும்.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: விருப்பமான கோப்புப்பெயர் சப்ஸ்ட்ரிங் வடிப்பான்.",
+    "settings.model_heading": "# @markdown ## Whisperமாதிரி",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Faceமாதிரி ஐடி. டர்போ வேகமானது; சில கோப்புகளுக்கு large-v3இன்னும் நிலையானதாக இருக்கும்.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: தெரியாத போது `auto`ஐப் பயன்படுத்தவும் அல்லது தெரிந்த மூல மொழியைத் தேர்ந்தெடுக்கவும்.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: ஆங்கிலத்தை வெளியிடுவதற்கு Whisperமொழிபெயர்ப்பு பயன்முறையைப் பயன்படுத்தவும்.",
+    "settings.output_heading": "# @markdown ## வெளியீடு",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: டிரைவ் உள்ளீடு பயன்படுத்தப்படும் போது Google Driveஇன் கீழ் வெளியீடுகளைச் சேமிக்கவும்.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: கடைசியில் ZIPகாப்பகத்தை உருவாக்கி பதிவிறக்கவும்.",
+    "settings.formats_help": "# @markdown - வெளியீட்டு வடிவங்கள் கீழே உள்ள பூலியன்களால் கட்டுப்படுத்தப்படுகின்றன.",
+    "settings.advanced_heading": "# ## மேம்பட்டது",
+    "settings.advanced_help": "# இந்த இயல்புநிலைகள் Colabக்கு கன்சர்வேடிவ். சாதாரண பயனர்கள் பொதுவாக அவற்றைத் திருத்த வேண்டியதில்லை.",
+    "settings.loaded_message": "அமைப்புகள் ஏற்றப்பட்டன.",
+    "messages.choose_files": "'கோப்புகளைத் தேர்ந்தெடு' என்பதைக் கிளிக் செய்து ஒன்று அல்லது அதற்கு மேற்பட்ட ஆடியோ/வீடியோ கோப்புகளைப் பதிவேற்றவும்.",
+    "messages.selected_files": "தேர்ந்தெடுக்கப்பட்ட கோப்புகள்:",
+    "messages.dependencies_done": "சார்பு நிறுவல் முடிந்தது.",
+    "messages.model_loaded": "Whisperமாதிரி ஏற்றப்பட்டது.",
+    "messages.transcription_complete": "டிரான்ஸ்கிரிப்ஷன் முடிந்தது.",
+    "errors.no_supported_files": "ஆதரிக்கப்படும் ஆடியோ/வீடியோ கோப்புகள் எதுவும் தேர்ந்தெடுக்கப்படவில்லை.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab நோட்புக்\n\nஇந்த நோட்புக் ஆடியோ அல்லது வீடியோ கோப்புகளை Whisperஉடன் படியெடுக்கிறது.\n\n## அம்சங்கள்\n\n- **பயன்படுத்த இலவசம்:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **நிலையான நோட்புக் பக்க கோப்பு அளவு வரம்பு இல்லை:** பெரிய ஆடியோ மற்றும் வீடியோ கோப்புகளை செயலாக்க முடியும்.\n- **தொகுதி செயலாக்கம்:** ஒரே ஓட்டத்தில் பல ஆடியோ மற்றும் வீடியோ கோப்புகளை செயலாக்க முடியும்.\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **முழுமையாக ஆன்லைனில்:** Downloads and processing are performed on Google Colab. உள்ளூர் கணினி ஆதாரங்கள் எதுவும் பயன்படுத்தப்படவில்லை.\n- **பல வெளியீடு வடிவங்கள்:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## எப்படி பயன்படுத்துவது\n\n1. **1 இல். அமைப்புகள்**, `INPUT_MODE`என்பதைத் தேர்வுசெய்து, தேவைப்பட்டால் மாதிரி அல்லது வெளியீட்டு விருப்பங்களைச் சரிசெய்யவும்.\n2. **இயக்க நேரம் -> அனைத்தையும் இயக்கு** என்பதைத் தேர்ந்தெடுக்கவும்.\n3. `INPUT_MODE = \"upload\"`எனில், **2 வரை காத்திருக்கவும். கோப்பு தேர்வு / Google Driveமவுண்ட்** தொடங்குகிறது, பின்னர் அந்த கலத்தின் வெளியீட்டு பகுதியில் **கோப்புகளைத் தேர்ந்தெடு** என்பதைக் கிளிக் செய்யவும்.\n4. செயலாக்கம் முடிந்ததும், `AUTO_DOWNLOAD_ZIP`இயக்கப்பட்டிருந்தால், வெளியீடு கோப்புகள் ஜிப் செய்யப்பட்டு பதிவிறக்கப்படும்.\n\n## குறிப்புகள்\n\n- Google Colabஇலவசம் GPUகிடைப்பது குறைவாக உள்ளது. GPUஇல்லை என்றால் மற்றும் `REQUIRE_CUDA = True`, டிரான்ஸ்கிரிப்ஷனுக்கு முன் நோட்புக் நின்றுவிடும்.\n- செயலாக்க நேரம் எடுக்கும். As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. நீங்கள் நேரடியாக கோப்புகளை பதிவேற்றினால், பதிவேற்ற நேரமும் தேவைப்படும்.\n- செயலாக்கத்தின் போது இந்த நோட்புக்கை திறந்து வைக்கவும். டிரான்ஸ்கிரிப்ஷனின் போது நோட்புக்கை மூடினால், செயலாக்கம் நிறுத்தப்படும்.",
+    "settings.source_language_default": "tamil"
+  },
+  "readme": {
+    "title": "Whisperகோலாப்",
+    "subtitle": "Whisperடிரான்ஸ்கிரிப்ஷனுக்கான பன்மொழி Google Colabகுறிப்பேடுகள்.",
+    "features": [
+      "**பயன்படுத்த இலவசம்:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**நிலையான நோட்புக் பக்க கோப்பு அளவு வரம்பு இல்லை:** பெரிய ஆடியோ மற்றும் வீடியோ கோப்புகளை செயலாக்க முடியும்.",
+      "**தொகுதி செயலாக்கம்:** ஒரே ஓட்டத்தில் பல ஆடியோ மற்றும் வீடியோ கோப்புகளை செயலாக்க முடியும்.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**முழுமையாக ஆன்லைனில்:** Downloads and processing are performed on Google Colab. உள்ளூர் கணினி ஆதாரங்கள் எதுவும் பயன்படுத்தப்படவில்லை.",
+      "**பல வெளியீடு வடிவங்கள்:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "READMEஎன்பது ஆங்கில நுழைவுப் புள்ளியாகும், மேலும் docs/READMEஎன்பது உள்ளூர்மயமாக்கப்பட்ட READMEகோப்புகளைக் கொண்டுள்ளது. டெம்ப்ளேட் நோட்புக் மூல நோட்புக் மற்றும் `{{cell1.title}}`போன்ற ஒதுக்கிடங்களைக் கொண்டுள்ளது. லோகேல் கோப்புகள் மொழி சார்ந்த READMEமற்றும் கோலாப்-முகம் கொண்ட நகலை வழங்கும். உருவாக்கப்பட்ட குறிப்பேடுகள் உறுதி செய்யப்பட்டுள்ளன, எனவே Colab இணைப்புகள் நிலையானதாக இருக்கும்.",
+    "checks_note": "CI பணிப்பாய்வு டெம்ப்ளேட் மற்றும் லோகேல் கோப்புகளிலிருந்து READMEகோப்புகள் மற்றும் குறிப்பேடுகளை மீண்டும் உருவாக்குகிறது, நோட்புக் JSONஐ சரிபார்க்கிறது, வெற்று வெளியீடுகளை சரிபார்க்கிறது, குறியீடு கலங்களில் பைதான் தொடரியல் சரிபார்க்கிறது, வெளிப்படையான தற்செயலான ரகசியங்களை ஸ்கேன் செய்கிறது மற்றும் உருவாக்கப்படாத கோப்புகள் தோல்வியடையும்.",
+    "ci_items": [
+      "உள்ளூர் கோப்புகளிலிருந்து READMEதலைமுறை",
+      "டெம்ப்ளேட் மற்றும் லோகேல் கோப்புகளிலிருந்து நோட்புக் உருவாக்கம்",
+      "நோட்புக் JSONசெல்லுபடியாகும்",
+      "வெற்று செயலாக்க வெளியீடுகள்",
+      "குறியீடு கலங்களில் பைதான் தொடரியல்",
+      "வெளிப்படையான தற்செயலான இரகசியங்கள்",
+      "உருவாக்கப்படும் READMEமற்றும் நோட்புக் கோப்புகள் ஆதாரங்களுடன் பொருந்தும்"
+    ],
+    "ci_limit": "முழு டிரான்ஸ்கிரிப்ஷன் பாதைக்கு Colab-சார்ந்த APIகள், மாதிரி பதிவிறக்கங்கள், GPUகிடைக்கும் தன்மை மற்றும் பயனர் வழங்கிய மீடியா கோப்புகள் தேவை. உருவாக்கப்பட்ட கோப்பு சரிபார்ப்புகளுக்குப் பிறகு அந்தப் பாதையை கைமுறையாக Colab புகைப் பரிசோதனையாகக் கருதுங்கள்.",
+    "license_note": "இந்தக் களஞ்சியத்தின் READMEஜெனரேட்டர், நோட்புக் டெம்ப்ளேட், லோக்கல் கோப்புகள், உருவாக்கப்பட்ட நோட்புக்குகள் மற்றும் பராமரிப்பு ஸ்கிரிப்டுகள் MITஉரிமத்தின் கீழ் வெளியிடப்படுகின்றன. Whisperமாதிரிகள் மற்றும் மூன்றாம் தரப்பு சார்புகள் அந்தந்த உரிமங்களால் நிர்வகிக்கப்படுகின்றன.",
+    "feature_labels": [
+      "பயன்படுத்த இலவசம்",
+      "நிலையான நோட்புக் பக்க கோப்பு அளவு வரம்பு இல்லை",
+      "தொகுதி செயலாக்கம்",
+      "Google Drivesupport",
+      "முழுமையாக ஆன்லைனில்",
+      "பல வெளியீடு வடிவங்கள்"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "பெரிய ஆடியோ மற்றும் வீடியோ கோப்புகளை செயலாக்க முடியும்.",
+      "ஒரே ஓட்டத்தில் பல ஆடியோ மற்றும் வீடியோ கோப்புகளை செயலாக்க முடியும்.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. உள்ளூர் கணினி ஆதாரங்கள் எதுவும் பயன்படுத்தப்படவில்லை.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "அம்சங்கள்",
+    "languages": "மொழிகள்",
+    "language": "மொழி",
+    "readme": "README",
+    "notebook": "நோட்புக்",
+    "repository_layout": "களஞ்சிய அமைப்பு",
+    "build": "கட்டுங்கள்",
+    "checks": "காசோலைகள்",
+    "what_ci_can_test": "CI என்ன சோதனை செய்யலாம்",
+    "license": "உரிமம்"
+  },
+  "translation_source": "google:ta; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab நோட்புக்",
+    "description": "இந்த நோட்புக் ஆடியோ அல்லது வீடியோ கோப்புகளை Whisperஉடன் படியெடுக்கிறது.",
+    "features_heading": "அம்சங்கள்",
+    "features": [
+      "**பயன்படுத்த இலவசம்:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**நிலையான நோட்புக் பக்க கோப்பு அளவு வரம்பு இல்லை:** பெரிய ஆடியோ மற்றும் வீடியோ கோப்புகளை செயலாக்க முடியும்.",
+      "**தொகுதி செயலாக்கம்:** ஒரே ஓட்டத்தில் பல ஆடியோ மற்றும் வீடியோ கோப்புகளை செயலாக்க முடியும்.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**முழுமையாக ஆன்லைனில்:** Downloads and processing are performed on Google Colab. உள்ளூர் கணினி ஆதாரங்கள் எதுவும் பயன்படுத்தப்படவில்லை.",
+      "**பல வெளியீடு வடிவங்கள்:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "எப்படி பயன்படுத்துவது",
+    "how_to_use_steps": [
+      "**1 இல். அமைப்புகள்**, `INPUT_MODE`என்பதைத் தேர்வுசெய்து, தேவைப்பட்டால் மாதிரி அல்லது வெளியீட்டு விருப்பங்களைச் சரிசெய்யவும்.",
+      "** இயக்க நேரம் -> அனைத்தையும் இயக்கு** என்பதைத் தேர்ந்தெடுக்கவும்.",
+      "`INPUT_MODE = \"upload\"`எனில், **2 வரை காத்திருக்கவும். கோப்பு தேர்வு / Google Driveமவுண்ட்** தொடங்குகிறது, பின்னர் அந்த கலத்தின் வெளியீட்டு பகுதியில் **கோப்புகளைத் தேர்ந்தெடு** என்பதைக் கிளிக் செய்யவும்.",
+      "செயலாக்கம் முடிந்ததும், `AUTO_DOWNLOAD_ZIP`இயக்கப்பட்டிருந்தால், வெளியீடு கோப்புகள் ஜிப் செய்யப்பட்டு பதிவிறக்கப்படும்."
+    ],
+    "notes_heading": "குறிப்புகள்",
+    "notes": [
+      "Google Colabஇலவசம் GPUகிடைப்பது குறைவாக உள்ளது. GPUஇல்லை என்றால் மற்றும் `REQUIRE_CUDA = True`, டிரான்ஸ்கிரிப்ஷனுக்கு முன் நோட்புக் நின்றுவிடும்.",
+      "செயலாக்க நேரம் எடுக்கும். As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. நீங்கள் நேரடியாக கோப்புகளை பதிவேற்றினால், பதிவேற்ற நேரமும் தேவைப்படும்.",
+      "செயலாக்கத்தின் போது இந்த நோட்புக்கை திறந்து வைக்கவும். டிரான்ஸ்கிரிப்ஷனின் போது நோட்புக்கை மூடினால், செயலாக்கம் நிறுத்தப்படும்."
+    ],
+    "feature_labels": [
+      "பயன்படுத்த இலவசம்",
+      "நிலையான நோட்புக் பக்க கோப்பு அளவு வரம்பு இல்லை",
+      "தொகுதி செயலாக்கம்",
+      "Google Drivesupport",
+      "முழுமையாக ஆன்லைனில்",
+      "பல வெளியீடு வடிவங்கள்"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "பெரிய ஆடியோ மற்றும் வீடியோ கோப்புகளை செயலாக்க முடியும்.",
+      "ஒரே ஓட்டத்தில் பல ஆடியோ மற்றும் வீடியோ கோப்புகளை செயலாக்க முடியும்.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. உள்ளூர் கணினி ஆதாரங்கள் எதுவும் பயன்படுத்தப்படவில்லை.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

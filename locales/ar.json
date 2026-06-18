@@ -1,0 +1,144 @@
+{
+  "language": "ar",
+  "display_name": "Arabic",
+  "native_name": "Arabic",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. الإعدادات",
+    "cell1.section_title": "# 1. الإعدادات",
+    "cell2.title": "# @title 2. اختيار الملف / Google Driveالتحميل",
+    "cell2.section_title": "# 2. اختيار الملف / Google Driveالتحميل",
+    "cell3.title": "# @title 3. GPUالتحقق من تثبيت التبعية",
+    "cell3.section_title": "# 3. GPUالتحقق من تثبيت التبعية",
+    "cell4.title": "# @title 4. وظائف المساعدة",
+    "cell4.section_title": "# 4. وظائف المساعدة",
+    "cell5.title": "# @title 5. قم بتحميل Whisperوقم بتشغيل النسخ",
+    "cell5.section_title": "# 5. قم بتحميل Whisperوقم بتشغيل النسخ",
+    "cell6.title": "# @title 6. ضغط وتنزيل المخرجات",
+    "cell6.section_title": "# 6. ضغط وتنزيل المخرجات",
+    "settings.input_heading": "# @markdown ## الإدخال",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: استخدم `upload`للملفات المحلية أو `google_drive`للملفات المخزنة بالفعل في Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveالإدخال",
+    "settings.drive_help": "# @markdown يتم استخدام هذه الإعدادات فقط عند `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: احتفظ بهذه المجموعة عادةً على `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: مسار ملف أو مجلد ضمن MyDrive. اتركه فارغًا لاستخدام مجلد MyDrive ذي المستوى الأعلى.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: إذا كان مسار إدخال Drive عبارة عن مجلد، فابحث أيضًا في المجلدات الفرعية.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: مرشح سلسلة فرعية اختياري لاسم الملف.",
+    "settings.model_heading": "# @markdown ## Whisperالنموذج",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Faceمعرف النموذج. توربو أسرع. يمكن أن يكون large-v3أكثر استقرارًا لبعض الملفات.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: استخدم `auto`عندما تكون غير معروف، أو حدد لغة مصدر معروفة.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: استخدم وضع الترجمة Whisperلإخراج اللغة الإنجليزية.",
+    "settings.output_heading": "# @markdown ## الإخراج",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: احفظ المخرجات ضمن Google Driveعند استخدام إدخال Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: قم بإنشاء وتنزيل أرشيف واحد ZIPفي النهاية.",
+    "settings.formats_help": "# @markdown - يتم التحكم في تنسيقات الإخراج بواسطة القيم المنطقية أدناه.",
+    "settings.advanced_heading": "# ## متقدم",
+    "settings.advanced_help": "# هذه الإعدادات الافتراضية متحفظة بالنسبة لـ Colab. لا يحتاج المستخدمون العاديون عادةً إلى تعديلها.",
+    "settings.loaded_message": "تم تحميل الإعدادات.",
+    "messages.choose_files": "انقر فوق \"اختيار الملفات\" وقم بتحميل واحد أو أكثر من ملفات الصوت/الفيديو.",
+    "messages.selected_files": "الملفات المختارة:",
+    "messages.dependencies_done": "انتهى تثبيت التبعية.",
+    "messages.model_loaded": "تم تحميل النموذج Whisper.",
+    "messages.transcription_complete": "اكتمل النسخ.",
+    "errors.no_supported_files": "لم يتم تحديد أي ملفات صوت/فيديو مدعومة.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Whisperدفتر كولاب\n\nيقوم هذا الكمبيوتر المحمول بنسخ ملفات الصوت أو الفيديو باستخدام Whisper.\n\n## الميزات\n\n- **مجاني للاستخدام:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **لا يوجد حد ثابت لحجم الملف على جانب دفتر الملاحظات:** يمكن معالجة ملفات الصوت والفيديو الكبيرة.\n- **تجهيز الدفعة:** يمكن معالجة ملفات الصوت والفيديو المتعددة في تشغيل واحد.\n- **Google Driveالدعم:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **Fully online:** Downloads and processing are performed on Google Colab. لا يتم استخدام أي موارد حوسبة محلية.\n- **تنسيقات إخراج متعددة:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## كيفية الاستخدام\n\n1. في **1. الإعدادات**، اختر `INPUT_MODE`واضبط النموذج أو خيارات الإخراج إذا لزم الأمر.\n2. حدد **وقت التشغيل -> تشغيل الكل**.\n3. إذا `INPUT_MODE = \"upload\"`، انتظر حتى **2. يبدأ تحديد الملف / Google Driveفي التثبيت**، ثم انقر فوق **اختيار الملفات** في منطقة إخراج تلك الخلية.\n4. عند اكتمال المعالجة، يتم ضغط ملفات الإخراج وتنزيلها إذا تم تمكين `AUTO_DOWNLOAD_ZIP`.\n\n## ملاحظات\n\n- Google Colabالتوفر المجاني GPUمحدود. إذا لم يتوفر GPUو`REQUIRE_CUDA = True`، فسيتوقف دفتر الملاحظات قبل النسخ.\n- المعالجة تستغرق وقتا. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. إذا قمت بتحميل الملفات مباشرة، فإن وقت التحميل مطلوب أيضًا.\n- أبقِ هذا الكمبيوتر الدفتري مفتوحًا أثناء المعالجة. إذا قمت بإغلاق دفتر الملاحظات أثناء النسخ، تتوقف المعالجة.",
+    "settings.source_language_default": "arabic"
+  },
+  "readme": {
+    "title": "Whisperكولاب",
+    "subtitle": "دفاتر ملاحظات Google Colabمتعددة اللغات للنسخ Whisper.",
+    "features": [
+      "**مجاني للاستخدام:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**لا يوجد حد ثابت لحجم الملف على جانب دفتر الملاحظات:** يمكن معالجة ملفات الصوت والفيديو الكبيرة.",
+      "**تجهيز الدفعة:** يمكن معالجة ملفات الصوت والفيديو المتعددة في تشغيل واحد.",
+      "**Google Driveالدعم:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Fully online:** Downloads and processing are performed on Google Colab. لا يتم استخدام أي موارد حوسبة محلية.",
+      "**تنسيقات إخراج متعددة:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "الجذر READMEهو نقطة الإدخال باللغة الإنجليزية، ويحتوي docs/READMEعلى ملفات READMEمترجمة تم إنشاؤها. دفتر ملاحظات القالب هو دفتر الملاحظات المصدر ويحتوي على عناصر نائبة مثل `{{cell1.title}}`. توفر ملفات الإعدادات المحلية READMEونسخة مواجهة لـ Colab خاصة باللغة. يتم الالتزام بدفاتر الملاحظات التي تم إنشاؤها بحيث تظل روابط Colab مستقرة.",
+    "checks_note": "يقوم سير عمل CI بإعادة بناء الملفات والدفاتر READMEمن القالب وملفات الإعدادات المحلية، ويفحص دفتر الملاحظات JSON، ويتحقق من المخرجات الفارغة، ويتحقق من بناء جملة Python في خلايا التعليمات البرمجية، ويبحث عن الأسرار العرضية الواضحة، ويفشل عندما لا يتم الالتزام بالملفات التي تم إنشاؤها.",
+    "ci_items": [
+      "إنشاء READMEمن الملفات المحلية",
+      "إنشاء دفتر ملاحظات من القالب وملفات اللغة",
+      "دفتر الملاحظات JSONالصلاحية",
+      "مخرجات التنفيذ الفارغة",
+      "بناء جملة بايثون في خلايا التعليمات البرمجية",
+      "أسرار عرضية واضحة",
+      "تم إنشاء READMEوملفات دفتر الملاحظات المطابقة للمصادر"
+    ],
+    "ci_limit": "يتطلب مسار النسخ الكامل واجهات برمجة التطبيقات الخاصة بـ Colab، وتنزيلات النماذج، والتوفر GPU، وملفات الوسائط المقدمة من المستخدم. تعامل مع هذا المسار كاختبار يدوي لدخان Colab بعد اجتياز عمليات فحص الملفات التي تم إنشاؤها.",
+    "license_note": "تم إصدار المولد READMEلهذا المستودع، وقالب دفتر الملاحظات، والملفات المحلية، ودفاتر الملاحظات التي تم إنشاؤها، والبرامج النصية للصيانة بموجب ترخيص MIT. تخضع نماذج Whisperوتبعيات الجهات الخارجية للتراخيص الخاصة بها.",
+    "feature_labels": [
+      "مجاني للاستخدام",
+      "لا يوجد حد ثابت لحجم الملف على جانب دفتر الملاحظات",
+      "تجهيز الدفعة",
+      "Google Driveالدعم",
+      "Fully online",
+      "تنسيقات إخراج متعددة"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "يمكن معالجة ملفات الصوت والفيديو الكبيرة.",
+      "يمكن معالجة ملفات الصوت والفيديو المتعددة في تشغيل واحد.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. لا يتم استخدام أي موارد حوسبة محلية.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "الميزات",
+    "languages": "اللغات",
+    "language": "اللغة",
+    "readme": "README",
+    "notebook": "دفتر",
+    "repository_layout": "تخطيط المستودع",
+    "build": "بناء",
+    "checks": "الشيكات",
+    "what_ci_can_test": "ما الذي يمكن لـ CI اختباره",
+    "license": "الترخيص"
+  },
+  "translation_source": "google:ar; machine-translated from en",
+  "notebook": {
+    "title": "Whisperدفتر كولاب",
+    "description": "يقوم هذا الكمبيوتر المحمول بنسخ ملفات الصوت أو الفيديو باستخدام Whisper.",
+    "features_heading": "الميزات",
+    "features": [
+      "**مجاني للاستخدام:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**لا يوجد حد ثابت لحجم الملف على جانب دفتر الملاحظات:** يمكن معالجة ملفات الصوت والفيديو الكبيرة.",
+      "**تجهيز الدفعة:** يمكن معالجة ملفات الصوت والفيديو المتعددة في تشغيل واحد.",
+      "**Google Driveالدعم:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Fully online:** Downloads and processing are performed on Google Colab. لا يتم استخدام أي موارد حوسبة محلية.",
+      "**تنسيقات إخراج متعددة:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "كيفية الاستخدام",
+    "how_to_use_steps": [
+      "في **1. الإعدادات**، اختر `INPUT_MODE`واضبط النموذج أو خيارات الإخراج إذا لزم الأمر.",
+      "حدد **وقت التشغيل -> تشغيل الكل**.",
+      "إذا `INPUT_MODE = \"upload\"`، انتظر حتى **2. يبدأ تحديد الملف / Google Driveفي التثبيت**، ثم انقر فوق **اختيار الملفات** في منطقة إخراج تلك الخلية.",
+      "عند اكتمال المعالجة، يتم ضغط ملفات الإخراج وتنزيلها إذا تم تمكين `AUTO_DOWNLOAD_ZIP`."
+    ],
+    "notes_heading": "ملاحظات",
+    "notes": [
+      "Google Colabالتوفر المجاني GPUمحدود. إذا لم يتوفر GPUو`REQUIRE_CUDA = True`، فسيتوقف دفتر الملاحظات قبل النسخ.",
+      "المعالجة تستغرق وقتا. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. إذا قمت بتحميل الملفات مباشرة، فإن وقت التحميل مطلوب أيضًا.",
+      "أبقِ هذا الكمبيوتر الدفتري مفتوحًا أثناء المعالجة. إذا قمت بإغلاق دفتر الملاحظات أثناء النسخ، تتوقف المعالجة."
+    ],
+    "feature_labels": [
+      "مجاني للاستخدام",
+      "لا يوجد حد ثابت لحجم الملف على جانب دفتر الملاحظات",
+      "تجهيز الدفعة",
+      "Google Driveالدعم",
+      "Fully online",
+      "تنسيقات إخراج متعددة"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "يمكن معالجة ملفات الصوت والفيديو الكبيرة.",
+      "يمكن معالجة ملفات الصوت والفيديو المتعددة في تشغيل واحد.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. لا يتم استخدام أي موارد حوسبة محلية.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

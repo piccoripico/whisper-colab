@@ -1,0 +1,144 @@
+{
+  "language": "yue",
+  "display_name": "Cantonese",
+  "native_name": "Cantonese",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. 設定",
+    "cell1.section_title": "# 1. 設定",
+    "cell2.title": "# @title 2. 文件選擇/Google Drive掛載",
+    "cell2.section_title": "# 2. 文件選擇/Google Drive掛載",
+    "cell3.title": "# @title 3. GPU檢查與依賴安裝",
+    "cell3.section_title": "# 3. GPU檢查與依賴安裝",
+    "cell4.title": "# @title 4. 輔助函數",
+    "cell4.section_title": "# 4. 輔助函數",
+    "cell5.title": "# @title 5. 載入 Whisper並運行轉錄",
+    "cell5.section_title": "# 5. 載入 Whisper並運行轉錄",
+    "cell6.title": "# @title 6. 壓縮並下載輸出",
+    "cell6.section_title": "# 6. 壓縮並下載輸出",
+    "settings.input_heading": "# @markdown ## 輸入",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`：對本機檔案使用`upload`，對已儲存在Google Drive中的檔案使用`google_drive`。",
+    "settings.drive_heading": "# @markdown ### Google Drive輸入",
+    "settings.drive_help": "# @markdown 這些設定僅在 `INPUT_MODE == \"google_drive\"`時使用。",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`：通常將此設定保持為`/content/drive/MyDrive`。",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`：MyDrive 下的檔案或資料夾路徑。留空以使用頂級 MyDrive 資料夾。",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`：如果磁碟機輸入路徑是資料夾，也搜尋子資料夾。",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`：可選的檔案名稱子字串過濾器。",
+    "settings.model_heading": "# @markdown ## Whisper型號",
+    "settings.model_help": "# @markdown - `MODEL_ID`：Hugging Face型號 ID。渦輪增壓速度更快； large-v3對於某些文件可以更穩定。",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`：未知時使用`auto`，或選擇已知的源語言。",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`：使用Whisper翻譯模式輸出英文。",
+    "settings.output_heading": "# @markdown ## 輸出",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`：使用驅動輸入時，將輸出儲存在Google Drive下。",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`：最後建立並下載一個ZIP檔案。",
+    "settings.formats_help": "# @markdown - 輸出格式由下面的布林值控制。",
+    "settings.advanced_heading": "# ## 進階",
+    "settings.advanced_help": "# 這些預設值對於 Colab 來說是保守的。普通用戶通常不需要編輯它們。",
+    "settings.loaded_message": "設定已載入。",
+    "messages.choose_files": "點擊“選擇檔案”並上傳一個或多個音訊/視訊檔案。",
+    "messages.selected_files": "選定的文件：",
+    "messages.dependencies_done": "依賴安裝完成。",
+    "messages.model_loaded": "Whisper模型已載入。",
+    "messages.transcription_complete": "轉錄完成。",
+    "errors.no_supported_files": "未選擇支援的音訊/視訊檔案。",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab筆記本\n\n此筆記本使用 Whisper轉錄音訊或視訊檔案。\n\n## 特點\n\n- **免費使用:** 筆記本使用[openai/whisper](https://github.com/openai/whisper)（OpenAI於2023年1月17日開源），以及Google Colab的免費GPU運行時。\n- **沒有固定的筆記本端檔案大小限制:** 可以處理大型音訊和視訊檔案。\n- **批量處理:** 一次運行可以處理多個音訊和視訊檔案。\n- **Google Drive支持:** 可以直接上傳文件，也可以處理Google Drive中儲存的音訊視訊檔案。\n- **全面上線:** 下載和處理在Google Colab上執行。不使用本地運算資源。\n- **多種輸出格式:** 筆記本輸出原始JSON轉錄本和衍生的TXT、CSV、Markdown、Excel和SRT字幕檔。\n\n## 如何使用\n\n1. 在**1。設定**，選擇 `INPUT_MODE`並根據需要調整模型或輸出選項。\n2. 選擇**運行時 -> 全部運行**。\n3. 如果`INPUT_MODE = \"upload\"`，請等到**2。檔案選擇/Google Drivemount** 啟動，然後按一下該儲存格輸出區域中的 **Choose Files**。\n4. 處理完成後，如果啟用了`AUTO_DOWNLOAD_ZIP`，則輸出檔案將被壓縮並下載。\n\n## 註解\n\n- Google Colab免費GPU可用性有限。如果沒有可用的 GPU和 `REQUIRE_CUDA = True`，筆記本會在轉錄之前停止。\n- 處理需要時間。作為使用 large-v3-turbo模型時的粗略指南，60 分鐘的音訊或視訊檔案可能需要大約 5-10 分鐘來轉錄。如果直接上傳文件，還需要上傳時間。\n- 處理時請保持此筆記本開啟。如果在轉錄過程中關閉筆記本，處理就會停止。",
+    "settings.source_language_default": "cantonese"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "用於Whisper轉錄的多語言Google Colab筆記本。",
+    "features": [
+      "**免費使用:** 筆記本使用[openai/whisper](https://github.com/openai/whisper)（OpenAI於2023年1月17日開源），以及Google Colab的免費GPU運行時。",
+      "**沒有固定的筆記本端檔案大小限制:** 可以處理大型音訊和視訊檔案。",
+      "**批量處理:** 一次運行可以處理多個音訊和視訊檔案。",
+      "**Google Drive支持:** 可以直接上傳文件，也可以處理Google Drive中儲存的音訊視訊檔案。",
+      "**全面上線:** 下載和處理在Google Colab上執行。不使用本地運算資源。",
+      "**多種輸出格式:** 筆記本輸出原始JSON轉錄本和衍生的TXT、CSV、Markdown、Excel和SRT字幕檔。"
+    ],
+    "template_note": "根README是英文入口點，docs/README包含生成的本地化README文件。範本筆記本是來源筆記本，包含佔位符，例如 `{{cell1.title}}`。區域設定檔提供特定於語言的 README和麵向 Colab 的副本。生成的筆記本已提交，因此 Colab 連結保持穩定。",
+    "checks_note": "CI 工作流程從範本和區域設定檔重建 README檔案和筆記本，檢查筆記本 JSON，驗證空輸出，檢查程式碼單元中的 Python 語法，掃描明顯的意外秘密，並在未提交產生的檔案時失敗。",
+    "ci_items": [
+      "README從語言環境檔案生成",
+      "從範本和區域設定檔產生筆記本",
+      "筆記本JSON有效期限",
+      "空執行輸出",
+      "程式碼單元中的 Python 語法",
+      "明顯的意外秘密",
+      "提交產生的 README和與來源相符的筆記本文件"
+    ],
+    "ci_limit": "完整的轉錄路徑需要 Colab 特定的 API、模型下載、GPU可用性以及使用者提供的媒體檔案。產生檔案檢查通過後，將路徑視為手動 Colab 冒煙測試。",
+    "license_note": "此儲存庫的 README產生器、筆記本範本、區域設定檔、產生的筆記本和維護腳本是根據 MIT授權發布的。 Whisper模型和第三方相依性受其各自的許可證管轄。",
+    "feature_labels": [
+      "免費使用",
+      "沒有固定的筆記本端檔案大小限制",
+      "批量處理",
+      "Google Drive支持",
+      "全面上線",
+      "多種輸出格式"
+    ],
+    "feature_bodies": [
+      "筆記本使用[openai/whisper](https://github.com/openai/whisper)（OpenAI於2023年1月17日開源），以及Google Colab的免費GPU運行時。",
+      "可以處理大型音訊和視訊檔案。",
+      "一次運行可以處理多個音訊和視訊檔案。",
+      "可以直接上傳文件，也可以處理Google Drive中儲存的音訊視訊檔案。",
+      "下載和處理在Google Colab上執行。不使用本地運算資源。",
+      "筆記本輸出原始JSON轉錄本和衍生的TXT、CSV、Markdown、Excel和SRT字幕檔。"
+    ]
+  },
+  "labels": {
+    "features": "特點",
+    "languages": "語言",
+    "language": "語言",
+    "readme": "README",
+    "notebook": "筆記本",
+    "repository_layout": "儲存庫佈局",
+    "build": "建構",
+    "checks": "支票",
+    "what_ci_can_test": "CI 可以測試什麼",
+    "license": "許可證"
+  },
+  "translation_source": "google:zh-TW; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab筆記本",
+    "description": "此筆記本使用 Whisper轉錄音訊或視訊檔案。",
+    "features_heading": "特點",
+    "features": [
+      "**免費使用:** 筆記本使用[openai/whisper](https://github.com/openai/whisper)（OpenAI於2023年1月17日開源），以及Google Colab的免費GPU運行時。",
+      "**沒有固定的筆記本端檔案大小限制:** 可以處理大型音訊和視訊檔案。",
+      "**批量處理:** 一次運行可以處理多個音訊和視訊檔案。",
+      "**Google Drive支持:** 可以直接上傳文件，也可以處理Google Drive中儲存的音訊視訊檔案。",
+      "**全面上線:** 下載和處理在Google Colab上執行。不使用本地運算資源。",
+      "**多種輸出格式:** 筆記本輸出原始JSON轉錄本和衍生的TXT、CSV、Markdown、Excel和SRT字幕檔。"
+    ],
+    "how_to_use_heading": "如何使用",
+    "how_to_use_steps": [
+      "在**1。設定**，選擇 `INPUT_MODE`並根據需要調整模型或輸出選項。",
+      "選擇**運行時 -> 全部運行**。",
+      "如果`INPUT_MODE = \"upload\"`，請等到**2。檔案選擇/Google Drivemount** 啟動，然後按一下該儲存格輸出區域中的 **Choose Files**。",
+      "處理完成後，如果啟用了`AUTO_DOWNLOAD_ZIP`，則輸出檔案將被壓縮並下載。"
+    ],
+    "notes_heading": "註解",
+    "notes": [
+      "Google Colab免費GPU可用性有限。如果沒有可用的 GPU和 `REQUIRE_CUDA = True`，筆記本會在轉錄之前停止。",
+      "處理需要時間。作為使用 large-v3-turbo模型時的粗略指南，60 分鐘的音訊或視訊檔案可能需要大約 5-10 分鐘來轉錄。如果直接上傳文件，還需要上傳時間。",
+      "處理時請保持此筆記本開啟。如果在轉錄過程中關閉筆記本，處理就會停止。"
+    ],
+    "feature_labels": [
+      "免費使用",
+      "沒有固定的筆記本端檔案大小限制",
+      "批量處理",
+      "Google Drive支持",
+      "全面上線",
+      "多種輸出格式"
+    ],
+    "feature_bodies": [
+      "筆記本使用[openai/whisper](https://github.com/openai/whisper)（OpenAI於2023年1月17日開源），以及Google Colab的免費GPU運行時。",
+      "可以處理大型音訊和視訊檔案。",
+      "一次運行可以處理多個音訊和視訊檔案。",
+      "可以直接上傳文件，也可以處理Google Drive中儲存的音訊視訊檔案。",
+      "下載和處理在Google Colab上執行。不使用本地運算資源。",
+      "筆記本輸出原始JSON轉錄本和衍生的TXT、CSV、Markdown、Excel和SRT字幕檔。"
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "language": "nl",
+  "display_name": "Dutch",
+  "native_name": "Dutch",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Instellingen",
+    "cell1.section_title": "# 1. Instellingen",
+    "cell2.title": "# @title 2. Bestandsselectie / Google Drivemount",
+    "cell2.section_title": "# 2. Bestandsselectie / Google Drivemount",
+    "cell3.title": "# @title 3. GPUcontrole en afhankelijkheidsinstallatie",
+    "cell3.section_title": "# 3. GPUcontrole en afhankelijkheidsinstallatie",
+    "cell4.title": "# @title 4. Helper-functies",
+    "cell4.section_title": "# 4. Helper-functies",
+    "cell5.title": "# @title 5. Laad Whisperen voer de transcriptie uit",
+    "cell5.section_title": "# 5. Laad Whisperen voer de transcriptie uit",
+    "cell6.title": "# @title 6. Zip- en download-uitgangen",
+    "cell6.section_title": "# 6. Zip- en download-uitgangen",
+    "settings.input_heading": "# @markdown ## Invoer",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Gebruik `upload`voor lokale bestanden of `google_drive`voor bestanden die al zijn opgeslagen in Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveingang",
+    "settings.drive_help": "# @markdown Deze instellingen worden alleen gebruikt wanneer `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Houd deze instelling doorgaans op `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Een bestands- of mappad onder MyDrive. Laat dit veld leeg als u de MyDrive-map op het hoogste niveau wilt gebruiken.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Als het Drive-invoerpad een map is, zoekt u ook in submappen.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Optioneel subtekenreeksfilter voor bestandsnaam.",
+    "settings.model_heading": "# @markdown ## Whisper-model",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodel-ID. Turbo is sneller; large-v3kan voor sommige bestanden stabieler zijn.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Gebruik `auto`indien onbekend, of selecteer een bekende brontaal.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Gebruik de vertaalmodus Whisperom Engels uit te voeren.",
+    "settings.output_heading": "# @markdown ## Uitvoer",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Sla uitgangen op onder Google Drivewanneer omvormeringang wordt gebruikt.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Aan het eind een ZIP-archief maken en downloaden.",
+    "settings.formats_help": "# @markdown - Uitvoerformaten worden bepaald door de onderstaande booleans.",
+    "settings.advanced_heading": "# ## Geavanceerd",
+    "settings.advanced_help": "# Deze standaardwaarden zijn conservatief voor Colab. Gewone gebruikers hoeven ze meestal niet te bewerken.",
+    "settings.loaded_message": "Instellingen geladen.",
+    "messages.choose_files": "Klik op 'Bestanden kiezen' en upload een of meer audio-/videobestanden.",
+    "messages.selected_files": "Geselecteerde bestanden:",
+    "messages.dependencies_done": "De afhankelijkheidsinstallatie is voltooid.",
+    "messages.model_loaded": "Whisper-model geladen.",
+    "messages.transcription_complete": "Transcriptie voltooid.",
+    "errors.no_supported_files": "Er zijn geen ondersteunde audio-/videobestanden geselecteerd.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab-notitieboekje\n\nDit notebook transcribeert audio- of videobestanden met Whisper.\n\n## Kenmerken\n\n- **Gratis te gebruiken:** Deze notebook gebruikt [openai/whisper](https://github.com/openai/whisper), dat OpenAIopen source is op 17 januari 2023, samen met de gratis GPUruntime van Google Colab.\n- **Geen vaste bestandsgroottelimiet aan de notebookzijde:** Grote audio- en videobestanden kunnen worden verwerkt.\n- **Batchverwerking:** Er kunnen meerdere audio- en videobestanden in één run worden verwerkt.\n- **Google Drive-ondersteuning:** Bestanden kunnen rechtstreeks worden geüpload of audio-/videobestanden die zijn opgeslagen in Google Drivekunnen worden verwerkt.\n- **Volledig online:** Downloads and processing are performed on Google Colab. Er worden geen lokale computerbronnen gebruikt.\n- **Meerdere uitvoerformaten:** Het notebook voert het originele JSONtranscript en de afgeleide TXT, CSV, Markdown, Excelen SRTondertitelbestanden uit.\n\n## Hoe te gebruiken\n\n1. Op **1. Instellingen**, kies `INPUT_MODE`en pas indien nodig het model of de uitvoeropties aan.\n2. Selecteer **Runtime -> Alles uitvoeren**.\n3. Indien `INPUT_MODE = \"upload\"`, wacht tot **2. Bestandsselectie / Google Drivemount** begint en klik vervolgens op **Bestanden kiezen** in het uitvoergebied van die cel.\n4. Wanneer de verwerking is voltooid, worden de uitvoerbestanden gecomprimeerd en gedownload als `AUTO_DOWNLOAD_ZIP`is ingeschakeld.\n\n## Opmerkingen\n\n- Google Colabgratis GPUbeschikbaarheid is beperkt. Als er geen GPUbeschikbaar is en `REQUIRE_CUDA = True`, stopt het notebook vóór de transcriptie.\n- De verwerking kost tijd. Als ruwe richtlijn geldt dat bij gebruik van het large-v3-turbo-model het transcriberen van een audio- of videobestand van 60 minuten ongeveer 5-10 minuten kan duren. Als u bestanden rechtstreeks uploadt, is er ook uploadtijd nodig.\n- Houd dit notitieboekje open tijdens het verwerken. Als u het notitieblok sluit tijdens de transcriptie, stopt de verwerking.",
+    "settings.source_language_default": "dutch"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Meertalige Google Colab-notebooks voor Whisper-transcriptie.",
+    "features": [
+      "**Gratis te gebruiken:** Deze notebook gebruikt [openai/whisper](https://github.com/openai/whisper), dat OpenAIopen source is op 17 januari 2023, samen met de gratis GPUruntime van Google Colab.",
+      "**Geen vaste bestandsgroottelimiet aan de notebookzijde:** Grote audio- en videobestanden kunnen worden verwerkt.",
+      "**Batchverwerking:** Er kunnen meerdere audio- en videobestanden in één run worden verwerkt.",
+      "**Google Drive-ondersteuning:** Bestanden kunnen rechtstreeks worden geüpload of audio-/videobestanden die zijn opgeslagen in Google Drivekunnen worden verwerkt.",
+      "**Volledig online:** Downloads and processing are performed on Google Colab. Er worden geen lokale computerbronnen gebruikt.",
+      "**Meerdere uitvoerformaten:** Het notebook voert het originele JSONtranscript en de afgeleide TXT, CSV, Markdown, Excelen SRTondertitelbestanden uit."
+    ],
+    "template_note": "De root READMEis het Engelse toegangspunt en docs/READMEbevat gegenereerde gelokaliseerde README-bestanden. Het sjabloonnotitieboekje is het bronnotitieboekje en bevat tijdelijke aanduidingen zoals `{{cell1.title}}`. Landinstellingen bieden taalspecifieke READMEen Colab-gerichte kopieën. Gegenereerde notebooks worden vastgelegd, zodat Colab-links stabiel blijven.",
+    "checks_note": "De CI-workflow herbouwt README-bestanden en notebooks op basis van de sjabloon- en locale-bestanden, controleert notebook JSON, verifieert lege uitvoer, controleert Python-syntaxis in codecellen, scant op voor de hand liggende toevallige geheimen en mislukt wanneer gegenereerde bestanden niet worden vastgelegd.",
+    "ci_items": [
+      "READMEgenereren vanuit localebestanden",
+      "het genereren van notebooks op basis van de sjabloon- en landinstellingsbestanden",
+      "notitieboekje JSONgeldigheid",
+      "lege uitvoeringsuitgangen",
+      "Python-syntaxis in codecellen",
+      "voor de hand liggende toevallige geheimen",
+      "vastgelegde gegenereerde READMEen notebookbestanden die overeenkomen met de bronnen"
+    ],
+    "ci_limit": "Voor het volledige transcriptiepad zijn Colab-specifieke API's, modeldownloads, GPU-beschikbaarheid en door de gebruiker geleverde mediabestanden vereist. Behandel dat pad als een handmatige Colab-rooktest nadat de controles op gegenereerde bestanden zijn geslaagd.",
+    "license_note": "De READMEgenerator, notebooksjabloon, landinstellingsbestanden, gegenereerde notebooks en onderhoudsscripts van deze repository worden vrijgegeven onder de MIT-licentie. Whisper-modellen en afhankelijkheden van derden vallen onder hun respectievelijke licenties.",
+    "feature_labels": [
+      "Gratis te gebruiken",
+      "Geen vaste bestandsgroottelimiet aan de notebookzijde",
+      "Batchverwerking",
+      "Google Drive-ondersteuning",
+      "Volledig online",
+      "Meerdere uitvoerformaten"
+    ],
+    "feature_bodies": [
+      "Deze notebook gebruikt [openai/whisper](https://github.com/openai/whisper), dat OpenAIopen source is op 17 januari 2023, samen met de gratis GPUruntime van Google Colab.",
+      "Grote audio- en videobestanden kunnen worden verwerkt.",
+      "Er kunnen meerdere audio- en videobestanden in één run worden verwerkt.",
+      "Bestanden kunnen rechtstreeks worden geüpload of audio-/videobestanden die zijn opgeslagen in Google Drivekunnen worden verwerkt.",
+      "Downloads and processing are performed on Google Colab. Er worden geen lokale computerbronnen gebruikt.",
+      "Het notebook voert het originele JSONtranscript en de afgeleide TXT, CSV, Markdown, Excelen SRTondertitelbestanden uit."
+    ]
+  },
+  "labels": {
+    "features": "Kenmerken",
+    "languages": "Talen",
+    "language": "Taal",
+    "readme": "README",
+    "notebook": "Notitieboekje",
+    "repository_layout": "Indeling van de opslagplaats",
+    "build": "Bouw",
+    "checks": "Cheques",
+    "what_ci_can_test": "Wat CI kan testen",
+    "license": "Licentie"
+  },
+  "translation_source": "google:nl; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab-notitieboekje",
+    "description": "Dit notebook transcribeert audio- of videobestanden met Whisper.",
+    "features_heading": "Kenmerken",
+    "features": [
+      "**Gratis te gebruiken:** Deze notebook gebruikt [openai/whisper](https://github.com/openai/whisper), dat OpenAIopen source is op 17 januari 2023, samen met de gratis GPUruntime van Google Colab.",
+      "**Geen vaste bestandsgroottelimiet aan de notebookzijde:** Grote audio- en videobestanden kunnen worden verwerkt.",
+      "**Batchverwerking:** Er kunnen meerdere audio- en videobestanden in één run worden verwerkt.",
+      "**Google Drive-ondersteuning:** Bestanden kunnen rechtstreeks worden geüpload of audio-/videobestanden die zijn opgeslagen in Google Drivekunnen worden verwerkt.",
+      "**Volledig online:** Downloads and processing are performed on Google Colab. Er worden geen lokale computerbronnen gebruikt.",
+      "**Meerdere uitvoerformaten:** Het notebook voert het originele JSONtranscript en de afgeleide TXT, CSV, Markdown, Excelen SRTondertitelbestanden uit."
+    ],
+    "how_to_use_heading": "Hoe te gebruiken",
+    "how_to_use_steps": [
+      "Op **1. Instellingen**, kies `INPUT_MODE`en pas indien nodig het model of de uitvoeropties aan.",
+      "Selecteer **Runtime -> Alles uitvoeren**.",
+      "Indien `INPUT_MODE = \"upload\"`, wacht tot **2. Bestandsselectie / Google Drivemount** begint en klik vervolgens op **Bestanden kiezen** in het uitvoergebied van die cel.",
+      "Wanneer de verwerking is voltooid, worden de uitvoerbestanden gecomprimeerd en gedownload als `AUTO_DOWNLOAD_ZIP`is ingeschakeld."
+    ],
+    "notes_heading": "Opmerkingen",
+    "notes": [
+      "Google Colabgratis GPUbeschikbaarheid is beperkt. Als er geen GPUbeschikbaar is en `REQUIRE_CUDA = True`, stopt het notebook vóór de transcriptie.",
+      "De verwerking kost tijd. Als ruwe richtlijn geldt dat bij gebruik van het large-v3-turbo-model het transcriberen van een audio- of videobestand van 60 minuten ongeveer 5-10 minuten kan duren. Als u bestanden rechtstreeks uploadt, is er ook uploadtijd nodig.",
+      "Houd dit notitieboekje open tijdens het verwerken. Als u het notitieblok sluit tijdens de transcriptie, stopt de verwerking."
+    ],
+    "feature_labels": [
+      "Gratis te gebruiken",
+      "Geen vaste bestandsgroottelimiet aan de notebookzijde",
+      "Batchverwerking",
+      "Google Drive-ondersteuning",
+      "Volledig online",
+      "Meerdere uitvoerformaten"
+    ],
+    "feature_bodies": [
+      "Deze notebook gebruikt [openai/whisper](https://github.com/openai/whisper), dat OpenAIopen source is op 17 januari 2023, samen met de gratis GPUruntime van Google Colab.",
+      "Grote audio- en videobestanden kunnen worden verwerkt.",
+      "Er kunnen meerdere audio- en videobestanden in één run worden verwerkt.",
+      "Bestanden kunnen rechtstreeks worden geüpload of audio-/videobestanden die zijn opgeslagen in Google Drivekunnen worden verwerkt.",
+      "Downloads and processing are performed on Google Colab. Er worden geen lokale computerbronnen gebruikt.",
+      "Het notebook voert het originele JSONtranscript en de afgeleide TXT, CSV, Markdown, Excelen SRTondertitelbestanden uit."
+    ]
+  }
+}

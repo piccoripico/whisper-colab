@@ -1,0 +1,144 @@
+{
+  "language": "fr",
+  "display_name": "French",
+  "native_name": "French",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Paramètres",
+    "cell1.section_title": "# 1. Paramètres",
+    "cell2.title": "# @title 2. Sélection de fichiers / Google Drivemontage",
+    "cell2.section_title": "# 2. Sélection de fichiers / Google Drivemontage",
+    "cell3.title": "# @title 3. GPUvérification et installation des dépendances",
+    "cell3.section_title": "# 3. GPUvérification et installation des dépendances",
+    "cell4.title": "# @title 4. Fonctions d'assistance",
+    "cell4.section_title": "# 4. Fonctions d'assistance",
+    "cell5.title": "# @title 5. Chargez Whisperet exécutez la transcription",
+    "cell5.section_title": "# 5. Chargez Whisperet exécutez la transcription",
+    "cell6.title": "# @title 6. Sorties compressées et téléchargées",
+    "cell6.section_title": "# 6. Sorties compressées et téléchargées",
+    "settings.input_heading": "# @markdown ## Entrée",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: utilisez `upload`our les fichiers locaux ou `google_drive`our les fichiers déjà stockés dans Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveentrée",
+    "settings.drive_help": "# @markdown Ces paramètres sont utilisés uniquement lorsque `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: conservez généralement cet ensemble sur `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Un chemin de fichier ou de dossier sous MyDrive. Laissez vide pour utiliser le dossier MyDrive de niveau supérieur.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Si le chemin d'entrée du lecteur est un dossier, recherchez également les sous-dossiers.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Filtre de sous-chaîne de nom de fichier facultatif.",
+    "settings.model_heading": "# @markdown ## Whispermodèle",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID du modèle. Le turbo est plus rapide ; large-v3eut être plus stable pour certains fichiers.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: utilisez `auto`lorsque vous êtes inconnu ou sélectionnez une langue source connue.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: utilisez le mode de traduction Whisperour sortir en anglais.",
+    "settings.output_heading": "# @markdown ## Sortie",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Enregistrez les sorties sous Google Drivelorsque l'entrée du variateur est utilisée.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Créez et téléchargez une archive ZIPà la fin.",
+    "settings.formats_help": "# @markdown - Les formats de sortie sont contrôlés par les booléens ci-dessous.",
+    "settings.advanced_heading": "# ## Avancé",
+    "settings.advanced_help": "# Ces valeurs par défaut sont conservatrices pour Colab. Les utilisateurs ordinaires n'ont généralement pas besoin de les modifier.",
+    "settings.loaded_message": "Paramètres chargés.",
+    "messages.choose_files": "Cliquez sur « Choisir des fichiers » et téléchargez un ou plusieurs fichiers audio/vidéo.",
+    "messages.selected_files": "Fichiers sélectionnés :",
+    "messages.dependencies_done": "Installation des dépendances terminée.",
+    "messages.model_loaded": "Whispermodèle chargé.",
+    "messages.transcription_complete": "Transcription terminée.",
+    "errors.no_supported_files": "Aucun fichier audio/vidéo pris en charge n'a été sélectionné.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperCarnet Colab\n\nCe carnet transcrit les fichiers audio ou vidéo avec Whisper.\n\n## Caractéristiques\n\n- **Utilisation gratuite:** Ce bloc-notes utilise [openai/whisper](https://github.com/openai/whisper), lancé en open source par OpenAI le 17 janvier 2023, ainsi que le moteur d'exécution GPU gratuit de Google Colab.\n- **Aucune limite fixe de taille de fichier côté ordinateur portable:** Des fichiers audio et vidéo volumineux peuvent être traités.\n- **Traitement par lots:** Plusieurs fichiers audio et vidéo peuvent être traités en une seule fois.\n- **Assistance Google Drive:** Les fichiers peuvent être téléchargés directement ou les fichiers audio/vidéo stockés dans Google Drive peuvent être traités.\n- **Entièrement en ligne:** Les téléchargements et le traitement sont effectués sur Google Colab. Aucune ressource informatique locale n'est utilisée.\n- **Plusieurs formats de sortie:** Le bloc-notes génère la transcription JSON originale et les fichiers de sous-titres dérivés TXT, CSV, Markdown, Excel et SRT.\n\n## Comment utiliser\n\n1. Dans **1. Paramètres**, choisissez `INPUT_MODE`et ajustez le modèle ou les options de sortie si nécessaire.\n2. Sélectionnez **Exécution -> Tout exécuter**.\n3. Si `INPUT_MODE = \"upload\"`, attendez jusqu'à **2. La sélection de fichiers / Google Drivemount** démarre, puis cliquez sur **Choisir les fichiers** dans la zone de sortie de cette cellule.\n4. Une fois le traitement terminé, les fichiers de sortie sont compressés et téléchargés si `AUTO_DOWNLOAD_ZIP`est activé.\n\n## Remarques\n\n- Google Colabgratuit GPUla disponibilité est limitée. Si aucun GPUn'est disponible et `REQUIRE_CUDA = True`, le notebook s'arrête avant la transcription.\n- Le traitement prend du temps. À titre indicatif, lors de l'utilisation du modèle large-v3-turbo, la transcription d'un fichier audio ou vidéo de 60 minutes peut prendre environ 5 à 10 minutes. Si vous téléchargez des fichiers directement, un temps de téléchargement est également requis.\n- Gardez ce carnet ouvert pendant le traitement. Si vous fermez le bloc-notes pendant la transcription, le traitement s'arrête.",
+    "settings.source_language_default": "french"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Cahiers Google Colabmultilingues pour la transcription Whisper.",
+    "features": [
+      "**Utilisation gratuite:** Ce bloc-notes utilise [openai/whisper](https://github.com/openai/whisper), lancé en open source par OpenAI le 17 janvier 2023, ainsi que le moteur d'exécution GPU gratuit de Google Colab.",
+      "**Aucune limite fixe de taille de fichier côté ordinateur portable:** Des fichiers audio et vidéo volumineux peuvent être traités.",
+      "**Traitement par lots:** Plusieurs fichiers audio et vidéo peuvent être traités en une seule fois.",
+      "**Assistance Google Drive:** Les fichiers peuvent être téléchargés directement ou les fichiers audio/vidéo stockés dans Google Drive peuvent être traités.",
+      "**Entièrement en ligne:** Les téléchargements et le traitement sont effectués sur Google Colab. Aucune ressource informatique locale n'est utilisée.",
+      "**Plusieurs formats de sortie:** Le bloc-notes génère la transcription JSON originale et les fichiers de sous-titres dérivés TXT, CSV, Markdown, Excel et SRT."
+    ],
+    "template_note": "La racine READMEest le point d'entrée en anglais et docs/READMEcontient les fichiers READMElocalisés générés. Le bloc-notes modèle est le bloc-notes source et contient des espaces réservés tels que `{{cell1.title}}`. Les fichiers de paramètres régionaux fournissent une copie READMEspécifique à la langue et orientée Colab. Les notebooks générés sont validés afin que les liens Colab restent stables.",
+    "checks_note": "Le flux de travail CI reconstruit les fichiers READMEet les blocs-notes à partir du modèle et des fichiers de paramètres régionaux, vérifie le bloc-notes JSON, vérifie les sorties vides, vérifie la syntaxe Python dans les cellules de code, recherche les secrets accidentels évidents et échoue lorsque les fichiers générés ne sont pas validés.",
+    "ci_items": [
+      "READMEgénération à partir de fichiers de paramètres régionaux",
+      "génération de notebook à partir des fichiers de modèle et de paramètres régionaux",
+      "carnet JSONvalidité",
+      "sorties d'exécution vides",
+      "Syntaxe Python dans les cellules de code",
+      "secrets accidentels évidents",
+      "READMEgénéré par commit et fichiers notebook correspondant aux sources"
+    ],
+    "ci_limit": "Le chemin de transcription complet nécessite des API spécifiques à Colab, des téléchargements de modèles, une disponibilité GPUet des fichiers multimédias fournis par l'utilisateur. Traitez ce chemin comme un test de fumée Colab manuel une fois les vérifications des fichiers générés réussies.",
+    "license_note": "Le générateur README, le modèle de bloc-notes, les fichiers de paramètres régionaux, les blocs-notes générés et les scripts de maintenance de ce référentiel sont publiés sous la licence MIT. Les modèles Whisperet les dépendances tierces sont régis par leurs licences respectives.",
+    "feature_labels": [
+      "Utilisation gratuite",
+      "Aucune limite fixe de taille de fichier côté ordinateur portable",
+      "Traitement par lots",
+      "Assistance Google Drive",
+      "Entièrement en ligne",
+      "Plusieurs formats de sortie"
+    ],
+    "feature_bodies": [
+      "Ce bloc-notes utilise [openai/whisper](https://github.com/openai/whisper), lancé en open source par OpenAI le 17 janvier 2023, ainsi que le moteur d'exécution GPU gratuit de Google Colab.",
+      "Des fichiers audio et vidéo volumineux peuvent être traités.",
+      "Plusieurs fichiers audio et vidéo peuvent être traités en une seule fois.",
+      "Les fichiers peuvent être téléchargés directement ou les fichiers audio/vidéo stockés dans Google Drive peuvent être traités.",
+      "Les téléchargements et le traitement sont effectués sur Google Colab. Aucune ressource informatique locale n'est utilisée.",
+      "Le bloc-notes génère la transcription JSON originale et les fichiers de sous-titres dérivés TXT, CSV, Markdown, Excel et SRT."
+    ]
+  },
+  "labels": {
+    "features": "Caractéristiques",
+    "languages": "Langues",
+    "language": "Langue",
+    "readme": "README",
+    "notebook": "Carnet",
+    "repository_layout": "Disposition du référentiel",
+    "build": "Construire",
+    "checks": "Chèques",
+    "what_ci_can_test": "Ce que CI peut tester",
+    "license": "Licence"
+  },
+  "translation_source": "google:fr; machine-translated from en",
+  "notebook": {
+    "title": "WhisperCarnet Colab",
+    "description": "Ce carnet transcrit les fichiers audio ou vidéo avec Whisper.",
+    "features_heading": "Caractéristiques",
+    "features": [
+      "**Utilisation gratuite:** Ce bloc-notes utilise [openai/whisper](https://github.com/openai/whisper), lancé en open source par OpenAI le 17 janvier 2023, ainsi que le moteur d'exécution GPU gratuit de Google Colab.",
+      "**Aucune limite fixe de taille de fichier côté ordinateur portable:** Des fichiers audio et vidéo volumineux peuvent être traités.",
+      "**Traitement par lots:** Plusieurs fichiers audio et vidéo peuvent être traités en une seule fois.",
+      "**Assistance Google Drive:** Les fichiers peuvent être téléchargés directement ou les fichiers audio/vidéo stockés dans Google Drive peuvent être traités.",
+      "**Entièrement en ligne:** Les téléchargements et le traitement sont effectués sur Google Colab. Aucune ressource informatique locale n'est utilisée.",
+      "**Plusieurs formats de sortie:** Le bloc-notes génère la transcription JSON originale et les fichiers de sous-titres dérivés TXT, CSV, Markdown, Excel et SRT."
+    ],
+    "how_to_use_heading": "Comment utiliser",
+    "how_to_use_steps": [
+      "Dans **1. Paramètres**, choisissez `INPUT_MODE`et ajustez le modèle ou les options de sortie si nécessaire.",
+      "Sélectionnez **Exécution -> Tout exécuter**.",
+      "Si `INPUT_MODE = \"upload\"`, attendez jusqu'à **2. La sélection de fichiers / Google Drivemount** démarre, puis cliquez sur **Choisir les fichiers** dans la zone de sortie de cette cellule.",
+      "Une fois le traitement terminé, les fichiers de sortie sont compressés et téléchargés si `AUTO_DOWNLOAD_ZIP`est activé."
+    ],
+    "notes_heading": "Remarques",
+    "notes": [
+      "Google Colabgratuit GPUla disponibilité est limitée. Si aucun GPUn'est disponible et `REQUIRE_CUDA = True`, le notebook s'arrête avant la transcription.",
+      "Le traitement prend du temps. À titre indicatif, lors de l'utilisation du modèle large-v3-turbo, la transcription d'un fichier audio ou vidéo de 60 minutes peut prendre environ 5 à 10 minutes. Si vous téléchargez des fichiers directement, un temps de téléchargement est également requis.",
+      "Gardez ce carnet ouvert pendant le traitement. Si vous fermez le bloc-notes pendant la transcription, le traitement s'arrête."
+    ],
+    "feature_labels": [
+      "Utilisation gratuite",
+      "Aucune limite fixe de taille de fichier côté ordinateur portable",
+      "Traitement par lots",
+      "Assistance Google Drive",
+      "Entièrement en ligne",
+      "Plusieurs formats de sortie"
+    ],
+    "feature_bodies": [
+      "Ce bloc-notes utilise [openai/whisper](https://github.com/openai/whisper), lancé en open source par OpenAI le 17 janvier 2023, ainsi que le moteur d'exécution GPU gratuit de Google Colab.",
+      "Des fichiers audio et vidéo volumineux peuvent être traités.",
+      "Plusieurs fichiers audio et vidéo peuvent être traités en une seule fois.",
+      "Les fichiers peuvent être téléchargés directement ou les fichiers audio/vidéo stockés dans Google Drive peuvent être traités.",
+      "Les téléchargements et le traitement sont effectués sur Google Colab. Aucune ressource informatique locale n'est utilisée.",
+      "Le bloc-notes génère la transcription JSON originale et les fichiers de sous-titres dérivés TXT, CSV, Markdown, Excel et SRT."
+    ]
+  }
+}

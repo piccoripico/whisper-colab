@@ -1,0 +1,144 @@
+{
+  "language": "fi",
+  "display_name": "Finnish",
+  "native_name": "Finnish",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Asetukset",
+    "cell1.section_title": "# 1. Asetukset",
+    "cell2.title": "# @title 2. Tiedoston valinta / Google Drivekiinnitys",
+    "cell2.section_title": "# 2. Tiedoston valinta / Google Drivekiinnitys",
+    "cell3.title": "# @title 3. GPUtarkista ja riippuvuusasennus",
+    "cell3.section_title": "# 3. GPUtarkista ja riippuvuusasennus",
+    "cell4.title": "# @title 4. Aputoiminnot",
+    "cell4.section_title": "# 4. Aputoiminnot",
+    "cell5.title": "# @title 5. Lataa Whisperja suorita transkriptio",
+    "cell5.section_title": "# 5. Lataa Whisperja suorita transkriptio",
+    "cell6.title": "# @title 6. Pakkaa ja lataa lähdöt",
+    "cell6.section_title": "# 6. Pakkaa ja lataa lähdöt",
+    "settings.input_heading": "# @markdown ## Syöte",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Käytä `upload`aikallisille tiedostoille tai `google_drive`tiedostoille, jotka on jo tallennettu Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivetulo",
+    "settings.drive_help": "# @markdown Näitä asetuksia käytetään vain, kun `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Pidä tämän asetuksena yleensä `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Tiedoston tai kansion polku MyDrivessa. Jätä tyhjäksi, jos haluat käyttää ylätason MyDrive-kansiota.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Jos aseman syöttöpolku on kansio, etsi myös alikansioita.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Valinnainen tiedostonimen alimerkkijonosuodatin.",
+    "settings.model_heading": "# @markdown ## Whispermalli",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemallitunnus. Turbo on nopeampi; large-v3voi olla vakaampi joillekin tiedostoille.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Käytä `auto`, kun tuntematon, tai valitse tunnettu lähdekieli.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Käytä Whisperkäännöstilaa englanniksi.",
+    "settings.output_heading": "# @markdown ## Lähtö",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Tallenna lähdöt kohtaan Google Drive, kun taajuusmuuttajatuloa käytetään.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Luo ja lataa yksi ZIParkisto lopussa.",
+    "settings.formats_help": "# @markdown - Tulostusmuotoja ohjaavat alla olevat loogiset arvot.",
+    "settings.advanced_heading": "# ## Edistynyt",
+    "settings.advanced_help": "# Nämä oletusasetukset ovat Colabille varovaisia. Tavallisten käyttäjien ei yleensä tarvitse muokata niitä.",
+    "settings.loaded_message": "Asetukset ladattu.",
+    "messages.choose_files": "Napsauta \"Valitse tiedostot\" ja lähetä yksi tai useampi ääni-/videotiedosto.",
+    "messages.selected_files": "Valitut tiedostot:",
+    "messages.dependencies_done": "Riippuvuuden asennus valmis.",
+    "messages.model_loaded": "Whispermalli ladattu.",
+    "messages.transcription_complete": "Transkriptio valmis.",
+    "errors.no_supported_files": "Tuettuja ääni-/videotiedostoja ei valittu.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab-muistikirja\n\nTämä muistikirja litteroi ääni- tai videotiedostoja Whisper.\n\n## Ominaisuudet\n\n- **Ilmainen käyttää:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **Ei kiinteää muistikirjan puolen tiedostokokorajoitusta:** Suuria ääni- ja videotiedostoja voidaan käsitellä.\n- **Batch processing:** Useita ääni- ja videotiedostoja voidaan käsitellä yhdellä kertaa.\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **Täysin verkossa:** Downloads and processing are performed on Google Colab. Paikallisia laskentaresursseja ei käytetä.\n- **Useita tulostusmuotoja:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## Kuinka käyttää\n\n1. Vuonna **1. Asetukset**, valitse `INPUT_MODE`ja säädä mallia tai lähtöasetuksia tarvittaessa.\n2. Valitse **Suoritusaika -> Suorita kaikki**.\n3. Jos `INPUT_MODE = \"upload\"`, odota **2. Tiedoston valinta / Google Drivemount** alkaa, ja napsauta sitten **Valitse tiedostot** solun tulostusalueella.\n4. Kun käsittely on valmis, tulostiedostot pakataan ja ladataan, jos `AUTO_DOWNLOAD_ZIP`on käytössä.\n\n## Huomautuksia\n\n- Google Colabilmainen GPUsaatavuus on rajoitettu. Jos GPUei ole saatavilla ja `REQUIRE_CUDA = True`, muistikirja pysähtyy ennen transkriptiota.\n- Käsittely vie aikaa. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Jos lataat tiedostoja suoraan, myös latausaika vaaditaan.\n- Pidä tämä muistikirja auki käsittelyn aikana. Jos suljet muistikirjan transkription aikana, käsittely pysähtyy.",
+    "settings.source_language_default": "finnish"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Monikieliset Google Colabmuistikirjat Whispertranskriptiota varten.",
+    "features": [
+      "**Ilmainen käyttää:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Ei kiinteää muistikirjan puolen tiedostokokorajoitusta:** Suuria ääni- ja videotiedostoja voidaan käsitellä.",
+      "**Batch processing:** Useita ääni- ja videotiedostoja voidaan käsitellä yhdellä kertaa.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Täysin verkossa:** Downloads and processing are performed on Google Colab. Paikallisia laskentaresursseja ei käytetä.",
+      "**Useita tulostusmuotoja:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "Juuri READMEon englanninkielinen aloituskohta, ja docs/READMEsisältää luotuja lokalisoituja README-tiedostoja. Mallimuistikirja on lähdemuistikirja ja sisältää paikkamerkkejä, kuten `{{cell1.title}}`. Kielitiedostot tarjoavat kielikohtaisen READMEja Colab-version. Luodut muistikirjat ovat sitoutuneita, joten Colab-linkit pysyvät vakaina.",
+    "checks_note": "CI-työnkulku rakentaa READMEtiedostot ja muistikirjat uudelleen malli- ja aluetiedostoista, tarkistaa muistikirjan JSON, tarkistaa tyhjät lähdöt, tarkistaa Python-syntaksin koodisoluissa, etsii ilmeisiä vahingossa olevia salaisuuksia ja epäonnistuu, kun luotuja tiedostoja ei ole vahvistettu.",
+    "ci_items": [
+      "READMEsukupolvi aluetiedostoista",
+      "muistikirjan luominen malli- ja aluetiedostoista",
+      "muistikirja JSONvoimassa",
+      "tyhjiä suoritustulosteita",
+      "Python-syntaksi koodisoluissa",
+      "ilmeisiä satunnaisia salaisuuksia",
+      "sitoutuneet luodut READMEja muistikirjatiedostot, jotka vastaavat lähteitä"
+    ],
+    "ci_limit": "Täysi transkriptiopolku edellyttää Colab-kohtaisia sovellusliittymiä, mallilatauksia, GPUsaatavuutta ja käyttäjien toimittamia mediatiedostoja. Käsittele polkua manuaalisena Colab-savutestinä sen jälkeen, kun luotujen tiedostojen tarkistukset ovat läpäisseet.",
+    "license_note": "Tämän arkiston README-generaattori, muistikirjamalli, kielialuetiedostot, luodut muistikirjat ja ylläpitokomentosarjat julkaistaan MIT-lisenssillä. Whispermalleja ja kolmansien osapuolien riippuvuuksia säätelevät niiden vastaavat lisenssit.",
+    "feature_labels": [
+      "Ilmainen käyttää",
+      "Ei kiinteää muistikirjan puolen tiedostokokorajoitusta",
+      "Batch processing",
+      "Google Drivesupport",
+      "Täysin verkossa",
+      "Useita tulostusmuotoja"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Suuria ääni- ja videotiedostoja voidaan käsitellä.",
+      "Useita ääni- ja videotiedostoja voidaan käsitellä yhdellä kertaa.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Paikallisia laskentaresursseja ei käytetä.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "Ominaisuudet",
+    "languages": "Kielet",
+    "language": "Kieli",
+    "readme": "README",
+    "notebook": "Muistikirja",
+    "repository_layout": "Arkiston asettelu",
+    "build": "Rakenna",
+    "checks": "Tarkistukset",
+    "what_ci_can_test": "Mitä CI voi testata",
+    "license": "Lisenssi"
+  },
+  "translation_source": "google:fi; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab-muistikirja",
+    "description": "Tämä muistikirja litteroi ääni- tai videotiedostoja Whisper.",
+    "features_heading": "Ominaisuudet",
+    "features": [
+      "**Ilmainen käyttää:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Ei kiinteää muistikirjan puolen tiedostokokorajoitusta:** Suuria ääni- ja videotiedostoja voidaan käsitellä.",
+      "**Batch processing:** Useita ääni- ja videotiedostoja voidaan käsitellä yhdellä kertaa.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Täysin verkossa:** Downloads and processing are performed on Google Colab. Paikallisia laskentaresursseja ei käytetä.",
+      "**Useita tulostusmuotoja:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "Kuinka käyttää",
+    "how_to_use_steps": [
+      "Vuonna **1. Asetukset**, valitse `INPUT_MODE`ja säädä mallia tai lähtöasetuksia tarvittaessa.",
+      "Valitse **Suoritusaika -> Suorita kaikki**.",
+      "Jos `INPUT_MODE = \"upload\"`, odota **2. Tiedoston valinta / Google Drivemount** alkaa, ja napsauta sitten **Valitse tiedostot** solun tulostusalueella.",
+      "Kun käsittely on valmis, tulostiedostot pakataan ja ladataan, jos `AUTO_DOWNLOAD_ZIP`on käytössä."
+    ],
+    "notes_heading": "Huomautuksia",
+    "notes": [
+      "Google Colabilmainen GPUsaatavuus on rajoitettu. Jos GPUei ole saatavilla ja `REQUIRE_CUDA = True`, muistikirja pysähtyy ennen transkriptiota.",
+      "Käsittely vie aikaa. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Jos lataat tiedostoja suoraan, myös latausaika vaaditaan.",
+      "Pidä tämä muistikirja auki käsittelyn aikana. Jos suljet muistikirjan transkription aikana, käsittely pysähtyy."
+    ],
+    "feature_labels": [
+      "Ilmainen käyttää",
+      "Ei kiinteää muistikirjan puolen tiedostokokorajoitusta",
+      "Batch processing",
+      "Google Drivesupport",
+      "Täysin verkossa",
+      "Useita tulostusmuotoja"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Suuria ääni- ja videotiedostoja voidaan käsitellä.",
+      "Useita ääni- ja videotiedostoja voidaan käsitellä yhdellä kertaa.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Paikallisia laskentaresursseja ei käytetä.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

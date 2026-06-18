@@ -1,0 +1,144 @@
+{
+  "language": "sl",
+  "display_name": "Slovenian",
+  "native_name": "Slovenian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. nastavitve",
+    "cell1.section_title": "# 1. nastavitve",
+    "cell2.title": "# @title 2. Izbira datoteke / Google Drivenamestitev",
+    "cell2.section_title": "# 2. Izbira datoteke / Google Drivenamestitev",
+    "cell3.title": "# @title 3. GPUreverjanje in namestitev odvisnosti",
+    "cell3.section_title": "# 3. GPUreverjanje in namestitev odvisnosti",
+    "cell4.title": "# @title 4. Pomožne funkcije",
+    "cell4.section_title": "# 4. Pomožne funkcije",
+    "cell5.title": "# @title 5. Naložite Whisperin zaženite prepis",
+    "cell5.section_title": "# 5. Naložite Whisperin zaženite prepis",
+    "cell6.title": "# @title 6. Stisnite in prenesite izhode",
+    "cell6.section_title": "# 6. Stisnite in prenesite izhode",
+    "settings.input_heading": "# @markdown ## Vnos",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Uporabite `upload`za lokalne datoteke ali `google_drive`za datoteke, ki so že shranjene v Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivevnos",
+    "settings.drive_help": "# @markdown Te nastavitve se uporabljajo samo, ko je `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Običajno ohranite to nastavitev na `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Pot do datoteke ali mape v MyDrive. Če želite uporabiti mapo MyDrive na najvišji ravni, pustite prazno.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Če je vhodna pot pogona mapa, poiščite tudi podmape.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Izbirni filter podniza imena datoteke.",
+    "settings.model_heading": "# @markdown ## Whispermodel",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID modela. Turbo je hitrejši; large-v3je lahko bolj stabilen za nekatere datoteke.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Uporabite `auto`, če ni znan, ali izberite znani izvorni jezik.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Uporabite Whispernačin prevajanja za izpis v angleščino.",
+    "settings.output_heading": "# @markdown ## Izhod",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Shranite izhode pod Google Drive, ko je uporabljen vhod Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Na koncu ustvarite in prenesite en ZIParhiv.",
+    "settings.formats_help": "# @markdown - Izhodne formate nadzirajo spodnje logične vrednosti.",
+    "settings.advanced_heading": "# ## Napredno",
+    "settings.advanced_help": "# Te privzete vrednosti so konzervativne za Colab. Navadnim uporabnikom jih običajno ni treba urejati.",
+    "settings.loaded_message": "Nastavitve so naložene.",
+    "messages.choose_files": "Kliknite »Izberi datoteke« in naložite eno ali več avdio/video datotek.",
+    "messages.selected_files": "Izbrane datoteke:",
+    "messages.dependencies_done": "Namestitev odvisnosti je končana.",
+    "messages.model_loaded": "Whispernaložen model.",
+    "messages.transcription_complete": "Transkripcija končana.",
+    "errors.no_supported_files": "Izbrana ni bila nobena podprta zvočna/video datoteka.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperBeležnica Colab\n\nTa prenosni računalnik prepisuje avdio ali video datoteke z Whisper.\n\n## Lastnosti\n\n- **Brezplačna uporaba:** Ta prenosni računalnik uporablja [openai/whisper](https://github.com/openai/whisper), ki je OpenAIodprtokoden 17. januarja 2023, skupaj z Google Colabbrezplačnim GPUizvajalnim okoljem.\n- **Ni fiksne omejitve velikosti datoteke na strani prenosnega računalnika:** Obdelujejo se lahko velike avdio in video datoteke.\n- **Paketna obdelava:** V enem zagonu je mogoče obdelati več avdio in video datotek.\n- **Google Driveodpora:** Datoteke je mogoče naložiti neposredno ali pa obdelati avdio/video datoteke, shranjene v Google Drive.\n- **V celoti na spletu:** Prenosi in obdelava se izvajajo na Google Colab. Lokalni računalniški viri se ne uporabljajo.\n- **Več izhodnih formatov:** Beležnica izda izvirni JSONrepis in izpeljane datoteke TXT, CSV, Markdown, Excelin SRTodnapisov.\n\n## Kako uporabljati\n\n1. V **1. Nastavitve**, izberite `INPUT_MODE`in po potrebi prilagodite model ali izhodne možnosti.\n2. Izberite **Runtime -> Run all**.\n3. Če `INPUT_MODE = \"upload\"`, počakajte do **2. Začne se izbira datoteke / Google Drivenamestitev**, nato kliknite **Izberi datoteke** v izhodnem območju te celice.\n4. Ko je obdelava končana, se izhodne datoteke stisnejo in prenesejo, če je omogočeno `AUTO_DOWNLOAD_ZIP`.\n\n## Opombe\n\n- Google Colabbrezplačno GPUrazpoložljivost je omejena. Če GPUni na voljo in `REQUIRE_CUDA = True`, se zvezek ustavi pred prepisom.\n- Obdelava zahteva čas. Kot grobo vodilo pri uporabi modela large-v3-turbolahko prepis 60-minutne zvočne ali video datoteke traja približno 5–10 minut. Če datoteke nalagate neposredno, je potreben tudi čas nalaganja.\n- Med obdelavo imejte ta zvezek odprt. Če med prepisovanjem zaprete zvezek, se obdelava ustavi.",
+    "settings.source_language_default": "slovenian"
+  },
+  "readme": {
+    "title": "WhisperSodeluj",
+    "subtitle": "Večjezični Google Colabzvezki za Whisperrepis.",
+    "features": [
+      "**Brezplačna uporaba:** Ta prenosni računalnik uporablja [openai/whisper](https://github.com/openai/whisper), ki je OpenAIodprtokoden 17. januarja 2023, skupaj z Google Colabbrezplačnim GPUizvajalnim okoljem.",
+      "**Ni fiksne omejitve velikosti datoteke na strani prenosnega računalnika:** Obdelujejo se lahko velike avdio in video datoteke.",
+      "**Paketna obdelava:** V enem zagonu je mogoče obdelati več avdio in video datotek.",
+      "**Google Driveodpora:** Datoteke je mogoče naložiti neposredno ali pa obdelati avdio/video datoteke, shranjene v Google Drive.",
+      "**V celoti na spletu:** Prenosi in obdelava se izvajajo na Google Colab. Lokalni računalniški viri se ne uporabljajo.",
+      "**Več izhodnih formatov:** Beležnica izda izvirni JSONrepis in izpeljane datoteke TXT, CSV, Markdown, Excelin SRTodnapisov."
+    ],
+    "template_note": "Koren READMEje angleška vstopna točka, docs/READMEa vsebuje ustvarjene lokalizirane datoteke README. Zvezek s predlogo je izvorni zvezek in vsebuje ogradne oznake, kot je `{{cell1.title}}`. Področne datoteke zagotavljajo jezikovno specifično READMEin kopijo, obrnjeno proti Colabu. Ustvarjeni zvezki so predani, tako da povezave Colab ostanejo stabilne.",
+    "checks_note": "Delovni tok CI ponovno zgradi READMEdatoteke in zvezke iz datotek predloge in področnih nastavitev, preveri zvezek JSON, preveri prazne izhode, preveri sintakso Pythona v celicah kode, pregleda očitne naključne skrivnosti in ne uspe, ko ustvarjene datoteke niso odobrene.",
+    "ci_items": [
+      "READMEgeneracija iz področnih datotek",
+      "ustvarjanje zvezka iz datotek predloge in področnih nastavitev",
+      "veljavnost zvezka JSON",
+      "prazni izhodi izvajanja",
+      "Sintaksa Python v celicah kode",
+      "očitne naključne skrivnosti",
+      "predano ustvarjene datoteke READMEin zvezki, ki se ujemajo z viri"
+    ],
+    "ci_limit": "Celotna pot prepisa zahteva API-je, specifične za Colab, prenose modelov, razpoložljivost GPUin medijske datoteke, ki jih posreduje uporabnik. Obravnavajte to pot kot ročni preskus dima Colab, potem ko so preverjanja ustvarjenih datotek uspešno opravljena.",
+    "license_note": "Generator READMEtega repozitorija, predloga zvezka, področne datoteke, ustvarjeni zvezki in vzdrževalni skripti so izdani pod licenco MIT. Whispermodele in odvisnosti tretjih oseb urejajo njihove ustrezne licence.",
+    "feature_labels": [
+      "Brezplačna uporaba",
+      "Ni fiksne omejitve velikosti datoteke na strani prenosnega računalnika",
+      "Paketna obdelava",
+      "Google Driveodpora",
+      "V celoti na spletu",
+      "Več izhodnih formatov"
+    ],
+    "feature_bodies": [
+      "Ta prenosni računalnik uporablja [openai/whisper](https://github.com/openai/whisper), ki je OpenAIodprtokoden 17. januarja 2023, skupaj z Google Colabbrezplačnim GPUizvajalnim okoljem.",
+      "Obdelujejo se lahko velike avdio in video datoteke.",
+      "V enem zagonu je mogoče obdelati več avdio in video datotek.",
+      "Datoteke je mogoče naložiti neposredno ali pa obdelati avdio/video datoteke, shranjene v Google Drive.",
+      "Prenosi in obdelava se izvajajo na Google Colab. Lokalni računalniški viri se ne uporabljajo.",
+      "Beležnica izda izvirni JSONrepis in izpeljane datoteke TXT, CSV, Markdown, Excelin SRTodnapisov."
+    ]
+  },
+  "labels": {
+    "features": "Lastnosti",
+    "languages": "Jeziki",
+    "language": "Jezik",
+    "readme": "README",
+    "notebook": "Beležnica",
+    "repository_layout": "Postavitev skladišča",
+    "build": "Zgradite",
+    "checks": "Čeki",
+    "what_ci_can_test": "Kaj lahko testira CI",
+    "license": "Licenca"
+  },
+  "translation_source": "google:sl; machine-translated from en",
+  "notebook": {
+    "title": "WhisperBeležnica Colab",
+    "description": "Ta prenosni računalnik prepisuje avdio ali video datoteke z Whisper.",
+    "features_heading": "Lastnosti",
+    "features": [
+      "**Brezplačna uporaba:** Ta prenosni računalnik uporablja [openai/whisper](https://github.com/openai/whisper), ki je OpenAIodprtokoden 17. januarja 2023, skupaj z Google Colabbrezplačnim GPUizvajalnim okoljem.",
+      "**Ni fiksne omejitve velikosti datoteke na strani prenosnega računalnika:** Obdelujejo se lahko velike avdio in video datoteke.",
+      "**Paketna obdelava:** V enem zagonu je mogoče obdelati več avdio in video datotek.",
+      "**Google Driveodpora:** Datoteke je mogoče naložiti neposredno ali pa obdelati avdio/video datoteke, shranjene v Google Drive.",
+      "**V celoti na spletu:** Prenosi in obdelava se izvajajo na Google Colab. Lokalni računalniški viri se ne uporabljajo.",
+      "**Več izhodnih formatov:** Beležnica izda izvirni JSONrepis in izpeljane datoteke TXT, CSV, Markdown, Excelin SRTodnapisov."
+    ],
+    "how_to_use_heading": "Kako uporabljati",
+    "how_to_use_steps": [
+      "V **1. Nastavitve**, izberite `INPUT_MODE`in po potrebi prilagodite model ali izhodne možnosti.",
+      "Izberite **Runtime -> Run all**.",
+      "Če `INPUT_MODE = \"upload\"`, počakajte do **2. Začne se izbira datoteke / Google Drivenamestitev**, nato kliknite **Izberi datoteke** v izhodnem območju te celice.",
+      "Ko je obdelava končana, se izhodne datoteke stisnejo in prenesejo, če je omogočeno `AUTO_DOWNLOAD_ZIP`."
+    ],
+    "notes_heading": "Opombe",
+    "notes": [
+      "Google Colabbrezplačno GPUrazpoložljivost je omejena. Če GPUni na voljo in `REQUIRE_CUDA = True`, se zvezek ustavi pred prepisom.",
+      "Obdelava zahteva čas. Kot grobo vodilo pri uporabi modela large-v3-turbolahko prepis 60-minutne zvočne ali video datoteke traja približno 5–10 minut. Če datoteke nalagate neposredno, je potreben tudi čas nalaganja.",
+      "Med obdelavo imejte ta zvezek odprt. Če med prepisovanjem zaprete zvezek, se obdelava ustavi."
+    ],
+    "feature_labels": [
+      "Brezplačna uporaba",
+      "Ni fiksne omejitve velikosti datoteke na strani prenosnega računalnika",
+      "Paketna obdelava",
+      "Google Driveodpora",
+      "V celoti na spletu",
+      "Več izhodnih formatov"
+    ],
+    "feature_bodies": [
+      "Ta prenosni računalnik uporablja [openai/whisper](https://github.com/openai/whisper), ki je OpenAIodprtokoden 17. januarja 2023, skupaj z Google Colabbrezplačnim GPUizvajalnim okoljem.",
+      "Obdelujejo se lahko velike avdio in video datoteke.",
+      "V enem zagonu je mogoče obdelati več avdio in video datotek.",
+      "Datoteke je mogoče naložiti neposredno ali pa obdelati avdio/video datoteke, shranjene v Google Drive.",
+      "Prenosi in obdelava se izvajajo na Google Colab. Lokalni računalniški viri se ne uporabljajo.",
+      "Beležnica izda izvirni JSONrepis in izpeljane datoteke TXT, CSV, Markdown, Excelin SRTodnapisov."
+    ]
+  }
+}

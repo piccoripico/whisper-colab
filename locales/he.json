@@ -1,0 +1,144 @@
+{
+  "language": "he",
+  "display_name": "Hebrew",
+  "native_name": "Hebrew",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. הגדרות",
+    "cell1.section_title": "# 1. הגדרות",
+    "cell2.title": "# @title 2. בחירת קובץ / Google Drivemount",
+    "cell2.section_title": "# 2. בחירת קובץ / Google Drivemount",
+    "cell3.title": "# @title 3. GPUבדיקה והתקנת תלות",
+    "cell3.section_title": "# 3. GPUבדיקה והתקנת תלות",
+    "cell4.title": "# @title 4. פונקציות עוזר",
+    "cell4.section_title": "# 4. פונקציות עוזר",
+    "cell5.title": "# @title 5. טען Whisperוהפעל תמלול",
+    "cell5.section_title": "# 5. טען Whisperוהפעל תמלול",
+    "cell6.title": "# @title 6. מיקוד והורד יציאות",
+    "cell6.section_title": "# 6. מיקוד והורד יציאות",
+    "settings.input_heading": "# @markdown ## קלט",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: השתמש ב-`upload`עבור קבצים מקומיים או ב-`google_drive`עבור קבצים שכבר מאוחסנים ב-Google Drive.",
+    "settings.drive_heading": "# @markdown ### קלט Google Drive",
+    "settings.drive_help": "# @markdown הגדרות אלה משמשות רק כאשר `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: בדרך כלל שמור את ההגדרה הזו ל-`/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: נתיב קובץ או תיקיה תחת MyDrive. השאר ריק כדי להשתמש בתיקיית MyDrive ברמה העליונה.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: אם נתיב הקלט של Drive הוא תיקיה, חפש גם בתיקיות משנה.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: מסנן משנה אופציונלי של שם קובץ.",
+    "settings.model_heading": "# @markdown ## דגם Whisper",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Faceמזהה דגם. טורבו מהיר יותר; large-v3יכול להיות יציב יותר עבור קבצים מסוימים.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: השתמש ב-`auto`כאשר לא ידוע, או בחר שפת מקור ידועה.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: השתמש במצב תרגום Whisperכדי להוציא אנגלית.",
+    "settings.output_heading": "# @markdown ## פלט",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: שמור פלטים תחת Google Driveכאשר נעשה שימוש בכניסת כונן.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: צור והורד ארכיון ZIPבסוף.",
+    "settings.formats_help": "# @markdown - פורמטים של פלט נשלטים על ידי הבוליאנים למטה.",
+    "settings.advanced_heading": "# ## מתקדם",
+    "settings.advanced_help": "# ברירת המחדל היא שמרנית עבור Colab. משתמשים רגילים בדרך כלל לא צריכים לערוך אותם.",
+    "settings.loaded_message": "ההגדרות נטענו.",
+    "messages.choose_files": "לחץ על 'בחר קבצים' והעלה קובץ אודיו/וידאו אחד או יותר.",
+    "messages.selected_files": "קבצים נבחרים:",
+    "messages.dependencies_done": "התקנת התלות הסתיימה.",
+    "messages.model_loaded": "הדגם Whisperנטען.",
+    "messages.transcription_complete": "התמלול הושלם.",
+    "errors.no_supported_files": "לא נבחרו קבצי אודיו/וידאו נתמכים.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Whisperמחברת Colab\n\nמחברת זו מתמללת קובצי אודיו או וידאו עם Whisper.\n\n## תכונות\n\n- **חינם לשימוש:** מחברת זו משתמשת ב-[openai/whisper](https://github.com/openai/whisper), ש-OpenAI קיבלה בקוד פתוח ב-17 בינואר 2023, יחד עם זמן הריצה החינמי של GPU של Google Colab.\n- **אין מגבלה קבועה של גודל קובץ בצד המחברת:** ניתן לעבד קבצי אודיו ווידאו גדולים.\n- **עיבוד אצווה:** ניתן לעבד קבצי אודיו ווידאו מרובים בהרצה אחת.\n- **תמיכה ב-Google Drive:** ניתן להעלות קבצים ישירות, או לעבד קבצי אודיו/וידאו המאוחסנים ב-Google Drive.\n- **מקוון לחלוטין:** ההורדות והעיבוד מתבצעים ב-Google Colab. לא נעשה שימוש במשאבי מחשוב מקומיים.\n- **פורמטי פלט מרובים:** המחברת מפלטת את תמליל JSON המקורי וקובצי כתוביות מסוג TXT, CSV, Markdown, Excel ו-SRT.\n\n## כיצד להשתמש\n\n1. ב-**1. הגדרות**, בחר `INPUT_MODE`והתאם את הדגם או אפשרויות הפלט במידת הצורך.\n2. בחר **זמן ריצה -> הפעל הכל**.\n3. אם `INPUT_MODE = \"upload\"`, המתן עד **2. בחירת קבצים / Google Drivemount** מתחילה, ולאחר מכן לחץ על **בחר קבצים** באזור הפלט של התא הזה.\n4. בסיום העיבוד, קבצי הפלט נדחסים ומורידים אם `AUTO_DOWNLOAD_ZIP`מופעל.\n\n## הערות\n\n- Google Colabחינם GPUהזמינות מוגבלת. אם אין GPUזמין ו-`REQUIRE_CUDA = True`, המחברת נעצרת לפני התמלול.\n- העיבוד לוקח זמן. כמדריך גס בעת שימוש בדגם large-v3-turbo, קובץ שמע או וידאו של 60 דקות עשוי להימשך כ-5-10 דקות לתמלול. אם אתה מעלה קבצים ישירות, נדרש גם זמן העלאה.\n- השאר מחברת זו פתוחה בזמן העיבוד. אם תסגור את המחברת במהלך התמלול, העיבוד ייפסק.",
+    "settings.source_language_default": "hebrew"
+  },
+  "readme": {
+    "title": "Whisperקולאב",
+    "subtitle": "מחברות Google Colabרב לשוניות עבור תמלול Whisper.",
+    "features": [
+      "**חינם לשימוש:** מחברת זו משתמשת ב-[openai/whisper](https://github.com/openai/whisper), ש-OpenAI קיבלה בקוד פתוח ב-17 בינואר 2023, יחד עם זמן הריצה החינמי של GPU של Google Colab.",
+      "**אין מגבלה קבועה של גודל קובץ בצד המחברת:** ניתן לעבד קבצי אודיו ווידאו גדולים.",
+      "**עיבוד אצווה:** ניתן לעבד קבצי אודיו ווידאו מרובים בהרצה אחת.",
+      "**תמיכה ב-Google Drive:** ניתן להעלות קבצים ישירות, או לעבד קבצי אודיו/וידאו המאוחסנים ב-Google Drive.",
+      "**מקוון לחלוטין:** ההורדות והעיבוד מתבצעים ב-Google Colab. לא נעשה שימוש במשאבי מחשוב מקומיים.",
+      "**פורמטי פלט מרובים:** המחברת מפלטת את תמליל JSON המקורי וקובצי כתוביות מסוג TXT, CSV, Markdown, Excel ו-SRT."
+    ],
+    "template_note": "השורש READMEהוא נקודת הכניסה באנגלית, ו-docs/READMEמכיל קבצי READMEמקומיים שנוצרו. מחברת התבנית היא מחברת המקור ומכילה מצייני מיקום כגון `{{cell1.title}}`. קובצי מיקום מספקים READMEספציפי לשפה ועותק הפונה ל-Colab. מחברות שנוצרו מחויבות כך שקישורי Colab נשארים יציבים.",
+    "checks_note": "זרימת העבודה של CI בונה מחדש READMEקבצים ומחברות מקבצי התבנית והמקום, בודק את המחברת JSON, מאמת פלטים ריקים, בודק תחביר Python בתאי קוד, סורק לאיתור סודות מקריים ברורים ונכשל כאשר קבצים שנוצרו אינם מחויבים.",
+    "ci_items": [
+      "יצירת READMEמקבצי מקומיים",
+      "יצירת מחברת מהתבנית וקובצי המקום",
+      "תוקף המחברת JSON",
+      "פלטי ביצוע ריקים",
+      "תחביר פייתון בתאי קוד",
+      "סודות מקריים ברורים",
+      "מחויב שנוצר READMEוקבצי מחברת התואמים את המקורות"
+    ],
+    "ci_limit": "נתיב התמלול המלא דורש ממשקי API ספציפיים ל-Colab, הורדות דגמים, זמינות GPUוקובצי מדיה שסופקו על ידי המשתמש. התייחס לנתיב הזה כאל בדיקת עשן ידנית של Colab לאחר שעברו בדיקות קבצים שנוצרו.",
+    "license_note": "מחולל READMEשל מאגר זה, תבנית מחברת, קבצי מקומיים, מחברות שנוצרו ותסריטי תחזוקה משוחררים תחת הרישיון MIT. Whisperדגמים ותלות של צד שלישי כפופים לרשיונות המתאימים שלהם.",
+    "feature_labels": [
+      "חינם לשימוש",
+      "אין מגבלה קבועה של גודל קובץ בצד המחברת",
+      "עיבוד אצווה",
+      "תמיכה ב-Google Drive",
+      "מקוון לחלוטין",
+      "פורמטי פלט מרובים"
+    ],
+    "feature_bodies": [
+      "מחברת זו משתמשת ב-[openai/whisper](https://github.com/openai/whisper), ש-OpenAI קיבלה בקוד פתוח ב-17 בינואר 2023, יחד עם זמן הריצה החינמי של GPU של Google Colab.",
+      "ניתן לעבד קבצי אודיו ווידאו גדולים.",
+      "ניתן לעבד קבצי אודיו ווידאו מרובים בהרצה אחת.",
+      "ניתן להעלות קבצים ישירות, או לעבד קבצי אודיו/וידאו המאוחסנים ב-Google Drive.",
+      "ההורדות והעיבוד מתבצעים ב-Google Colab. לא נעשה שימוש במשאבי מחשוב מקומיים.",
+      "המחברת מפלטת את תמליל JSON המקורי וקובצי כתוביות מסוג TXT, CSV, Markdown, Excel ו-SRT."
+    ]
+  },
+  "labels": {
+    "features": "תכונות",
+    "languages": "שפות",
+    "language": "שפה",
+    "readme": "README",
+    "notebook": "מחברת",
+    "repository_layout": "פריסת מאגר",
+    "build": "בנה",
+    "checks": "צ'קים",
+    "what_ci_can_test": "מה CI יכול לבדוק",
+    "license": "רישיון"
+  },
+  "translation_source": "google:iw; machine-translated from en",
+  "notebook": {
+    "title": "Whisperמחברת Colab",
+    "description": "מחברת זו מתמללת קובצי אודיו או וידאו עם Whisper.",
+    "features_heading": "תכונות",
+    "features": [
+      "**חינם לשימוש:** מחברת זו משתמשת ב-[openai/whisper](https://github.com/openai/whisper), ש-OpenAI קיבלה בקוד פתוח ב-17 בינואר 2023, יחד עם זמן הריצה החינמי של GPU של Google Colab.",
+      "**אין מגבלה קבועה של גודל קובץ בצד המחברת:** ניתן לעבד קבצי אודיו ווידאו גדולים.",
+      "**עיבוד אצווה:** ניתן לעבד קבצי אודיו ווידאו מרובים בהרצה אחת.",
+      "**תמיכה ב-Google Drive:** ניתן להעלות קבצים ישירות, או לעבד קבצי אודיו/וידאו המאוחסנים ב-Google Drive.",
+      "**מקוון לחלוטין:** ההורדות והעיבוד מתבצעים ב-Google Colab. לא נעשה שימוש במשאבי מחשוב מקומיים.",
+      "**פורמטי פלט מרובים:** המחברת מפלטת את תמליל JSON המקורי וקובצי כתוביות מסוג TXT, CSV, Markdown, Excel ו-SRT."
+    ],
+    "how_to_use_heading": "כיצד להשתמש",
+    "how_to_use_steps": [
+      "ב-**1. הגדרות**, בחר `INPUT_MODE`והתאם את הדגם או אפשרויות הפלט במידת הצורך.",
+      "בחר **זמן ריצה -> הפעל הכל**.",
+      "אם `INPUT_MODE = \"upload\"`, המתן עד **2. בחירת קבצים / Google Drivemount** מתחילה, ולאחר מכן לחץ על **בחר קבצים** באזור הפלט של התא הזה.",
+      "בסיום העיבוד, קבצי הפלט נדחסים ומורידים אם `AUTO_DOWNLOAD_ZIP`מופעל."
+    ],
+    "notes_heading": "הערות",
+    "notes": [
+      "Google Colabחינם GPUהזמינות מוגבלת. אם אין GPUזמין ו-`REQUIRE_CUDA = True`, המחברת נעצרת לפני התמלול.",
+      "העיבוד לוקח זמן. כמדריך גס בעת שימוש בדגם large-v3-turbo, קובץ שמע או וידאו של 60 דקות עשוי להימשך כ-5-10 דקות לתמלול. אם אתה מעלה קבצים ישירות, נדרש גם זמן העלאה.",
+      "השאר מחברת זו פתוחה בזמן העיבוד. אם תסגור את המחברת במהלך התמלול, העיבוד ייפסק."
+    ],
+    "feature_labels": [
+      "חינם לשימוש",
+      "אין מגבלה קבועה של גודל קובץ בצד המחברת",
+      "עיבוד אצווה",
+      "תמיכה ב-Google Drive",
+      "מקוון לחלוטין",
+      "פורמטי פלט מרובים"
+    ],
+    "feature_bodies": [
+      "מחברת זו משתמשת ב-[openai/whisper](https://github.com/openai/whisper), ש-OpenAI קיבלה בקוד פתוח ב-17 בינואר 2023, יחד עם זמן הריצה החינמי של GPU של Google Colab.",
+      "ניתן לעבד קבצי אודיו ווידאו גדולים.",
+      "ניתן לעבד קבצי אודיו ווידאו מרובים בהרצה אחת.",
+      "ניתן להעלות קבצים ישירות, או לעבד קבצי אודיו/וידאו המאוחסנים ב-Google Drive.",
+      "ההורדות והעיבוד מתבצעים ב-Google Colab. לא נעשה שימוש במשאבי מחשוב מקומיים.",
+      "המחברת מפלטת את תמליל JSON המקורי וקובצי כתוביות מסוג TXT, CSV, Markdown, Excel ו-SRT."
+    ]
+  }
+}

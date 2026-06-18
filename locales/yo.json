@@ -1,0 +1,144 @@
+{
+  "language": "yo",
+  "display_name": "Yoruba",
+  "native_name": "Yoruba",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Eto",
+    "cell1.section_title": "# 1. Eto",
+    "cell2.title": "# @title 2. Aṣayan faili / Google Driveòke",
+    "cell2.section_title": "# 2. Aṣayan faili / Google Driveòke",
+    "cell3.title": "# @title 3. GPUṣayẹwo ati fifi sori ẹrọ igbẹkẹle",
+    "cell3.section_title": "# 3. GPUṣayẹwo ati fifi sori ẹrọ igbẹkẹle",
+    "cell4.title": "# @title 4. Awọn iṣẹ oluranlọwọ",
+    "cell4.section_title": "# 4. Awọn iṣẹ oluranlọwọ",
+    "cell5.title": "# @title 5. Kojọpọ Whisperki o si ṣiṣẹ transcription",
+    "cell5.section_title": "# 5. Kojọpọ Whisperki o si ṣiṣẹ transcription",
+    "cell6.title": "# @title 6. Zip ati awọn abajade igbasilẹ",
+    "cell6.section_title": "# 6. Zip ati awọn abajade igbasilẹ",
+    "settings.input_heading": "# @markdown ## Iṣawọle",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Lo `upload`fun awọn faili agbegbe tabi `google_drive`fun awọn faili ti o ti fipamọ tẹlẹ ni Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveigbewọle",
+    "settings.drive_help": "# @markdown Awọn eto wọnyi jẹ lilo nikan nigbati `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Nigbagbogbo pa eto yii si `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Faili tabi ipa ọna folda labẹ MyDrive. Fi silẹ ni ofifo lati lo folda MyDrive ipele oke.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Ti ọna titẹ sii Drive jẹ folda, tun wa awọn folda inu.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Iyan filename substring àlẹmọ.",
+    "settings.model_heading": "# @markdown ## Whisperawoṣe",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Faceawoṣe ID. Turbo yiyara; large-v3le jẹ iduroṣinṣin diẹ sii fun awọn faili kan.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Lo `auto`nigbati aimọ, tabi yan ede orisun ti a mọ.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Lo Whisperipo itumọ lati ṣejade Gẹẹsi.",
+    "settings.output_heading": "# @markdown ## Abajade",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Fi awọn abajade pamọ labẹ Google Drivenigbati o ba lo igbewọle Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Ṣẹda ati ṣe igbasilẹ ọkan ZIPamosi ni ipari.",
+    "settings.formats_help": "# @markdown - Awọn ọna kika igbejade jẹ iṣakoso nipasẹ awọn boolean ni isalẹ.",
+    "settings.advanced_heading": "# ## To ti ni ilọsiwaju",
+    "settings.advanced_help": "# Awọn aiyipada wọnyi jẹ Konsafetifu fun Colab. Awọn olumulo deede ko nilo lati ṣatunkọ wọn.",
+    "settings.loaded_message": "Eto ti kojọpọ.",
+    "messages.choose_files": "Tẹ 'Yan Awọn faili' ati gbejade ọkan tabi diẹ sii awọn faili ohun / fidio.",
+    "messages.selected_files": "Awọn faili ti a yan:",
+    "messages.dependencies_done": "Fifi sori ẹrọ igbẹkẹle ti pari.",
+    "messages.model_loaded": "Whisperawoṣe kojọpọ.",
+    "messages.transcription_complete": "Itọjade ti pari.",
+    "errors.no_supported_files": "Ko si awọn faili olohun/fidio ti o ni atilẹyin ti a yan.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nIwe ajako yii n ṣe igbasilẹ ohun tabi awọn faili fidio pẹlu Whisper.\n\n## Awọn ẹya ara ẹrọ\n\n- **Ọfẹ lati lo:** Iwe ajako yii nlo [openai/whisper](https://github.com/openai/whisper), eyiti OpenAIṣiṣi-orisun ni Oṣu Kini Ọjọ 17, Ọdun 2023, papọ pẹlu Google Colab's ọfẹ GPUasiko ṣiṣe.\n- **Ko si opin iwọn faili ẹgbẹ ajako ti o wa titi:** Nla iwe ohun ati awọn faili fidio le wa ni ilọsiwaju.\n- **Sise ipele:** Ọpọ iwe ohun ati awọn faili fidio le wa ni ilọsiwaju ni ọkan run.\n- **Google Drivesupport:** Awọn faili le ṣe ikojọpọ taara, tabi awọn faili ohun/fidio ti a fipamọ sinu Google Driveni a le ṣe ilana.\n- **Ni kikun lori ayelujara:** Awọn igbasilẹ ati ṣiṣe ni a ṣe lori Google Colab. Ko si awọn orisun iširo agbegbe ti a lo.\n- **Awọn ọna kika ti o pọju:** Iwe ajako naa ṣe agbejade atilẹba JSONtranscript ati jijade TXT, CSV, Markdown, Excel, ati SRTawọn faili atunkọ.\n\n## Bawo ni lati lo\n\n1. Ninu **1. Eto***, yan `INPUT_MODE`ati ṣatunṣe awoṣe tabi awọn aṣayan iṣẹjade ti o ba nilo.\n2. Yan **Aago ṣiṣe -> Ṣiṣe gbogbo rẹ***.\n3. Ti `INPUT_MODE = \"upload\"`, duro titi **2. Aṣayan faili / Google Driveòke*** bẹrẹ, lẹhinna tẹ **Yan Awọn faili** ni agbegbe iṣelọpọ sẹẹli naa.\n4. Nigbati iṣẹ ṣiṣe ba ti pari, awọn faili ti o wujade yoo jẹ jipu ati ṣe igbasilẹ ti `AUTO_DOWNLOAD_ZIP`ba ti ṣiṣẹ.\n\n## Awọn akọsilẹ\n\n- Google Colabfree GPUwiwa ti wa ni opin. Ti ko ba si GPUwa ati `REQUIRE_CUDA = True`, iwe ajako naa duro ṣaaju kikowe.\n- Ilana sisẹ gba akoko. Gẹgẹbi itọsọna inira nigba lilo awoṣe large-v3-turbo, ohun iṣẹju 60 tabi faili fidio le gba to iṣẹju 5-10 lati ṣe igbasilẹ. Ti o ba gbe awọn faili taara, akoko ikojọpọ tun nilo.\n- Jeki iwe ajako yii ṣii lakoko ṣiṣe. Ti o ba pa iwe ajako naa nigba kikọ silẹ, ṣiṣiṣẹ duro.",
+    "settings.source_language_default": "yoruba"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Multilingual Google Colabiwe ajako fun Whispertranscription.",
+    "features": [
+      "**Ọfẹ lati lo:** Iwe ajako yii nlo [openai/whisper](https://github.com/openai/whisper), eyiti OpenAIṣiṣi-orisun ni Oṣu Kini Ọjọ 17, Ọdun 2023, papọ pẹlu Google Colab's ọfẹ GPUasiko ṣiṣe.",
+      "**Ko si opin iwọn faili ẹgbẹ ajako ti o wa titi:** Nla iwe ohun ati awọn faili fidio le wa ni ilọsiwaju.",
+      "**Sise ipele:** Ọpọ iwe ohun ati awọn faili fidio le wa ni ilọsiwaju ni ọkan run.",
+      "**Google Drivesupport:** Awọn faili le ṣe ikojọpọ taara, tabi awọn faili ohun/fidio ti a fipamọ sinu Google Driveni a le ṣe ilana.",
+      "**Ni kikun lori ayelujara:** Awọn igbasilẹ ati ṣiṣe ni a ṣe lori Google Colab. Ko si awọn orisun iširo agbegbe ti a lo.",
+      "**Awọn ọna kika ti o pọju:** Iwe ajako naa ṣe agbejade atilẹba JSONtranscript ati jijade TXT, CSV, Markdown, Excel, ati SRTawọn faili atunkọ."
+    ],
+    "template_note": "Gbongbo READMEni aaye titẹsi Gẹẹsi, ati pe awọn docs/READMEni ti ipilẹṣẹ READMEawọn faili ti agbegbe. Iwe ajako awoṣe jẹ iwe afọwọkọ orisun ati pe o ni awọn oniduro bii `{{cell1.title}}`. Awọn faili agbegbe pese ede-pato READMEati ẹda ti nkọju si Colab. Awọn iwe ajako ti ipilẹṣẹ jẹ ifaramọ nitorina awọn ọna asopọ Colab duro ni iduroṣinṣin.",
+    "checks_note": "Ṣiṣan iṣẹ CI tun ṣe awọn faili READMEati awọn iwe ajako lati awoṣe ati awọn faili agbegbe, sọwedowo iwe ajako JSON, ṣayẹwo awọn abajade ofo, sọwedowo syntax Python ni awọn sẹẹli koodu, ṣayẹwo fun awọn aṣiri lairotẹlẹ ti o han gbangba, ati kuna nigbati awọn faili ti ipilẹṣẹ ko ṣe.",
+    "ci_items": [
+      "READMEiran lati awọn faili agbegbe",
+      "iran iwe ajako lati awoṣe ati awọn faili agbegbe",
+      "ajako JSONwulo",
+      "sofo ipaniyan awọn abajade",
+      "Python sintasi ni awọn sẹẹli koodu",
+      "kedere lairotẹlẹ asiri",
+      "ti ipilẹṣẹ READMEati awọn faili ajako ti o baamu awọn orisun"
+    ],
+    "ci_limit": "Ọna ikọwe ni kikun nilo awọn API pato-Colab, awọn igbasilẹ awoṣe, wiwa GPU, ati awọn faili media ti a pese fun olumulo. Ṣe itọju ọna yẹn bi idanwo ẹfin Colab afọwọṣe lẹhin awọn sọwedowo-faili ti ipilẹṣẹ kọja.",
+    "license_note": "Ibi ipamọ yii's READMEmonomono, awoṣe iwe ajako, awọn faili agbegbe, awọn iwe ajako ti ipilẹṣẹ, ati awọn iwe afọwọkọ itọju jẹ idasilẹ labẹ iwe-aṣẹ MIT. Whisperawọn awoṣe ati awọn igbẹkẹle ẹni-kẹta ni iṣakoso nipasẹ awọn iwe-aṣẹ oniwun wọn.",
+    "feature_labels": [
+      "Ọfẹ lati lo",
+      "Ko si opin iwọn faili ẹgbẹ ajako ti o wa titi",
+      "Sise ipele",
+      "Google Drivesupport",
+      "Ni kikun lori ayelujara",
+      "Awọn ọna kika ti o pọju"
+    ],
+    "feature_bodies": [
+      "Iwe ajako yii nlo [openai/whisper](https://github.com/openai/whisper), eyiti OpenAIṣiṣi-orisun ni Oṣu Kini Ọjọ 17, Ọdun 2023, papọ pẹlu Google Colab's ọfẹ GPUasiko ṣiṣe.",
+      "Nla iwe ohun ati awọn faili fidio le wa ni ilọsiwaju.",
+      "Ọpọ iwe ohun ati awọn faili fidio le wa ni ilọsiwaju ni ọkan run.",
+      "Awọn faili le ṣe ikojọpọ taara, tabi awọn faili ohun/fidio ti a fipamọ sinu Google Driveni a le ṣe ilana.",
+      "Awọn igbasilẹ ati ṣiṣe ni a ṣe lori Google Colab. Ko si awọn orisun iširo agbegbe ti a lo.",
+      "Iwe ajako naa ṣe agbejade atilẹba JSONtranscript ati jijade TXT, CSV, Markdown, Excel, ati SRTawọn faili atunkọ."
+    ]
+  },
+  "labels": {
+    "features": "Awọn ẹya ara ẹrọ",
+    "languages": "Awọn ede",
+    "language": "Ede",
+    "readme": "README",
+    "notebook": "Iwe akiyesi",
+    "repository_layout": "Ifilelẹ ibi ipamọ",
+    "build": "Kọ",
+    "checks": "Awọn sọwedowo",
+    "what_ci_can_test": "Kini CI le ṣe idanwo",
+    "license": "Iwe-aṣẹ"
+  },
+  "translation_source": "google:yo; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Iwe ajako yii n ṣe igbasilẹ ohun tabi awọn faili fidio pẹlu Whisper.",
+    "features_heading": "Awọn ẹya ara ẹrọ",
+    "features": [
+      "**Ọfẹ lati lo:** Iwe ajako yii nlo [openai/whisper](https://github.com/openai/whisper), eyiti OpenAIṣiṣi-orisun ni Oṣu Kini Ọjọ 17, Ọdun 2023, papọ pẹlu Google Colab's ọfẹ GPUasiko ṣiṣe.",
+      "**Ko si opin iwọn faili ẹgbẹ ajako ti o wa titi:** Nla iwe ohun ati awọn faili fidio le wa ni ilọsiwaju.",
+      "**Sise ipele:** Ọpọ iwe ohun ati awọn faili fidio le wa ni ilọsiwaju ni ọkan run.",
+      "**Google Drivesupport:** Awọn faili le ṣe ikojọpọ taara, tabi awọn faili ohun/fidio ti a fipamọ sinu Google Driveni a le ṣe ilana.",
+      "**Ni kikun lori ayelujara:** Awọn igbasilẹ ati ṣiṣe ni a ṣe lori Google Colab. Ko si awọn orisun iširo agbegbe ti a lo.",
+      "**Awọn ọna kika ti o pọju:** Iwe ajako naa ṣe agbejade atilẹba JSONtranscript ati jijade TXT, CSV, Markdown, Excel, ati SRTawọn faili atunkọ."
+    ],
+    "how_to_use_heading": "Bawo ni lati lo",
+    "how_to_use_steps": [
+      "Ninu **1. Eto ***, yan `INPUT_MODE`ati ṣatunṣe awoṣe tabi awọn aṣayan iṣẹjade ti o ba nilo.",
+      "Yan **Aago ṣiṣe -> Ṣiṣe gbogbo rẹ ***.",
+      "Ti `INPUT_MODE = \"upload\"`, duro titi **2. Aṣayan faili / Google Driveòke *** bẹrẹ, lẹhinna tẹ ** Yan Awọn faili ** ni agbegbe iṣelọpọ sẹẹli naa.",
+      "Nigbati iṣẹ ṣiṣe ba ti pari, awọn faili ti o wujade yoo jẹ jipu ati ṣe igbasilẹ ti `AUTO_DOWNLOAD_ZIP`ba ti ṣiṣẹ."
+    ],
+    "notes_heading": "Awọn akọsilẹ",
+    "notes": [
+      "Google Colabfree GPUwiwa ti wa ni opin. Ti ko ba si GPUwa ati `REQUIRE_CUDA = True`, iwe ajako naa duro ṣaaju kikowe.",
+      "Ilana sisẹ gba akoko. Gẹgẹbi itọsọna inira nigba lilo awoṣe large-v3-turbo, ohun iṣẹju 60 tabi faili fidio le gba to iṣẹju 5-10 lati ṣe igbasilẹ. Ti o ba gbe awọn faili taara, akoko ikojọpọ tun nilo.",
+      "Jeki iwe ajako yii ṣii lakoko ṣiṣe. Ti o ba pa iwe ajako naa nigba kikọ silẹ, ṣiṣiṣẹ duro."
+    ],
+    "feature_labels": [
+      "Ọfẹ lati lo",
+      "Ko si opin iwọn faili ẹgbẹ ajako ti o wa titi",
+      "Sise ipele",
+      "Google Drivesupport",
+      "Ni kikun lori ayelujara",
+      "Awọn ọna kika ti o pọju"
+    ],
+    "feature_bodies": [
+      "Iwe ajako yii nlo [openai/whisper](https://github.com/openai/whisper), eyiti OpenAIṣiṣi-orisun ni Oṣu Kini Ọjọ 17, Ọdun 2023, papọ pẹlu Google Colab's ọfẹ GPUasiko ṣiṣe.",
+      "Nla iwe ohun ati awọn faili fidio le wa ni ilọsiwaju.",
+      "Ọpọ iwe ohun ati awọn faili fidio le wa ni ilọsiwaju ni ọkan run.",
+      "Awọn faili le ṣe ikojọpọ taara, tabi awọn faili ohun/fidio ti a fipamọ sinu Google Driveni a le ṣe ilana.",
+      "Awọn igbasilẹ ati ṣiṣe ni a ṣe lori Google Colab. Ko si awọn orisun iširo agbegbe ti a lo.",
+      "Iwe ajako naa ṣe agbejade atilẹba JSONtranscript ati jijade TXT, CSV, Markdown, Excel, ati SRTawọn faili atunkọ."
+    ]
+  }
+}

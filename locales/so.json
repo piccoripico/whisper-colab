@@ -1,0 +1,144 @@
+{
+  "language": "so",
+  "display_name": "Somali",
+  "native_name": "Somali",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Dejinta",
+    "cell1.section_title": "# 1. Dejinta",
+    "cell2.title": "# @title 2. Xulashada faylka / Google Drivebuurta",
+    "cell2.section_title": "# 2. Xulashada faylka / Google Drivebuurta",
+    "cell3.title": "# @title 3. GPUhubinta iyo rakibida ku-tiirsanaanta",
+    "cell3.section_title": "# 3. GPUhubinta iyo rakibida ku-tiirsanaanta",
+    "cell4.title": "# @title 4. Hawlaha caawiyaha",
+    "cell4.section_title": "# 4. Hawlaha caawiyaha",
+    "cell5.title": "# @title 5. Soo rar Whisperoo socodsii qoraalka",
+    "cell5.section_title": "# 5. Soo rar Whisperoo socodsii qoraalka",
+    "cell6.title": "# @title 6. Zip oo soo dejiso wax soo saarka",
+    "cell6.section_title": "# 6. Zip oo soo dejiso wax soo saarka",
+    "settings.input_heading": "# @markdown ## Gelida",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: U isticmaal `upload`faylalka maxalliga ah ama `google_drive`faylal horay ugu kaydsanaa Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivegelitaan",
+    "settings.drive_help": "# @markdown Dejintan waxa la isticmaalaa kaliya marka `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Sida caadiga ah u dhig tan `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Fayl ama galka dariiqa hoosta MyDrive. Banaan ku dhaaf si aad u isticmaasho galka heerka sare ee MyDrive.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Haddii dariiqa gelinta Drive-ku yahay gal, sidoo kale raadi faylalka hoose.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: shaandheynta magaca faylka ee ikhtiyaarka ah.",
+    "settings.model_heading": "# @markdown ## Whispermodel",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceAqoonsiga moodeelka. Turbo waa dhakhso; large-v3waxay noqon kartaa mid aad u xasiloon faylalka qaarkood.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Isticmaal `auto`marka aan la garanayn, ama dooro luqadda la yaqaan.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Adeegso Whisperqaab tarjumid si aad u soo saarto Ingiriisiga.",
+    "settings.output_heading": "# @markdown ## Wax soo saarka",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Ku keydi wax soo saarka hoosta Google Drivemarka galinta Drive la isticmaalo.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Abuur oo soo deji hal ZIPkaydka dhammaadka.",
+    "settings.formats_help": "# @markdown - Qaababka wax soo saarka waxaa gacanta ku haya booleans-ka hoose.",
+    "settings.advanced_heading": "# ## Sareeye",
+    "settings.advanced_help": "# Qodobadani waa kuwo muxaafid u ah Colab. Isticmaalayaasha caadiga ah badanaa uma baahna inay wax ka beddelaan.",
+    "settings.loaded_message": "Dejinta waa raray",
+    "messages.choose_files": "Guji 'Dooro Files' oo geli hal ama kabadan faylal maqal/muuqaal ah.",
+    "messages.selected_files": "Faylasha la xushay:",
+    "messages.dependencies_done": "Ku-tiirsanaanta waa dhammaatay",
+    "messages.model_loaded": "Whispermodel raran.",
+    "messages.transcription_complete": "Qoraalku wuu dhammaaday.",
+    "errors.no_supported_files": "Ma jiro faylal maqal/muuqaal ah oo la taageeray",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperBuuga Xusuus-qorka Colab\n\nBuug-yarahan wuxuu ku qoraa faylal maqal ama muuqaal ah Whisper.\n\n## Astaamaha\n\n- **Bilaash in la isticmaalo:** Buug-yarahan waxa uu isticmaalaa [openai/whisper](https://github.com/openai/whisper), kaas oo OpenAIfuran-sourceed January 17, 2023, oo ay la socoto Google Colab's free GPUruntime.\n- **Ma jiro xaddid xaddidan oo ku saabsan cabbirka buugga-dhinaca:** Galalka maqalka iyo muqaalka ah ee waaweyn waa laga baaraandegi karaa\n- **Habaynta Dufcaddii:** Galal badan oo maqal iyo muuqaal ah ayaa lagu farsamayn karaa hal orod.\n- **Google Drivetaageero:** Faylasha si toos ah ayaa loo dhejin karaa, ama faylalka maqal/muuqaalka ah ee lagu kaydiyay Google Drivewaa la habayn karaa.\n- **Si buuxda online:** Soo dejinta iyo habaynta waxa lagu sameeyaa Google Colab. Ma jiro agab xisaabeed maxalli ah oo la isticmaalo.\n- **Qaabab wax soo saar badan:** Buug-yaraha wuxuu soo saaray asalka JSONqoraalka oo laga soo qaatay TXT, CSV, Markdown, Excel, iyo SRTfaylalka hoosaadka.\n\n## Sida loo isticmaalo\n\n1. gudaha **1. Dejinta**, dooro `INPUT_MODE`oo hagaaji qaabka ama xulashooyinka wax soo saarka haddii loo baahdo.\n2. Dooro **Runtime -> Orod dhammaan***.\n3. Haddii `INPUT_MODE = \"upload\"`, sug ilaa **2. Xulashada faylka / Google DriveBuur*** bilaabataa, dabadeed dhagsii **Dooro Faylasha** ee aagga wax-soo-saarka unuggaas.\n4. Marka habayntu dhammaato, faylalka wax-soo-saarka waa la soo shubaa oo la soo dejiyaa haddii `AUTO_DOWNLOAD_ZIP`karti loo yeesho.\n\n## Xusuusin\n\n- Google Colabfree GPUhelitaanku waa xadidan yahay. Haddii aysan jirin GPUla heli karo iyo `REQUIRE_CUDA = True`, buug-yaraha wuxuu joogsadaa ka hor qoraalka.\n- Habayntu waxay qaadataa wakhti Sida hage adag marka la isticmaalayo qaabka large-v3-turbo, 60-daqiiqo oo maqal ah ama fayl muuqaal ah ayaa laga yaabaa inay qaadato ilaa 5-10 daqiiqo in la qoro. Haddii aad si toos ah u geliyaan faylasha, wakhtiga soo dejinta ayaa sidoo kale loo baahan yahay.\n- Ha furna buug-yarahaan marka la farsameynayo. Haddii aad xidhid buug-yaraha inta lagu jiro qoraalka, habayntu way joogsanaysaa.",
+    "settings.source_language_default": "somali"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Buugaagta xusuus qorka ah ee luuqadaha badan ku hadla ee Google Colab",
+    "features": [
+      "**Bilaash in la isticmaalo:** Buug-yarahan waxa uu isticmaalaa [openai/whisper](https://github.com/openai/whisper), kaas oo OpenAIfuran-sourceed January 17, 2023, oo ay la socoto Google Colab's free GPUruntime.",
+      "**Ma jiro xaddid xaddidan oo ku saabsan cabbirka buugga-dhinaca:** Galalka maqalka iyo muqaalka ah ee waaweyn waa laga baaraandegi karaa",
+      "**Habaynta Dufcaddii:** Galal badan oo maqal iyo muuqaal ah ayaa lagu farsamayn karaa hal orod.",
+      "**Google Drivetaageero:** Faylasha si toos ah ayaa loo dhejin karaa, ama faylalka maqal/muuqaalka ah ee lagu kaydiyay Google Drivewaa la habayn karaa.",
+      "**Si buuxda online:** Soo dejinta iyo habaynta waxa lagu sameeyaa Google Colab. Ma jiro agab xisaabeed maxalli ah oo la isticmaalo.",
+      "**Qaabab wax soo saar badan:** Buug-yaraha wuxuu soo saaray asalka JSONqoraalka oo laga soo qaatay TXT, CSV, Markdown, Excel, iyo SRTfaylalka hoosaadka."
+    ],
+    "template_note": "Xididka READMEwaa barta Ingiriisida laga soo galo, docs/READMEwaxa ku jira faylal la soo saaray READMEBuugga xusuus-qorka template waa buugga xusuus-qorka isha wuxuuna ka kooban yahay meel-hayeyaasha sida `{{cell1.title}}`. Faylasha maxalliga ah waxay bixiyaan luqad-gaar ah READMEiyo nuqul u jeedda Colab. Buugaag xusuus qor ah ayaa la sameeyay si isku xirka Colab uu u ahaado mid xasiloon.",
+    "checks_note": "Socodka shaqada ee CI wuxuu dib u dhisaa READMEfaylalka iyo buugaagta xusuus-qorka ee qaab-dhismeedka iyo faylalka maxalliga ah, waxay hubisaa buug-yaraha JSON, waxay xaqiijisaa wax-soo-saarka madhan, waxay hubisaa syntax Python gudaha unugyada koodhka, waxay baadhaysaa siraha shilalka ee cad, oo ku guul-darraysta marka faylasha la soo saaray aan la samayn.",
+    "ci_items": [
+      "READMEjiilka laga soo qaaday faylalka deegaanka",
+      "Jiilka buug-yaraha oo ka soo jeeda qaabka iyo faylalka deegaanka",
+      "buug xusuus qor JSONansax ah",
+      "wax soo saarka fulinta madhan",
+      "Python syntax ee unugyada code",
+      "siraha shilalka cad",
+      "ka go'an READMEiyo faylalka buug-yaraha ee ku habboon ilaha"
+    ],
+    "ci_limit": "Dariiqa qoraalka oo buuxa wuxuu u baahan yahay APIs-gaar ah Colab, soo dejinta moodeelka, GPUhelitaan, iyo faylasha warbaahinta ee adeegsaduhu bixiyo. Ula dhaqan jidkaas sidii gacanta tijaabada qiiqa Colab ka dib markii jeegaga faylka la sameeyay uu dhaafo.",
+    "license_note": "Kaydkan READMEkoronto-dhaliye, qaab-dhismeedka buug-yaraha, faylalka deegaanka, buugaagta xusuus-qorka ee la sameeyay, iyo qoraallada dayactirka ayaa lagu sii daayay hoosta MITshatiga. Whispermoodooyinka iyo ku-tiirsanaanta qolo saddexaad waxaa maamula shatiyadooda.",
+    "feature_labels": [
+      "Bilaash in la isticmaalo",
+      "Ma jiro xaddid xaddidan oo ku saabsan cabbirka buugga-dhinaca",
+      "Habaynta Dufcaddii",
+      "Google Drivetaageero",
+      "Si buuxda online",
+      "Qaabab wax soo saar badan"
+    ],
+    "feature_bodies": [
+      "Buug-yarahan waxa uu isticmaalaa [openai/whisper](https://github.com/openai/whisper), kaas oo OpenAIfuran-sourceed January 17, 2023, oo ay la socoto Google Colab's free GPUruntime.",
+      "Galalka maqalka iyo muqaalka ah ee waaweyn waa laga baaraandegi karaa",
+      "Galal badan oo maqal iyo muuqaal ah ayaa lagu farsamayn karaa hal orod.",
+      "Faylasha si toos ah ayaa loo dhejin karaa, ama faylalka maqal/muuqaalka ah ee lagu kaydiyay Google Drivewaa la habayn karaa.",
+      "Soo dejinta iyo habaynta waxa lagu sameeyaa Google Colab. Ma jiro agab xisaabeed maxalli ah oo la isticmaalo.",
+      "Buug-yaraha wuxuu soo saaray asalka JSONqoraalka oo laga soo qaatay TXT, CSV, Markdown, Excel, iyo SRTfaylalka hoosaadka."
+    ]
+  },
+  "labels": {
+    "features": "Astaamaha",
+    "languages": "Luuqadaha",
+    "language": "Luuqad",
+    "readme": "README",
+    "notebook": "Buug xusuusin",
+    "repository_layout": "Qaabka Kaydka",
+    "build": "Dhis",
+    "checks": "Hubinta",
+    "what_ci_can_test": "Maxay CI tijaabin kartaa",
+    "license": "Shatiga"
+  },
+  "translation_source": "direct_google:so; machine-translated from en",
+  "notebook": {
+    "title": "WhisperBuuga Xusuus-qorka Colab",
+    "description": "Buug-yarahan wuxuu ku qoraa faylal maqal ama muuqaal ah Whisper.",
+    "features_heading": "Astaamaha",
+    "features": [
+      "**Bilaash in la isticmaalo:** Buug-yarahan waxa uu isticmaalaa [openai/whisper](https://github.com/openai/whisper), kaas oo OpenAIfuran-sourceed January 17, 2023, oo ay la socoto Google Colab's free GPUruntime.",
+      "**Ma jiro xaddid xaddidan oo ku saabsan cabbirka buugga-dhinaca:** Galalka maqalka iyo muqaalka ah ee waaweyn waa laga baaraandegi karaa",
+      "**Habaynta Dufcaddii:** Galal badan oo maqal iyo muuqaal ah ayaa lagu farsamayn karaa hal orod.",
+      "**Google Drivetaageero:** Faylasha si toos ah ayaa loo dhejin karaa, ama faylalka maqal/muuqaalka ah ee lagu kaydiyay Google Drivewaa la habayn karaa.",
+      "**Si buuxda online:** Soo dejinta iyo habaynta waxa lagu sameeyaa Google Colab. Ma jiro agab xisaabeed maxalli ah oo la isticmaalo.",
+      "**Qaabab wax soo saar badan:** Buug-yaraha wuxuu soo saaray asalka JSONqoraalka oo laga soo qaatay TXT, CSV, Markdown, Excel, iyo SRTfaylalka hoosaadka."
+    ],
+    "how_to_use_heading": "Sida loo isticmaalo",
+    "how_to_use_steps": [
+      "gudaha **1. Dejinta**, dooro `INPUT_MODE`oo hagaaji qaabka ama xulashooyinka wax soo saarka haddii loo baahdo.",
+      "Dooro ** Runtime -> Orod dhammaan ***.",
+      "Haddii `INPUT_MODE = \"upload\"`, sug ilaa **2. Xulashada faylka / Google DriveBuur *** bilaabataa, dabadeed dhagsii **Dooro Faylasha** ee aagga wax-soo-saarka unuggaas.",
+      "Marka habayntu dhammaato, faylalka wax-soo-saarka waa la soo shubaa oo la soo dejiyaa haddii `AUTO_DOWNLOAD_ZIP`karti loo yeesho."
+    ],
+    "notes_heading": "Xusuusin",
+    "notes": [
+      "Google Colabfree GPUhelitaanku waa xadidan yahay. Haddii aysan jirin GPUla heli karo iyo `REQUIRE_CUDA = True`, buug-yaraha wuxuu joogsadaa ka hor qoraalka.",
+      "Habayntu waxay qaadataa wakhti Sida hage adag marka la isticmaalayo qaabka large-v3-turbo, 60-daqiiqo oo maqal ah ama fayl muuqaal ah ayaa laga yaabaa inay qaadato ilaa 5-10 daqiiqo in la qoro. Haddii aad si toos ah u geliyaan faylasha, wakhtiga soo dejinta ayaa sidoo kale loo baahan yahay.",
+      "Ha furna buug-yarahaan marka la farsameynayo. Haddii aad xidhid buug-yaraha inta lagu jiro qoraalka, habayntu way joogsanaysaa."
+    ],
+    "feature_labels": [
+      "Bilaash in la isticmaalo",
+      "Ma jiro xaddid xaddidan oo ku saabsan cabbirka buugga-dhinaca",
+      "Habaynta Dufcaddii",
+      "Google Drivetaageero",
+      "Si buuxda online",
+      "Qaabab wax soo saar badan"
+    ],
+    "feature_bodies": [
+      "Buug-yarahan waxa uu isticmaalaa [openai/whisper](https://github.com/openai/whisper), kaas oo OpenAIfuran-sourceed January 17, 2023, oo ay la socoto Google Colab's free GPUruntime.",
+      "Galalka maqalka iyo muqaalka ah ee waaweyn waa laga baaraandegi karaa",
+      "Galal badan oo maqal iyo muuqaal ah ayaa lagu farsamayn karaa hal orod.",
+      "Faylasha si toos ah ayaa loo dhejin karaa, ama faylalka maqal/muuqaalka ah ee lagu kaydiyay Google Drivewaa la habayn karaa.",
+      "Soo dejinta iyo habaynta waxa lagu sameeyaa Google Colab. Ma jiro agab xisaabeed maxalli ah oo la isticmaalo.",
+      "Buug-yaraha wuxuu soo saaray asalka JSONqoraalka oo laga soo qaatay TXT, CSV, Markdown, Excel, iyo SRTfaylalka hoosaadka."
+    ]
+  }
+}

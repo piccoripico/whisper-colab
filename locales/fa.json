@@ -1,0 +1,144 @@
+{
+  "language": "fa",
+  "display_name": "Persian",
+  "native_name": "Persian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. تنظیمات",
+    "cell1.section_title": "# 1. تنظیمات",
+    "cell2.title": "# @title 2. انتخاب فایل / Google Drivemount",
+    "cell2.section_title": "# 2. انتخاب فایل / Google Drivemount",
+    "cell3.title": "# @title 3. GPUبررسی و نصب وابستگی",
+    "cell3.section_title": "# 3. GPUبررسی و نصب وابستگی",
+    "cell4.title": "# @title 4. توابع کمکی",
+    "cell4.section_title": "# 4. توابع کمکی",
+    "cell5.title": "# @title 5. Whisperرا بارگیری کنید و رونویسی را اجرا کنید",
+    "cell5.section_title": "# 5. Whisperرا بارگیری کنید و رونویسی را اجرا کنید",
+    "cell6.title": "# @title 6. خروجی ها را فشرده و دانلود کنید",
+    "cell6.section_title": "# 6. خروجی ها را فشرده و دانلود کنید",
+    "settings.input_heading": "# @markdown ## ورودی",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: از `upload`برای فایل‌های محلی یا `google_drive`برای فایل‌هایی که قبلاً در Google Driveذخیره شده‌اند استفاده کنید.",
+    "settings.drive_heading": "# @markdown ### ورودی Google Drive",
+    "settings.drive_help": "# @markdown این تنظیمات فقط زمانی استفاده می شوند که `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: معمولاً این مجموعه را روی `/content/drive/MyDrive`نگه دارید.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: یک مسیر فایل یا پوشه در زیر MyDrive. برای استفاده از پوشه سطح بالای MyDrive، آن را خالی بگذارید.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: اگر مسیر ورودی Drive یک پوشه است، زیرپوشه‌ها را نیز جستجو کنید.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: فیلتر فرعی نام فایل اختیاری.",
+    "settings.model_heading": "# @markdown ## مدل Whisper",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Faceشناسه مدل. توربو سریعتر است. large-v3می‌تواند برای برخی فایل‌ها پایدارتر باشد.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: وقتی ناشناخته است از `auto`استفاده کنید یا یک زبان مبدأ شناخته شده را انتخاب کنید.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: از حالت ترجمه Whisperبرای خروجی انگلیسی استفاده کنید.",
+    "settings.output_heading": "# @markdown ## خروجی",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: هنگام استفاده از ورودی Drive، خروجی‌ها را در زیر Google Driveذخیره کنید.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: در پایان یک آرشیو ZIPایجاد و دانلود کنید.",
+    "settings.formats_help": "# @markdown - فرمت های خروجی توسط بولین های زیر کنترل می شوند.",
+    "settings.advanced_heading": "# ## پیشرفته",
+    "settings.advanced_help": "# این پیش فرض ها برای Colab محافظه کارانه هستند. کاربران عادی معمولا نیازی به ویرایش آنها ندارند.",
+    "settings.loaded_message": "تنظیمات بارگیری شد.",
+    "messages.choose_files": "روی «انتخاب فایل‌ها» کلیک کنید و یک یا چند فایل صوتی/تصویری را آپلود کنید.",
+    "messages.selected_files": "فایل های منتخب:",
+    "messages.dependencies_done": "نصب وابستگی به پایان رسید.",
+    "messages.model_loaded": "Whisperمدل بارگذاری شد.",
+    "messages.transcription_complete": "رونویسی کامل شد.",
+    "errors.no_supported_files": "هیچ فایل صوتی/تصویری پشتیبانی شده انتخاب نشد.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Whisperنوت بوک کولب\n\nاین نوت بوک فایل های صوتی یا تصویری را با Whisperرونویسی می کند.\n\n## ویژگی ها\n\n- **رایگان برای استفاده:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.\n- **بدون محدودیت اندازه فایل سمت نوت بوک ثابت:** فایل های صوتی و تصویری بزرگ قابل پردازش هستند.\n- **پردازش دسته ای:** چندین فایل صوتی و تصویری را می توان در یک اجرا پردازش کرد.\n- **پشتیبانی Google Drive:** فایل ها را می توان مستقیما آپلود کرد یا فایل های صوتی/تصویری ذخیره شده در Google Driveرا می توان پردازش کرد.\n- **کاملا آنلاین:** دانلودها و پردازش در Google Colabانجام می شود. هیچ منبع محاسباتی محلی استفاده نمی شود.\n- **چند فرمت خروجی:** نوت بوک متن اصلی JSONو فایل های زیرنویس TXT، CSV، Markdown، Excelو SRTرا خروجی می‌دهد.\n\n## نحوه استفاده\n\n1. در **1. تنظیمات**، `INPUT_MODE`را انتخاب کنید و در صورت نیاز مدل یا گزینه های خروجی را تنظیم کنید.\n2. **Runtime -> Run all** را انتخاب کنید.\n3. اگر `INPUT_MODE = \"upload\"`، تا **2 صبر کنید. انتخاب فایل / Google Drivemount** شروع می‌شود، سپس روی **Choose Files** در ناحیه خروجی آن سلول کلیک کنید.\n4. پس از تکمیل پردازش، فایل های خروجی فشرده شده و در صورت فعال بودن `AUTO_DOWNLOAD_ZIP`، دانلود می شوند.\n\n## یادداشت ها\n\n- Google Colabرایگان GPUدر دسترس بودن محدود است. اگر GPUو `REQUIRE_CUDA = True`موجود نباشد، نوت بوک قبل از رونویسی متوقف می‌شود.\n- پردازش زمان می برد. به عنوان یک راهنمای تقریبی هنگام استفاده از مدل large-v3-turbo، رونویسی یک فایل صوتی یا تصویری 60 دقیقه ای ممکن است حدود 5 تا 10 دقیقه طول بکشد. اگر فایل‌ها را مستقیماً آپلود می‌کنید، زمان آپلود نیز لازم است.\n- این نوت بوک را هنگام پردازش باز نگه دارید. اگر نوت بوک را در حین رونویسی ببندید، پردازش متوقف می شود.",
+    "settings.source_language_default": "persian"
+  },
+  "readme": {
+    "title": "Whisperکولب",
+    "subtitle": "نوت بوک های چند زبانه Google Colabبرای رونویسی Whisper.",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**بدون محدودیت اندازه فایل سمت نوت بوک ثابت:** فایل های صوتی و تصویری بزرگ قابل پردازش هستند.",
+      "**پردازش دسته ای:** چندین فایل صوتی و تصویری را می توان در یک اجرا پردازش کرد.",
+      "**پشتیبانی Google Drive:** فایل ها را می توان مستقیما آپلود کرد یا فایل های صوتی/تصویری ذخیره شده در Google Driveرا می توان پردازش کرد.",
+      "**کاملا آنلاین:** دانلودها و پردازش در Google Colabانجام می شود. هیچ منبع محاسباتی محلی استفاده نمی شود.",
+      "**چند فرمت خروجی:** نوت بوک متن اصلی JSONو فایل های زیرنویس TXT، CSV، Markdown، Excelو SRTرا خروجی می‌دهد."
+    ],
+    "template_note": "ریشه READMEنقطه ورود انگلیسی است و docs/READMEحاوی فایل‌های READMEبومی‌سازی شده تولید شده است. دفترچه یادداشت الگو، دفترچه یادداشت منبع است و حاوی متغیرهایی مانند `{{cell1.title}}`است. فایل‌های محلی READMEمخصوص زبان و کپی رو به روی Colab را ارائه می‌کنند. نوت‌بوک‌های تولید شده متعهد هستند، بنابراین پیوندهای Colab پایدار می‌مانند.",
+    "checks_note": "گردش کار CI فایل‌ها و نوت‌بوک‌ها READMEرا از قالب و فایل‌های محلی بازسازی می‌کند، notebook JSONرا بررسی می‌کند، خروجی‌های خالی را تأیید می‌کند، نحو Python را در سلول‌های کد بررسی می‌کند، اسرار تصادفی آشکار را اسکن می‌کند، و زمانی که فایل‌های تولید شده متعهد نمی‌شوند، از کار می‌افتد.",
+    "ci_items": [
+      "تولید READMEاز فایل‌های محلی",
+      "تولید نوت بوک از قالب و فایل های محلی",
+      "اعتبار نوت بوک JSON",
+      "خروجی های اجرایی خالی",
+      "نحو پایتون در سلول های کد",
+      "رازهای تصادفی آشکار",
+      "متعهد ایجاد READMEو فایل های نوت بوک مطابق با منابع"
+    ],
+    "ci_limit": "مسیر کامل رونویسی به APIهای مخصوص Colab، دانلودهای مدل، در دسترس بودن GPUو فایل‌های رسانه‌ای ارائه‌شده توسط کاربر نیاز دارد. پس از گذراندن بررسی های فایل تولید شده، آن مسیر را به عنوان یک تست دستی دود کولب در نظر بگیرید.",
+    "license_note": "مولد READMEاین مخزن، الگوی نوت بوک، فایل های محلی، نوت بوک های تولید شده و اسکریپت های نگهداری تحت مجوز MITمنتشر شده است. مدل‌های Whisperو وابستگی‌های شخص ثالث توسط مجوزهای مربوطه کنترل می‌شوند.",
+    "feature_labels": [
+      "رایگان برای استفاده",
+      "بدون محدودیت اندازه فایل سمت نوت بوک ثابت",
+      "پردازش دسته ای",
+      "پشتیبانی Google Drive",
+      "کاملا آنلاین",
+      "چند فرمت خروجی"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "فایل های صوتی و تصویری بزرگ قابل پردازش هستند.",
+      "چندین فایل صوتی و تصویری را می توان در یک اجرا پردازش کرد.",
+      "فایل ها را می توان مستقیما آپلود کرد یا فایل های صوتی/تصویری ذخیره شده در Google Driveرا می توان پردازش کرد.",
+      "دانلودها و پردازش در Google Colabانجام می شود. هیچ منبع محاسباتی محلی استفاده نمی شود.",
+      "نوت بوک متن اصلی JSONو فایل های زیرنویس TXT، CSV، Markdown، Excelو SRTرا خروجی می‌دهد."
+    ]
+  },
+  "labels": {
+    "features": "ویژگی ها",
+    "languages": "زبان ها",
+    "language": "زبان",
+    "readme": "README",
+    "notebook": "دفترچه یادداشت",
+    "repository_layout": "چیدمان مخزن",
+    "build": "ساخت",
+    "checks": "چک ها",
+    "what_ci_can_test": "آنچه CI می تواند آزمایش کند",
+    "license": "مجوز"
+  },
+  "translation_source": "google:fa; machine-translated from en",
+  "notebook": {
+    "title": "Whisperنوت بوک کولب",
+    "description": "این نوت بوک فایل های صوتی یا تصویری را با Whisperرونویسی می کند.",
+    "features_heading": "ویژگی ها",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**بدون محدودیت اندازه فایل سمت نوت بوک ثابت:** فایل های صوتی و تصویری بزرگ قابل پردازش هستند.",
+      "**پردازش دسته ای:** چندین فایل صوتی و تصویری را می توان در یک اجرا پردازش کرد.",
+      "**پشتیبانی Google Drive:** فایل ها را می توان مستقیما آپلود کرد یا فایل های صوتی/تصویری ذخیره شده در Google Driveرا می توان پردازش کرد.",
+      "**کاملا آنلاین:** دانلودها و پردازش در Google Colabانجام می شود. هیچ منبع محاسباتی محلی استفاده نمی شود.",
+      "**چند فرمت خروجی:** نوت بوک متن اصلی JSONو فایل های زیرنویس TXT، CSV، Markdown، Excelو SRTرا خروجی می‌دهد."
+    ],
+    "how_to_use_heading": "نحوه استفاده",
+    "how_to_use_steps": [
+      "در **1. تنظیمات**، `INPUT_MODE`را انتخاب کنید و در صورت نیاز مدل یا گزینه های خروجی را تنظیم کنید.",
+      "**Runtime -> Run all** را انتخاب کنید.",
+      "اگر `INPUT_MODE = \"upload\"`، تا **2 صبر کنید. انتخاب فایل / Google Drivemount** شروع می‌شود، سپس روی **Choose Files** در ناحیه خروجی آن سلول کلیک کنید.",
+      "پس از تکمیل پردازش، فایل های خروجی فشرده شده و در صورت فعال بودن `AUTO_DOWNLOAD_ZIP`، دانلود می شوند."
+    ],
+    "notes_heading": "یادداشت ها",
+    "notes": [
+      "Google Colabرایگان GPUدر دسترس بودن محدود است. اگر GPUو `REQUIRE_CUDA = True`موجود نباشد، نوت بوک قبل از رونویسی متوقف می‌شود.",
+      "پردازش زمان می برد. به عنوان یک راهنمای تقریبی هنگام استفاده از مدل large-v3-turbo، رونویسی یک فایل صوتی یا تصویری 60 دقیقه ای ممکن است حدود 5 تا 10 دقیقه طول بکشد. اگر فایل‌ها را مستقیماً آپلود می‌کنید، زمان آپلود نیز لازم است.",
+      "این نوت بوک را هنگام پردازش باز نگه دارید. اگر نوت بوک را در حین رونویسی ببندید، پردازش متوقف می شود."
+    ],
+    "feature_labels": [
+      "رایگان برای استفاده",
+      "بدون محدودیت اندازه فایل سمت نوت بوک ثابت",
+      "پردازش دسته ای",
+      "پشتیبانی Google Drive",
+      "کاملا آنلاین",
+      "چند فرمت خروجی"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "فایل های صوتی و تصویری بزرگ قابل پردازش هستند.",
+      "چندین فایل صوتی و تصویری را می توان در یک اجرا پردازش کرد.",
+      "فایل ها را می توان مستقیما آپلود کرد یا فایل های صوتی/تصویری ذخیره شده در Google Driveرا می توان پردازش کرد.",
+      "دانلودها و پردازش در Google Colabانجام می شود. هیچ منبع محاسباتی محلی استفاده نمی شود.",
+      "نوت بوک متن اصلی JSONو فایل های زیرنویس TXT، CSV، Markdown، Excelو SRTرا خروجی می‌دهد."
+    ]
+  }
+}

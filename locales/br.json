@@ -1,0 +1,144 @@
+{
+  "language": "br",
+  "display_name": "Breton",
+  "native_name": "Breton",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Arventennoù",
+    "cell1.section_title": "# 1. Arventennoù",
+    "cell2.title": "# @title 2. Dibab restr / Google Drivestaliañ",
+    "cell2.section_title": "# 2. Dibab restr / Google Drivestaliañ",
+    "cell3.title": "# @title 3. GPUgwiriañ ha staliañ an dalc'husted",
+    "cell3.section_title": "# 3. GPUgwiriañ ha staliañ an dalc'husted",
+    "cell4.title": "# @title 4. Arc'hwelioù skoazell",
+    "cell4.section_title": "# 4. Arc'hwelioù skoazell",
+    "cell5.title": "# @title 5. Kargañ Whisperha seveniñ an treuzskrivadur",
+    "cell5.section_title": "# 5. Kargañ Whisperha seveniñ an treuzskrivadur",
+    "cell6.title": "# @title 6. Zip ha pellgargañ disoc'hoù",
+    "cell6.section_title": "# 6. Zip ha pellgargañ disoc'hoù",
+    "settings.input_heading": "# @markdown ## Ebarzhiñ",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Implijit `upload`evit ar restroù lec'hel pe `google_drive`evit ar restroù enrollet dija e Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveebarzhiñ",
+    "settings.drive_help": "# @markdown Arveret e vez an arventennoù-mañ nemet pa vez `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Dalc'hit an arventenn-mañ da `/content/drive/MyDrive`eurliesañ.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Un hent restr pe teuliad dindan MyDrive. Lezit goullo evit implijout an teuliad MyDrive live uhelañ.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Mard eo un teuliad an hent mont e-barzh Drive, klaskit isrenkelloù ivez.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Sil teul anv restr dibar.",
+    "settings.model_heading": "# @markdown ## Whisperatrom",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID ar patrom. Buanoc'h eo an turbo ; large-v3a c'hell bezañ stabiloc'h evit restroù zo.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Implijit `auto`a n'eo ket anavezet, pe diuzit ur yezh orin anavezet.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Implijit ar mod treiñ Whisperevit embann saozneg.",
+    "settings.output_heading": "# @markdown ## Disoc'h",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Enrollañ an disoc'hoù dindan Google Drivea vez arveret mont e-barzh ar c'heflusker.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Krouiñ ha pellgargañ un diell ZIPa-benn ar fin.",
+    "settings.formats_help": "# @markdown - Reoliet e vez ar furmadoù ezporzhiañ gant ar booleanoù amañ dindan.",
+    "settings.advanced_heading": "# ## Araokaet",
+    "settings.advanced_help": "# Mirour eo an arventennoù dre ziouer-mañ evit Colab. An implijerien ordinal n'o deus ket ezhomm da gemmañ anezho peurliesañ.",
+    "settings.loaded_message": "Karget eo bet an arventennoù.",
+    "messages.choose_files": "Klikit war 'Dibab restroù' ha pellgargit unan pe meur a restr kleweled/video.",
+    "messages.selected_files": "Restroù diuzet :",
+    "messages.dependencies_done": "Echu eo staliadur an dalc'husted.",
+    "messages.model_loaded": "Whisperkarget eo bet ar patrom.",
+    "messages.transcription_complete": "Treuzskrivadur echu.",
+    "errors.no_supported_files": "N'eus bet diuzet restr kleweled/video skoret ebet.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nGant ar c'haier-mañ e vez treuzskrivet restroù kleweled pe video gant Whisper.\n\n## Perzhioù\n\n- **Digoust da implijout:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.\n- **N'eus bevenn ebet war ment ar restr war-du ar c'haier notennoù:** Restroù kleweled ha video bras a c'hall bezañ treuzfurmet.\n- **Tretañ dre lodenn:** Meur a restr kleweled ha video a c'haller treuzfurmiñ en ur redadeg.\n- **Google Driveskoazell:** Gallout a reer pellgargañ ar restroù war-eeun, pe ar restroù kleweled/video enrollet e Google Drivea c'hell bezañ treuzfurmet.\n- **Enlinenn penn-da-benn:** Ar pellgargañ hag an tretañ a vez graet war Google Colab. N'eus arveret arc'hwel urzhiataerezh lec'hel ebet.\n- **Furmadoù ezporzhiañ lies:** Ar c'haier a embann an treuzskrivadur orin JSONhag ar restroù istitloù TXT, CSV, Markdown, Excel, ha SRTtennet.\n\n## Penaos implijout\n\n1. E **1. Arventennoù**, dibabit `INPUT_MODE`ha reizhit ar patrom pe an dibarzhioù disoc'h ma vez ezhomm.\n2. Dibabit **Amzer da vont en-dro -> Lakaat an holl da vont en-dro**.\n3. Mar `INPUT_MODE = \"upload\"`, gortoz betek **2. Kregiñ a ra an dibab restr / Google Drivemount**, ha klikit war **Dibab restroù** e tachenn ezporzhiañ ar gellig-se.\n4. Pa vo echu an tretañ e vo ziverket ha pellgarget ar restroù disoc'h ma vez gweredekaet `AUTO_DOWNLOAD_ZIP`.\n\n## Notennoù\n\n- Google Colabdigoust GPUbevennet eo an doareoù da gaout. Ma n'eus GPUebet ha `REQUIRE_CUDA = True`e paouez ar c'haier a-raok an treuzskrivañ.\n- Kemer a ra amzer an treuzfurmiñ. Evel ur skouer dre vras ​​pa vez implijet ar patrom large-v3-turbo, ur restr kleweled pe video 60 munutenn a c'hell padout war-dro 5-10 munutenn evit bezañ treuzskrivet. Ma vez pellgarget restroù war-eeun e vez ezhomm eus amzer pellgargañ ivez.\n- Dalc'hit ar c'haier-mañ digor e-pad ma vez treuzfurmet. Ma serrit ar c'haier e-pad an treuzskrivañ e paouez an tretañ.",
+    "settings.source_language_default": "breton"
+  },
+  "readme": {
+    "title": "WhisperKenlabour",
+    "subtitle": "Kaieroù liesyezhek Google Colabevit an treuzskrivadur Whisper.",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**N'eus bevenn ebet war ment ar restr war-du ar c'haier notennoù:** Restroù kleweled ha video bras a c'hall bezañ treuzfurmet.",
+      "**Tretañ dre lodenn:** Meur a restr kleweled ha video a c'haller treuzfurmiñ en ur redadeg.",
+      "**Google Driveskoazell:** Gallout a reer pellgargañ ar restroù war-eeun, pe ar restroù kleweled/video enrollet e Google Drivea c'hell bezañ treuzfurmet.",
+      "**Enlinenn penn-da-benn:** Ar pellgargañ hag an tretañ a vez graet war Google Colab. N'eus arveret arc'hwel urzhiataerezh lec'hel ebet.",
+      "**Furmadoù ezporzhiañ lies:** Ar c'haier a embann an treuzskrivadur orin JSONhag ar restroù istitloù TXT, CSV, Markdown, Excel, ha SRTtennet."
+    ],
+    "template_note": "Ar wrizienn READMEeo ar poent mont e-barzh e saozneg, ha docs/READMEa endalc'h restroù READMElec'hiet krouet. Ar c'haier patromoù eo ar c'haier orin hag ennañ e kaver lec'hiennoù evel `{{cell1.title}}`. Ar restroù lec'hel a ginnig READMEa-ratozh evit ar yezh hag un eiladenn a-du gant Colab. Engouestlet eo ar c'haieroù krouet evit ma chomo stabil al liammoù Colab.",
+    "checks_note": "Adsevel a ra ar red-labour CI restroù ha kaieroù READMEdiwar ar restroù patrom ha lec'hiadur, gwiriañ a ra ar c'haier JSON, gwiriañ a ra an disoc'hoù goullo, gwiriañ a ra sintagm Python e kelligoù ar c'hod, skaniñ sekredoù dre zegouezh anat, ha c'hwitañ a ra pa ne vez ket krouet ar restroù commit.",
+    "ci_items": [
+      "READMEkrouidigezh diwar restroù lec'hel",
+      "krouidigezh ar c'haier diwar ar patromoù hag ar restroù lec'hiadur",
+      "talvoudegezh ar c'haier JSON",
+      "disoc'hoù seveniñ goullo",
+      "Sintaks Python e kelligoù ar c'hod",
+      "sekredoù dre zegouezh anat",
+      "READMEha restroù notennoù a glot gant ar mammennoù"
+    ],
+    "ci_limit": "Evit an hent treuzskrivañ klok e ranker kaout APIoù resis evit Colab, pellgargañ ar patromoù, GPUa c'haller kaout, ha restroù media pourvezet gant an implijer. Gwelet an hent-se evel un test moged Colab dre zorn goude ma vo tremenet ar gwirioù restr krouet.",
+    "license_note": "Embannet eo ar c'heflusker README, patrom ar c'haier notennoù, ar restroù lec'hel, ar c'haieroù krouet hag ar skriptoù kempenn eus an diaz-mañ dindan an aotre MIT. Whisperar patromoù hag an dalc'hioù trede-perzh a zo renet gant o aotreoù.",
+    "feature_labels": [
+      "Digoust da implijout",
+      "N'eus bevenn ebet war ment ar restr war-du ar c'haier notennoù",
+      "Tretañ dre lodenn",
+      "Google Driveskoazell",
+      "Enlinenn penn-da-benn",
+      "Furmadoù ezporzhiañ lies"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Restroù kleweled ha video bras a c'hall bezañ treuzfurmet.",
+      "Meur a restr kleweled ha video a c'haller treuzfurmiñ en ur redadeg.",
+      "Gallout a reer pellgargañ ar restroù war-eeun, pe ar restroù kleweled/video enrollet e Google Drivea c'hell bezañ treuzfurmet.",
+      "Ar pellgargañ hag an tretañ a vez graet war Google Colab. N'eus arveret arc'hwel urzhiataerezh lec'hel ebet.",
+      "Ar c'haier a embann an treuzskrivadur orin JSONhag ar restroù istitloù TXT, CSV, Markdown, Excel, ha SRTtennet."
+    ]
+  },
+  "labels": {
+    "features": "Perzhioù",
+    "languages": "Yezhoù |",
+    "language": "Yezh",
+    "readme": "README",
+    "notebook": "Kaier notennoù",
+    "repository_layout": "Treuzfurmadur an diaz",
+    "build": "Sevel",
+    "checks": "Gwirioù",
+    "what_ci_can_test": "Petra a c'hell ar CI amprouiñ",
+    "license": "Aotre"
+  },
+  "translation_source": "direct_google:br; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Gant ar c'haier-mañ e vez treuzskrivet restroù kleweled pe video gant Whisper.",
+    "features_heading": "Perzhioù",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**N'eus bevenn ebet war ment ar restr war-du ar c'haier notennoù:** Restroù kleweled ha video bras a c'hall bezañ treuzfurmet.",
+      "**Tretañ dre lodenn:** Meur a restr kleweled ha video a c'haller treuzfurmiñ en ur redadeg.",
+      "**Google Driveskoazell:** Gallout a reer pellgargañ ar restroù war-eeun, pe ar restroù kleweled/video enrollet e Google Drivea c'hell bezañ treuzfurmet.",
+      "**Enlinenn penn-da-benn:** Ar pellgargañ hag an tretañ a vez graet war Google Colab. N'eus arveret arc'hwel urzhiataerezh lec'hel ebet.",
+      "**Furmadoù ezporzhiañ lies:** Ar c'haier a embann an treuzskrivadur orin JSONhag ar restroù istitloù TXT, CSV, Markdown, Excel, ha SRTtennet."
+    ],
+    "how_to_use_heading": "Penaos implijout",
+    "how_to_use_steps": [
+      "E **1. Arventennoù**, dibabit `INPUT_MODE`ha reizhit ar patrom pe an dibarzhioù disoc'h ma vez ezhomm.",
+      "Dibabit **Amzer da vont en-dro -> Lakaat an holl da vont en-dro**.",
+      "Mar `INPUT_MODE = \"upload\"`, gortoz betek **2. Kregiñ a ra an dibab restr / Google Drivemount**, ha klikit war **Dibab restroù** e tachenn ezporzhiañ ar gellig-se.",
+      "Pa vo echu an tretañ e vo ziverket ha pellgarget ar restroù disoc'h ma vez gweredekaet `AUTO_DOWNLOAD_ZIP`."
+    ],
+    "notes_heading": "Notennoù",
+    "notes": [
+      "Google Colabdigoust GPUbevennet eo an doareoù da gaout. Ma n'eus GPUebet ha `REQUIRE_CUDA = True`e paouez ar c'haier a-raok an treuzskrivañ.",
+      "Kemer a ra amzer an treuzfurmiñ. Evel ur skouer dre vras ​​pa vez implijet ar patrom large-v3-turbo, ur restr kleweled pe video 60 munutenn a c'hell padout war-dro 5-10 munutenn evit bezañ treuzskrivet. Ma vez pellgarget restroù war-eeun e vez ezhomm eus amzer pellgargañ ivez.",
+      "Dalc'hit ar c'haier-mañ digor e-pad ma vez treuzfurmet. Ma serrit ar c'haier e-pad an treuzskrivañ e paouez an tretañ."
+    ],
+    "feature_labels": [
+      "Digoust da implijout",
+      "N'eus bevenn ebet war ment ar restr war-du ar c'haier notennoù",
+      "Tretañ dre lodenn",
+      "Google Driveskoazell",
+      "Enlinenn penn-da-benn",
+      "Furmadoù ezporzhiañ lies"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Restroù kleweled ha video bras a c'hall bezañ treuzfurmet.",
+      "Meur a restr kleweled ha video a c'haller treuzfurmiñ en ur redadeg.",
+      "Gallout a reer pellgargañ ar restroù war-eeun, pe ar restroù kleweled/video enrollet e Google Drivea c'hell bezañ treuzfurmet.",
+      "Ar pellgargañ hag an tretañ a vez graet war Google Colab. N'eus arveret arc'hwel urzhiataerezh lec'hel ebet.",
+      "Ar c'haier a embann an treuzskrivadur orin JSONhag ar restroù istitloù TXT, CSV, Markdown, Excel, ha SRTtennet."
+    ]
+  }
+}

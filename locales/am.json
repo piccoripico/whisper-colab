@@ -1,0 +1,144 @@
+{
+  "language": "am",
+  "display_name": "Amharic",
+  "native_name": "Amharic",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. ቅንብሮች",
+    "cell1.section_title": "# 1. ቅንብሮች",
+    "cell2.title": "# @title 2. የፋይል ምርጫ / Google Driveተራራ",
+    "cell2.section_title": "# 2. የፋይል ምርጫ / Google Driveተራራ",
+    "cell3.title": "# @title 3. GPUቼክ እና ጥገኝነት መጫን",
+    "cell3.section_title": "# 3. GPUቼክ እና ጥገኝነት መጫን",
+    "cell4.title": "# @title 4. የረዳት ተግባራት",
+    "cell4.section_title": "# 4. የረዳት ተግባራት",
+    "cell5.title": "# @title 5. Whisperን ጫን እና ግልባጭን አስሂድ",
+    "cell5.section_title": "# 5. Whisperን ጫን እና ግልባጭን አስሂድ",
+    "cell6.title": "# @title 6. ዚፕ እና አውርድ ውጤቶች",
+    "cell6.section_title": "# 6. ዚፕ እና አውርድ ውጤቶች",
+    "settings.input_heading": "# @markdown ## ግቤት",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: ለሀገር ውስጥ ፋይሎች `upload`ይጠቀሙ ወይም `google_drive`ውስጥ አስቀድሞ በ Google Driveውስጥ ለተከማቹ ፋይሎች `google_drive`ይጠቀሙ።",
+    "settings.drive_heading": "# @markdown ### Google Driveግብዓት",
+    "settings.drive_help": "# @markdown እነዚህ ቅንብሮች `INPUT_MODE == \"google_drive\"`ሲሆኑ ብቻ ጥቅም ላይ ይውላሉ።",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: ብዙውን ጊዜ ይህንን ስብስብ ወደ `/content/drive/MyDrive`ያቆዩት።",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: በMyDrive ስር ያለ ፋይል ወይም አቃፊ ዱካ። የከፍተኛ ደረጃ MyDrive አቃፊን ለመጠቀም ባዶውን ይተውት።",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: የDrive ግቤት ዱካ አቃፊ ከሆነ እንዲሁም ንዑስ አቃፊዎችን ይፈልጉ።",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: አማራጭ የፋይል ስም ንዑስ ሕብረቁምፊ ማጣሪያ።",
+    "settings.model_heading": "# @markdown ## Whisperሞዴል",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Faceየሞዴል መታወቂያ። ቱርቦ ፈጣን ነው; large-v3ለአንዳንድ ፋይሎች የበለጠ የተረጋጋ ሊሆን ይችላል።",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: በማይታወቅበት ጊዜ `auto`ይጠቀሙ ወይም የሚታወቅ የምንጭ ቋንቋ ይምረጡ።",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: እንግሊዝኛ ለማውጣት Whisperየትርጉም ሁነታን ይጠቀሙ።",
+    "settings.output_heading": "# @markdown ## ውፅዓት",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: የDrive ግብዓት ጥቅም ላይ በሚውልበት ጊዜ በGoogle Driveስር ውጤቶችን ያስቀምጡ።",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: አንድ ZIPመዝገብ ይፍጠሩ እና ያውርዱ በመጨረሻ።",
+    "settings.formats_help": "# @markdown - የውጤት ቅርጸቶች የሚቆጣጠሩት ከታች ባሉት ቡሊያኖች ነው።",
+    "settings.advanced_heading": "# ## የላቀ",
+    "settings.advanced_help": "# እነዚህ ነባሪዎች ለኮላብ ወግ አጥባቂ ናቸው። ተራ ተጠቃሚዎች ብዙውን ጊዜ እነሱን ማርትዕ አያስፈልጋቸውም።",
+    "settings.loaded_message": "ቅንጅቶች ተጭነዋል።",
+    "messages.choose_files": "'ፋይሎችን ምረጥ' የሚለውን ጠቅ ያድርጉ እና አንድ ወይም ከዚያ በላይ የኦዲዮ/ቪዲዮ ፋይሎችን ይስቀሉ።",
+    "messages.selected_files": "የተመረጡ ፋይሎች፡-",
+    "messages.dependencies_done": "ጥገኛ መጫኑ አልቋል።",
+    "messages.model_loaded": "Whisperሞዴል ተጭኗል።",
+    "messages.transcription_complete": "ግልባጭ ተጠናቋል።",
+    "errors.no_supported_files": "ምንም የሚደገፉ የኦዲዮ/ቪዲዮ ፋይሎች አልተመረጡም።",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Whisperኮላብ ማስታወሻ ደብተር\n\nይህ ማስታወሻ ደብተር የድምጽ ወይም የቪዲዮ ፋይሎችን በWhisperይገለበጣል።\n\n## ባህሪያት\n\n- **ለመጠቀም ነፃ:** ይህ ማስታወሻ ደብተር [openai/whisper](https://github.com/openai/whisper)ይጠቀማል፣ እሱም OpenAIበጃንዋሪ 17፣ 2023 ክፍት ምንጭ ከGoogle Colabነጻ GPUየአሂድ ጊዜ ጋር።\n- **ቋሚ ማስታወሻ ደብተር የጎን ፋይል መጠን ገደብ የለም።:** ትላልቅ የድምጽ እና የቪዲዮ ፋይሎች ሊሰሩ ይችላሉ.\n- **ባች ማቀነባበሪያ:** በርካታ የኦዲዮ እና የቪዲዮ ፋይሎች በአንድ ሩጫ ሊሰሩ ይችላሉ።\n- **Google Driveድጋፍ:** ፋይሎች በቀጥታ ሊሰቀሉ ይችላሉ ወይም በ Google Driveውስጥ የተከማቹ የኦዲዮ/ቪዲዮ ፋይሎች ሊሠሩ ይችላሉ።\n- **ሙሉ በሙሉ በመስመር ላይ:** ማውረዶች እና ሂደቶች የሚከናወኑት በ Google Colabላይ ነው። ምንም የአገር ውስጥ የማስላት ግብዓቶች ጥቅም ላይ አይውሉም።\n- **በርካታ የውጤት ቅርጸቶች:** ማስታወሻ ደብተሩ የመጀመሪያውን JSONግልባጭ ያወጣል እና TXT፣ CSV፣ Markdown፣ Excelእና SRTየትርጉም ፋይሎችን ያወጣል።\n\n## እንዴት መጠቀም እንደሚቻል\n\n1. በ **1 ውስጥ። መቼቶች**፣ `INPUT_MODE`ን ይምረጡ እና አስፈላጊ ከሆነ የሞዴሉን ወይም የውጤት አማራጮችን ያስተካክሉ።\n2. **Runtime -> ሁሉንም አሂድ** የሚለውን ይምረጡ።\n3. `INPUT_MODE = \"upload\"`ከሆነ፣ እስከ **2 ድረስ ይጠብቁ። የፋይል ምርጫ / Google Driveተራራ** ይጀመራል፣ ከዚያም በዚያ ሕዋስ የውጤት ቦታ ላይ **ፋይሎችን ምረጥ** የሚለውን ይንኩ።\n4. ሂደቱ ሲጠናቀቅ የውጤት ፋይሎቹ ዚፕ ይደረደራሉ እና `AUTO_DOWNLOAD_ZIP`ከነቃ ይወርዳሉ።\n\n## ማስታወሻዎች\n\n- Google Colabነፃ GPUተገኝነት የተገደበ ነው። ምንም GPUከሌለ እና `REQUIRE_CUDA = True`ካልሆነ፣ ማስታወሻ ደብተሩ ከመገለባበጡ በፊት ይቆማል።\n- ማቀነባበር ጊዜ ይወስዳል። የlarge-v3-turboሞዴሉን ሲጠቀሙ እንደ ሻካራ መመሪያ፣ የ60 ደቂቃ ኦዲዮ ወይም ቪዲዮ ፋይል ለመገልበጥ ከ5-10 ደቂቃ ሊወስድ ይችላል። ፋይሎችን በቀጥታ ከሰቀሉ፣ የሰቀላ ጊዜም ያስፈልጋል።\n- ይህንን ማስታወሻ ደብተር በሚሰራበት ጊዜ ክፍት ያድርጉት። ማስታወሻ ደብተሩን በሚገለበጥበት ጊዜ ከዘጉት ሂደቱ ይቆማል።",
+    "settings.source_language_default": "amharic"
+  },
+  "readme": {
+    "title": "Whisperኮላብ",
+    "subtitle": "ባለብዙ ቋንቋ Google Colabማስታወሻ ደብተሮች ለ Whisperግልባጭ።",
+    "features": [
+      "**ለመጠቀም ነፃ:** ይህ ማስታወሻ ደብተር [openai/whisper](https://github.com/openai/whisper)ይጠቀማል፣ እሱም OpenAIበጃንዋሪ 17፣ 2023 ክፍት ምንጭ ከGoogle Colabነጻ GPUየአሂድ ጊዜ ጋር።",
+      "**ቋሚ ማስታወሻ ደብተር የጎን ፋይል መጠን ገደብ የለም።:** ትላልቅ የድምጽ እና የቪዲዮ ፋይሎች ሊሰሩ ይችላሉ.",
+      "**ባች ማቀነባበሪያ:** በርካታ የኦዲዮ እና የቪዲዮ ፋይሎች በአንድ ሩጫ ሊሰሩ ይችላሉ።",
+      "**Google Driveድጋፍ:** ፋይሎች በቀጥታ ሊሰቀሉ ይችላሉ ወይም በ Google Driveውስጥ የተከማቹ የኦዲዮ/ቪዲዮ ፋይሎች ሊሠሩ ይችላሉ።",
+      "**ሙሉ በሙሉ በመስመር ላይ:** ማውረዶች እና ሂደቶች የሚከናወኑት በ Google Colabላይ ነው። ምንም የአገር ውስጥ የማስላት ግብዓቶች ጥቅም ላይ አይውሉም።",
+      "**በርካታ የውጤት ቅርጸቶች:** ማስታወሻ ደብተሩ የመጀመሪያውን JSONግልባጭ ያወጣል እና TXT፣ CSV፣ Markdown፣ Excelእና SRTየትርጉም ፋይሎችን ያወጣል።"
+    ],
+    "template_note": "ስር READMEየእንግሊዝኛ መግቢያ ነጥብ ነው፣ እና ሰነዶች/READMEየተተረጎሙ READMEፋይሎችን ይዟል። የአብነት ማስታወሻ ደብተር የምንጭ ማስታወሻ ደብተር ሲሆን እንደ `{{cell1.title}}`ያሉ ቦታ ያዥዎችን ይዟል። የአካባቢ ፋይሎች ቋንቋ-ተኮር READMEእና ኮላብ የሚመለከት ቅጂ ይሰጣሉ። የኮላብ ማያያዣዎች ተረጋግተው እንዲቆዩ የተፈጠሩ ማስታወሻ ደብተሮች ቁርጠኞች ናቸው።",
+    "checks_note": "የCI የስራ ፍሰቱ READMEፋይሎችን እና ማስታወሻ ደብተሮችን ከአብነት እና ከአካባቢያዊ ፋይሎች እንደገና ይገነባል፣ ማስታወሻ ደብተር JSONን ይፈትሻል፣ ባዶ ውጤቶችን ያረጋግጣል፣ የፓይዘን አገባብ በኮድ ሴሎች ውስጥ ይፈትሻል፣ ግልጽ የአደጋ ሚስጥሮችን ይፈትሻል፣ እና የተፈጠሩ ፋይሎች ሳይፈጸሙ ሲቀሩ አይሳካም።",
+    "ci_items": [
+      "READMEትውልድ ከአካባቢያዊ ፋይሎች",
+      "ከአብነት እና ከአካባቢያዊ ፋይሎች የማስታወሻ ደብተር ማመንጨት",
+      "ማስታወሻ ደብተር JSONትክክለኛነት",
+      "ባዶ የማስፈጸሚያ ውጤቶች",
+      "በኮድ ሴሎች ውስጥ የፓይዘን አገባብ",
+      "ግልጽ የአጋጣሚ ሚስጥሮች",
+      "የመነጨ READMEእና ምንጮቹን የሚዛመዱ የማስታወሻ ደብተር ፋይሎች"
+    ],
+    "ci_limit": "ሙሉው የጽሑፍ ግልባጭ ዱካ ኮላብ-ተኮር ኤፒአይዎችን፣ የሞዴል ማውረዶችን፣ GPUመገኘትን እና በተጠቃሚ የቀረቡ የሚዲያ ፋይሎችን ይፈልጋል። የፋይል ፍተሻ ካለፉ በኋላ ያንን መንገድ እንደ በእጅ የሚሰራ የኮላብ ጭስ ሙከራ አድርገው ይያዙት።",
+    "license_note": "የዚህ ማከማቻ READMEጀነሬተር፣ የማስታወሻ ደብተር አብነት፣ የአካባቢ ፋይሎች፣ የተፈጠሩ ማስታወሻ ደብተሮች እና የጥገና ስክሪፕቶች በMITፍቃድ ስር ተለቅቀዋል። Whisperሞዴሎች እና የሶስተኛ ወገን ጥገኞች በየራሳቸው ፍቃድ ነው የሚተዳደሩት።",
+    "feature_labels": [
+      "ለመጠቀም ነፃ",
+      "ቋሚ ማስታወሻ ደብተር የጎን ፋይል መጠን ገደብ የለም።",
+      "ባች ማቀነባበሪያ",
+      "Google Driveድጋፍ",
+      "ሙሉ በሙሉ በመስመር ላይ",
+      "በርካታ የውጤት ቅርጸቶች"
+    ],
+    "feature_bodies": [
+      "ይህ ማስታወሻ ደብተር [openai/whisper](https://github.com/openai/whisper)ይጠቀማል፣ እሱም OpenAIበጃንዋሪ 17፣ 2023 ክፍት ምንጭ ከGoogle Colabነጻ GPUየአሂድ ጊዜ ጋር።",
+      "ትላልቅ የድምጽ እና የቪዲዮ ፋይሎች ሊሰሩ ይችላሉ.",
+      "በርካታ የኦዲዮ እና የቪዲዮ ፋይሎች በአንድ ሩጫ ሊሰሩ ይችላሉ።",
+      "ፋይሎች በቀጥታ ሊሰቀሉ ይችላሉ ወይም በ Google Driveውስጥ የተከማቹ የኦዲዮ/ቪዲዮ ፋይሎች ሊሠሩ ይችላሉ።",
+      "ማውረዶች እና ሂደቶች የሚከናወኑት በ Google Colabላይ ነው። ምንም የአገር ውስጥ የማስላት ግብዓቶች ጥቅም ላይ አይውሉም።",
+      "ማስታወሻ ደብተሩ የመጀመሪያውን JSONግልባጭ ያወጣል እና TXT፣ CSV፣ Markdown፣ Excelእና SRTየትርጉም ፋይሎችን ያወጣል።"
+    ]
+  },
+  "labels": {
+    "features": "ባህሪያት",
+    "languages": "ቋንቋዎች",
+    "language": "ቋንቋ",
+    "readme": "README",
+    "notebook": "ማስታወሻ ደብተር",
+    "repository_layout": "የማጠራቀሚያ አቀማመጥ",
+    "build": "ይገንቡ",
+    "checks": "ቼኮች",
+    "what_ci_can_test": "CI ምን መሞከር ይችላል",
+    "license": "ፍቃድ"
+  },
+  "translation_source": "google:am; machine-translated from en",
+  "notebook": {
+    "title": "Whisperኮላብ ማስታወሻ ደብተር",
+    "description": "ይህ ማስታወሻ ደብተር የድምጽ ወይም የቪዲዮ ፋይሎችን በWhisperይገለበጣል።",
+    "features_heading": "ባህሪያት",
+    "features": [
+      "**ለመጠቀም ነፃ:** ይህ ማስታወሻ ደብተር [openai/whisper](https://github.com/openai/whisper)ይጠቀማል፣ እሱም OpenAIበጃንዋሪ 17፣ 2023 ክፍት ምንጭ ከGoogle Colabነጻ GPUየአሂድ ጊዜ ጋር።",
+      "**ቋሚ ማስታወሻ ደብተር የጎን ፋይል መጠን ገደብ የለም።:** ትላልቅ የድምጽ እና የቪዲዮ ፋይሎች ሊሰሩ ይችላሉ.",
+      "**ባች ማቀነባበሪያ:** በርካታ የኦዲዮ እና የቪዲዮ ፋይሎች በአንድ ሩጫ ሊሰሩ ይችላሉ።",
+      "**Google Driveድጋፍ:** ፋይሎች በቀጥታ ሊሰቀሉ ይችላሉ ወይም በ Google Driveውስጥ የተከማቹ የኦዲዮ/ቪዲዮ ፋይሎች ሊሠሩ ይችላሉ።",
+      "**ሙሉ በሙሉ በመስመር ላይ:** ማውረዶች እና ሂደቶች የሚከናወኑት በ Google Colabላይ ነው። ምንም የአገር ውስጥ የማስላት ግብዓቶች ጥቅም ላይ አይውሉም።",
+      "**በርካታ የውጤት ቅርጸቶች:** ማስታወሻ ደብተሩ የመጀመሪያውን JSONግልባጭ ያወጣል እና TXT፣ CSV፣ Markdown፣ Excelእና SRTየትርጉም ፋይሎችን ያወጣል።"
+    ],
+    "how_to_use_heading": "እንዴት መጠቀም እንደሚቻል",
+    "how_to_use_steps": [
+      "በ **1 ውስጥ። መቼቶች**፣ `INPUT_MODE`ን ይምረጡ እና አስፈላጊ ከሆነ የሞዴሉን ወይም የውጤት አማራጮችን ያስተካክሉ።",
+      "** Runtime -> ሁሉንም አሂድ** የሚለውን ይምረጡ።",
+      "`INPUT_MODE = \"upload\"`ከሆነ፣ እስከ **2 ድረስ ይጠብቁ። የፋይል ምርጫ / Google Driveተራራ** ይጀመራል፣ ከዚያም በዚያ ሕዋስ የውጤት ቦታ ላይ **ፋይሎችን ምረጥ** የሚለውን ይንኩ።",
+      "ሂደቱ ሲጠናቀቅ የውጤት ፋይሎቹ ዚፕ ይደረደራሉ እና `AUTO_DOWNLOAD_ZIP`ከነቃ ይወርዳሉ።"
+    ],
+    "notes_heading": "ማስታወሻዎች",
+    "notes": [
+      "Google Colabነፃ GPUተገኝነት የተገደበ ነው። ምንም GPUከሌለ እና `REQUIRE_CUDA = True`ካልሆነ፣ ማስታወሻ ደብተሩ ከመገለባበጡ በፊት ይቆማል።",
+      "ማቀነባበር ጊዜ ይወስዳል። የlarge-v3-turboሞዴሉን ሲጠቀሙ እንደ ሻካራ መመሪያ፣ የ60 ደቂቃ ኦዲዮ ወይም ቪዲዮ ፋይል ለመገልበጥ ከ5-10 ደቂቃ ሊወስድ ይችላል። ፋይሎችን በቀጥታ ከሰቀሉ፣ የሰቀላ ጊዜም ያስፈልጋል።",
+      "ይህንን ማስታወሻ ደብተር በሚሰራበት ጊዜ ክፍት ያድርጉት። ማስታወሻ ደብተሩን በሚገለበጥበት ጊዜ ከዘጉት ሂደቱ ይቆማል።"
+    ],
+    "feature_labels": [
+      "ለመጠቀም ነፃ",
+      "ቋሚ ማስታወሻ ደብተር የጎን ፋይል መጠን ገደብ የለም።",
+      "ባች ማቀነባበሪያ",
+      "Google Driveድጋፍ",
+      "ሙሉ በሙሉ በመስመር ላይ",
+      "በርካታ የውጤት ቅርጸቶች"
+    ],
+    "feature_bodies": [
+      "ይህ ማስታወሻ ደብተር [openai/whisper](https://github.com/openai/whisper)ይጠቀማል፣ እሱም OpenAIበጃንዋሪ 17፣ 2023 ክፍት ምንጭ ከGoogle Colabነጻ GPUየአሂድ ጊዜ ጋር።",
+      "ትላልቅ የድምጽ እና የቪዲዮ ፋይሎች ሊሰሩ ይችላሉ.",
+      "በርካታ የኦዲዮ እና የቪዲዮ ፋይሎች በአንድ ሩጫ ሊሰሩ ይችላሉ።",
+      "ፋይሎች በቀጥታ ሊሰቀሉ ይችላሉ ወይም በ Google Driveውስጥ የተከማቹ የኦዲዮ/ቪዲዮ ፋይሎች ሊሠሩ ይችላሉ።",
+      "ማውረዶች እና ሂደቶች የሚከናወኑት በ Google Colabላይ ነው። ምንም የአገር ውስጥ የማስላት ግብዓቶች ጥቅም ላይ አይውሉም።",
+      "ማስታወሻ ደብተሩ የመጀመሪያውን JSONግልባጭ ያወጣል እና TXT፣ CSV፣ Markdown፣ Excelእና SRTየትርጉም ፋይሎችን ያወጣል።"
+    ]
+  }
+}

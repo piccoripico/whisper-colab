@@ -1,0 +1,144 @@
+{
+  "language": "lt",
+  "display_name": "Lithuanian",
+  "native_name": "Lithuanian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Nustatymai",
+    "cell1.section_title": "# 1. Nustatymai",
+    "cell2.title": "# @title 2. Failo pasirinkimas / Google Drivemount",
+    "cell2.section_title": "# 2. Failo pasirinkimas / Google Drivemount",
+    "cell3.title": "# @title 3. GPUatikrinkite ir įdiegkite priklausomybę",
+    "cell3.section_title": "# 3. GPUatikrinkite ir įdiegkite priklausomybę",
+    "cell4.title": "# @title 4. Pagalbinės funkcijos",
+    "cell4.section_title": "# 4. Pagalbinės funkcijos",
+    "cell5.title": "# @title 5. Įkelkite Whisperir paleiskite transkripciją",
+    "cell5.section_title": "# 5. Įkelkite Whisperir paleiskite transkripciją",
+    "cell6.title": "# @title 6. Supakuoti ir atsisiųsti išvestis",
+    "cell6.section_title": "# 6. Supakuoti ir atsisiųsti išvestis",
+    "settings.input_heading": "# @markdown ## Įvestis",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: naudokite `upload`vietiniams failams arba `google_drive`failams, kurie jau saugomi Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveįvestis",
+    "settings.drive_help": "# @markdown Šie nustatymai naudojami tik tada, kai `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Paprastai nustatykite šį nustatymą į `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: failo arba aplanko kelias, esantis „MyDrive“. Palikite tuščią, kad galėtumėte naudoti aukščiausio lygio „MyDrive“ aplanką.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Jei disko įvesties kelias yra aplankas, ieškokite ir poaplankiuose.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Pasirenkamas failo pavadinimo poeilutės filtras.",
+    "settings.model_heading": "# @markdown ## Whispermodelis",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodelio ID. Turbo greitesnis; large-v3kai kuriems failams gali būti stabilesnis.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: naudokite `auto`, kai nežinote, arba pasirinkite žinomą šaltinio kalbą.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: naudokite Whispervertimo režimą, kad išvestumėte anglų kalbą.",
+    "settings.output_heading": "# @markdown ## Išvestis",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Išsaugokite išvestis Google Drive, kai naudojama disko įvestis.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Pabaigoje sukurkite ir atsisiųskite vieną ZIParchyvą.",
+    "settings.formats_help": "# @markdown - Išvesties formatus valdo toliau pateikiamos loginės reikšmės.",
+    "settings.advanced_heading": "# ## Išplėstinė",
+    "settings.advanced_help": "# Šie numatytieji „Colab“ nustatymai yra konservatyvūs. Paprastiems vartotojams jų redaguoti paprastai nereikia.",
+    "settings.loaded_message": "Nustatymai įkelti.",
+    "messages.choose_files": "Spustelėkite „Pasirinkti failus“ ir įkelkite vieną ar daugiau garso / vaizdo failų.",
+    "messages.selected_files": "Pasirinkti failai:",
+    "messages.dependencies_done": "Priklausomybės diegimas baigtas.",
+    "messages.model_loaded": "Whispermodelis įkeltas.",
+    "messages.transcription_complete": "Transkripcija baigta.",
+    "errors.no_supported_files": "Nepasirinkta palaikomų garso / vaizdo failų.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Whisper„Colab“ užrašų knygelė\n\nŠis nešiojamasis kompiuteris perrašo garso arba vaizdo failus su Whisper.\n\n## Savybės\n\n- **Nemokamai naudoti:** Šiame bloknote naudojama [openai/whisper](https://github.com/openai/whisper), kuri OpenAIbuvo atviro kodo 2023 m. sausio 17 d., kartu su Google Colabnemokama GPUvykdymo laiku.\n- **Nėra fiksuoto nešiojamojo kompiuterio failo dydžio apribojimo:** Galima apdoroti didelius garso ir vaizdo failus.\n- **Paketinis apdorojimas:** Vienu paleidimu galima apdoroti kelis garso ir vaizdo failus.\n- **Google Drivesupport:** Failus galima įkelti tiesiogiai arba apdoroti Google Drivesaugomus garso/vaizdo failus.\n- **Visiškai internete:** Downloads and processing are performed on Google Colab. Nenaudojami jokie vietiniai skaičiavimo ištekliai.\n- **Keli išvesties formatai:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## Kaip vartoti\n\n1. **1. Nustatymai**, pasirinkite `INPUT_MODE`ir, jei reikia, pakoreguokite modelį arba išvesties parinktis.\n2. Pasirinkite **Vykdymo laikas -> Vykdyti viską**.\n3. Jei `INPUT_MODE = \"upload\"`, palaukite iki **2. Prasideda failo pasirinkimas / Google Drivemount**, tada to langelio išvesties srityje spustelėkite **Pasirinkti failus**.\n4. Kai apdorojimas baigtas, išvesties failai suglaudinami ir atsisiunčiami, jei `AUTO_DOWNLOAD_ZIP`įjungtas.\n\n## Pastabos\n\n- Google Colabnemokamas GPUrieinamumas ribotas. Jei nėra GPUir `REQUIRE_CUDA = True`, bloknotas sustoja prieš transkripciją.\n- Apdorojimas užtrunka. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Jei failus įkeliate tiesiogiai, įkėlimo laikas taip pat reikalingas.\n- Apdorojant šį bloknotą laikykite atidarytą. Jei transkripcijos metu uždarote bloknotą, apdorojimas sustoja.",
+    "settings.source_language_default": "lithuanian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Daugiakalbiai Google Colabbloknotai, skirti Whispertranskripcijai.",
+    "features": [
+      "**Nemokamai naudoti:** Šiame bloknote naudojama [openai/whisper](https://github.com/openai/whisper), kuri OpenAIbuvo atviro kodo 2023 m. sausio 17 d., kartu su Google Colabnemokama GPUvykdymo laiku.",
+      "**Nėra fiksuoto nešiojamojo kompiuterio failo dydžio apribojimo:** Galima apdoroti didelius garso ir vaizdo failus.",
+      "**Paketinis apdorojimas:** Vienu paleidimu galima apdoroti kelis garso ir vaizdo failus.",
+      "**Google Drivesupport:** Failus galima įkelti tiesiogiai arba apdoroti Google Drivesaugomus garso/vaizdo failus.",
+      "**Visiškai internete:** Downloads and processing are performed on Google Colab. Nenaudojami jokie vietiniai skaičiavimo ištekliai.",
+      "**Keli išvesties formatai:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "Šaknis READMEyra anglų kalbos įvesties taškas, o docs/READMEyra sugeneruoti lokalizuoti READMEfailai. Šablonų bloknotas yra šaltinio bloknotas, kuriame yra vietos rezervavimo ženklų, pvz., `{{cell1.title}}`. Lokalės failai pateikia konkrečios kalbos READMEir „Colab“ kopiją. Sugeneruotos užrašinės yra skirtos, todėl „Colab“ nuorodos išlieka stabilios.",
+    "checks_note": "CI darbo eiga atkuria READMEfailus ir bloknotus iš šablono ir lokalės failų, tikrina bloknotą JSON, patikrina tuščias išvestis, tikrina Python sintaksę kodo langeliuose, nuskaito, ar nėra akivaizdžių atsitiktinių paslapčių, ir nepavyksta, kai sugeneruoti failai neįpareigoti.",
+    "ci_items": [
+      "READMEgeneravimas iš lokalių failų",
+      "nešiojamojo kompiuterio generavimas iš šablono ir lokalės failų",
+      "bloknotas JSONgaliojimas",
+      "tušti vykdymo išėjimai",
+      "Python sintaksė kodo ląstelėse",
+      "akivaizdžios atsitiktinės paslaptys",
+      "įsipareigojo generuoti READMEir bloknoto failai, atitinkantys šaltinius"
+    ],
+    "ci_limit": "Norint pasiekti visą transkripcijos kelią, reikia specialių „Colab“ API, modelių atsisiuntimų, GPUasiekiamumo ir naudotojo pateiktų medijos failų. Laikykite šį kelią kaip neautomatinį „Colab“ dūmų testą, kai sugeneruotų failų patikros bus sėkmingos.",
+    "license_note": "Šios saugyklos READMEgeneratorius, bloknoto šablonas, lokalės failai, sugeneruoti bloknotai ir priežiūros scenarijai išleidžiami pagal MITlicenciją. Whispermodelius ir trečiųjų šalių priklausomybes reglamentuoja atitinkamos jų licencijos.",
+    "feature_labels": [
+      "Nemokamai naudoti",
+      "Nėra fiksuoto nešiojamojo kompiuterio failo dydžio apribojimo",
+      "Paketinis apdorojimas",
+      "Google Drivesupport",
+      "Visiškai internete",
+      "Keli išvesties formatai"
+    ],
+    "feature_bodies": [
+      "Šiame bloknote naudojama [openai/whisper](https://github.com/openai/whisper), kuri OpenAIbuvo atviro kodo 2023 m. sausio 17 d., kartu su Google Colabnemokama GPUvykdymo laiku.",
+      "Galima apdoroti didelius garso ir vaizdo failus.",
+      "Vienu paleidimu galima apdoroti kelis garso ir vaizdo failus.",
+      "Failus galima įkelti tiesiogiai arba apdoroti Google Drivesaugomus garso/vaizdo failus.",
+      "Downloads and processing are performed on Google Colab. Nenaudojami jokie vietiniai skaičiavimo ištekliai.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "Savybės",
+    "languages": "Kalbos",
+    "language": "Kalba",
+    "readme": "README",
+    "notebook": "Užrašų knygelė",
+    "repository_layout": "Saugyklos išdėstymas",
+    "build": "Sukurti",
+    "checks": "Patikros",
+    "what_ci_can_test": "Ką CI gali išbandyti",
+    "license": "Licencija"
+  },
+  "translation_source": "google:lt; machine-translated from en",
+  "notebook": {
+    "title": "Whisper„Colab“ užrašų knygelė",
+    "description": "Šis nešiojamasis kompiuteris perrašo garso arba vaizdo failus su Whisper.",
+    "features_heading": "Savybės",
+    "features": [
+      "**Nemokamai naudoti:** Šiame bloknote naudojama [openai/whisper](https://github.com/openai/whisper), kuri OpenAIbuvo atviro kodo 2023 m. sausio 17 d., kartu su Google Colabnemokama GPUvykdymo laiku.",
+      "**Nėra fiksuoto nešiojamojo kompiuterio failo dydžio apribojimo:** Galima apdoroti didelius garso ir vaizdo failus.",
+      "**Paketinis apdorojimas:** Vienu paleidimu galima apdoroti kelis garso ir vaizdo failus.",
+      "**Google Drivesupport:** Failus galima įkelti tiesiogiai arba apdoroti Google Drivesaugomus garso/vaizdo failus.",
+      "**Visiškai internete:** Downloads and processing are performed on Google Colab. Nenaudojami jokie vietiniai skaičiavimo ištekliai.",
+      "**Keli išvesties formatai:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "Kaip vartoti",
+    "how_to_use_steps": [
+      "**1. Nustatymai**, pasirinkite `INPUT_MODE`ir, jei reikia, pakoreguokite modelį arba išvesties parinktis.",
+      "Pasirinkite **Vykdymo laikas -> Vykdyti viską**.",
+      "Jei `INPUT_MODE = \"upload\"`, palaukite iki **2. Prasideda failo pasirinkimas / Google Drivemount**, tada to langelio išvesties srityje spustelėkite **Pasirinkti failus**.",
+      "Kai apdorojimas baigtas, išvesties failai suglaudinami ir atsisiunčiami, jei `AUTO_DOWNLOAD_ZIP`įjungtas."
+    ],
+    "notes_heading": "Pastabos",
+    "notes": [
+      "Google Colabnemokamas GPUrieinamumas ribotas. Jei nėra GPUir `REQUIRE_CUDA = True`, bloknotas sustoja prieš transkripciją.",
+      "Apdorojimas užtrunka. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Jei failus įkeliate tiesiogiai, įkėlimo laikas taip pat reikalingas.",
+      "Apdorojant šį bloknotą laikykite atidarytą. Jei transkripcijos metu uždarote bloknotą, apdorojimas sustoja."
+    ],
+    "feature_labels": [
+      "Nemokamai naudoti",
+      "Nėra fiksuoto nešiojamojo kompiuterio failo dydžio apribojimo",
+      "Paketinis apdorojimas",
+      "Google Drivesupport",
+      "Visiškai internete",
+      "Keli išvesties formatai"
+    ],
+    "feature_bodies": [
+      "Šiame bloknote naudojama [openai/whisper](https://github.com/openai/whisper), kuri OpenAIbuvo atviro kodo 2023 m. sausio 17 d., kartu su Google Colabnemokama GPUvykdymo laiku.",
+      "Galima apdoroti didelius garso ir vaizdo failus.",
+      "Vienu paleidimu galima apdoroti kelis garso ir vaizdo failus.",
+      "Failus galima įkelti tiesiogiai arba apdoroti Google Drivesaugomus garso/vaizdo failus.",
+      "Downloads and processing are performed on Google Colab. Nenaudojami jokie vietiniai skaičiavimo ištekliai.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

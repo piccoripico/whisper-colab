@@ -1,0 +1,144 @@
+{
+  "language": "sw",
+  "display_name": "Swahili",
+  "native_name": "Swahili",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Mipangilio",
+    "cell1.section_title": "# 1. Mipangilio",
+    "cell2.title": "# @title 2. Uteuzi wa faili / Google Driveweka",
+    "cell2.section_title": "# 2. Uteuzi wa faili / Google Driveweka",
+    "cell3.title": "# @title 3. GPUangalia na usakinishaji utegemezi",
+    "cell3.section_title": "# 3. GPUangalia na usakinishaji utegemezi",
+    "cell4.title": "# @title 4. Kazi za Msaidizi",
+    "cell4.section_title": "# 4. Kazi za Msaidizi",
+    "cell5.title": "# @title 5. Pakia Whisperna utekeleze unukuzi",
+    "cell5.section_title": "# 5. Pakia Whisperna utekeleze unukuzi",
+    "cell6.title": "# @title 6. Zip na upakue matokeo",
+    "cell6.section_title": "# 6. Zip na upakue matokeo",
+    "settings.input_heading": "# @markdown ## Ingizo",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Tumia `upload`kwa faili za karibu nawe au `google_drive`kwa faili ambazo tayari zimehifadhiwa katika Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveingizo",
+    "settings.drive_help": "# @markdown Mipangilio hii inatumika tu wakati `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Kwa kawaida weka seti hii kwa `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Njia ya faili au folda chini ya MyDrive. Acha wazi ili kutumia folda ya MyDrive ya kiwango cha juu.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Ikiwa njia ya kuingiza data kwenye Hifadhi ni folda, pia tafuta folda ndogo.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Kichujio cha mfuatano wa hiari wa jina la faili.",
+    "settings.model_heading": "# @markdown ## Whispermfano",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facekitambulisho cha mfano. Turbo ni kasi; large-v3inaweza kuwa thabiti zaidi kwa baadhi ya faili.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Tumia `auto`wakati haijulikani, au chagua lugha asili inayojulikana.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Tumia hali ya Whisperkutafsiri ili kutoa Kiingereza.",
+    "settings.output_heading": "# @markdown ## Pato",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Hifadhi matokeo chini ya Google Drivewakati ingizo la Hifadhi linatumiwa.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Unda na pakua kumbukumbu moja ya ZIPmwishoni.",
+    "settings.formats_help": "# @markdown - Miundo ya pato inadhibitiwa na booleans hapa chini.",
+    "settings.advanced_heading": "# ## Advanced",
+    "settings.advanced_help": "# Chaguomsingi hizi ni za kihafidhina kwa Colab. Watumiaji wa kawaida kwa kawaida hawahitaji kuzihariri.",
+    "settings.loaded_message": "Mipangilio imepakiwa.",
+    "messages.choose_files": "Bofya 'Chagua Faili' na upakie faili moja au zaidi za sauti/video.",
+    "messages.selected_files": "Faili zilizochaguliwa:",
+    "messages.dependencies_done": "Usakinishaji wa utegemezi umekamilika.",
+    "messages.model_loaded": "Whispermfano umepakiwa.",
+    "messages.transcription_complete": "Unukuzi umekamilika.",
+    "errors.no_supported_files": "Hakuna faili za sauti/video zinazotumika zilizochaguliwa.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Daftari\n\nDaftari hili linanukuu faili za sauti au video kwa Whisper.\n\n## Vipengele\n\n- **Bure kutumia:** Daftari hili linatumia [openai/whisper](https://github.com/openai/whisper), ambalo OpenAIlilipatikana tarehe 17 Januari 2023, pamoja na Google Colabbila malipo GPUwakati wa utekelezaji.\n- **Hakuna kikomo cha saizi ya faili ya upande wa daftari isiyobadilika:** Faili kubwa za sauti na video zinaweza kuchakatwa.\n- **Usindikaji wa kundi:** Faili nyingi za sauti na video zinaweza kuchakatwa kwa muda mmoja.\n- **Google Drivemsaada:** Faili zinaweza kupakiwa moja kwa moja, au faili za sauti/video zilizohifadhiwa katika Google Drivezinaweza kuchakatwa.\n- **Kikamilifu mtandaoni:** Upakuaji na uchakataji unafanywa kwenye Google Colab. Hakuna rasilimali za kompyuta za ndani zinazotumika.\n- **Miundo ya towe nyingi:** Daftari hutoa manukuu asili ya JSONna kutolewa TXT, CSV, Markdown, Excel, na SRTfaili za manukuu.\n\n## Jinsi ya kutumia\n\n1. Katika **1. Mipangilio**, chagua `INPUT_MODE`na urekebishe chaguo za muundo au towe ikihitajika.\n2. Chagua **Muda wa kukimbia -> Endesha zote**.\n3. Ikiwa `INPUT_MODE = \"upload\"`, subiri hadi **2. Uchaguzi wa faili / Google Drivemount** unaanza, kisha ubofye **Chagua Faili** katika eneo la kutoa la kisanduku hicho.\n4. Uchakataji unapokamilika, faili za towe hubanwa na kupakuliwa ikiwa `AUTO_DOWNLOAD_ZIP`imewezeshwa.\n\n## Vidokezo\n\n- Google Colabbure GPUupatikanaji ni mdogo. Ikiwa hakuna GPUinapatikana na `REQUIRE_CUDA = True`, daftari litasimama kabla ya unukuzi.\n- Usindikaji huchukua muda. Kama mwongozo mbaya unapotumia mtindo wa large-v3-turbo, faili ya sauti au video ya dakika 60 inaweza kuchukua kama dakika 5-10 kunakili. Ukipakia faili moja kwa moja, muda wa kupakia pia unahitajika.\n- Weka daftari hili wazi wakati wa kuchakata. Ukifunga daftari wakati wa unukuzi, usindikaji huacha.",
+    "settings.source_language_default": "swahili"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Daftari za lugha nyingi Google Colabza unukuzi Whisper.",
+    "features": [
+      "**Bure kutumia:** Daftari hili linatumia [openai/whisper](https://github.com/openai/whisper), ambalo OpenAIlilipatikana tarehe 17 Januari 2023, pamoja na Google Colabbila malipo GPUwakati wa utekelezaji.",
+      "**Hakuna kikomo cha saizi ya faili ya upande wa daftari isiyobadilika:** Faili kubwa za sauti na video zinaweza kuchakatwa.",
+      "**Usindikaji wa kundi:** Faili nyingi za sauti na video zinaweza kuchakatwa kwa muda mmoja.",
+      "**Google Drivemsaada:** Faili zinaweza kupakiwa moja kwa moja, au faili za sauti/video zilizohifadhiwa katika Google Drivezinaweza kuchakatwa.",
+      "**Kikamilifu mtandaoni:** Upakuaji na uchakataji unafanywa kwenye Google Colab. Hakuna rasilimali za kompyuta za ndani zinazotumika.",
+      "**Miundo ya towe nyingi:** Daftari hutoa manukuu asili ya JSONna kutolewa TXT, CSV, Markdown, Excel, na SRTfaili za manukuu."
+    ],
+    "template_note": "Mzizi READMEndio mahali pa kuingilia kwa Kiingereza, na hati/READMEina faili zilizojanibishwa za README. Daftari ya kiolezo ndio daftari chanzo na ina vishikilia nafasi kama vile `{{cell1.title}}`. Faili za lugha hutoa nakala ya lugha mahususi READMEna nakala inayoangalia Colab. Daftari zinazozalishwa zimejitolea ili viungo vya Colab vibaki thabiti.",
+    "checks_note": "Mtiririko wa kazi wa CI huunda upya faili na madaftari ya READMEkutoka kwa kiolezo na faili za lugha, hukagua daftari JSON, huthibitisha matokeo tupu, hukagua sintaksia ya Python katika seli za msimbo, huchanganua siri za dhahiri za bahati mbaya, na kushindwa wakati faili zinazotolewa hazijatekelezwa.",
+    "ci_items": [
+      "READMEkizazi kutoka kwa faili za lugha",
+      "kutengeneza daftari kutoka kwa kiolezo na faili za eneo",
+      "daftari JSONuhalali",
+      "matokeo tupu ya utekelezaji",
+      "Syntax ya Python katika seli za nambari",
+      "siri za bahati mbaya",
+      "imetolewa kwa kujitolea READMEna faili za daftari zinazolingana na vyanzo"
+    ],
+    "ci_limit": "Njia kamili ya unukuzi inahitaji API maalum za Colab, vipakuliwa vya miundo, upatikanaji wa GPU, na faili za midia zinazotolewa na mtumiaji. Chunguza njia hiyo kama jaribio la mwongozo la moshi la Colab baada ya ukaguzi wa faili uliotengenezwa kupita.",
+    "license_note": "Jenereta ya hazina hii ya README, kiolezo cha daftari, faili za lugha, daftari zinazozalishwa, na hati za matengenezo hutolewa chini ya Leseni ya MIT. Whispermiundo na utegemezi wa watu wengine hutawaliwa na leseni zao husika.",
+    "feature_labels": [
+      "Bure kutumia",
+      "Hakuna kikomo cha saizi ya faili ya upande wa daftari isiyobadilika",
+      "Usindikaji wa kundi",
+      "Google Drivemsaada",
+      "Kikamilifu mtandaoni",
+      "Miundo ya towe nyingi"
+    ],
+    "feature_bodies": [
+      "Daftari hili linatumia [openai/whisper](https://github.com/openai/whisper), ambalo OpenAIlilipatikana tarehe 17 Januari 2023, pamoja na Google Colabbila malipo GPUwakati wa utekelezaji.",
+      "Faili kubwa za sauti na video zinaweza kuchakatwa.",
+      "Faili nyingi za sauti na video zinaweza kuchakatwa kwa muda mmoja.",
+      "Faili zinaweza kupakiwa moja kwa moja, au faili za sauti/video zilizohifadhiwa katika Google Drivezinaweza kuchakatwa.",
+      "Upakuaji na uchakataji unafanywa kwenye Google Colab. Hakuna rasilimali za kompyuta za ndani zinazotumika.",
+      "Daftari hutoa manukuu asili ya JSONna kutolewa TXT, CSV, Markdown, Excel, na SRTfaili za manukuu."
+    ]
+  },
+  "labels": {
+    "features": "Vipengele",
+    "languages": "Lugha",
+    "language": "Lugha",
+    "readme": "README",
+    "notebook": "Daftari",
+    "repository_layout": "Mpangilio wa Hifadhi",
+    "build": "Jenga",
+    "checks": "Hundi",
+    "what_ci_can_test": "Nini CI Inaweza Kujaribu",
+    "license": "Leseni"
+  },
+  "translation_source": "google:sw; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Daftari",
+    "description": "Daftari hili linanukuu faili za sauti au video kwa Whisper.",
+    "features_heading": "Vipengele",
+    "features": [
+      "**Bure kutumia:** Daftari hili linatumia [openai/whisper](https://github.com/openai/whisper), ambalo OpenAIlilipatikana tarehe 17 Januari 2023, pamoja na Google Colabbila malipo GPUwakati wa utekelezaji.",
+      "**Hakuna kikomo cha saizi ya faili ya upande wa daftari isiyobadilika:** Faili kubwa za sauti na video zinaweza kuchakatwa.",
+      "**Usindikaji wa kundi:** Faili nyingi za sauti na video zinaweza kuchakatwa kwa muda mmoja.",
+      "**Google Drivemsaada:** Faili zinaweza kupakiwa moja kwa moja, au faili za sauti/video zilizohifadhiwa katika Google Drivezinaweza kuchakatwa.",
+      "**Kikamilifu mtandaoni:** Upakuaji na uchakataji unafanywa kwenye Google Colab. Hakuna rasilimali za kompyuta za ndani zinazotumika.",
+      "**Miundo ya towe nyingi:** Daftari hutoa manukuu asili ya JSONna kutolewa TXT, CSV, Markdown, Excel, na SRTfaili za manukuu."
+    ],
+    "how_to_use_heading": "Jinsi ya kutumia",
+    "how_to_use_steps": [
+      "Katika **1. Mipangilio**, chagua `INPUT_MODE`na urekebishe chaguo za muundo au towe ikihitajika.",
+      "Chagua **Muda wa kukimbia -> Endesha zote**.",
+      "Ikiwa `INPUT_MODE = \"upload\"`, subiri hadi **2. Uchaguzi wa faili / Google Drivemount** unaanza, kisha ubofye **Chagua Faili** katika eneo la kutoa la kisanduku hicho.",
+      "Uchakataji unapokamilika, faili za towe hubanwa na kupakuliwa ikiwa `AUTO_DOWNLOAD_ZIP`imewezeshwa."
+    ],
+    "notes_heading": "Vidokezo",
+    "notes": [
+      "Google Colabbure GPUupatikanaji ni mdogo. Ikiwa hakuna GPUinapatikana na `REQUIRE_CUDA = True`, daftari litasimama kabla ya unukuzi.",
+      "Usindikaji huchukua muda. Kama mwongozo mbaya unapotumia mtindo wa large-v3-turbo, faili ya sauti au video ya dakika 60 inaweza kuchukua kama dakika 5-10 kunakili. Ukipakia faili moja kwa moja, muda wa kupakia pia unahitajika.",
+      "Weka daftari hili wazi wakati wa kuchakata. Ukifunga daftari wakati wa unukuzi, usindikaji huacha."
+    ],
+    "feature_labels": [
+      "Bure kutumia",
+      "Hakuna kikomo cha saizi ya faili ya upande wa daftari isiyobadilika",
+      "Usindikaji wa kundi",
+      "Google Drivemsaada",
+      "Kikamilifu mtandaoni",
+      "Miundo ya towe nyingi"
+    ],
+    "feature_bodies": [
+      "Daftari hili linatumia [openai/whisper](https://github.com/openai/whisper), ambalo OpenAIlilipatikana tarehe 17 Januari 2023, pamoja na Google Colabbila malipo GPUwakati wa utekelezaji.",
+      "Faili kubwa za sauti na video zinaweza kuchakatwa.",
+      "Faili nyingi za sauti na video zinaweza kuchakatwa kwa muda mmoja.",
+      "Faili zinaweza kupakiwa moja kwa moja, au faili za sauti/video zilizohifadhiwa katika Google Drivezinaweza kuchakatwa.",
+      "Upakuaji na uchakataji unafanywa kwenye Google Colab. Hakuna rasilimali za kompyuta za ndani zinazotumika.",
+      "Daftari hutoa manukuu asili ya JSONna kutolewa TXT, CSV, Markdown, Excel, na SRTfaili za manukuu."
+    ]
+  }
+}

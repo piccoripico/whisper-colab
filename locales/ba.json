@@ -1,0 +1,144 @@
+{
+  "language": "ba",
+  "display_name": "Bashkir",
+  "native_name": "Bashkir",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Көйләүҙәр",
+    "cell1.section_title": "# 1. Көйләүҙәр",
+    "cell2.title": "# @title 2. Файл һайлау / Google Driveмонтаж",
+    "cell2.section_title": "# 2. Файл һайлау / Google Driveмонтаж",
+    "cell3.title": "# @title 3. GPUтикшерергә һәм бәйлелек ҡуйыу",
+    "cell3.section_title": "# 3. GPUтикшерергә һәм бәйлелек ҡуйыу",
+    "cell4.title": "# @title 4. Ярҙамсы функциялар",
+    "cell4.section_title": "# 4. Ярҙамсы функциялар",
+    "cell5.title": "# @title 5. Whisperйөкләгеҙ һәм транскрипцияны эшләтегеҙ",
+    "cell5.section_title": "# 5. Whisperйөкләгеҙ һәм транскрипцияны эшләтегеҙ",
+    "cell6.title": "# @title 6. Zip һәм скачать сығыштар",
+    "cell6.section_title": "# 6. Zip һәм скачать сығыштар",
+    "settings.input_heading": "# @markdown ## Индереү",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Урындағы файлдар өсөн `upload`йәки Google Drive-ҙа инде һаҡланған файлдар өсөн `google_drive`ҡулланығыҙ.",
+    "settings.drive_heading": "# @markdown ### Google Drive input",
+    "settings.drive_help": "# @markdown Был параметрҙар тик `INPUT_MODE == \"google_drive\"`булғанда ғына ҡулланыла.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Usually keep this set to `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Минең диск аҫтында файл йәки папка юлы. Юғары кимәлдәге MyDrive папкаһын ҡулланыу өсөн буш ҡалдырырға.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Әгәр Диск индереү юлы папка булһа, шулай уҡ подпапкалар эҙләгеҙ.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Файл исеменең подстрока фильтры өҫтәмә.",
+    "settings.model_heading": "# @markdown ## Whisper model",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Face model ID. Turbo is faster; large-v3 can be more stable for some files.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: `auto`ҡулланығыҙ, ҡасан билдәһеҙ, йәки билдәле сығанаҡ телен һайлағыҙ.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Инглиз телен сығарыу өсөн Whisperтәржемә режимын ҡулланығыҙ.",
+    "settings.output_heading": "# @markdown ## Сығыш",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Һаҡлау сығыштары аҫтында Google Driveҡасан Диск индереү ҡулланыла.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Аҙағында бер ZIPархивын булдырыу һәм скачать итеү.",
+    "settings.formats_help": "# @markdown - Сығыш форматтары түбәндәге бул һандары менән идара ителә.",
+    "settings.advanced_heading": "# ## Алдынғы",
+    "settings.advanced_help": "# Был ғәҙәттәгесә Colab өсөн консерватив. Ғәҙәттә, ябай ҡулланыусыларға уларҙы мөхәррирләргә кәрәкмәй.",
+    "settings.loaded_message": "Настройки загружены.",
+    "messages.choose_files": "'Файлдарҙы һайлау' тигәнгә баҫығыҙ һәм бер йәки бер нисә аудио/видео файлды тейәгеҙ.",
+    "messages.selected_files": "Һайланған файлдар:",
+    "messages.dependencies_done": "Зависимость ҡуйыу тамамланды.",
+    "messages.model_loaded": "Whisper model loaded.",
+    "messages.transcription_complete": "Транскрипция тулы.",
+    "errors.no_supported_files": "Ярҙам ителгән аудио/видео файлдар һайланмаған.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperКолаб дәфтәре\n\nБыл дәфтәр аудио йәки видеофайлдарҙы Whisperменән транскрипциялай.\n\n## Сифаттар\n\n- **Бушлай ҡулланыу:** Был ноутбукта [openai/whisper](https://github.com/openai/whisper)ҡулланыла, ул OpenAI2023 йылдың 17 ғинуарында асыҡ сығанаҡлы, Google Colab-ның бушлай GPUэшләү ваҡыты менән бергә.\n- **Дәфтәр яғында файл күләменең нығытылған сиге юҡ:** Ҙур аудио һәм видео файлдарҙы эшкәртергә мөмкин.\n- **Партиялы эшкәртеү:** Бер йүгереүҙән бер нисә аудио һәм видеофайлды эшкәртергә мөмкин.\n- **Google Drive support:** Файлдарҙы туранан-тура тейәп була, йәки Google Driveһаҡланған аудио/видео файлдарҙы эшкәртергә мөмкин.\n- **Тулыһынса онлайн:** Скачивание һәм эшкәртелеү Google Colabадресы буйынса башҡарыла. Урындағы иҫәпләү ресурстары ҡулланылмай.\n- **Бер нисә сығыу форматы:** Дәфтәрҙә төп стенограмма һәм алынған TXT, CSV, Markdown, Excelһәм SRTсубтитрҙар файлдары сығарыла.\n\n## Нисек ҡулланырға .\n\n1. **1-ҙә. Көйләүҙәр**, һайлау `INPUT_MODE`һәм модель йәки сығыу варианттарын көйләү, әгәр кәрәк.\n2. **Эшләү ваҡыты -> Барыһын да эшләтергә** һайлағыҙ.\n3. If `INPUT_MODE = \"upload\"`, wait until **2. File selection / Google Drive mount** starts, then click **Choose Files** in that cell's output area.\n4. Эшкәртелгәндән һуң, сығыш файлдары зипп һәм скачать, әгәр `AUTO_DOWNLOAD_ZIP`өҫтөндә.\n\n## Иҫкәрмәләр\n\n- Google Colab free GPU availability is limited. If no GPU is available and `REQUIRE_CUDA = True`, the notebook stops before transcription.\n- Эшкәртеү ваҡыт талап итә. large-v3-turboмоделен ҡулланғанда ҡырыҫ етәкселек булараҡ, 60 минутлыҡ аудио йәки видеофайлды транскрипциялау өсөн яҡынса 5-10 минут ваҡыт кәрәк булыуы мөмкин. Әгәр һеҙ туранан-тура файлдарҙы тейәп, тейәү ваҡыты ла кәрәк.\n- Эшкәрткәндә был дәфтәрҙе асыҡ тотоғоҙ. Транскрипция ваҡытында дәфтәрҙе япһаң, эшкәртеү туҡтай.",
+    "settings.source_language_default": "bashkir"
+  },
+  "labels": {
+    "features": "Сифаттар",
+    "languages": "Телдәр .",
+    "language": "Тел",
+    "readme": "README",
+    "notebook": "Дәфтәр .",
+    "repository_layout": "Һаҡлағыс макеты",
+    "build": "Төҙөргә",
+    "checks": "Тикшерәләр",
+    "what_ci_can_test": "Ниндәй CI һынай ала",
+    "license": "Лицензия"
+  },
+  "readme": {
+    "title": "Whisper Colab",
+    "subtitle": "Транскрипция өсөн күп телле Google Colabдәфтәрҙәре.",
+    "features": [
+      "**Бушлай ҡулланыу:** Был ноутбукта [openai/whisper](https://github.com/openai/whisper)ҡулланыла, ул OpenAI2023 йылдың 17 ғинуарында асыҡ сығанаҡлы, Google Colab-ның бушлай GPUэшләү ваҡыты менән бергә.",
+      "**Дәфтәр яғында файл күләменең нығытылған сиге юҡ:** Ҙур аудио һәм видео файлдарҙы эшкәртергә мөмкин.",
+      "**Партиялы эшкәртеү:** Бер йүгереүҙән бер нисә аудио һәм видеофайлды эшкәртергә мөмкин.",
+      "**Google Drive support:** Files can be uploaded directly, or audio/video files stored in Google Drive can be processed.",
+      "**Тулыһынса онлайн:** Скачивание һәм эшкәртелеү Google Colabадресы буйынса башҡарыла. Урындағы иҫәпләү ресурстары ҡулланылмай.",
+      "**Бер нисә сығыу форматы:** Дәфтәрҙә төп стенограмма һәм алынған TXT, CSV, Markdown, Excelһәм SRTсубтитрҙар файлдары сығарыла."
+    ],
+    "template_note": "READMEтамыры инглиз теленең инеү нөктәһе булып тора, ә docs/READMEгенерацияланған локалләштерелгән READMEфайлдарын үҙ эсенә ала. Ҡалып дәфтәре сығанаҡ дәфтәре булып тора һәм `{{cell1.title}}`кеүек урын билдәләүселәрҙе үҙ эсенә ала. Локаль файлдар телгә хас READMEһәм Colab-ҡа ҡараған күсермәһен тәьмин итә. Генерацияланған ноутбуктар йөкмәтелгән, шуға күрә Colab һылтанмалар тотороҡло ҡала.",
+    "checks_note": "CI эш ағымы READMEфайлдарын һәм дәфтәрҙәрҙе шаблон һәм локаль файлдарҙан яңынан төҙөй, JSONдәфтәрен тикшерә, буш сығыштарҙы тикшерә, код күҙәнәктәрендә Python синтаксисын тикшерә, асыҡ осраҡлы серҙәрҙе тикшерә һәм генерацияланған файлдар булмағанда уңышһыҙлыҡҡа осрай.",
+    "ci_items": [
+      "READMEлокаль файлдарҙан быуын",
+      "шаблон һәм локаль файлдарҙан ноутбук генерациялау",
+      "notebook JSON validity",
+      "буш башҡарыу һөҙөмтәләре",
+      "Код күҙәнәктәрендә Python синтаксисы",
+      "асыҡ осраҡлы серҙәр",
+      "йөкмәтелгән генерацияланған READMEһәм сығанаҡтарға тап килгән ноутбук файлдары"
+    ],
+    "ci_limit": "Тулы транскрипция юлы өсөн Colab-ҡа махсус API-лар, модель скачиваниелары, GPUдоступность һәм ҡулланыусылар биргән медиа-файлдар талап ителә. Ҡул менән ҡабул итеү, тип юл Colab төтөн һынау генерацияланған-файл тикшергәндән һуң үткән.",
+    "license_note": "Был һаҡлағыстың READMEгенераторы, ноутбук ҡалыбы, локаль файлдар, генерацияланған ноутбуктар һәм хеҙмәтләндереүҙең сценарийҙары MITлицензияһы буйынса сығарыла. Whisperмоделдәре һәм өсөнсө яҡтан бәйлелектәр үҙҙәренең тейешле лицензиялары менән идара ителә.",
+    "feature_labels": [
+      "Бушлай ҡулланыу",
+      "Дәфтәр яғында файл күләменең нығытылған сиге юҡ",
+      "Партиялы эшкәртеү",
+      "Google Drive support",
+      "Тулыһынса онлайн",
+      "Бер нисә сығыу форматы"
+    ],
+    "feature_bodies": [
+      "Был ноутбукта [openai/whisper](https://github.com/openai/whisper)ҡулланыла, ул OpenAI2023 йылдың 17 ғинуарында асыҡ сығанаҡлы, Google Colab-ның бушлай GPUэшләү ваҡыты менән бергә.",
+      "Ҙур аудио һәм видео файлдарҙы эшкәртергә мөмкин.",
+      "Бер йүгереүҙән бер нисә аудио һәм видеофайлды эшкәртергә мөмкин.",
+      "Файлдарҙы туранан-тура тейәп була, йәки Google Driveһаҡланған аудио/видео файлдарҙы эшкәртергә мөмкин.",
+      "Скачивание һәм эшкәртелеү Google Colabадресы буйынса башҡарыла. Урындағы иҫәпләү ресурстары ҡулланылмай.",
+      "Дәфтәрҙә төп стенограмма һәм алынған TXT, CSV, Markdown, Excelһәм SRTсубтитрҙар файлдары сығарыла."
+    ]
+  },
+  "translation_source": "direct_google:ba; machine-translated from en",
+  "notebook": {
+    "title": "WhisperКолаб дәфтәре",
+    "description": "Был дәфтәр аудио йәки видеофайлдарҙы Whisperменән транскрипциялай.",
+    "features_heading": "Сифаттар",
+    "features": [
+      "**Бушлай ҡулланыу:** Был ноутбукта [openai/whisper](https://github.com/openai/whisper)ҡулланыла, ул OpenAI2023 йылдың 17 ғинуарында асыҡ сығанаҡлы, Google Colab-ның бушлай GPUэшләү ваҡыты менән бергә.",
+      "**Дәфтәр яғында файл күләменең нығытылған сиге юҡ:** Ҙур аудио һәм видео файлдарҙы эшкәртергә мөмкин.",
+      "**Партиялы эшкәртеү:** Бер йүгереүҙән бер нисә аудио һәм видеофайлды эшкәртергә мөмкин.",
+      "**Google Drive support:** Files can be uploaded directly, or audio/video files stored in Google Drive can be processed.",
+      "**Тулыһынса онлайн:** Скачивание һәм эшкәртелеү Google Colabадресы буйынса башҡарыла. Урындағы иҫәпләү ресурстары ҡулланылмай.",
+      "**Бер нисә сығыу форматы:** Дәфтәрҙә төп стенограмма һәм алынған TXT, CSV, Markdown, Excelһәм SRTсубтитрҙар файлдары сығарыла."
+    ],
+    "how_to_use_heading": "Нисек ҡулланырға .",
+    "how_to_use_steps": [
+      "**1-ҙә. Көйләүҙәр**, һайлау `INPUT_MODE`һәм модель йәки сығыу варианттарын көйләү, әгәр кәрәк.",
+      "**Эшләү ваҡыты -> Барыһын да эшләтергә** һайлағыҙ.",
+      "If `INPUT_MODE = \"upload\"`, wait until **2. File selection / Google Drive mount** starts, then click **Choose Files** in that cell's output area.",
+      "Эшкәртелгәндән һуң, сығыш файлдары зипп һәм скачать, әгәр `AUTO_DOWNLOAD_ZIP`өҫтөндә."
+    ],
+    "notes_heading": "Иҫкәрмәләр",
+    "notes": [
+      "Google Colab free GPU availability is limited. If no GPU is available and `REQUIRE_CUDA = True`, the notebook stops before transcription.",
+      "Эшкәртеү ваҡыт талап итә. large-v3-turboмоделен ҡулланғанда ҡырыҫ етәкселек булараҡ, 60 минутлыҡ аудио йәки видеофайлды транскрипциялау өсөн яҡынса 5-10 минут ваҡыт кәрәк булыуы мөмкин. Әгәр һеҙ туранан-тура файлдарҙы тейәп, тейәү ваҡыты ла кәрәк.",
+      "Эшкәрткәндә был дәфтәрҙе асыҡ тотоғоҙ. Транскрипция ваҡытында дәфтәрҙе япһаң, эшкәртеү туҡтай."
+    ],
+    "feature_labels": [
+      "Бушлай ҡулланыу",
+      "Дәфтәр яғында файл күләменең нығытылған сиге юҡ",
+      "Партиялы эшкәртеү",
+      "Google Drive support",
+      "Тулыһынса онлайн",
+      "Бер нисә сығыу форматы"
+    ],
+    "feature_bodies": [
+      "Был ноутбукта [openai/whisper](https://github.com/openai/whisper)ҡулланыла, ул OpenAI2023 йылдың 17 ғинуарында асыҡ сығанаҡлы, Google Colab-ның бушлай GPUэшләү ваҡыты менән бергә.",
+      "Ҙур аудио һәм видео файлдарҙы эшкәртергә мөмкин.",
+      "Бер йүгереүҙән бер нисә аудио һәм видеофайлды эшкәртергә мөмкин.",
+      "Файлдарҙы туранан-тура тейәп була, йәки Google Driveһаҡланған аудио/видео файлдарҙы эшкәртергә мөмкин.",
+      "Скачивание һәм эшкәртелеү Google Colabадресы буйынса башҡарыла. Урындағы иҫәпләү ресурстары ҡулланылмай.",
+      "Дәфтәрҙә төп стенограмма һәм алынған TXT, CSV, Markdown, Excelһәм SRTсубтитрҙар файлдары сығарыла."
+    ]
+  }
+}

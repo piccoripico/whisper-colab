@@ -1,0 +1,144 @@
+{
+  "language": "ht",
+  "display_name": "Haitian Creole",
+  "native_name": "Haitian Creole",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Anviwònman",
+    "cell1.section_title": "# 1. Anviwònman",
+    "cell2.title": "# @title 2. Seleksyon fichye / Google Drivemòn",
+    "cell2.section_title": "# 2. Seleksyon fichye / Google Drivemòn",
+    "cell3.title": "# @title 3. GPUtcheke ak enstalasyon depandans",
+    "cell3.section_title": "# 3. GPUtcheke ak enstalasyon depandans",
+    "cell4.title": "# @title 4. Fonksyon èd",
+    "cell4.section_title": "# 4. Fonksyon èd",
+    "cell5.title": "# @title 5. Chaje Whisperepi kouri transkripsyon",
+    "cell5.section_title": "# 5. Chaje Whisperepi kouri transkripsyon",
+    "cell6.title": "# @title 6. Kòd postal ak telechaje rezilta yo",
+    "cell6.section_title": "# 6. Kòd postal ak telechaje rezilta yo",
+    "settings.input_heading": "# @markdown ## Antre",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Sèvi ak `upload`ou fichye lokal yo oswa `google_drive`ou fichye ki deja estoke nan Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveantre",
+    "settings.drive_help": "# @markdown Paramèt sa yo itilize sèlman lè `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Anjeneral kenbe seri sa a nan `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Yon chemen dosye oswa katab anba MyDrive. Kite vid pou itilize katab MyDrive ki pi wo a.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Si chemen antre Drive a se yon katab, chèche tou sousdosiers.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Si ou vle non fichye filtè.",
+    "settings.model_heading": "# @markdown ## Whispermodèl",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodèl ID. Turbo se pi vit; large-v3ka pi estab pou kèk dosye.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Sèvi ak `auto`lè yo pa konnen, oswa chwazi yon lang sous yo konnen.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Sèvi ak Whispermòd tradiksyon pou pwodiksyon angle.",
+    "settings.output_heading": "# @markdown ## Sòti",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Sove rezilta yo anba Google Drivelè yo itilize antre Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Kreye epi telechaje yon achiv ZIPnan fen.",
+    "settings.formats_help": "# @markdown - Fòma pwodiksyon yo kontwole pa boolean ki anba yo.",
+    "settings.advanced_heading": "# ## Avanse",
+    "settings.advanced_help": "# Defo sa yo konsèvatif pou Colab. Itilizatè òdinè anjeneral pa bezwen edite yo.",
+    "settings.loaded_message": "Anviwònman chaje.",
+    "messages.choose_files": "Klike sou 'Chwazi Fichiers' epi telechaje youn oswa plis fichye odyo/videyo.",
+    "messages.selected_files": "Fichye chwazi:",
+    "messages.dependencies_done": "Enstalasyon Depandans fini.",
+    "messages.model_loaded": "Whispermodèl chaje.",
+    "messages.transcription_complete": "Transkripsyon konplè.",
+    "errors.no_supported_files": "Pa gen okenn dosye odyo / videyo sipòte yo te chwazi.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperKaye Colab\n\nKaye sa a transkri fichye odyo oswa videyo ak Whisper.\n\n## Karakteristik\n\n- **Gratis pou itilize:** Kaye sa a sèvi ak [openai/whisper](https://github.com/openai/whisper), ki OpenAIouvè sou 17 janvye 2023, ansanm ak Google Colabgratis GPU.\n- **Pa gen limit gwosè dosye fiks kaye-bò:** Gwo dosye odyo ak videyo ka trete.\n- **Pwosesis pakèt:** Plizyè dosye odyo ak videyo ka trete nan yon sèl kouri.\n- **Google Drivesipò:** Fichye yo ka telechaje dirèkteman, oswa dosye odyo/videyo ki estoke nan Google Driveka trete.\n- **Totalman sou entènèt:** Telechajman ak pwosesis yo fèt sou Google Colab. Yo pa itilize resous enfòmatik lokal yo.\n- **Plizyè fòma pwodiksyon:** Kaye a bay transkripsyon orijinal JSONak dosye soutit TXT, CSV, Markdown, Excel, ak SRTki sòti.\n\n## Kouman pou itilize\n\n1. Nan **1. Anviwònman**, chwazi `INPUT_MODE`epi ajiste modèl la oswa opsyon pwodiksyon si sa nesesè.\n2. Chwazi **Exécuter -> Kouri tout**.\n3. Si `INPUT_MODE = \"upload\"`, tann jiska **2. Seleksyon fichye / Google Drivemòn** kòmanse, epi klike sou **Chwazi fichye** nan zòn pwodiksyon selil sa a.\n4. Lè pwosesis la fini, dosye pwodiksyon yo konprese epi telechaje si `AUTO_DOWNLOAD_ZIP`èmèt.\n\n## Nòt\n\n- Google Colabgratis GPUdisponiblite limite. Si pa gen GPUki disponib ak `REQUIRE_CUDA = True`, kaye a sispann anvan transkripsyon.\n- Pwosesis pran tan. Kòm yon gid ki graj lè w ap itilize modèl large-v3-turbo, yon dosye odyo oswa videyo 60 minit ka pran apeprè 5-10 minit pou transkri. Si ou telechaje dosye dirèkteman, tan pou telechaje yo mande tou.\n- Kenbe kaye sa a louvri pandan y ap travay la. Si w fèmen kaye a pandan transkripsyon an, pwosesis la sispann.",
+    "settings.source_language_default": "haitian creole"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Kaye plizyè lang Google Colabou Whispertranskripsyon.",
+    "features": [
+      "**Gratis pou itilize:** Kaye sa a sèvi ak [openai/whisper](https://github.com/openai/whisper), ki OpenAIouvè sou 17 janvye 2023, ansanm ak Google Colabgratis GPU.",
+      "**Pa gen limit gwosè dosye fiks kaye-bò:** Gwo dosye odyo ak videyo ka trete.",
+      "**Pwosesis pakèt:** Plizyè dosye odyo ak videyo ka trete nan yon sèl kouri.",
+      "**Google Drivesipò:** Fichye yo ka telechaje dirèkteman, oswa dosye odyo/videyo ki estoke nan Google Driveka trete.",
+      "**Totalman sou entènèt:** Telechajman ak pwosesis yo fèt sou Google Colab. Yo pa itilize resous enfòmatik lokal yo.",
+      "**Plizyè fòma pwodiksyon:** Kaye a bay transkripsyon orijinal JSONak dosye soutit TXT, CSV, Markdown, Excel, ak SRTki sòti."
+    ],
+    "template_note": "Rasin READMEse pwen antre angle a, epi docs/READMEgen dosye lokalize READMEki te pwodwi yo. Kaye modèl la se kaye sous la epi li gen kote ki gen plas tankou `{{cell1.title}}`. Fichye lokal yo bay lang espesifik READMEak kopi ki fè fas a Colab. Kaye pwodwi yo angaje pou lyen Colab rete estab.",
+    "checks_note": "Flux travay CI a rebati fichye READMEak kaye ki soti nan fichye modèl yo ak lokal yo, tcheke kaye JSON, verifye rezilta vid yo, tcheke sentaks Python nan selil kòd yo, analize pou sekrè evidan aksidan, epi echwe lè yo pa komèt fichye pwodwi yo.",
+    "ci_items": [
+      "READMEjenerasyon ki soti nan dosye lokal yo",
+      "jenerasyon kaye apati modèl ak dosye lokal yo",
+      "kaye JSONvalidite",
+      "rezilta ekzekisyon vid",
+      "Sentaks Python nan selil kòd yo",
+      "evidan sekrè aksidan",
+      "komèt te pwodwi READMEak dosye kaye ki matche sous yo"
+    ],
+    "ci_limit": "Chemen transkripsyon konplè a mande pou API Colab espesifik, telechajman modèl, disponiblite GPU, ak dosye medya itilizatè yo bay yo. Trete chemen sa a kòm yon tès manyèl lafimen Colab apre chèk dosye ki te pwodwi yo pase.",
+    "license_note": "Dèlko READMEdepo sa a, modèl kaye, dosye lokal yo, kaye pwodwi yo, ak script antretyen yo pibliye anba Lisans MIT. Modèl Whisperak depandans twazyèm pati yo gouvène pa lisans respektif yo.",
+    "feature_labels": [
+      "Gratis pou itilize",
+      "Pa gen limit gwosè dosye fiks kaye-bò",
+      "Pwosesis pakèt",
+      "Google Drivesipò",
+      "Totalman sou entènèt",
+      "Plizyè fòma pwodiksyon"
+    ],
+    "feature_bodies": [
+      "Kaye sa a sèvi ak [openai/whisper](https://github.com/openai/whisper), ki OpenAIouvè sou 17 janvye 2023, ansanm ak Google Colabgratis GPU.",
+      "Gwo dosye odyo ak videyo ka trete.",
+      "Plizyè dosye odyo ak videyo ka trete nan yon sèl kouri.",
+      "Fichye yo ka telechaje dirèkteman, oswa dosye odyo/videyo ki estoke nan Google Driveka trete.",
+      "Telechajman ak pwosesis yo fèt sou Google Colab. Yo pa itilize resous enfòmatik lokal yo.",
+      "Kaye a bay transkripsyon orijinal JSONak dosye soutit TXT, CSV, Markdown, Excel, ak SRTki sòti."
+    ]
+  },
+  "labels": {
+    "features": "Karakteristik",
+    "languages": "Lang",
+    "language": "Lang",
+    "readme": "README",
+    "notebook": "Kaye",
+    "repository_layout": "Layout depo",
+    "build": "Bati",
+    "checks": "Chèk",
+    "what_ci_can_test": "Ki sa CI ka teste",
+    "license": "Lisans"
+  },
+  "translation_source": "google:ht; machine-translated from en",
+  "notebook": {
+    "title": "WhisperKaye Colab",
+    "description": "Kaye sa a transkri fichye odyo oswa videyo ak Whisper.",
+    "features_heading": "Karakteristik",
+    "features": [
+      "**Gratis pou itilize:** Kaye sa a sèvi ak [openai/whisper](https://github.com/openai/whisper), ki OpenAIouvè sou 17 janvye 2023, ansanm ak Google Colabgratis GPU.",
+      "**Pa gen limit gwosè dosye fiks kaye-bò:** Gwo dosye odyo ak videyo ka trete.",
+      "**Pwosesis pakèt:** Plizyè dosye odyo ak videyo ka trete nan yon sèl kouri.",
+      "**Google Drivesipò:** Fichye yo ka telechaje dirèkteman, oswa dosye odyo/videyo ki estoke nan Google Driveka trete.",
+      "**Totalman sou entènèt:** Telechajman ak pwosesis yo fèt sou Google Colab. Yo pa itilize resous enfòmatik lokal yo.",
+      "**Plizyè fòma pwodiksyon:** Kaye a bay transkripsyon orijinal JSONak dosye soutit TXT, CSV, Markdown, Excel, ak SRTki sòti."
+    ],
+    "how_to_use_heading": "Kouman pou itilize",
+    "how_to_use_steps": [
+      "Nan **1. Anviwònman**, chwazi `INPUT_MODE`epi ajiste modèl la oswa opsyon pwodiksyon si sa nesesè.",
+      "Chwazi **Exécuter -> Kouri tout**.",
+      "Si `INPUT_MODE = \"upload\"`, tann jiska **2. Seleksyon fichye / Google Drivemòn** kòmanse, epi klike sou **Chwazi fichye** nan zòn pwodiksyon selil sa a.",
+      "Lè pwosesis la fini, dosye pwodiksyon yo konprese epi telechaje si `AUTO_DOWNLOAD_ZIP`èmèt."
+    ],
+    "notes_heading": "Nòt",
+    "notes": [
+      "Google Colabgratis GPUdisponiblite limite. Si pa gen GPUki disponib ak `REQUIRE_CUDA = True`, kaye a sispann anvan transkripsyon.",
+      "Pwosesis pran tan. Kòm yon gid ki graj lè w ap itilize modèl large-v3-turbo, yon dosye odyo oswa videyo 60 minit ka pran apeprè 5-10 minit pou transkri. Si ou telechaje dosye dirèkteman, tan pou telechaje yo mande tou.",
+      "Kenbe kaye sa a louvri pandan y ap travay la. Si w fèmen kaye a pandan transkripsyon an, pwosesis la sispann."
+    ],
+    "feature_labels": [
+      "Gratis pou itilize",
+      "Pa gen limit gwosè dosye fiks kaye-bò",
+      "Pwosesis pakèt",
+      "Google Drivesipò",
+      "Totalman sou entènèt",
+      "Plizyè fòma pwodiksyon"
+    ],
+    "feature_bodies": [
+      "Kaye sa a sèvi ak [openai/whisper](https://github.com/openai/whisper), ki OpenAIouvè sou 17 janvye 2023, ansanm ak Google Colabgratis GPU.",
+      "Gwo dosye odyo ak videyo ka trete.",
+      "Plizyè dosye odyo ak videyo ka trete nan yon sèl kouri.",
+      "Fichye yo ka telechaje dirèkteman, oswa dosye odyo/videyo ki estoke nan Google Driveka trete.",
+      "Telechajman ak pwosesis yo fèt sou Google Colab. Yo pa itilize resous enfòmatik lokal yo.",
+      "Kaye a bay transkripsyon orijinal JSONak dosye soutit TXT, CSV, Markdown, Excel, ak SRTki sòti."
+    ]
+  }
+}

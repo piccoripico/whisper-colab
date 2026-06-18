@@ -1,0 +1,144 @@
+{
+  "language": "la",
+  "display_name": "Latin",
+  "native_name": "Latin",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Occasus",
+    "cell1.section_title": "# 1. Occasus",
+    "cell2.title": "# @title 2. Tabulae lectionis / Google DriveMount",
+    "cell2.section_title": "# 2. Tabulae lectionis / Google DriveMount",
+    "cell3.title": "# @title 3. GPUreprehendo et dependentiam institutionem",
+    "cell3.section_title": "# 3. GPUreprehendo et dependentiam institutionem",
+    "cell4.title": "# @title 4. Adiutor munera",
+    "cell4.section_title": "# 4. Adiutor munera",
+    "cell5.title": "# @title 5. Load Whisperand run transcription",
+    "cell5.section_title": "# 5. Load Whisperand run transcription",
+    "cell6.title": "# @title 6. Zip and download outputs",
+    "cell6.section_title": "# 6. Zip and download outputs",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Usus `upload`ro fasciculis localibus vel `google_drive`ro fasciculis iam in Google Driveconditis.",
+    "settings.drive_heading": "# @markdown ### Google Driveinput",
+    "settings.drive_help": "# @markdown Hae uncinis tantum adhibentur cum `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Solent hanc formam `/content/drive/MyDrive`servare.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Lima vel folder semita sub MyDrive. Relinque blank utendi summo gradu MyDrive folder.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Si Coegi initus semita est folder, etiam quaerere subfolders.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: filter filename substring.",
+    "settings.model_heading": "# @markdown ## Whisperexemplar",
+    "settings.model_help": "# @markdown - `MODEL_ID`:Hugging Faceexemplar ID. Turbo velocior; large-v3aliquot imagini firmior esse potest.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Usus `auto`ignotae, aut notam linguam elige.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Usus Whisperinterpretari modus est output Latine.",
+    "settings.output_heading": "# @markdown ## Output",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Servare outputs sub Google Drivecum Drive initus adhibetur.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: crea et fac unum archivum in fine ZIP.",
+    "settings.formats_help": "# @markdown - Formae output infra reguntur a booleans.",
+    "settings.advanced_heading": "# ## Provecta",
+    "settings.advanced_help": "# Hae defaltae conservativae sunt pro Colab. Ordinarii utentes plerumque eos recensere non oportet.",
+    "settings.loaded_message": "Occasus oneratus.",
+    "messages.choose_files": "Preme 'Fileas elige' et fasciculos vel fasciculos audio/video fasciculos oneres.",
+    "messages.selected_files": "Files delectus:",
+    "messages.dependencies_done": "Institutionem Dependentiae complevit.",
+    "messages.model_loaded": "Whisperexemplar onustum.",
+    "messages.transcription_complete": "Transcription Avanc.",
+    "errors.no_supported_files": "Non sustinetur audio/video lima delecti sunt.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nHoc libello transcribit audio vel tabellas cum Whisper.\n\n## Features\n\n- **Free utendi:** Hoc libello utitur [openai/whisper](https://github.com/openai/whisper), quod OpenAIapertum fonted die 17 mensis Ianuarii anno 2023 una cum Google Colab0003GPU\n- **Nulla certa ullamcorper-latere file size modus:** Magnum audio et video lima discursum esse.\n- **Batch processus:** Multiplex audio et video fasciculos in uno cursu discursum esse.\n- **Google Drivesupport:** Tabulae directe impositi possunt, vel audio/video tabulae in Google Driveconditas processus fieri possunt.\n- **plene online:** Downloads and processing are performed on Google Colab. Nullae facultates computandi locales adhibentur.\n- **Multa output formats:** Comentarius outputs originalis JSONtranscriptum et derivatum TXT, CSV, Markdown, Excel, ac SRTlima subtilissima.\n\n## Quomodo uti\n\n1. Anno **1. Optiones**, elige `INPUT_MODE`et compone exemplar vel optiones output si opus fuerit.\n2. Select ** Runtime -> Curre omnia.\n3. Si `INPUT_MODE = \"upload\"`, expecta dum **2. Fasciculi selectio / Google Driveincipit, deinde deprime tabulata elige in spatio cellulae output.\n4. Cum processus completus est, fasciculi output zipped sunt et receptae si `AUTO_DOWNLOAD_ZIP`ossunt.\n\n## Notae\n\n- Google Colab free GPU availability is limited. If no GPU is available and `REQUIRE_CUDA = True`, the notebook stops before transcription.\n- Vestibulum tempus suscipit vestibulum. Sicut dux asperus cum exemplar large-v3-turboadhibens, a 60-minutis audio vel fasciculi video capere potest circiter 5-10 minuta transcribere. Si statim fasciculos fasciculos imposuisti, tempus etiam fasciculi requiritur.\n- Serva hunc libellum apertum dispensando. Si commentariolum in transcriptione claudis, processus sistit.",
+    "settings.source_language_default": "latin"
+  },
+  "labels": {
+    "features": "Features",
+    "languages": "Linguae",
+    "language": "Linguae",
+    "readme": "README",
+    "notebook": "Codicillus",
+    "repository_layout": "Repositorium propositum",
+    "build": "aedificate",
+    "checks": "SCUTULATUM",
+    "what_ci_can_test": "Quid CI test?",
+    "license": "Licentia"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Multilingual Google Colabugillares ad Whispertranscription.",
+    "features": [
+      "**Free utendi:** Hoc libello utitur [openai/whisper](https://github.com/openai/whisper), quod OpenAIapertum fonted die 17 mensis Ianuarii anno 2023 una cum Google Colab0003GPU",
+      "**Nulla certa ullamcorper-latere file size modus:** Magnum audio et video lima discursum esse.",
+      "**Batch processus:** Multiplex audio et video fasciculos in uno cursu discursum esse.",
+      "**Google Drivesupport:** Tabulae directe impositi possunt, vel audio/video tabulae in Google Driveconditas processus fieri possunt.",
+      "**plene online:** Downloads and processing are performed on Google Colab. Nullae facultates computandi locales adhibentur.",
+      "**Multa output formats:** Comentarius outputs originalis JSONtranscriptum et derivatum TXT, CSV, Markdown, Excel, ac SRTlima subtilissima."
+    ],
+    "template_note": "Radix READMEest Anglica viscus, et soUicitudo /READMEgenerata locata READMEcontinet. Exemplum libello fons est pugillares et locatores continet sicut `{{cell1.title}}`. Documenta localia praebent exemplum linguarum specialium READMEet Colab-adversus. Comentarii generati committuntur, ut nexus Colab stabilis maneat.",
+    "checks_note": "CI workflow reaedificat READMElima et pugillares e documentis et locis localibus, libellos coercet JSON, inanis outputs certificat, syntaxin syntaxin in codice cellulis coercet, perlustrat secreta fortuita manifesta, et documenta generata non committuntur.",
+    "ci_items": [
+      "READMEgeneration from files locale",
+      "ullamcorper generatio ex template et loci files",
+      "libello JSONvalidity",
+      "vacuum supplicium outputs",
+      "Syntaxis pythonis in codice cellulae",
+      "obvious accidentia secreta",
+      "scelus generatae READMEac libellorum files matchings in fontibus"
+    ],
+    "ci_limit": "Plena transcriptionis semita postulat Colab speciales APIs, exemplar downloads, GPUromptitudinis, et instrumentorum instrumentorum usuario instructis. Tracta illam viam sicut fumum manualem Colab experimentum post fasciculi generatae compescit transiens.",
+    "license_note": "Repositorium hoc scriptor READMEgenerator, libello templates, lima locales, codicillos generatos, et scripta conservanda sub licentia MITdimissa sunt. Whisperexempla et tertia factionis clientela suis quisque licentias reguntur.",
+    "feature_labels": [
+      "Free utendi",
+      "Nulla certa ullamcorper-latere file size modus",
+      "Batch processus",
+      "Google Drivesupport",
+      "plene online",
+      "Multa output formats"
+    ],
+    "feature_bodies": [
+      "Hoc libello utitur [openai/whisper](https://github.com/openai/whisper), quod OpenAIapertum fonted die 17 mensis Ianuarii anno 2023 una cum Google Colab0003GPU",
+      "Magnum audio et video lima discursum esse.",
+      "Multiplex audio et video fasciculos in uno cursu discursum esse.",
+      "Tabulae directe impositi possunt, vel audio/video tabulae in Google Driveconditas processus fieri possunt.",
+      "Downloads and processing are performed on Google Colab. Nullae facultates computandi locales adhibentur.",
+      "Comentarius outputs originalis JSONtranscriptum et derivatum TXT, CSV, Markdown, Excel, ac SRTlima subtilissima."
+    ]
+  },
+  "translation_source": "google:la; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Hoc libello transcribit audio vel tabellas cum Whisper.",
+    "features_heading": "Features",
+    "features": [
+      "**Free utendi:** Hoc libello utitur [openai/whisper](https://github.com/openai/whisper), quod OpenAIapertum fonted die 17 mensis Ianuarii anno 2023 una cum Google Colab0003GPU",
+      "**Nulla certa ullamcorper-latere file size modus:** Magnum audio et video lima discursum esse.",
+      "**Batch processus:** Multiplex audio et video fasciculos in uno cursu discursum esse.",
+      "**Google Drivesupport:** Tabulae directe impositi possunt, vel audio/video tabulae in Google Driveconditas processus fieri possunt.",
+      "**plene online:** Downloads and processing are performed on Google Colab. Nullae facultates computandi locales adhibentur.",
+      "**Multa output formats:** Comentarius outputs originalis JSONtranscriptum et derivatum TXT, CSV, Markdown, Excel, ac SRTlima subtilissima."
+    ],
+    "how_to_use_heading": "Quomodo uti",
+    "how_to_use_steps": [
+      "Anno **1. Optiones**, elige `INPUT_MODE`et compone exemplar vel optiones output si opus fuerit.",
+      "Select ** Runtime -> Curre omnia.",
+      "Si `INPUT_MODE = \"upload\"`, expecta dum **2. Fasciculi selectio / Google Driveincipit, deinde deprime tabulata elige in spatio cellulae output.",
+      "Cum processus completus est, fasciculi output zipped sunt et receptae si `AUTO_DOWNLOAD_ZIP`ossunt."
+    ],
+    "notes_heading": "Notae",
+    "notes": [
+      "Google Colab free GPU availability is limited. If no GPU is available and `REQUIRE_CUDA = True`, the notebook stops before transcription.",
+      "Vestibulum tempus suscipit vestibulum. Sicut dux asperus cum exemplar large-v3-turboadhibens, a 60-minutis audio vel fasciculi video capere potest circiter 5-10 minuta transcribere. Si statim fasciculos fasciculos imposuisti, tempus etiam fasciculi requiritur.",
+      "Serva hunc libellum apertum dispensando. Si commentariolum in transcriptione claudis, processus sistit."
+    ],
+    "feature_labels": [
+      "Free utendi",
+      "Nulla certa ullamcorper-latere file size modus",
+      "Batch processus",
+      "Google Drivesupport",
+      "plene online",
+      "Multa output formats"
+    ],
+    "feature_bodies": [
+      "Hoc libello utitur [openai/whisper](https://github.com/openai/whisper), quod OpenAIapertum fonted die 17 mensis Ianuarii anno 2023 una cum Google Colab0003GPU",
+      "Magnum audio et video lima discursum esse.",
+      "Multiplex audio et video fasciculos in uno cursu discursum esse.",
+      "Tabulae directe impositi possunt, vel audio/video tabulae in Google Driveconditas processus fieri possunt.",
+      "Downloads and processing are performed on Google Colab. Nullae facultates computandi locales adhibentur.",
+      "Comentarius outputs originalis JSONtranscriptum et derivatum TXT, CSV, Markdown, Excel, ac SRTlima subtilissima."
+    ]
+  }
+}

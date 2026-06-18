@@ -1,0 +1,144 @@
+{
+  "language": "zh-CN",
+  "display_name": "简体中文",
+  "native_name": "简体中文",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. 设置",
+    "cell1.section_title": "# 1. 设置",
+    "cell2.title": "# @title 2. 文件选择/Google Drive挂载",
+    "cell2.section_title": "# 2. 文件选择/Google Drive挂载",
+    "cell3.title": "# @title 3. GPU检查和依赖安装",
+    "cell3.section_title": "# 3. GPU检查和依赖安装",
+    "cell4.title": "# @title 4. 辅助函数",
+    "cell4.section_title": "# 4. 辅助函数",
+    "cell5.title": "# @title 5. 加载 Whisper并运行转录",
+    "cell5.section_title": "# 5. 加载 Whisper并运行转录",
+    "cell6.title": "# @title 6. 压缩并下载输出",
+    "cell6.section_title": "# 6. 压缩并下载输出",
+    "settings.input_heading": "# @markdown ## 输入",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`：对本地文件使用`upload`，对已存储在Google Drive中的文件使用`google_drive`。",
+    "settings.drive_heading": "# @markdown ### Google Drive输入",
+    "settings.drive_help": "# @markdown 这些设置仅在 `INPUT_MODE == \"google_drive\"`时使用。",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`：通常将此设置保持为`/content/drive/MyDrive`。",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`：MyDrive 下的文件或文件夹路径。留空以使用顶级 MyDrive 文件夹。",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`：如果驱动器输入路径是文件夹，还搜索子文件夹。",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`：可选的文件名子字符串过滤器。",
+    "settings.model_heading": "# @markdown ## Whisper型号",
+    "settings.model_help": "# @markdown - `MODEL_ID`：Hugging Face型号 ID。涡轮增压速度更快； large-v3对于某些文件来说可以更稳定。",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`：未知时使用`auto`，或选择已知的源语言。",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`：使用Whisper翻译模式输出英文。",
+    "settings.output_heading": "# @markdown ## 输出",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`：当使用驱动输入时，将输出保存在Google Drive下。",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`：最后创建并下载一个ZIP存档。",
+    "settings.formats_help": "# @markdown - 输出格式由下面的布尔值控制。",
+    "settings.advanced_heading": "# ## 高级",
+    "settings.advanced_help": "# 这些默认值对于 Colab 来说是保守的。普通用户通常不需要编辑它们。",
+    "settings.loaded_message": "设置已加载。",
+    "messages.choose_files": "单击“选择文件”并上传一个或多个音频/视频文件。",
+    "messages.selected_files": "选定的文件：",
+    "messages.dependencies_done": "依赖安装完成。",
+    "messages.model_loaded": "Whisper模型已加载。",
+    "messages.transcription_complete": "转录完成。",
+    "errors.no_supported_files": "未选择支持的音频/视频文件。",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab笔记本\n\n此笔记本使用 Whisper转录音频或视频文件。\n\n## 特点\n\n- **免费使用:** 该笔记本使用[openai/whisper](https://github.com/openai/whisper)（OpenAI于2023年1月17日开源），以及Google Colab的免费GPU运行时。\n- **没有固定的笔记本端文件大小限制:** 可以处理大型音频和视频文件。\n- **批量处理:** 一次运行可以处理多个音频和视频文件。\n- **Google Drive支持:** 可以直接上传文件，也可以处理Google Drive中存储的音视频文件。\n- **全面上线:** 下载和处理在Google Colab上执行。不使用本地计算资源。\n- **多种输出格式:** 笔记本输出原始JSON转录本和派生的TXT、CSV、Markdown、Excel和SRT字幕文件。\n\n## 如何使用\n\n1. 在**1。设置**，选择 `INPUT_MODE`并根据需要调整模型或输出选项。\n2. 选择**运行时 -> 全部运行**。\n3. 如果`INPUT_MODE = \"upload\"`，请等到**2。文件选择/Google Drivemount** 启动，然后单击该单元格输出区域中的 **Choose Files**。\n4. 处理完成后，如果启用了`AUTO_DOWNLOAD_ZIP`，则输出文件将被压缩并下载。\n\n## 注释\n\n- Google Colab免费GPU可用性有限。如果没有可用的 GPU和 `REQUIRE_CUDA = True`，则笔记本会在转录之前停止。\n- 处理需要时间。作为使用 large-v3-turbo模型时的粗略指南，60 分钟的音频或视频文件可能需要大约 5-10 分钟来转录。如果直接上传文件，还需要上传时间。\n- 处理时请保持此笔记本打开。如果在转录过程中关闭笔记本，处理就会停止。",
+    "settings.source_language_default": "chinese"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "用于Whisper转录的多语言Google Colab笔记本。",
+    "features": [
+      "**免费使用:** 该笔记本使用[openai/whisper](https://github.com/openai/whisper)（OpenAI于2023年1月17日开源），以及Google Colab的免费GPU运行时。",
+      "**没有固定的笔记本端文件大小限制:** 可以处理大型音频和视频文件。",
+      "**批量处理:** 一次运行可以处理多个音频和视频文件。",
+      "**Google Drive支持:** 可以直接上传文件，也可以处理Google Drive中存储的音视频文件。",
+      "**全面上线:** 下载和处理在Google Colab上执行。不使用本地计算资源。",
+      "**多种输出格式:** 笔记本输出原始JSON转录本和派生的TXT、CSV、Markdown、Excel和SRT字幕文件。"
+    ],
+    "template_note": "根README是英文入口点，docs/README包含生成的本地化README文件。模板笔记本是源笔记本，包含占位符，例如 `{{cell1.title}}`。区域设置文件提供特定于语言的 README和面向 Colab 的副本。生成的笔记本已提交，因此 Colab 链接保持稳定。",
+    "checks_note": "CI 工作流程从模板和区域设置文件重建 README文件和笔记本，检查笔记本 JSON，验证空输出，检查代码单元中的 Python 语法，扫描明显的意外秘密，并在未提交生成的文件时失败。",
+    "ci_items": [
+      "README从语言环境文件生成",
+      "从模板和区域设置文件生成笔记本",
+      "笔记本JSON有效期",
+      "空执行输出",
+      "代码单元中的 Python 语法",
+      "明显的意外秘密",
+      "提交生成的 README和与源匹配的笔记本文件"
+    ],
+    "ci_limit": "完整的转录路径需要 Colab 特定的 API、模型下载、GPU可用性以及用户提供的媒体文件。生成文件检查通过后，将该路径视为手动 Colab 冒烟测试。",
+    "license_note": "此存储库的 README生成器、笔记本模板、区域设置文件、生成的笔记本和维护脚本是根据 MIT许可证发布的。 Whisper模型和第三方依赖项受其各自的许可证管辖。",
+    "feature_labels": [
+      "免费使用",
+      "没有固定的笔记本端文件大小限制",
+      "批量处理",
+      "Google Drive支持",
+      "全面上线",
+      "多种输出格式"
+    ],
+    "feature_bodies": [
+      "该笔记本使用[openai/whisper](https://github.com/openai/whisper)（OpenAI于2023年1月17日开源），以及Google Colab的免费GPU运行时。",
+      "可以处理大型音频和视频文件。",
+      "一次运行可以处理多个音频和视频文件。",
+      "可以直接上传文件，也可以处理Google Drive中存储的音视频文件。",
+      "下载和处理在Google Colab上执行。不使用本地计算资源。",
+      "笔记本输出原始JSON转录本和派生的TXT、CSV、Markdown、Excel和SRT字幕文件。"
+    ]
+  },
+  "labels": {
+    "features": "特点",
+    "languages": "语言",
+    "language": "语言",
+    "readme": "README",
+    "notebook": "笔记本",
+    "repository_layout": "存储库布局",
+    "build": "构建",
+    "checks": "支票",
+    "what_ci_can_test": "CI 可以测试什么",
+    "license": "许可证"
+  },
+  "notebook": {
+    "title": "WhisperColab笔记本",
+    "description": "此笔记本使用 Whisper转录音频或视频文件。",
+    "features_heading": "特点",
+    "features": [
+      "**免费使用:** 该笔记本使用[openai/whisper](https://github.com/openai/whisper)（OpenAI于2023年1月17日开源），以及Google Colab的免费GPU运行时。",
+      "**没有固定的笔记本端文件大小限制:** 可以处理大型音频和视频文件。",
+      "**批量处理:** 一次运行可以处理多个音频和视频文件。",
+      "**Google Drive支持:** 可以直接上传文件，也可以处理Google Drive中存储的音视频文件。",
+      "**全面上线:** 下载和处理在Google Colab上执行。不使用本地计算资源。",
+      "**多种输出格式:** 笔记本输出原始JSON转录本和派生的TXT、CSV、Markdown、Excel和SRT字幕文件。"
+    ],
+    "how_to_use_heading": "如何使用",
+    "how_to_use_steps": [
+      "在**1。设置**，选择 `INPUT_MODE`并根据需要调整模型或输出选项。",
+      "选择**运行时 -> 全部运行**。",
+      "如果`INPUT_MODE = \"upload\"`，请等到**2。文件选择/Google Drivemount** 启动，然后单击该单元格输出区域中的 **Choose Files**。",
+      "处理完成后，如果启用了`AUTO_DOWNLOAD_ZIP`，则输出文件将被压缩并下载。"
+    ],
+    "notes_heading": "注释",
+    "notes": [
+      "Google Colab免费GPU可用性有限。如果没有可用的 GPU和 `REQUIRE_CUDA = True`，则笔记本会在转录之前停止。",
+      "处理需要时间。作为使用 large-v3-turbo模型时的粗略指南，60 分钟的音频或视频文件可能需要大约 5-10 分钟来转录。如果直接上传文件，还需要上传时间。",
+      "处理时请保持此笔记本打开。如果在转录过程中关闭笔记本，处理就会停止。"
+    ],
+    "feature_labels": [
+      "免费使用",
+      "没有固定的笔记本端文件大小限制",
+      "批量处理",
+      "Google Drive支持",
+      "全面上线",
+      "多种输出格式"
+    ],
+    "feature_bodies": [
+      "该笔记本使用[openai/whisper](https://github.com/openai/whisper)（OpenAI于2023年1月17日开源），以及Google Colab的免费GPU运行时。",
+      "可以处理大型音频和视频文件。",
+      "一次运行可以处理多个音频和视频文件。",
+      "可以直接上传文件，也可以处理Google Drive中存储的音视频文件。",
+      "下载和处理在Google Colab上执行。不使用本地计算资源。",
+      "笔记本输出原始JSON转录本和派生的TXT、CSV、Markdown、Excel和SRT字幕文件。"
+    ]
+  },
+  "translation_source": "google:zh-CN; machine-translated from en"
+}

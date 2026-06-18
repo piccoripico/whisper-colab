@@ -1,0 +1,144 @@
+{
+  "language": "bs",
+  "display_name": "Bosnian",
+  "native_name": "Bosnian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Postavke",
+    "cell1.section_title": "# 1. Postavke",
+    "cell2.title": "# @title 2. Izbor fajla / Google Drivemontiranje",
+    "cell2.section_title": "# 2. Izbor fajla / Google Drivemontiranje",
+    "cell3.title": "# @title 3. GPUrovjera i instalacija zavisnosti",
+    "cell3.section_title": "# 3. GPUrovjera i instalacija zavisnosti",
+    "cell4.title": "# @title 4. Pomoćne funkcije",
+    "cell4.section_title": "# 4. Pomoćne funkcije",
+    "cell5.title": "# @title 5. Učitajte Whisperi pokrenite transkripciju",
+    "cell5.section_title": "# 5. Učitajte Whisperi pokrenite transkripciju",
+    "cell6.title": "# @title 6. Zip i preuzmi izlaze",
+    "cell6.section_title": "# 6. Zip i preuzmi izlaze",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Koristite `upload`za lokalne datoteke ili `google_drive`za datoteke koje su već pohranjene u Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveunos",
+    "settings.drive_help": "# @markdown Ova podešavanja se koriste samo kada je `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Obično zadržite ovaj set na `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Putanja datoteke ili fascikle u MyDrive. Ostavite prazno da koristite folder MyDrive najvišeg nivoa.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Ako je ulazna putanja diska fascikla, pretražite i podfoldere.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Opcioni filter podniza imena datoteke.",
+    "settings.model_heading": "# @markdown ## Whispermodel",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID modela. Turbo je brži; large-v3može biti stabilniji za neke fajlove.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Koristite `auto`kada je nepoznat ili izaberite poznati izvorni jezik.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Koristite Whispernačin prevođenja za izlaz na engleski.",
+    "settings.output_heading": "# @markdown ## Izlaz",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Sačuvajte izlaze pod Google Drivekada se koristi Drive input.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Kreirajte i preuzmite jednu ZIParhivu na kraju.",
+    "settings.formats_help": "# @markdown - Izlazne formate kontrolišu logičke vrednosti ispod.",
+    "settings.advanced_heading": "# ## Napredno",
+    "settings.advanced_help": "# Ove zadane postavke su konzervativne za Colab. Obični korisnici ih obično ne moraju uređivati.",
+    "settings.loaded_message": "Postavke su učitane.",
+    "messages.choose_files": "Kliknite na 'Odaberi datoteke' i otpremite jednu ili više audio/video datoteka.",
+    "messages.selected_files": "Odabrani fajlovi:",
+    "messages.dependencies_done": "Instalacija ovisnosti je završena.",
+    "messages.model_loaded": "Whispermodel je učitan.",
+    "messages.transcription_complete": "Transkripcija završena.",
+    "errors.no_supported_files": "Nije odabran nijedan podržani audio/video fajl.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab notebook\n\nOva bilježnica transkribuje audio ili video datoteke sa Whisper.\n\n## Karakteristike\n\n- **Besplatno za korištenje:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.\n- **Nema fiksnog ograničenja veličine fajla na strani bilježnice:** Mogu se obraditi velike audio i video datoteke.\n- **Batch obrada:** Više audio i video datoteka može se obraditi u jednom ciklusu.\n- **Google Driveodrška:** Fajlovi se mogu direktno učitavati ili se mogu obraditi audio/video fajlovi pohranjeni u Google Drive.\n- **Potpuno online:** Preuzimanja i obrada se vrše na Google Colab. Ne koriste se lokalni računarski resursi.\n- **Više izlaznih formata:** Bilježnica daje originalni JSONtranskript i izvedene datoteke TXT, CSV, Markdown, Exceli SRT.\n\n## Kako koristiti\n\n1. U **1. Postavke**, odaberite `INPUT_MODE`i prilagodite model ili izlazne opcije ako je potrebno.\n2. Odaberite **Vrijeme rada -> Pokreni sve**.\n3. Ako je `INPUT_MODE = \"upload\"`, sačekajte do **2. Počinje odabir datoteke / Google Drivemontiranje**, a zatim kliknite na **Odaberi datoteke** u izlaznoj oblasti te ćelije.\n4. Kada se obrada završi, izlazne datoteke se zipuju i preuzimaju ako je `AUTO_DOWNLOAD_ZIP`omogućen.\n\n## Bilješke\n\n- Google Colabbesplatno GPUDostupnost je ograničena. Ako GPUnije dostupan i `REQUIRE_CUDA = True`, bilježnica se zaustavlja prije transkripcije.\n- Obrada zahteva vreme. Kao grubi vodič kada koristite model large-v3-turbo, 60-minutnom audio ili video fajlu može biti potrebno oko 5-10 minuta za transkripciju. Ako direktno otpremate datoteke, potrebno je i vrijeme za otpremanje.\n- Držite ovu bilježnicu otvorenom dok obrađujete. Ako zatvorite svesku tokom transkripcije, obrada se zaustavlja.",
+    "settings.source_language_default": "bosnian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Višejezične Google Colabsveske za Whispertranskripciju.",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Nema fiksnog ograničenja veličine fajla na strani bilježnice:** Mogu se obraditi velike audio i video datoteke.",
+      "**Batch obrada:** Više audio i video datoteka može se obraditi u jednom ciklusu.",
+      "**Google Driveodrška:** Fajlovi se mogu direktno učitavati ili se mogu obraditi audio/video fajlovi pohranjeni u Google Drive.",
+      "**Potpuno online:** Preuzimanja i obrada se vrše na Google Colab. Ne koriste se lokalni računarski resursi.",
+      "**Više izlaznih formata:** Bilježnica daje originalni JSONtranskript i izvedene datoteke TXT, CSV, Markdown, Exceli SRT."
+    ],
+    "template_note": "Korijen READMEje engleska ulazna tačka, a docs/READMEsadrži generirane lokalizirane READMEdatoteke. Predložak bilježnice je izvorna bilježnica i sadrži čuvare mjesta kao što je `{{cell1.title}}`. Datoteke lokalnog standarda pružaju specifičnu za jezik READMEi kopiju okrenutu Colab-u. Generirane bilježnice su predane tako da Colab veze ostaju stabilne.",
+    "checks_note": "CI radni tok obnavlja READMEfajlove i bilježnice iz šablona i datoteka lokalizacije, provjerava bilježnicu JSON, provjerava prazne izlaze, provjerava Python sintaksu u ćelijama koda, skenira očigledne slučajne tajne i ne uspijeva kada generirane datoteke nisu urezane.",
+    "ci_items": [
+      "READMEgeneriranje iz lokalnih datoteka",
+      "generiranje bilježnice iz predloška i datoteka lokalizacije",
+      "notebook JSONvaljanost",
+      "prazni izlazni rezultati",
+      "Python sintaksa u ćelijama koda",
+      "očigledne slučajne tajne",
+      "urezane generirane READMEi datoteke bilježnica koje odgovaraju izvorima"
+    ],
+    "ci_limit": "Puna putanja transkripcije zahtijeva API-je specifične za Colab, preuzimanja modela, dostupnost GPUi medijske datoteke koje daje korisnik. Tretirajte tu putanju kao ručni Colab dimni test nakon što prođu provjere generiranih datoteka.",
+    "license_note": "Generator READMEovog spremišta, predložak beležnice, fajlovi lokalizacije, generisane beležnice i skripte za održavanje su objavljeni pod MITlicencom. Whispermodeli i zavisnosti od trećih strana su regulisani njihovim odgovarajućim licencama.",
+    "feature_labels": [
+      "Besplatno za korištenje",
+      "Nema fiksnog ograničenja veličine fajla na strani bilježnice",
+      "Batch obrada",
+      "Google Driveodrška",
+      "Potpuno online",
+      "Više izlaznih formata"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Mogu se obraditi velike audio i video datoteke.",
+      "Više audio i video datoteka može se obraditi u jednom ciklusu.",
+      "Fajlovi se mogu direktno učitavati ili se mogu obraditi audio/video fajlovi pohranjeni u Google Drive.",
+      "Preuzimanja i obrada se vrše na Google Colab. Ne koriste se lokalni računarski resursi.",
+      "Bilježnica daje originalni JSONtranskript i izvedene datoteke TXT, CSV, Markdown, Exceli SRT."
+    ]
+  },
+  "labels": {
+    "features": "Karakteristike",
+    "languages": "Jezici",
+    "language": "Jezik",
+    "readme": "README",
+    "notebook": "Notebook",
+    "repository_layout": "Izgled spremišta",
+    "build": "Build",
+    "checks": "Čekovi",
+    "what_ci_can_test": "Šta CI može testirati",
+    "license": "Licenca"
+  },
+  "translation_source": "google:bs; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab notebook",
+    "description": "Ova bilježnica transkribuje audio ili video datoteke sa Whisper.",
+    "features_heading": "Karakteristike",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Nema fiksnog ograničenja veličine fajla na strani bilježnice:** Mogu se obraditi velike audio i video datoteke.",
+      "**Batch obrada:** Više audio i video datoteka može se obraditi u jednom ciklusu.",
+      "**Google Driveodrška:** Fajlovi se mogu direktno učitavati ili se mogu obraditi audio/video fajlovi pohranjeni u Google Drive.",
+      "**Potpuno online:** Preuzimanja i obrada se vrše na Google Colab. Ne koriste se lokalni računarski resursi.",
+      "**Više izlaznih formata:** Bilježnica daje originalni JSONtranskript i izvedene datoteke TXT, CSV, Markdown, Exceli SRT."
+    ],
+    "how_to_use_heading": "Kako koristiti",
+    "how_to_use_steps": [
+      "U **1. Postavke**, odaberite `INPUT_MODE`i prilagodite model ili izlazne opcije ako je potrebno.",
+      "Odaberite **Vrijeme rada -> Pokreni sve**.",
+      "Ako je `INPUT_MODE = \"upload\"`, sačekajte do **2. Počinje odabir datoteke / Google Drivemontiranje**, a zatim kliknite na **Odaberi datoteke** u izlaznoj oblasti te ćelije.",
+      "Kada se obrada završi, izlazne datoteke se zipuju i preuzimaju ako je `AUTO_DOWNLOAD_ZIP`omogućen."
+    ],
+    "notes_heading": "Bilješke",
+    "notes": [
+      "Google Colabbesplatno GPUDostupnost je ograničena. Ako GPUnije dostupan i `REQUIRE_CUDA = True`, bilježnica se zaustavlja prije transkripcije.",
+      "Obrada zahteva vreme. Kao grubi vodič kada koristite model large-v3-turbo, 60-minutnom audio ili video fajlu može biti potrebno oko 5-10 minuta za transkripciju. Ako direktno otpremate datoteke, potrebno je i vrijeme za otpremanje.",
+      "Držite ovu bilježnicu otvorenom dok obrađujete. Ako zatvorite svesku tokom transkripcije, obrada se zaustavlja."
+    ],
+    "feature_labels": [
+      "Besplatno za korištenje",
+      "Nema fiksnog ograničenja veličine fajla na strani bilježnice",
+      "Batch obrada",
+      "Google Driveodrška",
+      "Potpuno online",
+      "Više izlaznih formata"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Mogu se obraditi velike audio i video datoteke.",
+      "Više audio i video datoteka može se obraditi u jednom ciklusu.",
+      "Fajlovi se mogu direktno učitavati ili se mogu obraditi audio/video fajlovi pohranjeni u Google Drive.",
+      "Preuzimanja i obrada se vrše na Google Colab. Ne koriste se lokalni računarski resursi.",
+      "Bilježnica daje originalni JSONtranskript i izvedene datoteke TXT, CSV, Markdown, Exceli SRT."
+    ]
+  }
+}

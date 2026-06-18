@@ -1,0 +1,144 @@
+{
+  "language": "lb",
+  "display_name": "Luxembourgish",
+  "native_name": "Luxembourgish",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Astellungen",
+    "cell1.section_title": "# 1. Astellungen",
+    "cell2.title": "# @title 2. Dateiauswiel / Google Drivemount",
+    "cell2.section_title": "# 2. Dateiauswiel / Google Drivemount",
+    "cell3.title": "# @title 3. GPUkontrolléieren an Ofhängegkeet Installatioun",
+    "cell3.section_title": "# 3. GPUkontrolléieren an Ofhängegkeet Installatioun",
+    "cell4.title": "# @title 4. Hëllef Fonctiounen",
+    "cell4.section_title": "# 4. Hëllef Fonctiounen",
+    "cell5.title": "# @title 5. Lued Whispera lafen Transkriptioun",
+    "cell5.section_title": "# 5. Lued Whispera lafen Transkriptioun",
+    "cell6.title": "# @title 6. Zip an download Ausgänge",
+    "cell6.section_title": "# 6. Zip an download Ausgänge",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Benotzt `upload`fir lokal Dateien oder `google_drive`fir Dateien déi schonn an Google Drivegespäichert sinn.",
+    "settings.drive_heading": "# @markdown ### Google Driveinput",
+    "settings.drive_help": "# @markdown Dës Astellunge ginn nëmme benotzt wann `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Normalerweis halen dëse Set op `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: E Fichier oder Dossierwee ënner MyDrive. Loosst eidel fir den Top-Level MyDrive Dossier ze benotzen.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Wann den Drive Input Wee en Dossier ass, sicht och Ënnermapper.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Optional Dateinumm Substring Filter.",
+    "settings.model_heading": "# @markdown ## WhisperModell",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceModel ID. Turbo ass méi séier; large-v3ka méi stabil sinn fir e puer Dateien.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Benotzt `auto`wann onbekannt, oder wielt eng bekannt Quellsprooch.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Benotzt WhisperIwwersetzer Modus fir Englesch auszeginn.",
+    "settings.output_heading": "# @markdown ## Ausgang",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Späichert Ausgänge ënner Google Drivewann Drive-Input benotzt gëtt.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Erstellt a luet een ZIPArchiv um Enn erof.",
+    "settings.formats_help": "# @markdown - Ausgangsformater ginn duerch d'Booleans kontrolléiert.",
+    "settings.advanced_heading": "# ## Fortgeschratt",
+    "settings.advanced_help": "# Dës Defaults si konservativ fir Colab. Gewéinlech Benotzer brauche se normalerweis net z'änneren.",
+    "settings.loaded_message": "Astellunge gelueden.",
+    "messages.choose_files": "Klickt op \"Wielt Dateien\" an lued een oder méi Audio / Video Dateien erop.",
+    "messages.selected_files": "Ausgewielt Dateien:",
+    "messages.dependencies_done": "Ofhängegkeet Installatioun fäerdeg.",
+    "messages.model_loaded": "WhisperModell gelueden.",
+    "messages.transcription_complete": "Transkriptioun fäerdeg.",
+    "errors.no_supported_files": "Keng ënnerstëtzt Audio / Video Fichieren goufen ausgewielt.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notizbuch\n\nDëst Notizbuch transkriptéiert Audio- oder Videodateien mat Whisper.\n\n## Fonctiounen\n\n- **Gratis ze benotzen:** Dëst Notizbuch benotzt [openai/whisper](https://github.com/openai/whisper), déi OpenAIde 17. Januar 2023 opgemaach huet, zesumme mam Google Colabsenger gratis GPURuntime.\n- **Keng fix Notizbuch-Säit Dateigréisst Limit:** Grouss Audio- a Videodateien kënne veraarbecht ginn.\n- **Batch Veraarbechtung:** Multiple Audio- a Videodateien kënnen an engem Laf veraarbecht ginn.\n- **Google DriveËnnerstëtzung:** Dateien kënnen direkt eropgeluede ginn, oder Audio / Video Dateien, déi an Google Drivegespäichert sinn, kënne veraarbecht ginn.\n- **Ganz online:** Downloads a Veraarbechtung ginn op Google Colabduerchgefouert. Keng lokal Rechenressourcen gi benotzt.\n- **Multiple Output Formater:** D'Notizbuch gëtt den originelle JSONTranskript eraus an ofgeleet TXT, CSV, Markdown, Excel, an SRTËnnertiteldateien.\n\n## Wéi benotzen\n\n1. An **1. Astellungen**, wielt `INPUT_MODE`a passt de Modell oder Ausgangsoptiounen un wann néideg.\n2. Wielt **Runtime -> Run all**.\n3. Wann `INPUT_MODE = \"upload\"`, waart bis **2. Dateiauswiel / Google Drivemount** fänkt un, da klickt op **Wielt Dateien** am Ausgangsberäich vun där Zell.\n4. Wann d'Veraarbechtung fäerdeg ass, ginn d'Ausgabdateien gezippt an erofgeluede wann `AUTO_DOWNLOAD_ZIP`ageschalt ass.\n\n## Notizen\n\n- Google Colabgratis GPUDisponibilitéit ass limitéiert. Wa kee GPUverfügbar ass an `REQUIRE_CUDA = True`, stoppt d'Notizbuch virum Transkriptioun.\n- Veraarbechtung brauch Zäit. Als graff Guide wann Dir de large-v3-turboModell benotzt, kann eng 60-Minuten Audio- oder Videodatei ongeféier 5-10 Minutten daueren fir ze transkriptéieren. Wann Dir Dateien direkt eropluet, ass Eropluedzäit och erfuerderlech.\n- Halt dëst Notizbuch op wärend der Veraarbechtung. Wann Dir den Notizbuch wärend der Transkriptioun zoumaacht, stoppt d'Veraarbechtung.",
+    "settings.source_language_default": "luxembourgish"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Méisproocheg Google ColabNotizbicher fir WhisperTranskriptioun.",
+    "features": [
+      "**Gratis ze benotzen:** Dëst Notizbuch benotzt [openai/whisper](https://github.com/openai/whisper), déi OpenAIde 17. Januar 2023 opgemaach huet, zesumme mam Google Colabsenger gratis GPURuntime.",
+      "**Keng fix Notizbuch-Säit Dateigréisst Limit:** Grouss Audio- a Videodateien kënne veraarbecht ginn.",
+      "**Batch Veraarbechtung:** Multiple Audio- a Videodateien kënnen an engem Laf veraarbecht ginn.",
+      "**Google DriveËnnerstëtzung:** Dateien kënnen direkt eropgeluede ginn, oder Audio / Video Dateien, déi an Google Drivegespäichert sinn, kënne veraarbecht ginn.",
+      "**Ganz online:** Downloads a Veraarbechtung ginn op Google Colabduerchgefouert. Keng lokal Rechenressourcen gi benotzt.",
+      "**Multiple Output Formater:** D'Notizbuch gëtt den originelle JSONTranskript eraus an ofgeleet TXT, CSV, Markdown, Excel, an SRTËnnertiteldateien."
+    ],
+    "template_note": "D'Wuerzel READMEass den englesche Entréespunkt, an docs/READMEenthält generéiert lokaliséiert READMEDateien. D'Schablounnotizbuch ass d'Quellnotizbuch an enthält Plazhalter wéi `{{cell1.title}}`. Locale Dateie bidden Sproochspezifesch READMEa Colab-viséiert Kopie. Generéiert Notizbicher sinn engagéiert sou datt Colab Linken stabil bleiwen.",
+    "checks_note": "De CI Workflow baut READMEDateien an Notizbicher aus der Schabloun a Locale Dateien op, iwwerpréift Notizbuch JSON, verifizéiert eidel Ausgänge, kontrolléiert Python Syntax a Codezellen, scannt fir offensichtlech zoufälleg Geheimnisser, a feelt wann generéiert Dateien net engagéiert sinn.",
+    "ci_items": [
+      "READMEGeneratioun vu Locale Dateien",
+      "Notizbuch Generatioun vun der Schabloun a Locale Dateien",
+      "Notizbuch JSONValiditéit",
+      "eidel Ausféierungsausgaben",
+      "Python Syntax a Code Zellen",
+      "offensichtlech zoufälleg Geheimnisser",
+      "engagéiert generéiert READMEan Notizbuchdateien déi mat de Quellen passen"
+    ],
+    "ci_limit": "De komplette Transkriptiounswee erfuerdert Colab-spezifesch APIen, Modell Downloads, GPUDisponibilitéit, a Benotzer geliwwert Mediendateien. Behandelt dee Wee als manuelle Colab Rauchtest nodeems generéiert Dateikontrollen passéiert.",
+    "license_note": "Dëse Repository's READMEGenerator, Notizbuch Template, Locale Dateien, generéiert Notizbicher, an Ënnerhalt Scripte ginn ënner der MITLizenz verëffentlecht. WhisperModeller an Drëtt-Partei Ofhängegkeete ginn duerch hir jeeweileg Lizenzen regéiert.",
+    "feature_labels": [
+      "Gratis ze benotzen",
+      "Keng fix Notizbuch-Säit Dateigréisst Limit",
+      "Batch Veraarbechtung",
+      "Google DriveËnnerstëtzung",
+      "Ganz online",
+      "Multiple Output Formater"
+    ],
+    "feature_bodies": [
+      "Dëst Notizbuch benotzt [openai/whisper](https://github.com/openai/whisper), déi OpenAIde 17. Januar 2023 opgemaach huet, zesumme mam Google Colabsenger gratis GPURuntime.",
+      "Grouss Audio- a Videodateien kënne veraarbecht ginn.",
+      "Multiple Audio- a Videodateien kënnen an engem Laf veraarbecht ginn.",
+      "Dateien kënnen direkt eropgeluede ginn, oder Audio / Video Dateien, déi an Google Drivegespäichert sinn, kënne veraarbecht ginn.",
+      "Downloads a Veraarbechtung ginn op Google Colabduerchgefouert. Keng lokal Rechenressourcen gi benotzt.",
+      "D'Notizbuch gëtt den originelle JSONTranskript eraus an ofgeleet TXT, CSV, Markdown, Excel, an SRTËnnertiteldateien."
+    ]
+  },
+  "labels": {
+    "features": "Fonctiounen",
+    "languages": "Sproochen",
+    "language": "Sprooch",
+    "readme": "README",
+    "notebook": "Notizbuch",
+    "repository_layout": "Repository Layout",
+    "build": "Bauen",
+    "checks": "Schecken",
+    "what_ci_can_test": "Wat CI Test kann",
+    "license": "Lizenz"
+  },
+  "translation_source": "google:lb; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notizbuch",
+    "description": "Dëst Notizbuch transkriptéiert Audio- oder Videodateien mat Whisper.",
+    "features_heading": "Fonctiounen",
+    "features": [
+      "**Gratis ze benotzen:** Dëst Notizbuch benotzt [openai/whisper](https://github.com/openai/whisper), déi OpenAIde 17. Januar 2023 opgemaach huet, zesumme mam Google Colabsenger gratis GPURuntime.",
+      "**Keng fix Notizbuch-Säit Dateigréisst Limit:** Grouss Audio- a Videodateien kënne veraarbecht ginn.",
+      "**Batch Veraarbechtung:** Multiple Audio- a Videodateien kënnen an engem Laf veraarbecht ginn.",
+      "**Google DriveËnnerstëtzung:** Dateien kënnen direkt eropgeluede ginn, oder Audio / Video Dateien, déi an Google Drivegespäichert sinn, kënne veraarbecht ginn.",
+      "**Ganz online:** Downloads a Veraarbechtung ginn op Google Colabduerchgefouert. Keng lokal Rechenressourcen gi benotzt.",
+      "**Multiple Output Formater:** D'Notizbuch gëtt den originelle JSONTranskript eraus an ofgeleet TXT, CSV, Markdown, Excel, an SRTËnnertiteldateien."
+    ],
+    "how_to_use_heading": "Wéi benotzen",
+    "how_to_use_steps": [
+      "An **1. Astellungen **, wielt `INPUT_MODE`a passt de Modell oder Ausgangsoptiounen un wann néideg.",
+      "Wielt ** Runtime -> Run all**.",
+      "Wann `INPUT_MODE = \"upload\"`, waart bis **2. Dateiauswiel / Google Drivemount ** fänkt un, da klickt op ** Wielt Dateien ** am Ausgangsberäich vun där Zell.",
+      "Wann d'Veraarbechtung fäerdeg ass, ginn d'Ausgabdateien gezippt an erofgeluede wann `AUTO_DOWNLOAD_ZIP`ageschalt ass."
+    ],
+    "notes_heading": "Notizen",
+    "notes": [
+      "Google Colabgratis GPUDisponibilitéit ass limitéiert. Wa kee GPUverfügbar ass an `REQUIRE_CUDA = True`, stoppt d'Notizbuch virum Transkriptioun.",
+      "Veraarbechtung brauch Zäit. Als graff Guide wann Dir de large-v3-turboModell benotzt, kann eng 60-Minuten Audio- oder Videodatei ongeféier 5-10 Minutten daueren fir ze transkriptéieren. Wann Dir Dateien direkt eropluet, ass Eropluedzäit och erfuerderlech.",
+      "Halt dëst Notizbuch op wärend der Veraarbechtung. Wann Dir den Notizbuch wärend der Transkriptioun zoumaacht, stoppt d'Veraarbechtung."
+    ],
+    "feature_labels": [
+      "Gratis ze benotzen",
+      "Keng fix Notizbuch-Säit Dateigréisst Limit",
+      "Batch Veraarbechtung",
+      "Google DriveËnnerstëtzung",
+      "Ganz online",
+      "Multiple Output Formater"
+    ],
+    "feature_bodies": [
+      "Dëst Notizbuch benotzt [openai/whisper](https://github.com/openai/whisper), déi OpenAIde 17. Januar 2023 opgemaach huet, zesumme mam Google Colabsenger gratis GPURuntime.",
+      "Grouss Audio- a Videodateien kënne veraarbecht ginn.",
+      "Multiple Audio- a Videodateien kënnen an engem Laf veraarbecht ginn.",
+      "Dateien kënnen direkt eropgeluede ginn, oder Audio / Video Dateien, déi an Google Drivegespäichert sinn, kënne veraarbecht ginn.",
+      "Downloads a Veraarbechtung ginn op Google Colabduerchgefouert. Keng lokal Rechenressourcen gi benotzt.",
+      "D'Notizbuch gëtt den originelle JSONTranskript eraus an ofgeleet TXT, CSV, Markdown, Excel, an SRTËnnertiteldateien."
+    ]
+  }
+}

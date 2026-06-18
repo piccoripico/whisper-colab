@@ -1,0 +1,144 @@
+{
+  "language": "su",
+  "display_name": "Sundanese",
+  "native_name": "Sundanese",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Setélan",
+    "cell1.section_title": "# 1. Setélan",
+    "cell2.title": "# @title 2. Pilihan file / Google Drivemount",
+    "cell2.section_title": "# 2. Pilihan file / Google Drivemount",
+    "cell3.title": "# @title 3. GPUcék jeung instalasi kagumantungan",
+    "cell3.section_title": "# 3. GPUcék jeung instalasi kagumantungan",
+    "cell4.title": "# @title 4. Fungsi pembantu",
+    "cell4.section_title": "# 4. Fungsi pembantu",
+    "cell5.title": "# @title 5. Muat Whispertur ngajalankeun transkripsi",
+    "cell5.section_title": "# 5. Muat Whispertur ngajalankeun transkripsi",
+    "cell6.title": "# @title 6. Zip tur ngundeur outputs",
+    "cell6.section_title": "# 6. Zip tur ngundeur outputs",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Paké `upload`ikeun file lokal atawa `google_drive`ikeun file geus disimpen dina Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveasup",
+    "settings.drive_help": "# @markdown Setelan ieu ngan dipaké nalika `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Biasana tetep set ieu ka `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: A file atawa folder jalur handapeun MyDrive. Ninggalkeun kosong pikeun nganggo polder MyDrive tingkat luhur.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Upami jalur input Drive mangrupikeun folder, milarian ogé subfolder.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Saringan substring ngaran koropak pilihan.",
+    "settings.model_heading": "# @markdown ## Whispermodél",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID modél. Turbo leuwih gancang; large-v3tiasa langkung stabil pikeun sababaraha file.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Anggo `auto`upami teu dikenal, atanapi pilih basa sumber anu dipikanyaho.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Paké Whispermode narjamahkeun kana kaluaran Inggris.",
+    "settings.output_heading": "# @markdown ## Kaluaran",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Simpen kaluaran dina Google Drivenalika input Drive dipaké.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Jieun tur ngundeur hiji ZIParsip dina tungtungna.",
+    "settings.formats_help": "# @markdown - Format kaluaran dikawasa ku boolean di handap.",
+    "settings.advanced_heading": "# ## Maju",
+    "settings.advanced_help": "# Standar ieu konservatif pikeun Colab. Pamaké biasa biasana henteu kedah ngédit éta.",
+    "settings.loaded_message": "Setélan dimuat.",
+    "messages.choose_files": "Pencét 'Pilih Payil' sareng unggah hiji atanapi langkung file audio/video.",
+    "messages.selected_files": "File anu dipilih:",
+    "messages.dependencies_done": "Pamasangan gumantungna réngsé.",
+    "messages.model_loaded": "Whispermodel dimuat.",
+    "messages.transcription_complete": "Transkripsi lengkep.",
+    "errors.no_supported_files": "Henteu aya file audio/video anu dirojong anu dipilih.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nBuku catetan ieu nranskripsikeun file audio atawa video nganggo Whisper.\n\n## Fitur\n\n- **Bébas ngagunakeun:** Notebook ieu nganggo [openai/whisper](https://github.com/openai/whisper), anu OpenAIopen-sourced tanggal 17 Januari 2023, sareng Google Colabgratis GPUruntime.\n- **Taya wates ukuran file notebook-sisi tetep:** Payil audio sareng pidéo ageung tiasa diolah.\n- **processing bets:** Sababaraha file audio sareng pidéo tiasa diolah dina hiji waktos.\n- **Google Driverojongan:** File tiasa langsung diunggah, atanapi file audio/video anu disimpen di Google Drivetiasa diolah.\n- **Pinuh online:** Ngundeur sareng ngolah dilaksanakeun dina Google Colab. Taya sumberdaya komputasi lokal dipaké.\n- **Sababaraha format kaluaran:** Notebook ngahasilkeun transkrip JSONasli sareng diturunkeun TXT, CSV, Markdown, Excel, sareng SRTfile subjudul.\n\n## How to use\n\n1. Dina **1. Setélan**, pilih `INPUT_MODE`tur saluyukeun modél atawa pilihan kaluaran lamun diperlukeun.\n2. Pilih **Rtime -> Run all**.\n3. Lamun `INPUT_MODE = \"upload\"`, antosan dugi **2. Pamilihan file / Google Drivemount** dimimitian, teras klik **Pilih File** dina daérah kaluaran sél éta.\n4. Nalika ngolah parantos réngsé, file kaluaran di-zip sareng diunduh upami `AUTO_DOWNLOAD_ZIP`diaktipkeun.\n\n## Catetan\n\n- Google Colabbebas GPUkasadiaan kawates. Upami teu aya GPUsareng `REQUIRE_CUDA = True`, notebook eureun sateuacan transkripsi.\n- Ngolah butuh waktu. Salaku pituduh kasar nalika nganggo modél large-v3-turbo, file audio atanapi video 60 menit tiasa nyandak sakitar 5-10 menit kanggo nranskripsikeun. Upami anjeun unggah file langsung, waktos unggah ogé diperyogikeun.\n- Tetep notebook ieu muka bari ngolah. Lamun nutup notebook salila transkripsi, processing eureun.",
+    "settings.source_language_default": "sundanese"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Multilingual Google Colabnotebooks pikeun Whispertranskripsi.",
+    "features": [
+      "**Bébas ngagunakeun:** Notebook ieu nganggo [openai/whisper](https://github.com/openai/whisper), anu OpenAIopen-sourced tanggal 17 Januari 2023, sareng Google Colabgratis GPUruntime.",
+      "**Taya wates ukuran file notebook-sisi tetep:** Payil audio sareng pidéo ageung tiasa diolah.",
+      "**processing bets:** Sababaraha file audio sareng pidéo tiasa diolah dina hiji waktos.",
+      "**Google Driverojongan:** File tiasa langsung diunggah, atanapi file audio/video anu disimpen di Google Drivetiasa diolah.",
+      "**Pinuh online:** Ngundeur sareng ngolah dilaksanakeun dina Google Colab. Taya sumberdaya komputasi lokal dipaké.",
+      "**Sababaraha format kaluaran:** Notebook ngahasilkeun transkrip JSONasli sareng diturunkeun TXT, CSV, Markdown, Excel, sareng SRTfile subjudul."
+    ],
+    "template_note": "Akar READMEmangrupikeun titik éntri basa Inggris, sareng docs/READMEngandung file READMEanu dilokalkeun. Notebook template nyaéta notebook sumber sareng ngandung pananda tempat sapertos `{{cell1.title}}`. File lokal nyayogikeun READMEkhusus basa sareng salinan nyanghareup Colab. notebooks dihasilkeun komitmen jadi Tumbu Colab tetep stabil.",
+    "checks_note": "Alur kerja CI ngawangun deui READMEfile sareng notebook tina témplat sareng file lokal, pariksa notebook JSON, pariksa kaluaran kosong, pariksa sintaksis Python dina sél kode, nyeken pikeun rahasia anu teu kahaja anu jelas, sareng gagal nalika file anu dihasilkeun henteu komitmen.",
+    "ci_items": [
+      "READMEgenerasi ti file lokal",
+      "generasi notebook tina citakan sareng file lokal",
+      "notebook JSONvaliditas",
+      "kaluaran palaksanaan kosong",
+      "Sintaksis Python dina sél kode",
+      "rusiah kahaja atra",
+      "komitmen dihasilkeun READMEjeung file notebook cocog sumber"
+    ],
+    "ci_limit": "Jalur transkripsi lengkep butuh API khusus Colab, unduhan modél, kasadiaan GPU, sareng file média anu disayogikeun ku pangguna. Ngubaran jalur éta salaku tés haseup Colab manual saatos pamariksaan file anu dihasilkeun.",
+    "license_note": "Generator READMEgudang ieu, témplat notebook, file lokal, notebook anu dihasilkeun, sareng skrip pangropéa dileupaskeun dina Lisensi MIT. Whispermodel sareng kagumantungan pihak katilu diatur ku lisensina masing-masing.",
+    "feature_labels": [
+      "Bébas ngagunakeun",
+      "Taya wates ukuran file notebook-sisi tetep",
+      "processing bets",
+      "Google Driverojongan",
+      "Pinuh online",
+      "Sababaraha format kaluaran"
+    ],
+    "feature_bodies": [
+      "Notebook ieu nganggo [openai/whisper](https://github.com/openai/whisper), anu OpenAIopen-sourced tanggal 17 Januari 2023, sareng Google Colabgratis GPUruntime.",
+      "Payil audio sareng pidéo ageung tiasa diolah.",
+      "Sababaraha file audio sareng pidéo tiasa diolah dina hiji waktos.",
+      "File tiasa langsung diunggah, atanapi file audio/video anu disimpen di Google Drivetiasa diolah.",
+      "Ngundeur sareng ngolah dilaksanakeun dina Google Colab. Taya sumberdaya komputasi lokal dipaké.",
+      "Notebook ngahasilkeun transkrip JSONasli sareng diturunkeun TXT, CSV, Markdown, Excel, sareng SRTfile subjudul."
+    ]
+  },
+  "labels": {
+    "features": "Fitur",
+    "languages": "Basa",
+    "language": "Basa",
+    "readme": "README",
+    "notebook": "Notebook",
+    "repository_layout": "Layout Repository",
+    "build": "Ngawangun",
+    "checks": "Cék",
+    "what_ci_can_test": "Naon CI Dupi Test",
+    "license": "Lisensi"
+  },
+  "translation_source": "google:su; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Buku catetan ieu nranskripsikeun file audio atawa video nganggo Whisper.",
+    "features_heading": "Fitur",
+    "features": [
+      "**Bébas ngagunakeun:** Notebook ieu nganggo [openai/whisper](https://github.com/openai/whisper), anu OpenAIopen-sourced tanggal 17 Januari 2023, sareng Google Colabgratis GPUruntime.",
+      "**Taya wates ukuran file notebook-sisi tetep:** Payil audio sareng pidéo ageung tiasa diolah.",
+      "**processing bets:** Sababaraha file audio sareng pidéo tiasa diolah dina hiji waktos.",
+      "**Google Driverojongan:** File tiasa langsung diunggah, atanapi file audio/video anu disimpen di Google Drivetiasa diolah.",
+      "**Pinuh online:** Ngundeur sareng ngolah dilaksanakeun dina Google Colab. Taya sumberdaya komputasi lokal dipaké.",
+      "**Sababaraha format kaluaran:** Notebook ngahasilkeun transkrip JSONasli sareng diturunkeun TXT, CSV, Markdown, Excel, sareng SRTfile subjudul."
+    ],
+    "how_to_use_heading": "How to use",
+    "how_to_use_steps": [
+      "Dina **1. Setélan**, pilih `INPUT_MODE`tur saluyukeun modél atawa pilihan kaluaran lamun diperlukeun.",
+      "Pilih **Rtime -> Run all**.",
+      "Lamun `INPUT_MODE = \"upload\"`, antosan dugi **2. Pamilihan file / Google Drivemount ** dimimitian, teras klik **Pilih File** dina daérah kaluaran sél éta.",
+      "Nalika ngolah parantos réngsé, file kaluaran di-zip sareng diunduh upami `AUTO_DOWNLOAD_ZIP`diaktipkeun."
+    ],
+    "notes_heading": "Catetan",
+    "notes": [
+      "Google Colabbebas GPUkasadiaan kawates. Upami teu aya GPUsareng `REQUIRE_CUDA = True`, notebook eureun sateuacan transkripsi.",
+      "Ngolah butuh waktu. Salaku pituduh kasar nalika nganggo modél large-v3-turbo, file audio atanapi video 60 menit tiasa nyandak sakitar 5-10 menit kanggo nranskripsikeun. Upami anjeun unggah file langsung, waktos unggah ogé diperyogikeun.",
+      "Tetep notebook ieu muka bari ngolah. Lamun nutup notebook salila transkripsi, processing eureun."
+    ],
+    "feature_labels": [
+      "Bébas ngagunakeun",
+      "Taya wates ukuran file notebook-sisi tetep",
+      "processing bets",
+      "Google Driverojongan",
+      "Pinuh online",
+      "Sababaraha format kaluaran"
+    ],
+    "feature_bodies": [
+      "Notebook ieu nganggo [openai/whisper](https://github.com/openai/whisper), anu OpenAIopen-sourced tanggal 17 Januari 2023, sareng Google Colabgratis GPUruntime.",
+      "Payil audio sareng pidéo ageung tiasa diolah.",
+      "Sababaraha file audio sareng pidéo tiasa diolah dina hiji waktos.",
+      "File tiasa langsung diunggah, atanapi file audio/video anu disimpen di Google Drivetiasa diolah.",
+      "Ngundeur sareng ngolah dilaksanakeun dina Google Colab. Taya sumberdaya komputasi lokal dipaké.",
+      "Notebook ngahasilkeun transkrip JSONasli sareng diturunkeun TXT, CSV, Markdown, Excel, sareng SRTfile subjudul."
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "language": "tr",
+  "display_name": "Turkish",
+  "native_name": "Turkish",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Ayarlar",
+    "cell1.section_title": "# 1. Ayarlar",
+    "cell2.title": "# @title 2. Dosya seçimi / Google Drivebağlama",
+    "cell2.section_title": "# 2. Dosya seçimi / Google Drivebağlama",
+    "cell3.title": "# @title 3. GPUkontrolü ve bağımlılık kurulumu",
+    "cell3.section_title": "# 3. GPUkontrolü ve bağımlılık kurulumu",
+    "cell4.title": "# @title 4. Yardımcı işlevler",
+    "cell4.section_title": "# 4. Yardımcı işlevler",
+    "cell5.title": "# @title 5. Whisper'yi yükleyin ve transkripsiyonu çalıştırın",
+    "cell5.section_title": "# 5. Whisper'yi yükleyin ve transkripsiyonu çalıştırın",
+    "cell6.title": "# @title 6. Çıktıları zipleyin ve indirin",
+    "cell6.section_title": "# 6. Çıktıları zipleyin ve indirin",
+    "settings.input_heading": "# @markdown ## Giriş",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Yerel dosyalar için `upload`veya halihazırda Google Drive'de depolanan dosyalar için `google_drive`kullanın.",
+    "settings.drive_heading": "# @markdown ### Google Drivegirişi",
+    "settings.drive_help": "# @markdown Bu ayarlar yalnızca `INPUT_MODE == \"google_drive\"`olduğunda kullanılır.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Bu ayarı genellikle `/content/drive/MyDrive`olarak tutun.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: MyDrive'ın altındaki bir dosya veya klasör yolu. Üst düzey MyDrive klasörünü kullanmak için boş bırakın.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Sürücü giriş yolu bir klasörse, alt klasörleri de arayın.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: İsteğe bağlı dosya adı alt dize filtresi.",
+    "settings.model_heading": "# @markdown ## Whispermodeli",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodel kimliği. Turbo daha hızlıdır; large-v3bazı dosyalar için daha kararlı olabilir.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Bilinmiyorsa `auto`kullanın veya bilinen bir kaynak dili seçin.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: İngilizce çıktı almak için Whisperçeviri modunu kullanın.",
+    "settings.output_heading": "# @markdown ## Çıkış",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Sürücü girişi kullanıldığında çıkışları Google Drivealtına kaydedin.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Sonunda bir ZIParşivi oluşturun ve indirin.",
+    "settings.formats_help": "# @markdown - Çıkış formatları aşağıdaki boolean'lar tarafından kontrol edilir.",
+    "settings.advanced_heading": "# ## Gelişmiş",
+    "settings.advanced_help": "# Bu varsayılanlar Colab için muhafazakardır. Sıradan kullanıcıların genellikle bunları düzenlemesine gerek yoktur.",
+    "settings.loaded_message": "Ayarlar yüklendi.",
+    "messages.choose_files": "'Dosya Seç'i tıklayın ve bir veya daha fazla ses/video dosyası yükleyin.",
+    "messages.selected_files": "Seçilen dosyalar:",
+    "messages.dependencies_done": "Bağımlılık kurulumu tamamlandı.",
+    "messages.model_loaded": "Whispermodeli yüklendi.",
+    "messages.transcription_complete": "Transkripsiyon tamamlandı.",
+    "errors.no_supported_files": "Desteklenen ses/video dosyası seçilmedi.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Defter\n\nBu dizüstü bilgisayar, ses veya video dosyalarını Whisperile kopyalar.\n\n## Özellikler\n\n- **Kullanımı ücretsiz:** Bu not defteri, OpenAI'nin 17 Ocak 2023'te açık kaynaklı olduğu [openai/whisper](https://github.com/openai/whisper)'yi ve Google Colab'nin ücretsiz GPUçalışma zamanını kullanır.\n- **Sabit dizüstü bilgisayar tarafı dosya boyutu sınırı yok:** Büyük ses ve video dosyaları işlenebilir.\n- **Toplu işleme:** Tek seferde birden fazla ses ve video dosyası işlenebilir.\n- **Google Drivedestek:** Dosyalar doğrudan yüklenebilir veya Google Drivekonumunda saklanan ses/video dosyaları işlenebilir.\n- **Tamamen çevrimiçi:** İndirmeler ve işlemler Google Colabüzerinde gerçekleştirilir. Hiçbir yerel bilgi işlem kaynağı kullanılmaz.\n- **Çoklu çıktı formatları:** Dizüstü bilgisayar, orijinal JSONtranskripsiyonunu ve türetilmiş TXT, CSV, Markdown, Excelve SRTaltyazı dosyalarının çıktısını alır.\n\n## Nasıl kullanılır\n\n1. **1'de. Ayarlar**, `INPUT_MODE`seçeneğini seçin ve gerekiyorsa modeli veya çıktı seçeneklerini ayarlayın.\n2. **Çalışma Zamanı -> Tümünü çalıştır** seçeneğini seçin.\n3. `INPUT_MODE = \"upload\"`ise **2'ye kadar bekleyin. Dosya seçimi / Google Drivemount** başlar, ardından o hücrenin çıktı alanında **Dosya Seç**'e tıklayın.\n4. İşleme tamamlandığında, `AUTO_DOWNLOAD_ZIP`etkinleştirilmişse çıktı dosyaları sıkıştırılır ve indirilir.\n\n## Notlar\n\n- Google Colabücretsiz GPUkullanılabilirliği sınırlıdır. GPUmevcut değilse ve `REQUIRE_CUDA = True`yoksa not defteri, transkripsiyondan önce durur.\n- İşleme zaman alır. large-v3-turbomodelini kullanırken kabaca bir kılavuz olarak belirtmek gerekirse, 60 dakikalık bir ses veya video dosyasının yazıya dönüştürülmesi yaklaşık 5-10 dakika sürebilir. Dosyaları doğrudan yüklerseniz yükleme süresi de gereklidir.\n- İşlem sırasında bu not defterini açık tutun. Transkripsiyon sırasında not defterini kapatırsanız işlem durur.",
+    "settings.source_language_default": "turkish"
+  },
+  "labels": {
+    "features": "Özellikler",
+    "languages": "Diller",
+    "language": "Dil",
+    "readme": "README",
+    "notebook": "Defter",
+    "repository_layout": "Depo Düzeni",
+    "build": "Yapı",
+    "checks": "Çekler",
+    "what_ci_can_test": "CI Neleri Test Edebilir?",
+    "license": "Lisans"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Whispertranskripsiyon için çok dilli Google Colabnot defterleri.",
+    "features": [
+      "**Kullanımı ücretsiz:** Bu not defteri, OpenAI'nin 17 Ocak 2023'te açık kaynaklı olduğu [openai/whisper](https://github.com/openai/whisper)'yi ve Google Colab'nin ücretsiz GPUçalışma zamanını kullanır.",
+      "**Sabit dizüstü bilgisayar tarafı dosya boyutu sınırı yok:** Büyük ses ve video dosyaları işlenebilir.",
+      "**Toplu işleme:** Tek seferde birden fazla ses ve video dosyası işlenebilir.",
+      "**Google Drivedestek:** Dosyalar doğrudan yüklenebilir veya Google Drivekonumunda saklanan ses/video dosyaları işlenebilir.",
+      "**Tamamen çevrimiçi:** İndirmeler ve işlemler Google Colabüzerinde gerçekleştirilir. Hiçbir yerel bilgi işlem kaynağı kullanılmaz.",
+      "**Çoklu çıktı formatları:** Dizüstü bilgisayar, orijinal JSONtranskripsiyonunu ve türetilmiş TXT, CSV, Markdown, Excelve SRTaltyazı dosyalarının çıktısını alır."
+    ],
+    "template_note": "READMEkökü İngilizce giriş noktasıdır ve docs/READMEoluşturulmuş yerelleştirilmiş READMEdosyalarını içerir. Şablon not defteri kaynak not defteridir ve `{{cell1.title}}`gibi yer tutucuları içerir. Yerel ayar dosyaları dile özgü READMEve Colab'a yönelik kopya sağlar. Colab bağlantılarının sabit kalması için oluşturulan not defterleri kaydedilir.",
+    "checks_note": "CI iş akışı, READMEdosyalarını ve not defterlerini şablondan ve yerel ayar dosyalarından yeniden oluşturur, not defteri JSON'yi kontrol eder, boş çıktıları doğrular, kod hücrelerindeki Python sözdizimini kontrol eder, kazayla oluşan bariz sırları tarar ve oluşturulan dosyalar kaydedilmediğinde başarısız olur.",
+    "ci_items": [
+      "Yerel ayar dosyalarından READMEoluşturma",
+      "şablon ve yerel ayar dosyalarından not defteri oluşturma",
+      "defter JSONgeçerliliği",
+      "boş yürütme çıktıları",
+      "Kod hücrelerinde Python sözdizimi",
+      "bariz tesadüfi sırlar",
+      "oluşturulan READMEve kaynaklarla eşleşen not defteri dosyalarını taahhüt etti"
+    ],
+    "ci_limit": "Tam transkripsiyon yolu için Colab'a özel API'ler, model indirmeleri, GPUkullanılabilirliği ve kullanıcı tarafından sağlanan medya dosyaları gerekir. Bu yolu, oluşturulan dosya kontrolleri başarılı olduktan sonra manuel Colab duman testi olarak değerlendirin.",
+    "license_note": "Bu havuzun READMEoluşturucusu, not defteri şablonu, yerel ayar dosyaları, oluşturulan not defterleri ve bakım komut dosyaları MITLisansı altında yayınlanır. Whispermodelleri ve üçüncü taraf bağımlılıkları ilgili lisanslara tabidir.",
+    "feature_labels": [
+      "Kullanımı ücretsiz",
+      "Sabit dizüstü bilgisayar tarafı dosya boyutu sınırı yok",
+      "Toplu işleme",
+      "Google Drivedestek",
+      "Tamamen çevrimiçi",
+      "Çoklu çıktı formatları"
+    ],
+    "feature_bodies": [
+      "Bu not defteri, OpenAI'nin 17 Ocak 2023'te açık kaynaklı olduğu [openai/whisper](https://github.com/openai/whisper)'yi ve Google Colab'nin ücretsiz GPUçalışma zamanını kullanır.",
+      "Büyük ses ve video dosyaları işlenebilir.",
+      "Tek seferde birden fazla ses ve video dosyası işlenebilir.",
+      "Dosyalar doğrudan yüklenebilir veya Google Drivekonumunda saklanan ses/video dosyaları işlenebilir.",
+      "İndirmeler ve işlemler Google Colabüzerinde gerçekleştirilir. Hiçbir yerel bilgi işlem kaynağı kullanılmaz.",
+      "Dizüstü bilgisayar, orijinal JSONtranskripsiyonunu ve türetilmiş TXT, CSV, Markdown, Excelve SRTaltyazı dosyalarının çıktısını alır."
+    ]
+  },
+  "translation_source": "google:tr; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Defter",
+    "description": "Bu dizüstü bilgisayar, ses veya video dosyalarını Whisperile kopyalar.",
+    "features_heading": "Özellikler",
+    "features": [
+      "**Kullanımı ücretsiz:** Bu not defteri, OpenAI'nin 17 Ocak 2023'te açık kaynaklı olduğu [openai/whisper](https://github.com/openai/whisper)'yi ve Google Colab'nin ücretsiz GPUçalışma zamanını kullanır.",
+      "**Sabit dizüstü bilgisayar tarafı dosya boyutu sınırı yok:** Büyük ses ve video dosyaları işlenebilir.",
+      "**Toplu işleme:** Tek seferde birden fazla ses ve video dosyası işlenebilir.",
+      "**Google Drivedestek:** Dosyalar doğrudan yüklenebilir veya Google Drivekonumunda saklanan ses/video dosyaları işlenebilir.",
+      "**Tamamen çevrimiçi:** İndirmeler ve işlemler Google Colabüzerinde gerçekleştirilir. Hiçbir yerel bilgi işlem kaynağı kullanılmaz.",
+      "**Çoklu çıktı formatları:** Dizüstü bilgisayar, orijinal JSONtranskripsiyonunu ve türetilmiş TXT, CSV, Markdown, Excelve SRTaltyazı dosyalarının çıktısını alır."
+    ],
+    "how_to_use_heading": "Nasıl kullanılır",
+    "how_to_use_steps": [
+      "**1'de. Ayarlar**, `INPUT_MODE`seçeneğini seçin ve gerekiyorsa modeli veya çıktı seçeneklerini ayarlayın.",
+      "**Çalışma Zamanı -> Tümünü çalıştır** seçeneğini seçin.",
+      "`INPUT_MODE = \"upload\"`ise **2'ye kadar bekleyin. Dosya seçimi / Google Drivemount** başlar, ardından o hücrenin çıktı alanında **Dosya Seç**'e tıklayın.",
+      "İşleme tamamlandığında, `AUTO_DOWNLOAD_ZIP`etkinleştirilmişse çıktı dosyaları sıkıştırılır ve indirilir."
+    ],
+    "notes_heading": "Notlar",
+    "notes": [
+      "Google Colabücretsiz GPUkullanılabilirliği sınırlıdır. GPUmevcut değilse ve `REQUIRE_CUDA = True`yoksa not defteri, transkripsiyondan önce durur.",
+      "İşleme zaman alır. large-v3-turbomodelini kullanırken kabaca bir kılavuz olarak belirtmek gerekirse, 60 dakikalık bir ses veya video dosyasının yazıya dönüştürülmesi yaklaşık 5-10 dakika sürebilir. Dosyaları doğrudan yüklerseniz yükleme süresi de gereklidir.",
+      "İşlem sırasında bu not defterini açık tutun. Transkripsiyon sırasında not defterini kapatırsanız işlem durur."
+    ],
+    "feature_labels": [
+      "Kullanımı ücretsiz",
+      "Sabit dizüstü bilgisayar tarafı dosya boyutu sınırı yok",
+      "Toplu işleme",
+      "Google Drivedestek",
+      "Tamamen çevrimiçi",
+      "Çoklu çıktı formatları"
+    ],
+    "feature_bodies": [
+      "Bu not defteri, OpenAI'nin 17 Ocak 2023'te açık kaynaklı olduğu [openai/whisper](https://github.com/openai/whisper)'yi ve Google Colab'nin ücretsiz GPUçalışma zamanını kullanır.",
+      "Büyük ses ve video dosyaları işlenebilir.",
+      "Tek seferde birden fazla ses ve video dosyası işlenebilir.",
+      "Dosyalar doğrudan yüklenebilir veya Google Drivekonumunda saklanan ses/video dosyaları işlenebilir.",
+      "İndirmeler ve işlemler Google Colabüzerinde gerçekleştirilir. Hiçbir yerel bilgi işlem kaynağı kullanılmaz.",
+      "Dizüstü bilgisayar, orijinal JSONtranskripsiyonunu ve türetilmiş TXT, CSV, Markdown, Excelve SRTaltyazı dosyalarının çıktısını alır."
+    ]
+  }
+}

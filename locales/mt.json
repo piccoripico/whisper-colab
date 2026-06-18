@@ -1,0 +1,144 @@
+{
+  "language": "mt",
+  "display_name": "Maltese",
+  "native_name": "Maltese",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Settings",
+    "cell1.section_title": "# 1. Settings",
+    "cell2.title": "# @title 2. Għażla tal-fajl / Google Driveimpunjazzjoni",
+    "cell2.section_title": "# 2. Għażla tal-fajl / Google Driveimpunjazzjoni",
+    "cell3.title": "# @title 3. GPUkontroll u installazzjoni tad-dipendenza",
+    "cell3.section_title": "# 3. GPUkontroll u installazzjoni tad-dipendenza",
+    "cell4.title": "# @title 4. Funzjonijiet ta' helper",
+    "cell4.section_title": "# 4. Funzjonijiet ta' helper",
+    "cell5.title": "# @title 5. Tagħbija Whisperu mexxi traskrizzjoni",
+    "cell5.section_title": "# 5. Tagħbija Whisperu mexxi traskrizzjoni",
+    "cell6.title": "# @title 6. Zip u tniżżil outputs",
+    "cell6.section_title": "# 6. Zip u tniżżil outputs",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Uża `upload`għal fajls lokali jew `google_drive`għal fajls diġà maħżuna fi Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveinput",
+    "settings.drive_help": "# @markdown Dawn is-settings jintużaw biss meta `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Normalment żomm dan is-sett għal `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Passaġġ tal-fajl jew folder taħt MyDrive. Ħalli vojt biex tuża l-folder MyDrive tal-ogħla livell.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Jekk il-mogħdija tad-dħul Drive hija folder, fittex ukoll is-subfolders.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Filtru mhux obbligatorju tas-substring tal-isem tal-fajl.",
+    "settings.model_heading": "# @markdown ## Mudell Whisper",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID tal-mudell. Turbo huwa aktar mgħaġġel; large-v3jista' jkun aktar stabbli għal xi fajls.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Uża `auto`meta mhux magħruf, jew agħżel lingwa sors magħrufa.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Uża Whispertranslate mode biex toħroġ bl-Ingliż.",
+    "settings.output_heading": "# @markdown ## Output",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Issejvja l-outputs taħt Google Drivemeta jintuża l-input Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Oħloq u niżżel arkivju wieħed ZIPfl-aħħar.",
+    "settings.formats_help": "# @markdown - Il-formati tal-output huma kkontrollati mill-booleans hawn taħt.",
+    "settings.advanced_heading": "# ## Avvanzat",
+    "settings.advanced_help": "# Dawn in-nuqqasijiet huma konservattivi għal Colab. L-utenti ordinarji normalment m'għandhomx għalfejn jeditjawhom.",
+    "settings.loaded_message": "Settings mgħobbija.",
+    "messages.choose_files": "Ikklikkja 'Agħżel Fajls' u ttella' fajl awdjo/vidjo wieħed jew aktar.",
+    "messages.selected_files": "Fajls magħżula:",
+    "messages.dependencies_done": "L-installazzjoni tad-dipendenza lesta.",
+    "messages.model_loaded": "Whispermudell mgħobbi.",
+    "messages.transcription_complete": "Traskrizzjoni kompluta.",
+    "errors.no_supported_files": "Ma ġew magħżula l-ebda fajls awdjo/vidjo appoġġjati.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nDan in-notebook jittraskrivi fajls awdjo jew vidjo bi Whisper.\n\n## Karatteristiċi\n\n- **Ħieles għall-użu:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.\n- **L-ebda limitu fiss tad-daqs tal-fajl tan-naħa tal-notebook:** Fajls kbar awdjo u vidjo jistgħu jiġu pproċessati.\n- **Ipproċessar tal-lott:** Fajls multipli awdjo u vidjo jistgħu jiġu pproċessati f'ġirja waħda.\n- **Google Driveappoġġ:** Fajls jistgħu jittellgħu direttament, jew fajls awdjo/vidjo maħżuna fi Google Drivejistgħu jiġu pproċessati.\n- **Kompletament onlajn:** It-tniżżil u l-ipproċessar isiru fuq Google Colab. Ma jintużaw l-ebda riżorsi tal-kompjuter lokali.\n- **Formati tal-produzzjoni multipli:** In-notebook joħroġ it-traskrizzjoni oriġinali JSONu TXT, CSV, Markdown, Excel, u SRTfajls tas-sottotitli.\n\n## Kif tuża\n\n1. F'**1. Settings**, agħżel `INPUT_MODE`u aġġusta l-mudell jew l-għażliet tal-output jekk meħtieġ.\n2. Agħżel **Runtime -> Run all**.\n3. Jekk `INPUT_MODE = \"upload\"`, stenna sa **2. L-għażla tal-fajl / Google Drivejimmonta** tibda, imbagħad ikklikkja **Agħżel Fajls** fiż-żona tal-output ta 'dik iċ-ċellula.\n4. Meta l-ipproċessar ikun lest, il-fajls tal-ħruġ huma zipped u mniżżla jekk `AUTO_DOWNLOAD_ZIP`hija attivata.\n\n## Noti\n\n- Google Colabb'xejn GPUid-disponibbiltà hija limitata. Jekk l-ebda GPUma jkun disponibbli u `REQUIRE_CUDA = True`, in-notebook jieqaf qabel it-traskrizzjoni.\n- L-ipproċessar jieħu ż-żmien. Bħala gwida approssimattiva meta tuża l-mudell large-v3-turbo, fajl awdjo jew vidjo ta' 60 minuta jista' jieħu madwar 5-10 minuti biex jittraskrivi. Jekk ittella 'fajls direttament, il-ħin tat-tlugħ huwa meħtieġ ukoll.\n- Żomm dan in-notebook miftuħ waqt l-ipproċessar. Jekk tagħlaq in-notebook waqt it-traskrizzjoni, l-ipproċessar jieqaf.",
+    "settings.source_language_default": "maltese"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Notebooks multilingwi Google Colabgħat-traskrizzjoni Whisper.",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**L-ebda limitu fiss tad-daqs tal-fajl tan-naħa tal-notebook:** Fajls kbar awdjo u vidjo jistgħu jiġu pproċessati.",
+      "**Ipproċessar tal-lott:** Fajls multipli awdjo u vidjo jistgħu jiġu pproċessati f'ġirja waħda.",
+      "**Google Driveappoġġ:** Fajls jistgħu jittellgħu direttament, jew fajls awdjo/vidjo maħżuna fi Google Drivejistgħu jiġu pproċessati.",
+      "**Kompletament onlajn:** It-tniżżil u l-ipproċessar isiru fuq Google Colab. Ma jintużaw l-ebda riżorsi tal-kompjuter lokali.",
+      "**Formati tal-produzzjoni multipli:** In-notebook joħroġ it-traskrizzjoni oriġinali JSONu TXT, CSV, Markdown, Excel, u SRTfajls tas-sottotitli."
+    ],
+    "template_note": "L-għerq READMEhuwa l-punt tad-dħul bl-Ingliż, u docs/READMEfih fajls READMEġenerati lokalizzati. In-notebook mudell huwa n-notebook tas-sors u fih placeholders bħal `{{cell1.title}}`. Il-fajls tal-lokal jipprovdu READMEspeċifiċi għal-lingwa u kopja li tiffaċċja l-Colab. Notebooks iġġenerati huma impenjati sabiex il-links tal-Colab jibqgħu stabbli.",
+    "checks_note": "Il-fluss tax-xogħol CI jibni mill-ġdid READMEfajls u notebooks mill-mudelli u l-fajls lokali, jiċċekkja notebook JSON, jivverifika l-outputs vojta, jiċċekkja s-sintassi Python fiċ-ċelloli tal-kodiċi, jiskenja għal sigrieti aċċidentali ovvji, u jfalli meta fajls iġġenerati ma jiġux impenjati.",
+    "ci_items": [
+      "READMEġenerazzjoni minn fajls lokali",
+      "ġenerazzjoni ta' notebook mill-mudelli u l-fajls lokali",
+      "notebook JSONvalidità",
+      "outputs ta' eżekuzzjoni vojta",
+      "Sintassi Python fiċ-ċelloli tal-kodiċi",
+      "sigrieti aċċidentali ovvji",
+      "impenjat iġġenerat READMEu fajls notebook li jaqblu mas-sorsi"
+    ],
+    "ci_limit": "Il-mogħdija tat-traskrizzjoni sħiħa teħtieġ APIs speċifiċi għal Colab, downloads tal-mudelli, disponibbiltà GPU, u fajls tal-midja pprovduti mill-utent. Ittratta dik it-triq bħala test manwali tad-duħħan Colab wara li jgħaddu l-kontrolli tal-fajl iġġenerat.",
+    "license_note": "Il-ġeneratur READMEta' dan ir-repożitorju, il-mudell ta' notebook, il-fajls lokali, in-notebooks iġġenerati, u l-iskripts ta' manutenzjoni huma rilaxxati taħt il-Liċenzja MIT. Il-mudelli Whisperu d-dipendenzi ta' partijiet terzi huma rregolati mil-liċenzji rispettivi tagħhom.",
+    "feature_labels": [
+      "Ħieles għall-użu",
+      "L-ebda limitu fiss tad-daqs tal-fajl tan-naħa tal-notebook",
+      "Ipproċessar tal-lott",
+      "Google Driveappoġġ",
+      "Kompletament onlajn",
+      "Formati tal-produzzjoni multipli"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Fajls kbar awdjo u vidjo jistgħu jiġu pproċessati.",
+      "Fajls multipli awdjo u vidjo jistgħu jiġu pproċessati f'ġirja waħda.",
+      "Fajls jistgħu jittellgħu direttament, jew fajls awdjo/vidjo maħżuna fi Google Drivejistgħu jiġu pproċessati.",
+      "It-tniżżil u l-ipproċessar isiru fuq Google Colab. Ma jintużaw l-ebda riżorsi tal-kompjuter lokali.",
+      "In-notebook joħroġ it-traskrizzjoni oriġinali JSONu TXT, CSV, Markdown, Excel, u SRTfajls tas-sottotitli."
+    ]
+  },
+  "labels": {
+    "features": "Karatteristiċi",
+    "languages": "Lingwi",
+    "language": "Lingwa",
+    "readme": "README",
+    "notebook": "Notebook",
+    "repository_layout": "Tqassim tar-Repożitorju",
+    "build": "Ibni",
+    "checks": "Kontrolli",
+    "what_ci_can_test": "X'Is-CI Jista' Test",
+    "license": "Liċenzja"
+  },
+  "translation_source": "google:mt; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Dan in-notebook jittraskrivi fajls awdjo jew vidjo bi Whisper.",
+    "features_heading": "Karatteristiċi",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**L-ebda limitu fiss tad-daqs tal-fajl tan-naħa tal-notebook:** Fajls kbar awdjo u vidjo jistgħu jiġu pproċessati.",
+      "**Ipproċessar tal-lott:** Fajls multipli awdjo u vidjo jistgħu jiġu pproċessati f'ġirja waħda.",
+      "**Google Driveappoġġ:** Fajls jistgħu jittellgħu direttament, jew fajls awdjo/vidjo maħżuna fi Google Drivejistgħu jiġu pproċessati.",
+      "**Kompletament onlajn:** It-tniżżil u l-ipproċessar isiru fuq Google Colab. Ma jintużaw l-ebda riżorsi tal-kompjuter lokali.",
+      "**Formati tal-produzzjoni multipli:** In-notebook joħroġ it-traskrizzjoni oriġinali JSONu TXT, CSV, Markdown, Excel, u SRTfajls tas-sottotitli."
+    ],
+    "how_to_use_heading": "Kif tuża",
+    "how_to_use_steps": [
+      "F'**1. Settings**, agħżel `INPUT_MODE`u aġġusta l-mudell jew l-għażliet tal-output jekk meħtieġ.",
+      "Agħżel **Runtime -> Run all**.",
+      "Jekk `INPUT_MODE = \"upload\"`, stenna sa **2. L-għażla tal-fajl / Google Drivejimmonta** tibda, imbagħad ikklikkja **Agħżel Fajls** fiż-żona tal-output ta 'dik iċ-ċellula.",
+      "Meta l-ipproċessar ikun lest, il-fajls tal-ħruġ huma zipped u mniżżla jekk `AUTO_DOWNLOAD_ZIP`hija attivata."
+    ],
+    "notes_heading": "Noti",
+    "notes": [
+      "Google Colabb'xejn GPUid-disponibbiltà hija limitata. Jekk l-ebda GPUma jkun disponibbli u `REQUIRE_CUDA = True`, in-notebook jieqaf qabel it-traskrizzjoni.",
+      "L-ipproċessar jieħu ż-żmien. Bħala gwida approssimattiva meta tuża l-mudell large-v3-turbo, fajl awdjo jew vidjo ta' 60 minuta jista' jieħu madwar 5-10 minuti biex jittraskrivi. Jekk ittella 'fajls direttament, il-ħin tat-tlugħ huwa meħtieġ ukoll.",
+      "Żomm dan in-notebook miftuħ waqt l-ipproċessar. Jekk tagħlaq in-notebook waqt it-traskrizzjoni, l-ipproċessar jieqaf."
+    ],
+    "feature_labels": [
+      "Ħieles għall-użu",
+      "L-ebda limitu fiss tad-daqs tal-fajl tan-naħa tal-notebook",
+      "Ipproċessar tal-lott",
+      "Google Driveappoġġ",
+      "Kompletament onlajn",
+      "Formati tal-produzzjoni multipli"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Fajls kbar awdjo u vidjo jistgħu jiġu pproċessati.",
+      "Fajls multipli awdjo u vidjo jistgħu jiġu pproċessati f'ġirja waħda.",
+      "Fajls jistgħu jittellgħu direttament, jew fajls awdjo/vidjo maħżuna fi Google Drivejistgħu jiġu pproċessati.",
+      "It-tniżżil u l-ipproċessar isiru fuq Google Colab. Ma jintużaw l-ebda riżorsi tal-kompjuter lokali.",
+      "In-notebook joħroġ it-traskrizzjoni oriġinali JSONu TXT, CSV, Markdown, Excel, u SRTfajls tas-sottotitli."
+    ]
+  }
+}

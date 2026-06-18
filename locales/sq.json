@@ -1,0 +1,144 @@
+{
+  "language": "sq",
+  "display_name": "Albanian",
+  "native_name": "Albanian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Cilësimet",
+    "cell1.section_title": "# 1. Cilësimet",
+    "cell2.title": "# @title 2. Zgjedhja e skedarit / montimi Google Drive",
+    "cell2.section_title": "# 2. Zgjedhja e skedarit / montimi Google Drive",
+    "cell3.title": "# @title 3. GPUkontrolli dhe instalimi i varësisë",
+    "cell3.section_title": "# 3. GPUkontrolli dhe instalimi i varësisë",
+    "cell4.title": "# @title 4. Funksionet ndihmëse",
+    "cell4.section_title": "# 4. Funksionet ndihmëse",
+    "cell5.title": "# @title 5. Ngarko Whisperdhe ekzekuto transkriptimin",
+    "cell5.section_title": "# 5. Ngarko Whisperdhe ekzekuto transkriptimin",
+    "cell6.title": "# @title 6. Zip dhe shkarko rezultatet",
+    "cell6.section_title": "# 6. Zip dhe shkarko rezultatet",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Përdorni `upload`ër skedarët lokalë ose `google_drive`ër skedarët e ruajtur tashmë në Google Drive.",
+    "settings.drive_heading": "# @markdown ### hyrje Google Drive",
+    "settings.drive_help": "# @markdown Këto cilësime përdoren vetëm kur `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Zakonisht mbajeni këtë grup në `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Një shteg skedari ose dosjeje nën MyDrive. Lëreni bosh për të përdorur dosjen MyDrive të nivelit të lartë.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Nëse shtegu i hyrjes së \"Diskut\" është një dosje, kërkoni edhe nëndosjet.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Filtri opsional i nënvargut të emrit të skedarit.",
+    "settings.model_heading": "# @markdown ## Modeli Whisper",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID e modelit. Turbo është më i shpejtë; large-v3mund të jetë më i qëndrueshëm për disa skedarë.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Përdorni `auto`kur nuk dihet, ose zgjidhni një gjuhë të njohur burimi.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Përdorni modalitetin e përkthimit Whisperër të nxjerrë anglisht.",
+    "settings.output_heading": "# @markdown ## Prodhimi",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Ruani daljet nën Google Drivekur përdoret hyrja e \"Diskut\".",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Krijoni dhe shkarkoni një arkiv ZIPnë fund.",
+    "settings.formats_help": "# @markdown - Formatet e daljes kontrollohen nga booleans më poshtë.",
+    "settings.advanced_heading": "# ## E avancuar",
+    "settings.advanced_help": "# Këto parazgjedhje janë konservatore për Colab. Përdoruesit e zakonshëm zakonisht nuk kanë nevojë t'i modifikojnë ato.",
+    "settings.loaded_message": "Cilësimet u ngarkuan.",
+    "messages.choose_files": "Klikoni \"Zgjidh skedarët\" dhe ngarkoni një ose më shumë skedarë audio/video.",
+    "messages.selected_files": "Skedarët e zgjedhur:",
+    "messages.dependencies_done": "Instalimi i varësisë përfundoi.",
+    "messages.model_loaded": "Modeli Whisperu ngarkua.",
+    "messages.transcription_complete": "Transkriptimi përfundoi.",
+    "errors.no_supported_files": "Nuk u zgjodh asnjë skedar audio/video i mbështetur.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperFletore Colab\n\nKjo fletore transkripton skedarë audio ose video me Whisper.\n\n## Veçoritë\n\n- **E lirë për t'u përdorur:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.\n- **Nuk ka kufi fiks të madhësisë së skedarit nga ana e fletores:** Mund të përpunohen skedarë të mëdhenj audio dhe video.\n- **Përpunimi në grup:** Skedarët e shumtë audio dhe video mund të përpunohen në një ekzekutim.\n- **Google Drivembështetje:** Skedarët mund të ngarkohen drejtpërdrejt ose skedarët audio/video të ruajtura në Google Drivemund të përpunohen.\n- **Plotësisht online:** Shkarkimet dhe përpunimi kryhen në Google Colab. Nuk përdoren burime kompjuterike lokale.\n- **Formate të shumta të daljes:** Fletorja nxjerr transkriptin origjinal JSONdhe të nxjerrë nga skedarët e titrave TXT, CSV, Markdown, Exceldhe SRT.\n\n## Si të përdorni\n\n1. Në **1. Cilësimet**, zgjidhni `INPUT_MODE`dhe rregulloni modelin ose opsionet e daljes nëse është e nevojshme.\n2. Zgjidhni **Runtime -> Run all**.\n3. Nëse `INPUT_MODE = \"upload\"`, prisni deri në **2. Fillon zgjedhja e skedarit / montimi Google Drive**, më pas kliko **Zgjidh skedarët** në zonën e daljes së asaj qelize.\n4. Kur të përfundojë përpunimi, skedarët e daljes zihen dhe shkarkohen nëse `AUTO_DOWNLOAD_ZIP`është aktivizuar.\n\n## Shënime\n\n- Disponueshmëria Google Colabfalas GPUështë e kufizuar. Nëse nuk disponohet asnjë GPUdhe `REQUIRE_CUDA = True`, fletorja ndalon përpara transkriptimit.\n- Përpunimi kërkon kohë. Si një udhëzues i përafërt kur përdorni modelin large-v3-turbo, një skedar audio ose video 60-minutësh mund të marrë rreth 5-10 minuta për t'u transkriptuar. Nëse ngarkoni skedarë drejtpërdrejt, kërkohet gjithashtu koha e ngarkimit.\n- Mbajeni këtë fletore të hapur gjatë përpunimit. Nëse e mbyllni fletoren gjatë transkriptimit, përpunimi ndalon.",
+    "settings.source_language_default": "albanian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Fletore shumëgjuhëshe Google Colabër transkriptimin Whisper.",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Nuk ka kufi fiks të madhësisë së skedarit nga ana e fletores:** Mund të përpunohen skedarë të mëdhenj audio dhe video.",
+      "**Përpunimi në grup:** Skedarët e shumtë audio dhe video mund të përpunohen në një ekzekutim.",
+      "**Google Drivembështetje:** Skedarët mund të ngarkohen drejtpërdrejt ose skedarët audio/video të ruajtura në Google Drivemund të përpunohen.",
+      "**Plotësisht online:** Shkarkimet dhe përpunimi kryhen në Google Colab. Nuk përdoren burime kompjuterike lokale.",
+      "**Formate të shumta të daljes:** Fletorja nxjerr transkriptin origjinal JSONdhe të nxjerrë nga skedarët e titrave TXT, CSV, Markdown, Exceldhe SRT."
+    ],
+    "template_note": "Rrënja READMEështë pika hyrëse në anglisht dhe docs/READMEërmban skedarë të krijuar të lokalizuar README. Fletorja e shabllonit është fletorja burimore dhe përmban mbajtës të vendeve të tilla si `{{cell1.title}}`. Skedarët lokalë ofrojnë READMEspecifike për gjuhën dhe kopje me pamje nga Colab. Fletoret e krijuara janë angazhuar në mënyrë që lidhjet Colab të qëndrojnë të qëndrueshme.",
+    "checks_note": "Rrjedha e punës CI rindërton skedarët READMEdhe fletoret nga shabllonet dhe skedarët lokalë, kontrollon fletoren JSON, verifikon daljet boshe, kontrollon sintaksën e Python në qelizat e kodit, skanon për sekrete të dukshme aksidentale dhe dështon kur skedarët e krijuar nuk janë kryer.",
+    "ci_items": [
+      "Gjenerimi READMEnga skedarët lokalë",
+      "gjenerimi i fletores nga shabllonet dhe skedarët lokalë",
+      "vlefshmëria e fletores JSON",
+      "daljet boshe të ekzekutimit",
+      "Sintaksa e Python në qelizat e kodit",
+      "sekrete të dukshme aksidentale",
+      "kryera gjeneroi READMEdhe skedarë fletore që përputhen me burimet"
+    ],
+    "ci_limit": "Rruga e plotë e transkriptimit kërkon API specifike të Colab, shkarkime modelesh, disponueshmëri GPUdhe skedarë mediash të ofruara nga përdoruesi. Trajtojeni atë shteg si një test manual të tymit të Colab pasi të kalojnë kontrollet e skedarëve të krijuar.",
+    "license_note": "Gjeneratori READMEi këtij depoje, shablloni i fletores, skedarët lokalë, fletoret e krijuara dhe skriptet e mirëmbajtjes lëshohen nën licencën MIT. Modelet Whisperdhe varësitë e palëve të treta rregullohen nga licencat e tyre përkatëse.",
+    "feature_labels": [
+      "E lirë për t'u përdorur",
+      "Nuk ka kufi fiks të madhësisë së skedarit nga ana e fletores",
+      "Përpunimi në grup",
+      "Google Drivembështetje",
+      "Plotësisht online",
+      "Formate të shumta të daljes"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Mund të përpunohen skedarë të mëdhenj audio dhe video.",
+      "Skedarët e shumtë audio dhe video mund të përpunohen në një ekzekutim.",
+      "Skedarët mund të ngarkohen drejtpërdrejt ose skedarët audio/video të ruajtura në Google Drivemund të përpunohen.",
+      "Shkarkimet dhe përpunimi kryhen në Google Colab. Nuk përdoren burime kompjuterike lokale.",
+      "Fletorja nxjerr transkriptin origjinal JSONdhe të nxjerrë nga skedarët e titrave TXT, CSV, Markdown, Exceldhe SRT."
+    ]
+  },
+  "labels": {
+    "features": "Veçoritë",
+    "languages": "Gjuhët",
+    "language": "Gjuha",
+    "readme": "README",
+    "notebook": "Fletore",
+    "repository_layout": "Paraqitja e depove",
+    "build": "Ndërtoni",
+    "checks": "Kontrollet",
+    "what_ci_can_test": "Çfarë mund të testojë CI",
+    "license": "Licenca"
+  },
+  "translation_source": "google:sq; machine-translated from en",
+  "notebook": {
+    "title": "WhisperFletore Colab",
+    "description": "Kjo fletore transkripton skedarë audio ose video me Whisper.",
+    "features_heading": "Veçoritë",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Nuk ka kufi fiks të madhësisë së skedarit nga ana e fletores:** Mund të përpunohen skedarë të mëdhenj audio dhe video.",
+      "**Përpunimi në grup:** Skedarët e shumtë audio dhe video mund të përpunohen në një ekzekutim.",
+      "**Google Drivembështetje:** Skedarët mund të ngarkohen drejtpërdrejt ose skedarët audio/video të ruajtura në Google Drivemund të përpunohen.",
+      "**Plotësisht online:** Shkarkimet dhe përpunimi kryhen në Google Colab. Nuk përdoren burime kompjuterike lokale.",
+      "**Formate të shumta të daljes:** Fletorja nxjerr transkriptin origjinal JSONdhe të nxjerrë nga skedarët e titrave TXT, CSV, Markdown, Exceldhe SRT."
+    ],
+    "how_to_use_heading": "Si të përdorni",
+    "how_to_use_steps": [
+      "Në **1. Cilësimet**, zgjidhni `INPUT_MODE`dhe rregulloni modelin ose opsionet e daljes nëse është e nevojshme.",
+      "Zgjidhni **Runtime -> Run all**.",
+      "Nëse `INPUT_MODE = \"upload\"`, prisni deri në **2. Fillon zgjedhja e skedarit / montimi Google Drive**, më pas kliko **Zgjidh skedarët** në zonën e daljes së asaj qelize.",
+      "Kur të përfundojë përpunimi, skedarët e daljes zihen dhe shkarkohen nëse `AUTO_DOWNLOAD_ZIP`është aktivizuar."
+    ],
+    "notes_heading": "Shënime",
+    "notes": [
+      "Disponueshmëria Google Colabfalas GPUështë e kufizuar. Nëse nuk disponohet asnjë GPUdhe `REQUIRE_CUDA = True`, fletorja ndalon përpara transkriptimit.",
+      "Përpunimi kërkon kohë. Si një udhëzues i përafërt kur përdorni modelin large-v3-turbo, një skedar audio ose video 60-minutësh mund të marrë rreth 5-10 minuta për t'u transkriptuar. Nëse ngarkoni skedarë drejtpërdrejt, kërkohet gjithashtu koha e ngarkimit.",
+      "Mbajeni këtë fletore të hapur gjatë përpunimit. Nëse e mbyllni fletoren gjatë transkriptimit, përpunimi ndalon."
+    ],
+    "feature_labels": [
+      "E lirë për t'u përdorur",
+      "Nuk ka kufi fiks të madhësisë së skedarit nga ana e fletores",
+      "Përpunimi në grup",
+      "Google Drivembështetje",
+      "Plotësisht online",
+      "Formate të shumta të daljes"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Mund të përpunohen skedarë të mëdhenj audio dhe video.",
+      "Skedarët e shumtë audio dhe video mund të përpunohen në një ekzekutim.",
+      "Skedarët mund të ngarkohen drejtpërdrejt ose skedarët audio/video të ruajtura në Google Drivemund të përpunohen.",
+      "Shkarkimet dhe përpunimi kryhen në Google Colab. Nuk përdoren burime kompjuterike lokale.",
+      "Fletorja nxjerr transkriptin origjinal JSONdhe të nxjerrë nga skedarët e titrave TXT, CSV, Markdown, Exceldhe SRT."
+    ]
+  }
+}

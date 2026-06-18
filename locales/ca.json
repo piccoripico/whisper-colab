@@ -1,0 +1,144 @@
+{
+  "language": "ca",
+  "display_name": "Catalan",
+  "native_name": "Catalan",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Configuració",
+    "cell1.section_title": "# 1. Configuració",
+    "cell2.title": "# @title 2. Selecció de fitxer / Google Drivemunta",
+    "cell2.section_title": "# 2. Selecció de fitxer / Google Drivemunta",
+    "cell3.title": "# @title 3. GPUcomprovació i instal·lació de dependències",
+    "cell3.section_title": "# 3. GPUcomprovació i instal·lació de dependències",
+    "cell4.title": "# @title 4. Funcions d'ajuda",
+    "cell4.section_title": "# 4. Funcions d'ajuda",
+    "cell5.title": "# @title 5. Carregueu Whisperi executeu la transcripció",
+    "cell5.section_title": "# 5. Carregueu Whisperi executeu la transcripció",
+    "cell6.title": "# @title 6. Sortides comprimides i descàrregues",
+    "cell6.section_title": "# 6. Sortides comprimides i descàrregues",
+    "settings.input_heading": "# @markdown ## Entrada",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: utilitzeu `upload`er a fitxers locals o `google_drive`er a fitxers ja emmagatzemats a Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveentrada",
+    "settings.drive_help": "# @markdown Aquests paràmetres només s'utilitzen quan `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: En general, manteniu aquest conjunt a `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: una ruta de fitxer o carpeta a MyDrive. Deixeu-lo en blanc per utilitzar la carpeta MyDrive de nivell superior.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: si la ruta d'entrada de la unitat és una carpeta, també cerqueu subcarpetes.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: filtre de subcadenes de nom de fitxer opcional.",
+    "settings.model_heading": "# @markdown ## Model Whisper",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID del model. Turbo és més ràpid; large-v3ot ser més estable per a alguns fitxers.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: utilitzeu `auto`quan no es conegui, o seleccioneu un idioma d'origen conegut.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: utilitzeu el mode de traducció Whisperer sortir a l'anglès.",
+    "settings.output_heading": "# @markdown ## Sortida",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Deseu les sortides a Google Drivequan s'utilitzi l'entrada de la unitat.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: creeu i descarregueu un arxiu ZIPal final.",
+    "settings.formats_help": "# @markdown - Els formats de sortida estan controlats pels valors booleans següents.",
+    "settings.advanced_heading": "# ## Avançat",
+    "settings.advanced_help": "# Aquests valors predeterminats són conservadors per a Colab. Els usuaris habituals no solen editar-los.",
+    "settings.loaded_message": "S'ha carregat la configuració.",
+    "messages.choose_files": "Feu clic a \"Tria fitxers\" i carregueu un o més fitxers d'àudio/vídeo.",
+    "messages.selected_files": "Fitxers seleccionats:",
+    "messages.dependencies_done": "S'ha acabat la instal·lació de la dependència.",
+    "messages.model_loaded": "S'ha carregat el model Whisper.",
+    "messages.transcription_complete": "Transcripció completa.",
+    "errors.no_supported_files": "No s'ha seleccionat cap fitxer d'àudio/vídeo compatible.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperLlibreta Colab\n\nAquest quadern transcriu fitxers d'àudio o vídeo amb Whisper.\n\n## Característiques\n\n- **Lliure d'utilitzar:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **No hi ha límit fix de mida de fitxer al costat del portàtil:** Es poden processar fitxers d'àudio i vídeo grans.\n- **Processament per lots:** Es poden processar diversos fitxers d'àudio i vídeo en una execució.\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **Totalment en línia:** Downloads and processing are performed on Google Colab. No local computing resources are used.\n- **Múltiples formats de sortida:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## Com utilitzar\n\n1. A **1. Configuració**, trieu `INPUT_MODE`i ajusteu el model o les opcions de sortida si cal.\n2. Seleccioneu **Temps d'execució -> Executar-ho tot**.\n3. Si `INPUT_MODE = \"upload\"`, espereu fins a **2. S'inicia la selecció de fitxers / Google Drivemuntatge** i, a continuació, feu clic a **Tria fitxers** a l'àrea de sortida d'aquesta cel·la.\n4. Quan s'ha completat el processament, els fitxers de sortida es comprimeixen i es descarreguen si `AUTO_DOWNLOAD_ZIP`està habilitat.\n\n## Notes\n\n- Google Colabgratuït GPULa disponibilitat és limitada. Si no hi ha cap GPUdisponible i `REQUIRE_CUDA = True`, el quadern s'atura abans de la transcripció.\n- El processament requereix temps. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Si carregueu fitxers directament, també es requereix temps de càrrega.\n- Manteniu aquest quadern obert mentre processeu. Si tanqueu la llibreta durant la transcripció, el processament s'atura.",
+    "settings.source_language_default": "catalan"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Quaderns multilingües Google Colaber a la transcripció Whisper.",
+    "features": [
+      "**Lliure d'utilitzar:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**No hi ha límit fix de mida de fitxer al costat del portàtil:** Es poden processar fitxers d'àudio i vídeo grans.",
+      "**Processament per lots:** Es poden processar diversos fitxers d'àudio i vídeo en una execució.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Totalment en línia:** Downloads and processing are performed on Google Colab. No local computing resources are used.",
+      "**Múltiples formats de sortida:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "L'arrel READMEés el punt d'entrada en anglès, i docs/READMEconté els fitxers READMElocalitzats generats. El quadern de plantilla és el quadern d'origen i conté marcadors de posició com ara `{{cell1.title}}`. Els fitxers de configuració regional proporcionen READMEespecífica de l'idioma i una còpia orientada a Colab. Els quaderns generats estan compromesos perquè els enllaços de Colab es mantinguin estables.",
+    "checks_note": "El flux de treball CI reconstrueix els fitxers READMEi els quaderns a partir de la plantilla i els fitxers de configuració regional, verifica el quadern JSON, verifica les sortides buides, comprova la sintaxi de Python a les cel·les de codi, cerca secrets accidentals evidents i falla quan no es comprometen els fitxers generats.",
+    "ci_items": [
+      "READMEgeneració a partir de fitxers de configuració regional",
+      "generació de blocs de notes a partir de la plantilla i els fitxers de configuració regional",
+      "quadern JSONvalidesa",
+      "sortides d'execució buides",
+      "Sintaxi de Python a les cel·les de codi",
+      "secrets accidentals evidents",
+      "commit generat READMEi fitxers de bloc de notes que coincideixen amb les fonts"
+    ],
+    "ci_limit": "La ruta de transcripció completa requereix API específiques de Colab, descàrregues de models, disponibilitat GPUi fitxers multimèdia proporcionats per l'usuari. Tracteu aquest camí com una prova de fum de Colab manual després que passin les comprovacions dels fitxers generats.",
+    "license_note": "El generador READMEd'aquest dipòsit, la plantilla de quadern, els fitxers de configuració regional, els quaderns generats i els scripts de manteniment es publiquen sota la llicència MIT. Els models Whisperi les dependències de tercers es regeixen per les seves respectives llicències.",
+    "feature_labels": [
+      "Lliure d'utilitzar",
+      "No hi ha límit fix de mida de fitxer al costat del portàtil",
+      "Processament per lots",
+      "Google Drivesupport",
+      "Totalment en línia",
+      "Múltiples formats de sortida"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Es poden processar fitxers d'àudio i vídeo grans.",
+      "Es poden processar diversos fitxers d'àudio i vídeo en una execució.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. No local computing resources are used.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "Característiques",
+    "languages": "Idiomes",
+    "language": "Llengua",
+    "readme": "README",
+    "notebook": "Quadern",
+    "repository_layout": "Disseny del dipòsit",
+    "build": "Construir",
+    "checks": "xecs",
+    "what_ci_can_test": "Què pot provar CI",
+    "license": "llicència"
+  },
+  "translation_source": "google:ca; machine-translated from en",
+  "notebook": {
+    "title": "WhisperLlibreta Colab",
+    "description": "Aquest quadern transcriu fitxers d'àudio o vídeo amb Whisper.",
+    "features_heading": "Característiques",
+    "features": [
+      "**Lliure d'utilitzar:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**No hi ha límit fix de mida de fitxer al costat del portàtil:** Es poden processar fitxers d'àudio i vídeo grans.",
+      "**Processament per lots:** Es poden processar diversos fitxers d'àudio i vídeo en una execució.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Totalment en línia:** Downloads and processing are performed on Google Colab. No local computing resources are used.",
+      "**Múltiples formats de sortida:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "Com utilitzar",
+    "how_to_use_steps": [
+      "A **1. Configuració**, trieu `INPUT_MODE`i ajusteu el model o les opcions de sortida si cal.",
+      "Seleccioneu **Temps d'execució -> Executar-ho tot**.",
+      "Si `INPUT_MODE = \"upload\"`, espereu fins a **2. S'inicia la selecció de fitxers / Google Drivemuntatge** i, a continuació, feu clic a **Tria fitxers** a l'àrea de sortida d'aquesta cel·la.",
+      "Quan s'ha completat el processament, els fitxers de sortida es comprimeixen i es descarreguen si `AUTO_DOWNLOAD_ZIP`està habilitat."
+    ],
+    "notes_heading": "Notes",
+    "notes": [
+      "Google Colabgratuït GPULa disponibilitat és limitada. Si no hi ha cap GPUdisponible i `REQUIRE_CUDA = True`, el quadern s'atura abans de la transcripció.",
+      "El processament requereix temps. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Si carregueu fitxers directament, també es requereix temps de càrrega.",
+      "Manteniu aquest quadern obert mentre processeu. Si tanqueu la llibreta durant la transcripció, el processament s'atura."
+    ],
+    "feature_labels": [
+      "Lliure d'utilitzar",
+      "No hi ha límit fix de mida de fitxer al costat del portàtil",
+      "Processament per lots",
+      "Google Drivesupport",
+      "Totalment en línia",
+      "Múltiples formats de sortida"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Es poden processar fitxers d'àudio i vídeo grans.",
+      "Es poden processar diversos fitxers d'àudio i vídeo en una execució.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. No local computing resources are used.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

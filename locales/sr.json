@@ -1,0 +1,144 @@
+{
+  "language": "sr",
+  "display_name": "Serbian",
+  "native_name": "Serbian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Подешавања",
+    "cell1.section_title": "# 1. Подешавања",
+    "cell2.title": "# @title 2. File selection / Google Drive mount",
+    "cell2.section_title": "# 2. File selection / Google Drive mount",
+    "cell3.title": "# @title 3. GPU check and dependency installation",
+    "cell3.section_title": "# 3. GPU check and dependency installation",
+    "cell4.title": "# @title 4. Помоћне функције",
+    "cell4.section_title": "# 4. Помоћне функције",
+    "cell5.title": "# @title 5. Load Whisper and run transcription",
+    "cell5.section_title": "# 5. Load Whisper and run transcription",
+    "cell6.title": "# @title 6. Зип и преузми излазе",
+    "cell6.section_title": "# 6. Зип и преузми излазе",
+    "settings.input_heading": "# @markdown ## Инпут",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Use `upload` for local files or `google_drive` for files already stored in Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drive input",
+    "settings.drive_help": "# @markdown These settings are used only when `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Usually keep this set to `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: A file or folder path under MyDrive. Leave blank to use the top-level MyDrive folder.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: If the Drive input path is a folder, also search subfolders.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Optional filename substring filter.",
+    "settings.model_heading": "# @markdown ## Whisper model",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Face model ID. Turbo is faster; large-v3 can be more stable for some files.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Use `auto` when unknown, or select a known source language.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Use Whisper translate mode to output English.",
+    "settings.output_heading": "# @markdown ## Излаз",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Save outputs under Google Drive when Drive input is used.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Create and download one ZIP archive at the end.",
+    "settings.formats_help": "# @markdown - Излазне формате контролишу логичке вредности испод.",
+    "settings.advanced_heading": "# ## Напредно",
+    "settings.advanced_help": "# Ове подразумеване вредности су конзервативне за Цолаб. Обични корисници обично не морају да их уређују.",
+    "settings.loaded_message": "Подешавања су учитана.",
+    "messages.choose_files": "Кликните на „Одабери датотеке“ и отпремите једну или више аудио/видео датотека.",
+    "messages.selected_files": "Изабране датотеке:",
+    "messages.dependencies_done": "Инсталација зависности је завршена.",
+    "messages.model_loaded": "Whisper model loaded.",
+    "messages.transcription_complete": "Транскрипција је завршена.",
+    "errors.no_supported_files": "Није изабрана ниједна подржана аудио/видео датотека.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Whisper Colab Notebook\n\nThis notebook transcribes audio or video files with Whisper.\n\n## Карактеристике\n\n- **Слободан за коришћење:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.\n- **Нема фиксног ограничења величине датотеке на страни бележнице:** Велике аудио и видео датотеке се могу обрадити.\n- **Батцх обрада:** Више аудио и видео датотека може се обрадити у једном циклусу.\n- **Google Drive support:** Files can be uploaded directly, or audio/video files stored in Google Drive can be processed.\n- **Потпуно онлајн:** Downloads and processing are performed on Google Colab. No local computing resources are used.\n- **Више излазних формата:** The notebook outputs the original JSON transcript and derived TXT, CSV, Markdown, Excel, and SRT subtitle files.\n\n## Како користити\n\n1. In **1. Settings**, choose `INPUT_MODE` and adjust the model or output options if needed.\n2. Изаберите **Време рада -> Покрени све**.\n3. If `INPUT_MODE = \"upload\"`, wait until **2. File selection / Google Drive mount** starts, then click **Choose Files** in that cell's output area.\n4. When processing is complete, the output files are zipped and downloaded if `AUTO_DOWNLOAD_ZIP` is enabled.\n\n## Напомене\n\n- Google Colab free GPU availability is limited. If no GPU is available and `REQUIRE_CUDA = True`, the notebook stops before transcription.\n- Processing takes time. As a rough guide when using the large-v3-turbo model, a 60-minute audio or video file may take about 5-10 minutes to transcribe. If you upload files directly, upload time is also required.\n- Држите ову свеску отворену током обраде. Ако затворите свеску током транскрипције, обрада се зауставља.",
+    "settings.source_language_default": "serbian"
+  },
+  "readme": {
+    "title": "Whisper Colab",
+    "subtitle": "Multilingual Google Colab notebooks for Whisper transcription.",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Нема фиксног ограничења величине датотеке на страни бележнице:** Велике аудио и видео датотеке се могу обрадити.",
+      "**Батцх обрада:** Више аудио и видео датотека може се обрадити у једном циклусу.",
+      "**Google Drive support:** Files can be uploaded directly, or audio/video files stored in Google Drive can be processed.",
+      "**Fully online:** Downloads and processing are performed on Google Colab. No local computing resources are used.",
+      "**Multiple output formats:** The notebook outputs the original JSON transcript and derived TXT, CSV, Markdown, Excel, and SRT subtitle files."
+    ],
+    "template_note": "Основни РЕАДМЕ је енглеска улазна тачка. Директоријум доцс/РЕАДМЕ садржи генерисане локализоване РЕАДМЕ датотеке. Шаблонска бележница је изворна бележница и садржи чуваре места као што су `{{cell1.title}}`. Датотеке локалног стандарда пружају РЕАДМЕ специфичну за језик и копију окренуту Цолаб-у. Генерисане бележнице су посвећене тако да Цолаб везе остају стабилне.",
+    "checks_note": "ЦИ ток посла поново гради РЕАДМЕ датотеке и бележнице из шаблона и датотека локалног стандарда. Проверава ЈСОН бележнице, проверава празне излазе, проверава Питхон синтаксу у ћелијама кода, скенира очигледне случајне тајне и не успева када генерисане датотеке нису урезане.",
+    "ci_items": [
+      "Генерисање РЕАДМЕ-а из локалних датотека",
+      "генерисање бележнице из шаблона и датотека локала",
+      "ЈСОН валидност бележнице",
+      "празни излазни резултати",
+      "Питхон синтакса у ћелијама кода",
+      "очигледне случајне тајне",
+      "урезане генерисане датотеке РЕАДМЕ и бележнице које одговарају изворима"
+    ],
+    "ci_limit": "Пуна путања транскрипције захтева АПИ-је специфичне за Цолаб, преузимања модела, доступност ГПУ-а и медијске датотеке које обезбеђује корисник. Третирајте ту путању као ручни Цолаб тест дима након што прођу провере генерисаних датотека.",
+    "license_note": "РЕАДМЕ генератор овог спремишта, шаблон бележнице, фајлови локала, генерисане бележнице и скрипте за одржавање су објављени под МИТ лиценцом. Модели шапата и зависности од трећих страна су регулисани њиховим одговарајућим лиценцама.",
+    "feature_labels": [
+      "Слободан за коришћење",
+      "Нема фиксног ограничења величине датотеке на страни бележнице",
+      "Батцх обрада",
+      "Google Drive support",
+      "Потпуно онлајн",
+      "Више излазних формата"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Велике аудио и видео датотеке се могу обрадити.",
+      "Више аудио и видео датотека може се обрадити у једном циклусу.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drive can be processed.",
+      "Downloads and processing are performed on Google Colab. No local computing resources are used.",
+      "The notebook outputs the original JSON transcript and derived TXT, CSV, Markdown, Excel, and SRT subtitle files."
+    ]
+  },
+  "labels": {
+    "features": "Карактеристике",
+    "languages": "Језици",
+    "language": "Језик",
+    "readme": "README",
+    "notebook": "Нотебоок",
+    "repository_layout": "Изглед спремишта",
+    "build": "Буилд",
+    "checks": "Чекови",
+    "what_ci_can_test": "Шта ЦИ може да тестира",
+    "license": "Лиценца"
+  },
+  "translation_source": "direct_google:sr; machine-translated from en",
+  "notebook": {
+    "title": "Whisper Colab Notebook",
+    "description": "This notebook transcribes audio or video files with Whisper.",
+    "features_heading": "Карактеристике",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Нема фиксног ограничења величине датотеке на страни бележнице:** Велике аудио и видео датотеке се могу обрадити.",
+      "**Батцх обрада:** Више аудио и видео датотека може се обрадити у једном циклусу.",
+      "**Google Drive support:** Files can be uploaded directly, or audio/video files stored in Google Drive can be processed.",
+      "**Fully online:** Downloads and processing are performed on Google Colab. No local computing resources are used.",
+      "**Multiple output formats:** The notebook outputs the original JSON transcript and derived TXT, CSV, Markdown, Excel, and SRT subtitle files."
+    ],
+    "how_to_use_heading": "Како користити",
+    "how_to_use_steps": [
+      "In **1. Settings**, choose `INPUT_MODE` and adjust the model or output options if needed.",
+      "Изаберите **Време рада -> Покрени све**.",
+      "If `INPUT_MODE = \"upload\"`, wait until **2. File selection / Google Drive mount** starts, then click **Choose Files** in that cell's output area.",
+      "When processing is complete, the output files are zipped and downloaded if `AUTO_DOWNLOAD_ZIP` is enabled."
+    ],
+    "notes_heading": "Напомене",
+    "notes": [
+      "Google Colab free GPU availability is limited. If no GPU is available and `REQUIRE_CUDA = True`, the notebook stops before transcription.",
+      "Processing takes time. As a rough guide when using the large-v3-turbo model, a 60-minute audio or video file may take about 5-10 minutes to transcribe. If you upload files directly, upload time is also required.",
+      "Држите ову свеску отворену током обраде. Ако затворите свеску током транскрипције, обрада се зауставља."
+    ],
+    "feature_labels": [
+      "Слободан за коришћење",
+      "Нема фиксног ограничења величине датотеке на страни бележнице",
+      "Батцх обрада",
+      "Google Drive support",
+      "Потпуно онлајн",
+      "Више излазних формата"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Велике аудио и видео датотеке се могу обрадити.",
+      "Више аудио и видео датотека може се обрадити у једном циклусу.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drive can be processed.",
+      "Downloads and processing are performed on Google Colab. No local computing resources are used.",
+      "The notebook outputs the original JSON transcript and derived TXT, CSV, Markdown, Excel, and SRT subtitle files."
+    ]
+  }
+}

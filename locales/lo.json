@@ -1,0 +1,144 @@
+{
+  "language": "lo",
+  "display_name": "Lao",
+  "native_name": "Lao",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. ການຕັ້ງຄ່າ",
+    "cell1.section_title": "# 1. ການຕັ້ງຄ່າ",
+    "cell2.title": "# @title 2. ການເລືອກໄຟລ໌ / Google Drivemount",
+    "cell2.section_title": "# 2. ການເລືອກໄຟລ໌ / Google Drivemount",
+    "cell3.title": "# @title 3. GPUກວດ​ສອບ​ແລະ​ການ​ຕິດ​ຕັ້ງ​ອີງ​ໃສ່​",
+    "cell3.section_title": "# 3. GPUກວດ​ສອບ​ແລະ​ການ​ຕິດ​ຕັ້ງ​ອີງ​ໃສ່​",
+    "cell4.title": "# @title 4. ຫນ້າທີ່ຜູ້ຊ່ວຍ",
+    "cell4.section_title": "# 4. ຫນ້າທີ່ຜູ້ຊ່ວຍ",
+    "cell5.title": "# @title 5. ໂຫລດ Whisperແລະດໍາເນີນການຖອດຂໍ້ຄວາມ",
+    "cell5.section_title": "# 5. ໂຫລດ Whisperແລະດໍາເນີນການຖອດຂໍ້ຄວາມ",
+    "cell6.title": "# @title 6. zip ແລະດາວໂຫລດຜົນໄດ້ຮັບ",
+    "cell6.section_title": "# 6. zip ແລະດາວໂຫລດຜົນໄດ້ຮັບ",
+    "settings.input_heading": "# @markdown ## ປ້ອນຂໍ້ມູນ",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: ໃຊ້ `upload`ສໍາລັບໄຟລ໌ທ້ອງຖິ່ນ ຫຼື `google_drive`ສໍາລັບໄຟລ໌ທີ່ເກັບໄວ້ໃນ Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveປ້ອນຂໍ້ມູນ",
+    "settings.drive_help": "# @markdown ການຕັ້ງຄ່າເຫຼົ່ານີ້ຖືກໃຊ້ເມື່ອ `INPUT_MODE == \"google_drive\"`ເທົ່ານັ້ນ.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: ປົກກະຕິແລ້ວເກັບຊຸດນີ້ໄວ້ `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: ເສັ້ນທາງໄຟລ໌ ຫຼືໂຟນເດີພາຍໃຕ້ MyDrive. ປ່ອຍຫວ່າງເພື່ອໃຊ້ໂຟນເດີ MyDrive ລະດັບສູງສຸດ.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: ຖ້າເສັ້ນທາງປ້ອນຂໍ້ມູນ Drive ເປັນໂຟນເດີ, ໃຫ້ຊອກຫາໂຟເດີຍ່ອຍນຳ.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: ຕົວກອງຍ່ອຍຊື່ໄຟລ໌ທາງເລືອກ.",
+    "settings.model_heading": "# @markdown ## Whisperແບບ",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID ຕົວແບບ. Turbo ແມ່ນໄວຂຶ້ນ; large-v3ສາມາດມີຄວາມຫມັ້ນຄົງຫຼາຍສໍາລັບບາງໄຟລ໌.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: ໃຊ້ `auto`ເມື່ອບໍ່ຮູ້ຈັກ, ຫຼືເລືອກພາສາແຫຼ່ງທີ່ຮູ້ຈັກ.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: ໃຊ້ Whisperໂຫມດການແປເພື່ອໃຫ້ອອກພາສາອັງກິດ.",
+    "settings.output_heading": "# @markdown ## ຜົນຜະລິດ",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ບັນທຶກຜົນໄດ້ຮັບພາຍໃຕ້ Google Driveເມື່ອການປ້ອນຂໍ້ມູນ Drive ຖືກໃຊ້.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: ສ້າງແລະດາວໂຫລດຫນຶ່ງ ZIPເກັບໄວ້ໃນທ້າຍ.",
+    "settings.formats_help": "# @markdown - ຮູບແບບຜົນຜະລິດຖືກຄວບຄຸມໂດຍ boolean ຂ້າງລຸ່ມນີ້.",
+    "settings.advanced_heading": "# ## ຂັ້ນສູງ",
+    "settings.advanced_help": "# ຄ່າເລີ່ມຕົ້ນເຫຼົ່ານີ້ແມ່ນແບບອະນຸລັກສໍາລັບ Colab. ຜູ້ໃຊ້ທົ່ວໄປມັກຈະບໍ່ຈໍາເປັນຕ້ອງແກ້ໄຂພວກມັນ.",
+    "settings.loaded_message": "ໂຫຼດການຕັ້ງຄ່າແລ້ວ.",
+    "messages.choose_files": "ຄລິກ 'ເລືອກ Files' ແລະອັບໂຫລດນຶ່ງ ຫຼືຫຼາຍໄຟລ໌ສຽງ/ວິດີໂອ.",
+    "messages.selected_files": "ໄຟລ໌ທີ່ເລືອກ:",
+    "messages.dependencies_done": "ການຕິດຕັ້ງ Dependency ສໍາເລັດ.",
+    "messages.model_loaded": "Whisperແບບໂຫຼດແລ້ວ.",
+    "messages.transcription_complete": "ການຖອດຂໍ້ຄວາມສຳເລັດແລ້ວ.",
+    "errors.no_supported_files": "ບໍ່ມີໄຟລ໌ສຽງ/ວິດີໂອທີ່ຮອງຮັບຖືກເລືອກ.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nປື້ມບັນທຶກນີ້ຖອດຂໍ້ຄວາມສຽງ ຫຼືໄຟລ໌ວິດີໂອດ້ວຍ Whisper.\n\n## ຄຸນສົມບັດ\n\n- **ໃຊ້ຟຣີ:** ປື້ມບັນທຶກນີ້ໃຊ້ [openai/whisper](https://github.com/openai/whisper), ເຊິ່ງ OpenAIopen-sourced ໃນວັນທີ 17 ມັງກອນ 2023, ຮ່ວມກັບ Google Colab's free runtime GPU.\n- **ບໍ່ມີກໍານົດຂອບເຂດຂະຫນາດໄຟລ໌ຂ້າງປື້ມບັນທຶກຄົງທີ່:** ໄຟລ໌ສຽງແລະວິດີໂອຂະຫນາດໃຫຍ່ສາມາດໄດ້ຮັບການປະມວນຜົນ.\n- **ການປະມວນຜົນ batch:** ໄຟລ໌ສຽງ ແລະວິດີໂອຫຼາຍອັນສາມາດປະມວນຜົນໄດ້ໃນຄັ້ງດຽວ.\n- **Google Driveສະຫນັບສະຫນູນ:** ໄຟລ໌ສາມາດຖືກອັບໂຫລດໂດຍກົງ, ຫຼືໄຟລ໌ສຽງ/ວິດີໂອທີ່ເກັບໄວ້ໃນ Google Driveສາມາດປະມວນຜົນໄດ້.\n- **ເຕັມອອນໄລນ໌:** ການດາວໂຫຼດແລະການປະມວນຜົນແມ່ນດໍາເນີນຢູ່ Google Colab. ບໍ່ມີຊັບພະຍາກອນຄອມພິວເຕີໃນທ້ອງຖິ່ນຖືກນໍາໃຊ້.\n- **ຮູບແບບຜົນຜະລິດຫຼາຍ:** ປື້ມບັນທຶກດັ່ງກ່າວໃຫ້ຂໍ້ມູນຕົ້ນສະບັບ JSONແລະໄດ້ມາຈາກ TXT, CSV, Markdown, Excel, ແລະ SRTໄຟລ໌ຄໍາບັນຍາຍ.\n\n## ວິທີການນໍາໃຊ້\n\n1. ໃນ **1. ການ​ຕັ້ງ​ຄ່າ**, ເລືອກ `INPUT_MODE`ແລະ​ປັບ​ຕົວ​ແບບ​ຫຼື​ທາງ​ເລືອກ​ການ​ຜະ​ລິດ​ໄດ້​ຖ້າ​ຫາກ​ວ່າ​ຈໍາ​ເປັນ.\n2. Select **Runtime -> Run all**.\n3. If `INPUT_MODE = \"upload\"`, wait until **2. ການເລືອກໄຟລ໌ / Google Drivemount** ເລີ່ມຕົ້ນ, ຈາກນັ້ນຄລິກ **ເລືອກໄຟລ໌** ຢູ່ໃນພື້ນທີ່ຜົນຜະລິດຂອງຕາລາງນັ້ນ.\n4. ໃນ​ເວ​ລາ​ທີ່​ການ​ປຸງ​ແຕ່ງ​ສໍາ​ເລັດ​ສົມ​ບູນ​, ໄຟລ​໌​ຜົນ​ຜະ​ລິດ​ໄດ້​ຖືກ zipped ແລະ​ດາວ​ໂຫຼດ​ຖ້າ​ຫາກ​ວ່າ `AUTO_DOWNLOAD_ZIP`ຖືກ​ເປີດ​ໃຫ້​ໃຊ້​ງານ​.\n\n## ບັນທຶກ\n\n- Google Colabຟຣີ GPUມີຈຳນວນຈຳກັດ. ຖ້າບໍ່ມີ GPUແລະ `REQUIRE_CUDA = True`, ປື້ມບັນທຶກຈະຢຸດກ່ອນທີ່ຈະຖອດຂໍ້ຄວາມ.\n- ການປຸງແຕ່ງໃຊ້ເວລາ. ເປັນຄໍາແນະນໍາທີ່ຫຍາບຄາຍເມື່ອໃຊ້ຕົວແບບ large-v3-turbo, ໄຟລ໌ສຽງ ຫຼືວິດີໂອ 60 ນາທີອາດໃຊ້ເວລາປະມານ 5-10 ນາທີເພື່ອຖອດຂໍ້ຄວາມ. ຖ້າທ່ານອັບໂຫລດໄຟລ໌ໂດຍກົງ, ເວລາອັບໂຫລດແມ່ນຕ້ອງການເຊັ່ນກັນ.\n- Keep this notebook open while processing. ຖ້າທ່ານປິດປື້ມບັນທຶກໃນລະຫວ່າງການຖອດຂໍ້ຄວາມ, ການປະມວນຜົນຈະຢຸດ.",
+    "settings.source_language_default": "lao"
+  },
+  "readme": {
+    "title": "Whisperໂຄລາບ",
+    "subtitle": "ປື້ມບັນທຶກຫຼາຍພາສາ Google Colabສຳລັບການຖອດຂໍ້ຄວາມຈາກສຽງ Whisper.",
+    "features": [
+      "**ໃຊ້ຟຣີ:** ປື້ມບັນທຶກນີ້ໃຊ້ [openai/whisper](https://github.com/openai/whisper), ເຊິ່ງ OpenAIopen-sourced ໃນວັນທີ 17 ມັງກອນ 2023, ຮ່ວມກັບ Google Colab's free runtime GPU.",
+      "**ບໍ່ມີກໍານົດຂອບເຂດຂະຫນາດໄຟລ໌ຂ້າງປື້ມບັນທຶກຄົງທີ່:** ໄຟລ໌ສຽງແລະວິດີໂອຂະຫນາດໃຫຍ່ສາມາດໄດ້ຮັບການປະມວນຜົນ.",
+      "**ການປະມວນຜົນ batch:** ໄຟລ໌ສຽງ ແລະວິດີໂອຫຼາຍອັນສາມາດປະມວນຜົນໄດ້ໃນຄັ້ງດຽວ.",
+      "**Google Driveສະຫນັບສະຫນູນ:** ໄຟລ໌ສາມາດຖືກອັບໂຫລດໂດຍກົງ, ຫຼືໄຟລ໌ສຽງ/ວິດີໂອທີ່ເກັບໄວ້ໃນ Google Driveສາມາດປະມວນຜົນໄດ້.",
+      "**ເຕັມອອນໄລນ໌:** ການດາວໂຫຼດແລະການປະມວນຜົນແມ່ນດໍາເນີນຢູ່ Google Colab. ບໍ່ມີຊັບພະຍາກອນຄອມພິວເຕີໃນທ້ອງຖິ່ນຖືກນໍາໃຊ້.",
+      "**ຮູບແບບຜົນຜະລິດຫຼາຍ:** ປື້ມບັນທຶກດັ່ງກ່າວໃຫ້ຂໍ້ມູນຕົ້ນສະບັບ JSONແລະໄດ້ມາຈາກ TXT, CSV, Markdown, Excel, ແລະ SRTໄຟລ໌ຄໍາບັນຍາຍ."
+    ],
+    "template_note": "ຮາກ READMEແມ່ນຈຸດເຂົ້າພາສາອັງກິດ, ແລະ docs/READMEມີໄຟລ໌ READMEທີ່ສ້າງຂຶ້ນ. ປື້ມບັນທຶກແມ່ແບບແມ່ນປື້ມບັນທຶກທີ່ມາ ແລະປະກອບດ້ວຍຕົວຍຶດບ່ອນເຊັ່ນ `{{cell1.title}}`. ໄຟລ໌ທ້ອງຖິ່ນສະໜອງພາສາສະເພາະ READMEແລະສຳເນົາແບບ Colab. ປື້ມບັນທຶກທີ່ສ້າງຂຶ້ນແມ່ນມີຄວາມຕັ້ງໃຈເພື່ອໃຫ້ການເຊື່ອມຕໍ່ Colab ຄົງທີ່.",
+    "checks_note": "ຂັ້ນຕອນການເຮັດວຽກ CI ກໍ່ສ້າງໄຟລ໌ READMEແລະປື້ມບັນທຶກຈາກແມ່ແບບ ແລະໄຟລ໌ທ້ອງຖິ່ນ, ກວດສອບໂນ໊ດບຸ໊ກ JSON, ກວດສອບຜົນໄດ້ຮັບທີ່ຫວ່າງເປົ່າ, ກວດສອບ syntax Python ໃນເຊລລະຫັດ, ສະແກນຫາຄວາມລັບໂດຍບັງເອີນທີ່ເຫັນໄດ້ຊັດ, ແລະລົ້ມເຫລວເມື່ອໄຟລ໌ທີ່ສ້າງຂຶ້ນບໍ່ໄດ້ຕັ້ງໃຈ.",
+    "ci_items": [
+      "READMEການຜະລິດຈາກໄຟລ໌ທ້ອງຖິ່ນ",
+      "ການສ້າງປື້ມບັນທຶກຈາກແມ່ແບບ ແລະໄຟລ໌ທ້ອງຖິ່ນ",
+      "ປື້ມບັນທຶກ JSONຖືກຕ້ອງ",
+      "ຜົນໄດ້ຮັບການປະຕິບັດເປົ່າ",
+      "syntax Python ໃນຕາລາງລະຫັດ",
+      "ຄວາມລັບຂອງອຸບັດຕິເຫດທີ່ຈະແຈ້ງ",
+      "ຄໍາຫມັ້ນສັນຍາທີ່ສ້າງ READMEແລະໄຟລ໌ປື້ມບັນທຶກທີ່ກົງກັບແຫຼ່ງ"
+    ],
+    "ci_limit": "ເສັ້ນທາງການຖອດຂໍ້ຄວາມເຕັມຕ້ອງການ APIs ສະເພາະຂອງ Colab, ການດາວໂຫຼດແບບຈໍາລອງ, ການມີຢູ່ GPUແລະໄຟລ໌ສື່ທີ່ຜູ້ໃຊ້ສະໜອງໃຫ້. ຮັກສາເສັ້ນທາງນັ້ນເປັນການທົດສອບຄວັນໄຟຂອງ Colab ດ້ວຍຕົນເອງຫຼັງຈາກການກວດສອບໄຟລ໌ທີ່ສ້າງແລ້ວຜ່ານໄປ.",
+    "license_note": "ເຄື່ອງສ້າງ READMEຂອງບ່ອນເກັບມ້ຽນ, ແມ່ແບບປື້ມບັນທຶກ, ໄຟລ໌ທ້ອງຖິ່ນ, ປື້ມບັນທຶກທີ່ສ້າງຂຶ້ນ, ແລະສະຄຣິບບຳລຸງຮັກສາຖືກປ່ອຍອອກມາພາຍໃຕ້ໃບອະນຸຍາດ MIT. ແບບຈໍາລອງ Whisperແລະການຂຶ້ນກັບພາກສ່ວນທີສາມແມ່ນຄຸ້ມຄອງໂດຍໃບອະນຸຍາດທີ່ກ່ຽວຂ້ອງ.",
+    "feature_labels": [
+      "ໃຊ້ຟຣີ",
+      "ບໍ່ມີກໍານົດຂອບເຂດຂະຫນາດໄຟລ໌ຂ້າງປື້ມບັນທຶກຄົງທີ່",
+      "ການປະມວນຜົນ batch",
+      "Google Driveສະຫນັບສະຫນູນ",
+      "ເຕັມອອນໄລນ໌",
+      "ຮູບແບບຜົນຜະລິດຫຼາຍ"
+    ],
+    "feature_bodies": [
+      "ປື້ມບັນທຶກນີ້ໃຊ້ [openai/whisper](https://github.com/openai/whisper), ເຊິ່ງ OpenAIopen-sourced ໃນວັນທີ 17 ມັງກອນ 2023, ຮ່ວມກັບ Google Colab's free runtime GPU.",
+      "ໄຟລ໌ສຽງແລະວິດີໂອຂະຫນາດໃຫຍ່ສາມາດໄດ້ຮັບການປະມວນຜົນ.",
+      "ໄຟລ໌ສຽງ ແລະວິດີໂອຫຼາຍອັນສາມາດປະມວນຜົນໄດ້ໃນຄັ້ງດຽວ.",
+      "ໄຟລ໌ສາມາດຖືກອັບໂຫລດໂດຍກົງ, ຫຼືໄຟລ໌ສຽງ/ວິດີໂອທີ່ເກັບໄວ້ໃນ Google Driveສາມາດປະມວນຜົນໄດ້.",
+      "ການດາວໂຫຼດແລະການປະມວນຜົນແມ່ນດໍາເນີນຢູ່ Google Colab. ບໍ່ມີຊັບພະຍາກອນຄອມພິວເຕີໃນທ້ອງຖິ່ນຖືກນໍາໃຊ້.",
+      "ປື້ມບັນທຶກດັ່ງກ່າວໃຫ້ຂໍ້ມູນຕົ້ນສະບັບ JSONແລະໄດ້ມາຈາກ TXT, CSV, Markdown, Excel, ແລະ SRTໄຟລ໌ຄໍາບັນຍາຍ."
+    ]
+  },
+  "labels": {
+    "features": "ຄຸນສົມບັດ",
+    "languages": "ພາສາ",
+    "language": "ພາສາ",
+    "readme": "README",
+    "notebook": "ປື້ມບັນທຶກ",
+    "repository_layout": "ການຈັດວາງບ່ອນເກັບມ້ຽນ",
+    "build": "ກໍ່ສ້າງ",
+    "checks": "ກວດກາ",
+    "what_ci_can_test": "ສິ່ງທີ່ CI ສາມາດທົດສອບໄດ້",
+    "license": "ໃບອະນຸຍາດ"
+  },
+  "translation_source": "google:lo; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "ປື້ມບັນທຶກນີ້ຖອດຂໍ້ຄວາມສຽງ ຫຼືໄຟລ໌ວິດີໂອດ້ວຍ Whisper.",
+    "features_heading": "ຄຸນສົມບັດ",
+    "features": [
+      "**ໃຊ້ຟຣີ:** ປື້ມບັນທຶກນີ້ໃຊ້ [openai/whisper](https://github.com/openai/whisper), ເຊິ່ງ OpenAIopen-sourced ໃນວັນທີ 17 ມັງກອນ 2023, ຮ່ວມກັບ Google Colab's free runtime GPU.",
+      "**ບໍ່ມີກໍານົດຂອບເຂດຂະຫນາດໄຟລ໌ຂ້າງປື້ມບັນທຶກຄົງທີ່:** ໄຟລ໌ສຽງແລະວິດີໂອຂະຫນາດໃຫຍ່ສາມາດໄດ້ຮັບການປະມວນຜົນ.",
+      "**ການປະມວນຜົນ batch:** ໄຟລ໌ສຽງ ແລະວິດີໂອຫຼາຍອັນສາມາດປະມວນຜົນໄດ້ໃນຄັ້ງດຽວ.",
+      "**Google Driveສະຫນັບສະຫນູນ:** ໄຟລ໌ສາມາດຖືກອັບໂຫລດໂດຍກົງ, ຫຼືໄຟລ໌ສຽງ/ວິດີໂອທີ່ເກັບໄວ້ໃນ Google Driveສາມາດປະມວນຜົນໄດ້.",
+      "**ເຕັມອອນໄລນ໌:** ການດາວໂຫຼດແລະການປະມວນຜົນແມ່ນດໍາເນີນຢູ່ Google Colab. ບໍ່ມີຊັບພະຍາກອນຄອມພິວເຕີໃນທ້ອງຖິ່ນຖືກນໍາໃຊ້.",
+      "**ຮູບແບບຜົນຜະລິດຫຼາຍ:** ປື້ມບັນທຶກດັ່ງກ່າວໃຫ້ຂໍ້ມູນຕົ້ນສະບັບ JSONແລະໄດ້ມາຈາກ TXT, CSV, Markdown, Excel, ແລະ SRTໄຟລ໌ຄໍາບັນຍາຍ."
+    ],
+    "how_to_use_heading": "ວິທີການນໍາໃຊ້",
+    "how_to_use_steps": [
+      "ໃນ **1. ການ​ຕັ້ງ​ຄ່າ**, ເລືອກ `INPUT_MODE`ແລະ​ປັບ​ຕົວ​ແບບ​ຫຼື​ທາງ​ເລືອກ​ການ​ຜະ​ລິດ​ໄດ້​ຖ້າ​ຫາກ​ວ່າ​ຈໍາ​ເປັນ.",
+      "Select **Runtime -> Run all**.",
+      "If `INPUT_MODE = \"upload\"`, wait until **2. ການເລືອກໄຟລ໌ / Google Drivemount** ເລີ່ມຕົ້ນ, ຈາກນັ້ນຄລິກ **ເລືອກໄຟລ໌** ຢູ່ໃນພື້ນທີ່ຜົນຜະລິດຂອງຕາລາງນັ້ນ.",
+      "ໃນ​ເວ​ລາ​ທີ່​ການ​ປຸງ​ແຕ່ງ​ສໍາ​ເລັດ​ສົມ​ບູນ​, ໄຟລ​໌​ຜົນ​ຜະ​ລິດ​ໄດ້​ຖືກ zipped ແລະ​ດາວ​ໂຫຼດ​ຖ້າ​ຫາກ​ວ່າ `AUTO_DOWNLOAD_ZIP`ຖືກ​ເປີດ​ໃຫ້​ໃຊ້​ງານ​."
+    ],
+    "notes_heading": "ບັນທຶກ",
+    "notes": [
+      "Google Colabຟຣີ GPUມີຈຳນວນຈຳກັດ. ຖ້າບໍ່ມີ GPUແລະ `REQUIRE_CUDA = True`, ປື້ມບັນທຶກຈະຢຸດກ່ອນທີ່ຈະຖອດຂໍ້ຄວາມ.",
+      "ການປຸງແຕ່ງໃຊ້ເວລາ. ເປັນຄໍາແນະນໍາທີ່ຫຍາບຄາຍເມື່ອໃຊ້ຕົວແບບ large-v3-turbo, ໄຟລ໌ສຽງ ຫຼືວິດີໂອ 60 ນາທີອາດໃຊ້ເວລາປະມານ 5-10 ນາທີເພື່ອຖອດຂໍ້ຄວາມ. ຖ້າທ່ານອັບໂຫລດໄຟລ໌ໂດຍກົງ, ເວລາອັບໂຫລດແມ່ນຕ້ອງການເຊັ່ນກັນ.",
+      "Keep this notebook open while processing. ຖ້າທ່ານປິດປື້ມບັນທຶກໃນລະຫວ່າງການຖອດຂໍ້ຄວາມ, ການປະມວນຜົນຈະຢຸດ."
+    ],
+    "feature_labels": [
+      "ໃຊ້ຟຣີ",
+      "ບໍ່ມີກໍານົດຂອບເຂດຂະຫນາດໄຟລ໌ຂ້າງປື້ມບັນທຶກຄົງທີ່",
+      "ການປະມວນຜົນ batch",
+      "Google Driveສະຫນັບສະຫນູນ",
+      "ເຕັມອອນໄລນ໌",
+      "ຮູບແບບຜົນຜະລິດຫຼາຍ"
+    ],
+    "feature_bodies": [
+      "ປື້ມບັນທຶກນີ້ໃຊ້ [openai/whisper](https://github.com/openai/whisper), ເຊິ່ງ OpenAIopen-sourced ໃນວັນທີ 17 ມັງກອນ 2023, ຮ່ວມກັບ Google Colab's free runtime GPU.",
+      "ໄຟລ໌ສຽງແລະວິດີໂອຂະຫນາດໃຫຍ່ສາມາດໄດ້ຮັບການປະມວນຜົນ.",
+      "ໄຟລ໌ສຽງ ແລະວິດີໂອຫຼາຍອັນສາມາດປະມວນຜົນໄດ້ໃນຄັ້ງດຽວ.",
+      "ໄຟລ໌ສາມາດຖືກອັບໂຫລດໂດຍກົງ, ຫຼືໄຟລ໌ສຽງ/ວິດີໂອທີ່ເກັບໄວ້ໃນ Google Driveສາມາດປະມວນຜົນໄດ້.",
+      "ການດາວໂຫຼດແລະການປະມວນຜົນແມ່ນດໍາເນີນຢູ່ Google Colab. ບໍ່ມີຊັບພະຍາກອນຄອມພິວເຕີໃນທ້ອງຖິ່ນຖືກນໍາໃຊ້.",
+      "ປື້ມບັນທຶກດັ່ງກ່າວໃຫ້ຂໍ້ມູນຕົ້ນສະບັບ JSONແລະໄດ້ມາຈາກ TXT, CSV, Markdown, Excel, ແລະ SRTໄຟລ໌ຄໍາບັນຍາຍ."
+    ]
+  }
+}

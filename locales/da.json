@@ -1,0 +1,144 @@
+{
+  "language": "da",
+  "display_name": "Danish",
+  "native_name": "Danish",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Indstillinger",
+    "cell1.section_title": "# 1. Indstillinger",
+    "cell2.title": "# @title 2. Filvalg / Google Drivemount",
+    "cell2.section_title": "# 2. Filvalg / Google Drivemount",
+    "cell3.title": "# @title 3. GPUkontrol og afhængighedsinstallation",
+    "cell3.section_title": "# 3. GPUkontrol og afhængighedsinstallation",
+    "cell4.title": "# @title 4. Hjælpefunktioner",
+    "cell4.section_title": "# 4. Hjælpefunktioner",
+    "cell5.title": "# @title 5. Indlæs Whisperog kør transskription",
+    "cell5.section_title": "# 5. Indlæs Whisperog kør transskription",
+    "cell6.title": "# @title 6. Zip og download udgange",
+    "cell6.section_title": "# 6. Zip og download udgange",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Brug `upload`til lokale filer eller `google_drive`til filer, der allerede er gemt i Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveinput",
+    "settings.drive_help": "# @markdown Disse indstillinger bruges kun, når `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Sæt normalt dette sæt til `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: En fil- eller mappesti under MyDrive. Lad stå tomt for at bruge MyDrive-mappen på øverste niveau.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Hvis drevets inputsti er en mappe, søg også i undermapper.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Valgfrit filnavn understreng filter.",
+    "settings.model_heading": "# @markdown ## Whispermodel",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodel-id. Turbo er hurtigere; large-v3kan være mere stabil for nogle filer.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Brug `auto`, når ukendt, eller vælg et kendt kildesprog.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Brug Whisperoversættelsestilstand til at udskrive engelsk.",
+    "settings.output_heading": "# @markdown ## Output",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Gem udgange under Google Drive, når drevindgangen bruges.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Opret og download et ZIParkiv til sidst.",
+    "settings.formats_help": "# @markdown - Outputformater styres af booleanerne nedenfor.",
+    "settings.advanced_heading": "# ## Avanceret",
+    "settings.advanced_help": "# Disse standardindstillinger er konservative for Colab. Almindelige brugere behøver normalt ikke at redigere dem.",
+    "settings.loaded_message": "Indstillinger er indlæst.",
+    "messages.choose_files": "Klik på 'Vælg filer' og upload en eller flere lyd-/videofiler.",
+    "messages.selected_files": "Udvalgte filer:",
+    "messages.dependencies_done": "Afhængighedsinstallation afsluttet.",
+    "messages.model_loaded": "Whispermodel indlæst.",
+    "messages.transcription_complete": "Transskription færdig.",
+    "errors.no_supported_files": "Der blev ikke valgt nogen understøttede lyd-/videofiler.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nDenne notesbog transskriberer lyd- eller videofiler med Whisper.\n\n## Funktioner\n\n- **Gratis at bruge:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **Ingen fast filstørrelsesgrænse på notesbogsiden:** Store lyd- og videofiler kan behandles.\n- **Batchbehandling:** Flere lyd- og videofiler kan behandles i én kørsel.\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **Fuldstændig online:** Downloads and processing are performed on Google Colab. Der bruges ingen lokale computerressourcer.\n- **Flere outputformater:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files.\n\n## Sådan bruges\n\n1. I **1. Indstillinger**, vælg `INPUT_MODE`og juster modellen eller outputindstillingerne, hvis det er nødvendigt.\n2. Vælg **Runtime -> Run all**.\n3. Hvis `INPUT_MODE = \"upload\"`, vent til **2. Filvalg / Google Drivemount** starter, og klik derefter på **Vælg filer** i den celles outputområde.\n4. Når behandlingen er færdig, zippes og downloades outputfilerne, hvis `AUTO_DOWNLOAD_ZIP`er aktiveret.\n\n## Noter\n\n- Google Colabgratis GPUtilgængeligheden er begrænset. Hvis ingen GPUer tilgængelig og `REQUIRE_CUDA = True`, stopper notesbogen før transskription.\n- Behandling tager tid. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Hvis du uploader filer direkte, kræves der også uploadtid.\n- Hold denne notesbog åben under behandlingen. Hvis du lukker notesbogen under transskription, stopper behandlingen.",
+    "settings.source_language_default": "danish"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Flersprogede Google Colabnotesbøger til Whispertransskription.",
+    "features": [
+      "**Gratis at bruge:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Ingen fast filstørrelsesgrænse på notesbogsiden:** Store lyd- og videofiler kan behandles.",
+      "**Batchbehandling:** Flere lyd- og videofiler kan behandles i én kørsel.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Fuldstændig online:** Downloads and processing are performed on Google Colab. Der bruges ingen lokale computerressourcer.",
+      "**Flere outputformater:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "template_note": "Roden READMEer det engelske indgangspunkt, og docs/READMEindeholder genererede lokaliserede README-filer. Skabelonnotesbogen er kildenotesbogen og indeholder pladsholdere såsom `{{cell1.title}}`. Lokale filer giver sprogspecifik READMEog Colab-vendt kopi. Genererede notebooks er forpligtet, så Colab-links forbliver stabile.",
+    "checks_note": "CI-workflowet genopbygger READMEfiler og notesbøger fra skabelonen og lokalitetsfilerne, kontrollerer notesbogen JSON, verificerer tomme output, kontrollerer Python-syntaks i kodeceller, scanner for åbenlyse utilsigtede hemmeligheder og fejler, når genererede filer ikke er committet.",
+    "ci_items": [
+      "READMEgeneration fra lokalitetsfiler",
+      "notesbogsgenerering fra skabelonen og lokalitetsfiler",
+      "notesbog JSONgyldighed",
+      "tomme udførelsesudgange",
+      "Python-syntaks i kodeceller",
+      "åbenlyse tilfældige hemmeligheder",
+      "committed genererede READMEog notebook-filer, der matcher kilderne"
+    ],
+    "ci_limit": "Den fulde transkriptionssti kræver Colab-specifikke API'er, modeldownloads, GPUtilgængelighed og brugerleverede mediefiler. Behandl denne vej som en manuel Colab-røgtest, efter at de genererede filer er bestået.",
+    "license_note": "Dette lagers README-generator, notesbogskabelon, lokalitetsfiler, genererede notebooks og vedligeholdelsesscripts frigives under MIT-licensen. Whispermodeller og tredjepartsafhængigheder er underlagt deres respektive licenser.",
+    "feature_labels": [
+      "Gratis at bruge",
+      "Ingen fast filstørrelsesgrænse på notesbogsiden",
+      "Batchbehandling",
+      "Google Drivesupport",
+      "Fuldstændig online",
+      "Flere outputformater"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Store lyd- og videofiler kan behandles.",
+      "Flere lyd- og videofiler kan behandles i én kørsel.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Der bruges ingen lokale computerressourcer.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  },
+  "labels": {
+    "features": "Funktioner",
+    "languages": "Sprog",
+    "language": "Sprog",
+    "readme": "README",
+    "notebook": "Notesbog",
+    "repository_layout": "Depotlayout",
+    "build": "Byg",
+    "checks": "Checks",
+    "what_ci_can_test": "Hvad CI kan teste",
+    "license": "Licens"
+  },
+  "translation_source": "google:da; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Denne notesbog transskriberer lyd- eller videofiler med Whisper.",
+    "features_heading": "Funktioner",
+    "features": [
+      "**Gratis at bruge:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Ingen fast filstørrelsesgrænse på notesbogsiden:** Store lyd- og videofiler kan behandles.",
+      "**Batchbehandling:** Flere lyd- og videofiler kan behandles i én kørsel.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Fuldstændig online:** Downloads and processing are performed on Google Colab. Der bruges ingen lokale computerressourcer.",
+      "**Flere outputformater:** The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ],
+    "how_to_use_heading": "Sådan bruges",
+    "how_to_use_steps": [
+      "I **1. Indstillinger**, vælg `INPUT_MODE`og juster modellen eller outputindstillingerne, hvis det er nødvendigt.",
+      "Vælg **Runtime -> Run all**.",
+      "Hvis `INPUT_MODE = \"upload\"`, vent til **2. Filvalg / Google Drivemount** starter, og klik derefter på **Vælg filer** i den celles outputområde.",
+      "Når behandlingen er færdig, zippes og downloades outputfilerne, hvis `AUTO_DOWNLOAD_ZIP`er aktiveret."
+    ],
+    "notes_heading": "Noter",
+    "notes": [
+      "Google Colabgratis GPUtilgængeligheden er begrænset. Hvis ingen GPUer tilgængelig og `REQUIRE_CUDA = True`, stopper notesbogen før transskription.",
+      "Behandling tager tid. As a rough guide when using the large-v3-turbomodel, a 60-minute audio or video file may take about 5-10 minutes to transcribe. Hvis du uploader filer direkte, kræves der også uploadtid.",
+      "Hold denne notesbog åben under behandlingen. Hvis du lukker notesbogen under transskription, stopper behandlingen."
+    ],
+    "feature_labels": [
+      "Gratis at bruge",
+      "Ingen fast filstørrelsesgrænse på notesbogsiden",
+      "Batchbehandling",
+      "Google Drivesupport",
+      "Fuldstændig online",
+      "Flere outputformater"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "Store lyd- og videofiler kan behandles.",
+      "Flere lyd- og videofiler kan behandles i én kørsel.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Der bruges ingen lokale computerressourcer.",
+      "The notebook outputs the original JSONtranscript and derived TXT, CSV, Markdown, Excel, and SRTsubtitle files."
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "language": "lv",
+  "display_name": "Latvian",
+  "native_name": "Latvian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Iestatījumi",
+    "cell1.section_title": "# 1. Iestatījumi",
+    "cell2.title": "# @title 2. Faila izvēle / Google Drivestiprinājums",
+    "cell2.section_title": "# 2. Faila izvēle / Google Drivestiprinājums",
+    "cell3.title": "# @title 3. GPUārbaude un atkarības instalēšana",
+    "cell3.section_title": "# 3. GPUārbaude un atkarības instalēšana",
+    "cell4.title": "# @title 4. Palīdzības funkcijas",
+    "cell4.section_title": "# 4. Palīdzības funkcijas",
+    "cell5.title": "# @title 5. Ielādējiet Whisperun palaidiet transkripciju",
+    "cell5.section_title": "# 5. Ielādējiet Whisperun palaidiet transkripciju",
+    "cell6.title": "# @title 6. Zip un lejupielādēt izejas",
+    "cell6.section_title": "# 6. Zip un lejupielādēt izejas",
+    "settings.input_heading": "# @markdown ## Ievade",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: izmantojiet `upload`vietējiem failiem vai `google_drive`failiem, kas jau ir saglabāti Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveievade",
+    "settings.drive_help": "# @markdown Šie iestatījumi tiek izmantoti tikai tad, ja `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: parasti saglabājiet šo iestatījumu uz `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: faila vai mapes ceļš sadaļā MyDrive. Atstājiet tukšu, lai izmantotu augstākā līmeņa MyDrive mapi.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Ja diska ievades ceļš ir mape, meklējiet arī apakšmapes.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Izvēles faila nosaukuma apakšvirknes filtrs.",
+    "settings.model_heading": "# @markdown ## Whispermodeli",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodeļa ID. Turbo ir ātrāks; large-v3dažiem failiem var būt stabilāks.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: izmantojiet `auto`, ja neesat zināms, vai atlasiet zināmu avota valodu.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: izmantojiet Whispertulkošanas režīmu, lai izvadītu angļu valodu.",
+    "settings.output_heading": "# @markdown ## Izvade",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ja tiek izmantota diskdziņa ievade, saglabājiet izejas zem Google Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Beigās izveidojiet un lejupielādējiet vienu ZIParhīvu.",
+    "settings.formats_help": "# @markdown - Izvades formātus kontrolē tālāk norādītie Būla vērtības.",
+    "settings.advanced_heading": "# ## Papildu",
+    "settings.advanced_help": "# Šie noklusējuma iestatījumi Colab ir konservatīvi. Parastiem lietotājiem tie parasti nav jārediģē.",
+    "settings.loaded_message": "Iestatījumi ir ielādēti.",
+    "messages.choose_files": "Noklikšķiniet uz \"Izvēlēties failus\" un augšupielādējiet vienu vai vairākus audio/video failus.",
+    "messages.selected_files": "Atlasītie faili:",
+    "messages.dependencies_done": "Atkarības instalēšana ir pabeigta.",
+    "messages.model_loaded": "Whispermodelis ir ielādēts.",
+    "messages.transcription_complete": "Transkripcija pabeigta.",
+    "errors.no_supported_files": "Netika atlasīts neviens atbalstīts audio/video fails.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab piezīmju grāmatiņa\n\nŠis piezīmjdators pārraksta audio vai video failus ar Whisper.\n\n## Funkcijas\n\n- **Bezmaksas lietošanai:** Šajā piezīmju grāmatiņā tiek izmantots [openai/whisper](https://github.com/openai/whisper), kas OpenAIir atvērts 2023. gada 17. janvārī, kopā ar Google Colabbezmaksas GPUizpildlaiku.\n- **Nav fiksēta piezīmjdatora puses faila lieluma ierobežojuma:** Var apstrādāt lielus audio un video failus.\n- **Partijas apstrāde:** Vienā reizē var apstrādāt vairākus audio un video failus.\n- **Google Driveatbalsts:** Failus var augšupielādēt tieši vai audio/video failus, kas saglabāti Google Drive, var apstrādāt.\n- **Pilnībā tiešsaistē:** Lejupielāde un apstrāde tiek veikta Google Colab. Vietējie skaitļošanas resursi netiek izmantoti.\n- **Vairāki izvades formāti:** Piezīmju grāmatiņa izvada oriģinālo JSONtranskriptu un atvasinātos TXT, CSV, Markdown, Excelun SRTsubtitru failus.\n\n## Kā lietot\n\n1. **1. Iestatījumi**, izvēlieties `INPUT_MODE`un, ja nepieciešams, pielāgojiet modeli vai izvades opcijas.\n2. Atlasiet **Izpildlaiks -> Palaist visu**.\n3. Ja `INPUT_MODE = \"upload\"`, uzgaidiet līdz **2. Sākas faila atlase / Google Drivemount**, pēc tam šīs šūnas izvades apgabalā noklikšķiniet uz **Izvēlēties failus**.\n4. Kad apstrāde ir pabeigta, izvadfaili tiek ZIP arhīvu un lejupielādēti, ja ir iespējots `AUTO_DOWNLOAD_ZIP`.\n\n## Piezīmes\n\n- Google Colabbezmaksas GPUieejamība ir ierobežota. Ja GPUnav pieejams un `REQUIRE_CUDA = True`, piezīmju grāmatiņa apstājas pirms transkripcijas.\n- Apstrāde prasa laiku. Kā aptuvens ceļvedis, izmantojot large-v3-turbomodeli, 60 minūšu audio vai video faila atšifrēšana var aizņemt aptuveni 5–10 minūtes. Ja augšupielādējat failus tieši, ir nepieciešams arī augšupielādes laiks.\n- Apstrādes laikā turiet šo piezīmju grāmatiņu atvērtu. Ja transkripcijas laikā aizverat piezīmju grāmatiņu, apstrāde tiks apturēta.",
+    "settings.source_language_default": "latvian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Daudzvalodu Google Colabiezīmju grāmatiņas Whispertranskripcijai.",
+    "features": [
+      "**Bezmaksas lietošanai:** Šajā piezīmju grāmatiņā tiek izmantots [openai/whisper](https://github.com/openai/whisper), kas OpenAIir atvērts 2023. gada 17. janvārī, kopā ar Google Colabbezmaksas GPUizpildlaiku.",
+      "**Nav fiksēta piezīmjdatora puses faila lieluma ierobežojuma:** Var apstrādāt lielus audio un video failus.",
+      "**Partijas apstrāde:** Vienā reizē var apstrādāt vairākus audio un video failus.",
+      "**Google Driveatbalsts:** Failus var augšupielādēt tieši vai audio/video failus, kas saglabāti Google Drive, var apstrādāt.",
+      "**Pilnībā tiešsaistē:** Lejupielāde un apstrāde tiek veikta Google Colab. Vietējie skaitļošanas resursi netiek izmantoti.",
+      "**Vairāki izvades formāti:** Piezīmju grāmatiņa izvada oriģinālo JSONtranskriptu un atvasinātos TXT, CSV, Markdown, Excelun SRTsubtitru failus."
+    ],
+    "template_note": "Sakne READMEir angļu valodas ievades punkts, un docs/READMEsatur ģenerētus lokalizētus READMEfailus. Veidnes piezīmju grāmatiņa ir avota piezīmju grāmatiņa, un tajā ir vietturi, piemēram, `{{cell1.title}}`. Lokalizācijas faili nodrošina valodai specifisku READMEkopiju un Colab saskarni. Ģenerētie bloknoti ir izveidoti, tāpēc Colab saites paliek stabilas.",
+    "checks_note": "CI darbplūsma pārbūvē READMEfailus un piezīmju grāmatiņas no veidnes un lokalizācijas failiem, pārbauda piezīmju grāmatiņu JSON, pārbauda tukšās izvades, pārbauda Python sintaksi koda šūnās, skenē acīmredzamus nejaušus noslēpumus un neizdodas, ja ģenerētie faili nav saistīti.",
+    "ci_items": [
+      "READMEģenerēšana no lokalizācijas failiem",
+      "piezīmju grāmatiņu ģenerēšana no veidnes un lokalizācijas failiem",
+      "piezīmju grāmatiņa JSONderīguma termiņš",
+      "tukšas izpildes izvades",
+      "Python sintakse koda šūnās",
+      "acīmredzami nejauši noslēpumi",
+      "izdarītie ģenerētie READMEun piezīmju grāmatiņas faili, kas atbilst avotiem"
+    ],
+    "ci_limit": "Pilnam transkripcijas ceļam ir nepieciešamas Colab specifiskas API, modeļu lejupielādes, GPUieejamība un lietotāja nodrošināti multivides faili. Apstrādājiet šo ceļu kā manuālu Colab dūmu testu pēc tam, kad ģenerētā faila pārbaudes ir izturētas.",
+    "license_note": "Šīs krātuves READMEģenerators, piezīmju grāmatiņas veidne, lokalizācijas faili, ģenerētie bloknoti un apkopes skripti tiek izlaisti saskaņā ar MITlicenci. Whispermodeļus un trešo pušu atkarības regulē to attiecīgās licences.",
+    "feature_labels": [
+      "Bezmaksas lietošanai",
+      "Nav fiksēta piezīmjdatora puses faila lieluma ierobežojuma",
+      "Partijas apstrāde",
+      "Google Driveatbalsts",
+      "Pilnībā tiešsaistē",
+      "Vairāki izvades formāti"
+    ],
+    "feature_bodies": [
+      "Šajā piezīmju grāmatiņā tiek izmantots [openai/whisper](https://github.com/openai/whisper), kas OpenAIir atvērts 2023. gada 17. janvārī, kopā ar Google Colabbezmaksas GPUizpildlaiku.",
+      "Var apstrādāt lielus audio un video failus.",
+      "Vienā reizē var apstrādāt vairākus audio un video failus.",
+      "Failus var augšupielādēt tieši vai audio/video failus, kas saglabāti Google Drive, var apstrādāt.",
+      "Lejupielāde un apstrāde tiek veikta Google Colab. Vietējie skaitļošanas resursi netiek izmantoti.",
+      "Piezīmju grāmatiņa izvada oriģinālo JSONtranskriptu un atvasinātos TXT, CSV, Markdown, Excelun SRTsubtitru failus."
+    ]
+  },
+  "labels": {
+    "features": "Funkcijas",
+    "languages": "Valodas",
+    "language": "Valoda",
+    "readme": "README",
+    "notebook": "Piezīmju grāmatiņa",
+    "repository_layout": "Repozitorija izkārtojums",
+    "build": "Veidot",
+    "checks": "Pārbaudes",
+    "what_ci_can_test": "Ko CI var pārbaudīt",
+    "license": "Licence"
+  },
+  "translation_source": "google:lv; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab piezīmju grāmatiņa",
+    "description": "Šis piezīmjdators pārraksta audio vai video failus ar Whisper.",
+    "features_heading": "Funkcijas",
+    "features": [
+      "**Bezmaksas lietošanai:** Šajā piezīmju grāmatiņā tiek izmantots [openai/whisper](https://github.com/openai/whisper), kas OpenAIir atvērts 2023. gada 17. janvārī, kopā ar Google Colabbezmaksas GPUizpildlaiku.",
+      "**Nav fiksēta piezīmjdatora puses faila lieluma ierobežojuma:** Var apstrādāt lielus audio un video failus.",
+      "**Partijas apstrāde:** Vienā reizē var apstrādāt vairākus audio un video failus.",
+      "**Google Driveatbalsts:** Failus var augšupielādēt tieši vai audio/video failus, kas saglabāti Google Drive, var apstrādāt.",
+      "**Pilnībā tiešsaistē:** Lejupielāde un apstrāde tiek veikta Google Colab. Vietējie skaitļošanas resursi netiek izmantoti.",
+      "**Vairāki izvades formāti:** Piezīmju grāmatiņa izvada oriģinālo JSONtranskriptu un atvasinātos TXT, CSV, Markdown, Excelun SRTsubtitru failus."
+    ],
+    "how_to_use_heading": "Kā lietot",
+    "how_to_use_steps": [
+      "**1. Iestatījumi**, izvēlieties `INPUT_MODE`un, ja nepieciešams, pielāgojiet modeli vai izvades opcijas.",
+      "Atlasiet **Izpildlaiks -> Palaist visu**.",
+      "Ja `INPUT_MODE = \"upload\"`, uzgaidiet līdz **2. Sākas faila atlase / Google Drivemount**, pēc tam šīs šūnas izvades apgabalā noklikšķiniet uz **Izvēlēties failus**.",
+      "Kad apstrāde ir pabeigta, izvadfaili tiek ZIP arhīvu un lejupielādēti, ja ir iespējots `AUTO_DOWNLOAD_ZIP`."
+    ],
+    "notes_heading": "Piezīmes",
+    "notes": [
+      "Google Colabbezmaksas GPUieejamība ir ierobežota. Ja GPUnav pieejams un `REQUIRE_CUDA = True`, piezīmju grāmatiņa apstājas pirms transkripcijas.",
+      "Apstrāde prasa laiku. Kā aptuvens ceļvedis, izmantojot large-v3-turbomodeli, 60 minūšu audio vai video faila atšifrēšana var aizņemt aptuveni 5–10 minūtes. Ja augšupielādējat failus tieši, ir nepieciešams arī augšupielādes laiks.",
+      "Apstrādes laikā turiet šo piezīmju grāmatiņu atvērtu. Ja transkripcijas laikā aizverat piezīmju grāmatiņu, apstrāde tiks apturēta."
+    ],
+    "feature_labels": [
+      "Bezmaksas lietošanai",
+      "Nav fiksēta piezīmjdatora puses faila lieluma ierobežojuma",
+      "Partijas apstrāde",
+      "Google Driveatbalsts",
+      "Pilnībā tiešsaistē",
+      "Vairāki izvades formāti"
+    ],
+    "feature_bodies": [
+      "Šajā piezīmju grāmatiņā tiek izmantots [openai/whisper](https://github.com/openai/whisper), kas OpenAIir atvērts 2023. gada 17. janvārī, kopā ar Google Colabbezmaksas GPUizpildlaiku.",
+      "Var apstrādāt lielus audio un video failus.",
+      "Vienā reizē var apstrādāt vairākus audio un video failus.",
+      "Failus var augšupielādēt tieši vai audio/video failus, kas saglabāti Google Drive, var apstrādāt.",
+      "Lejupielāde un apstrāde tiek veikta Google Colab. Vietējie skaitļošanas resursi netiek izmantoti.",
+      "Piezīmju grāmatiņa izvada oriģinālo JSONtranskriptu un atvasinātos TXT, CSV, Markdown, Excelun SRTsubtitru failus."
+    ]
+  }
+}

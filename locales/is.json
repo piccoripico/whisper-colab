@@ -1,0 +1,144 @@
+{
+  "language": "is",
+  "display_name": "Icelandic",
+  "native_name": "Icelandic",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Stillingar",
+    "cell1.section_title": "# 1. Stillingar",
+    "cell2.title": "# @title 2. Skráarval / Google Drivefesta",
+    "cell2.section_title": "# 2. Skráarval / Google Drivefesta",
+    "cell3.title": "# @title 3. GPUathuga og háð uppsetningu",
+    "cell3.section_title": "# 3. GPUathuga og háð uppsetningu",
+    "cell4.title": "# @title 4. Hjálparaðgerðir",
+    "cell4.section_title": "# 4. Hjálparaðgerðir",
+    "cell5.title": "# @title 5. Hladdu Whisperog keyrðu umritun",
+    "cell5.section_title": "# 5. Hladdu Whisperog keyrðu umritun",
+    "cell6.title": "# @title 6. Zip og hlaðið niður úttakum",
+    "cell6.section_title": "# 6. Zip og hlaðið niður úttakum",
+    "settings.input_heading": "# @markdown ## Inntak",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Notaðu `upload`fyrir staðbundnar skrár eða `google_drive`fyrir skrár sem þegar eru geymdar í Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveinntak",
+    "settings.drive_help": "# @markdown Þessar stillingar eru aðeins notaðar þegar `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Hafðu þetta venjulega stillt á `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Skráar- eða möppuslóð undir MyDrive. Skildu eftir autt til að nota MyDrive möppuna á efstu stigi.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Ef Drive inntaksslóðin er mappa skaltu einnig leita í undirmöppum.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Valfrjáls skráarheiti undirstrengsía.",
+    "settings.model_heading": "# @markdown ## Whisperlíkan",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Faceauðkenni gerð. Turbo er hraðari; large-v3getur verið stöðugra fyrir sumar skrár.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Notaðu `auto`þegar það er óþekkt, eða veldu þekkt upprunatungumál.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Notaðu Whisperþýðingarstillingu til að gefa út ensku.",
+    "settings.output_heading": "# @markdown ## Framleiðsla",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Vistaðu úttak undir Google Driveþegar drifinntak er notað.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Búðu til og halaðu niður einu ZIPskjalasafn í lokin.",
+    "settings.formats_help": "# @markdown - Úttakssnið er stjórnað af booleanunum hér að neðan.",
+    "settings.advanced_heading": "# ## Ítarlegri",
+    "settings.advanced_help": "# Þessi vanskil eru íhaldssöm fyrir Colab. Venjulegir notendur þurfa yfirleitt ekki að breyta þeim.",
+    "settings.loaded_message": "Stillingar hlaðnar.",
+    "messages.choose_files": "Smelltu á 'Veldu skrár' og hlaðið upp einni eða fleiri hljóð-/myndskrám.",
+    "messages.selected_files": "Valdar skrár:",
+    "messages.dependencies_done": "Uppsetningu fyrir ósjálfstæði lokið.",
+    "messages.model_loaded": "Whisperlíkan hlaðið.",
+    "messages.transcription_complete": "Uppskrift lokið.",
+    "errors.no_supported_files": "Engar studdar hljóð-/myndskrár voru valdar.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab minnisbók\n\nÞessi minnisbók umritar hljóð- eða myndskrár með Whisper.\n\n## Eiginleikar\n\n- **Ókeypis í notkun:** Þessi minnisbók notar [openai/whisper](https://github.com/openai/whisper), sem OpenAIvar opinn 17. janúar 2023, ásamt ókeypis GPUkeyrslutíma Google Colab.\n- **Engin fast takmörkun á skráarstærð á minnisbók:** Hægt er að vinna stórar hljóð- og myndskrár.\n- **Lotuvinnsla:** Hægt er að vinna margar hljóð- og myndskrár í einni keyrslu.\n- **Google Drivestuðningur:** Hægt er að hlaða upp skrám beint eða hægt er að vinna úr hljóð-/myndskrám sem eru geymdar í Google Drive.\n- **Alveg á netinu:** Niðurhal og vinnsla fer fram á Google Colab. Engin staðbundin tölvuauðlind eru notuð.\n- **Mörg úttakssnið:** Glósubókin gefur út upprunalega JSONafritið og afleiddar TXT, CSV, Markdown, Excelog SRTtextaskrár.\n\n## Hvernig á að nota\n\n1. Í **1. Stillingar**, veldu `INPUT_MODE`og stilltu líkanið eða úttaksvalkostina ef þörf krefur.\n2. Veldu **Runtime -> Keyra allt**.\n3. Ef `INPUT_MODE = \"upload\"`, bíddu þar til **2. Skráarval / Google Drivemount** byrjar, smelltu síðan á **Veldu skrár** í úttakssvæði þess reits.\n4. Þegar vinnslu er lokið eru úttaksskrárnar þjappaðar og niðurhalaðar ef `AUTO_DOWNLOAD_ZIP`er virkt.\n\n## Skýringar\n\n- Google Colabókeypis GPUframboð er takmarkað. Ef ekkert GPUer tiltækt og `REQUIRE_CUDA = True`, hættir minnisbókin fyrir umritun.\n- Vinnsla tekur tíma. Sem gróf leiðbeining þegar large-v3-turbolíkanið er notað, getur 60 mínútna hljóð- eða myndskrá tekið um 5-10 mínútur að afrita. Ef þú hleður upp skrám beint er einnig krafist upphleðslutíma.\n- Haltu þessari minnisbók opinni meðan á vinnslu stendur. Ef þú lokar minnisbókinni meðan á umritun stendur hættir vinnslan.",
+    "settings.source_language_default": "icelandic"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Fjöltyngdar Google Colabminnisbækur fyrir Whisperumritun.",
+    "features": [
+      "**Ókeypis í notkun:** Þessi minnisbók notar [openai/whisper](https://github.com/openai/whisper), sem OpenAIvar opinn 17. janúar 2023, ásamt ókeypis GPUkeyrslutíma Google Colab.",
+      "**Engin fast takmörkun á skráarstærð á minnisbók:** Hægt er að vinna stórar hljóð- og myndskrár.",
+      "**Lotuvinnsla:** Hægt er að vinna margar hljóð- og myndskrár í einni keyrslu.",
+      "**Google Drivestuðningur:** Hægt er að hlaða upp skrám beint eða hægt er að vinna úr hljóð-/myndskrám sem eru geymdar í Google Drive.",
+      "**Alveg á netinu:** Niðurhal og vinnsla fer fram á Google Colab. Engin staðbundin tölvuauðlind eru notuð.",
+      "**Mörg úttakssnið:** Glósubókin gefur út upprunalega JSONafritið og afleiddar TXT, CSV, Markdown, Excelog SRTtextaskrár."
+    ],
+    "template_note": "Rótin READMEer enska inngangsstaðurinn og docs/READMEinniheldur búnar staðbundnar READMEskrár. Sniðmátabókin er upprunaglósubókin og inniheldur staðgengla eins og `{{cell1.title}}`. Staðarskrár bjóða upp á tungumálssértæka READMEog afrit sem snýr að Colab. Myndaðar fartölvur eru framleiddar svo Colab hlekkir haldist stöðugir.",
+    "checks_note": "CI verkflæðið endurbyggir READMEskrár og minnisbækur úr sniðmátinu og staðsetningarskrám, athugar minnisbók JSON, staðfestir tóm úttak, athugar Python setningafræði í kóða frumum, leitar að augljósum leyndarmálum fyrir slysni og mistekst þegar myndaðar skrár eru ekki framkvæmdar.",
+    "ci_items": [
+      "READMEkynslóð úr staðsetningarskrám",
+      "fartölvugerð úr sniðmáts- og staðsetningarskrám",
+      "minnisbók JSONgildi",
+      "tómar framkvæmdarúttak",
+      "Python setningafræði í kóða frumum",
+      "augljós óvart leyndarmál",
+      "framkallaðar READMEog minnisbókarskrár sem passa við heimildirnar"
+    ],
+    "ci_limit": "Öll umritunarslóðin krefst Colab-sértækra API-a, niðurhala líkana, GPUframboð og miðlunarskrár frá notanda. Meðhöndlaðu þá leið sem handvirkt Colab reykpróf eftir að eftirlit með mynduðum skrám hefur staðist.",
+    "license_note": "READMErafall þessarar geymslu, fartölvusniðmát, staðsetningarskrár, útbúnar minnisbækur og viðhaldsskriftir eru gefnar út undir MITleyfinu. Whispermódel og ósjálfstæði þriðju aðila er stjórnað af viðkomandi leyfi.",
+    "feature_labels": [
+      "Ókeypis í notkun",
+      "Engin fast takmörkun á skráarstærð á minnisbók",
+      "Lotuvinnsla",
+      "Google Drivestuðningur",
+      "Alveg á netinu",
+      "Mörg úttakssnið"
+    ],
+    "feature_bodies": [
+      "Þessi minnisbók notar [openai/whisper](https://github.com/openai/whisper), sem OpenAIvar opinn 17. janúar 2023, ásamt ókeypis GPUkeyrslutíma Google Colab.",
+      "Hægt er að vinna stórar hljóð- og myndskrár.",
+      "Hægt er að vinna margar hljóð- og myndskrár í einni keyrslu.",
+      "Hægt er að hlaða upp skrám beint eða hægt er að vinna úr hljóð-/myndskrám sem eru geymdar í Google Drive.",
+      "Niðurhal og vinnsla fer fram á Google Colab. Engin staðbundin tölvuauðlind eru notuð.",
+      "Glósubókin gefur út upprunalega JSONafritið og afleiddar TXT, CSV, Markdown, Excelog SRTtextaskrár."
+    ]
+  },
+  "labels": {
+    "features": "Eiginleikar",
+    "languages": "Tungumál",
+    "language": "Tungumál",
+    "readme": "README",
+    "notebook": "Minnisbók",
+    "repository_layout": "Skipulag geymslu",
+    "build": "Byggja",
+    "checks": "Ávísanir",
+    "what_ci_can_test": "Hvað CI getur prófað",
+    "license": "Leyfi"
+  },
+  "translation_source": "google:is; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab minnisbók",
+    "description": "Þessi minnisbók umritar hljóð- eða myndskrár með Whisper.",
+    "features_heading": "Eiginleikar",
+    "features": [
+      "**Ókeypis í notkun:** Þessi minnisbók notar [openai/whisper](https://github.com/openai/whisper), sem OpenAIvar opinn 17. janúar 2023, ásamt ókeypis GPUkeyrslutíma Google Colab.",
+      "**Engin fast takmörkun á skráarstærð á minnisbók:** Hægt er að vinna stórar hljóð- og myndskrár.",
+      "**Lotuvinnsla:** Hægt er að vinna margar hljóð- og myndskrár í einni keyrslu.",
+      "**Google Drivestuðningur:** Hægt er að hlaða upp skrám beint eða hægt er að vinna úr hljóð-/myndskrám sem eru geymdar í Google Drive.",
+      "**Alveg á netinu:** Niðurhal og vinnsla fer fram á Google Colab. Engin staðbundin tölvuauðlind eru notuð.",
+      "**Mörg úttakssnið:** Glósubókin gefur út upprunalega JSONafritið og afleiddar TXT, CSV, Markdown, Excelog SRTtextaskrár."
+    ],
+    "how_to_use_heading": "Hvernig á að nota",
+    "how_to_use_steps": [
+      "Í **1. Stillingar**, veldu `INPUT_MODE`og stilltu líkanið eða úttaksvalkostina ef þörf krefur.",
+      "Veldu **Runtime -> Keyra allt**.",
+      "Ef `INPUT_MODE = \"upload\"`, bíddu þar til **2. Skráarval / Google Drivemount** byrjar, smelltu síðan á **Veldu skrár** í úttakssvæði þess reits.",
+      "Þegar vinnslu er lokið eru úttaksskrárnar þjappaðar og niðurhalaðar ef `AUTO_DOWNLOAD_ZIP`er virkt."
+    ],
+    "notes_heading": "Skýringar",
+    "notes": [
+      "Google Colabókeypis GPUframboð er takmarkað. Ef ekkert GPUer tiltækt og `REQUIRE_CUDA = True`, hættir minnisbókin fyrir umritun.",
+      "Vinnsla tekur tíma. Sem gróf leiðbeining þegar large-v3-turbolíkanið er notað, getur 60 mínútna hljóð- eða myndskrá tekið um 5-10 mínútur að afrita. Ef þú hleður upp skrám beint er einnig krafist upphleðslutíma.",
+      "Haltu þessari minnisbók opinni meðan á vinnslu stendur. Ef þú lokar minnisbókinni meðan á umritun stendur hættir vinnslan."
+    ],
+    "feature_labels": [
+      "Ókeypis í notkun",
+      "Engin fast takmörkun á skráarstærð á minnisbók",
+      "Lotuvinnsla",
+      "Google Drivestuðningur",
+      "Alveg á netinu",
+      "Mörg úttakssnið"
+    ],
+    "feature_bodies": [
+      "Þessi minnisbók notar [openai/whisper](https://github.com/openai/whisper), sem OpenAIvar opinn 17. janúar 2023, ásamt ókeypis GPUkeyrslutíma Google Colab.",
+      "Hægt er að vinna stórar hljóð- og myndskrár.",
+      "Hægt er að vinna margar hljóð- og myndskrár í einni keyrslu.",
+      "Hægt er að hlaða upp skrám beint eða hægt er að vinna úr hljóð-/myndskrám sem eru geymdar í Google Drive.",
+      "Niðurhal og vinnsla fer fram á Google Colab. Engin staðbundin tölvuauðlind eru notuð.",
+      "Glósubókin gefur út upprunalega JSONafritið og afleiddar TXT, CSV, Markdown, Excelog SRTtextaskrár."
+    ]
+  }
+}

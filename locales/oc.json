@@ -1,0 +1,144 @@
+{
+  "language": "oc",
+  "display_name": "Occitan",
+  "native_name": "Occitan",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Paramètres",
+    "cell1.section_title": "# 1. Paramètres",
+    "cell2.title": "# @title 2. Seleccion de fichièr / Google Drivemontar",
+    "cell2.section_title": "# 2. Seleccion de fichièr / Google Drivemontar",
+    "cell3.title": "# @title 3. GPUverificacion e installacion de dependéncia",
+    "cell3.section_title": "# 3. GPUverificacion e installacion de dependéncia",
+    "cell4.title": "# @title 4. Foncions d'ajuda",
+    "cell4.section_title": "# 4. Foncions d'ajuda",
+    "cell5.title": "# @title 5. Cargatz Whispere executatz la transcripcion",
+    "cell5.section_title": "# 5. Cargatz Whispere executatz la transcripcion",
+    "cell6.title": "# @title 6. Zip e telecargament de sortidas",
+    "cell6.section_title": "# 6. Zip e telecargament de sortidas",
+    "settings.input_heading": "# @markdown ## Entrada",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Utilizatz `upload`els fichièrs locals o `google_drive`els fichièrs ja emmagazinats dins Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveentrada",
+    "settings.drive_help": "# @markdown Aquestes paramètres son utilizats sonque quand `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Normalament gardatz aqueste ensemble a `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Un camin de fichièr o de dorsièr jos MyDrive. Daissatz blanc per utilizar lo dorsièr MyDrive de naut nivèl.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Se lo camin d'entrada del disc es un dorsièr, cercatz tanben de sosdorsièrs.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Filtre de soscadena de nom de fichièr opcional.",
+    "settings.model_heading": "# @markdown ## Whispermodèl",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID del modèl. Lo turbo es mai rapid; large-v3òt èsser mai estable per qualques fichièrs.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Utilizatz `auto`quand es desconegut, o seleccionatz una lenga font coneguda.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Utilizatz lo mòde de traduccion Whisperer sortir l'anglés.",
+    "settings.output_heading": "# @markdown ## Sortida",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Enregistrar las sortidas jos Google Drivequand l'entrada de l'unitat es utilizada.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Creatz e telecargatz un archiu ZIPa la fin.",
+    "settings.formats_help": "# @markdown - Los formats de sortida son contrarotlats pels booleans çai-jos.",
+    "settings.advanced_heading": "# ## Avançat",
+    "settings.advanced_help": "# Aquestes valors per defaut son conservators per Colab. Los utilizaires ordinaris an generalament pas besonh de los modificar.",
+    "settings.loaded_message": "Los paramètres cargats.",
+    "messages.choose_files": "Clicatz sus « Causir los fichièrs » e mandatz un o mantun fichièr àudio/vidèo.",
+    "messages.selected_files": "Fichièrs seleccionats :",
+    "messages.dependencies_done": "L'installacion de dependéncia acabada.",
+    "messages.model_loaded": "Whispermodèl cargat.",
+    "messages.transcription_complete": "Transcripcion completada.",
+    "errors.no_supported_files": "Cap de fichièr àudio/vidèo suportat es pas estat seleccionat.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nAqueste quasernet transcriu de fichièrs àudio o vidèo amb Whisper.\n\n## Caracteristicas\n\n- **Liure d'utilizar:** Aqueste quasernet utiliza [openai/whisper](https://github.com/openai/whisper), que OpenAIdobèrt lo 17 de genièr de 2023, amassa amb lo temps d'execucion gratuit GPUde Google Colab.\n- **Pas de limit fix de talha de fichièr del costat del quasernet:** De grands fichièrs àudio e vidèo pòdon èsser tractats.\n- **Tractament per lots:** De fichièrs àudio e vidèo multiples pòdon èsser tractats en una sola execucion.\n- **Google Drivesosten:** Los fichièrs pòdon èsser mandats dirèctament, o los fichièrs àudio/vidèo emmagazinats dins Google Driveòdon èsser tractats.\n- **Totalament en linha:** Las telecargaments e lo tractament son realizats sus Google Colab. Cap de ressorsa informatica locala es pas utilizada.\n- **Formats de sortida multiples:** Lo quasernet sortís la transcripcion originala JSONe los fichièrs de sostítols TXT, CSV, Markdown, Excel, e SRTderivats.\n\n## Cossí utilizar\n\n1. Dins **1. Paramètres**, causissètz `INPUT_MODE`e ajustatz lo modèl o las opcions de sortida se necessari.\n2. Seleccionatz **Temps d'execucion -> Executar tot**.\n3. Se `INPUT_MODE = \"upload\"`, esperatz fins a **2. La seleccion de fichièr / Google Drivemontar** comença, puèi clicatz sus **Causissètz de fichièrs** dins l'airal de sortida d'aquela cellula.\n4. Quand lo tractament es complet, los fichièrs de sortida son zipats e telecargats se `AUTO_DOWNLOAD_ZIP`es activat.\n\n## Nòtas\n\n- Google Colabgratuit GPUla disponibilitat es limitada. Se cap de GPUes pas disponible e `REQUIRE_CUDA = True`, lo quasernet s'arrèsta abans la transcripcion.\n- Lo tractament pren de temps. Coma guida aproximativa quand utilizatz lo modèl large-v3-turbo, un fichièr àudio o vidèo de 60 minutas pòt prene aperaquí 5-10 minutas per se transcriure. Se mandatz de fichièrs dirèctament, lo temps de mandadís es tanben requerit.\n- Mantenètz aqueste quasernet dobèrt pendent lo tractament. Se tampatz lo quasernet pendent la transcripcion, lo tractament s'arrèsta.",
+    "settings.source_language_default": "occitan"
+  },
+  "labels": {
+    "features": "Caracteristicas",
+    "languages": "Lengas",
+    "language": "Lenga",
+    "readme": "README",
+    "notebook": "Quasèrn de nòtas",
+    "repository_layout": "Disposicion del depaus",
+    "build": "Bastir",
+    "checks": "Verificacions",
+    "what_ci_can_test": "Qué CI pòt testar",
+    "license": "Licéncia"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Quaderns multilingües Google Colabara la transcripcion Whisper.",
+    "features": [
+      "**Liure d'utilizar:** Aqueste quasernet utiliza [openai/whisper](https://github.com/openai/whisper), que OpenAIdobèrt lo 17 de genièr de 2023, amassa amb lo temps d'execucion gratuit GPUde Google Colab.",
+      "**Pas de limit fix de talha de fichièr del costat del quasernet:** De grands fichièrs àudio e vidèo pòdon èsser tractats.",
+      "**Tractament per lots:** De fichièrs àudio e vidèo multiples pòdon èsser tractats en una sola execucion.",
+      "**Google Drivesosten:** Los fichièrs pòdon èsser mandats dirèctament, o los fichièrs àudio/vidèo emmagazinats dins Google Driveòdon èsser tractats.",
+      "**Totalament en linha:** Las telecargaments e lo tractament son realizats sus Google Colab. Cap de ressorsa informatica locala es pas utilizada.",
+      "**Formats de sortida multiples:** Lo quasernet sortís la transcripcion originala JSONe los fichièrs de sostítols TXT, CSV, Markdown, Excel, e SRTderivats."
+    ],
+    "template_note": "La raiç READMEes lo ponch d'entrada en anglés, e docs/READMEconten de fichièrs READMElocalizats generats. Lo quasèrn de modèl es lo quasèrn de nòtas font e conten de marcapaginas coma `{{cell1.title}}`. Los fichièrs local provesisson READMEespecific a la lenga e una còpia orientada a Colab. Los quasernets generats son engatjats per que los ligams Colab demoren estables.",
+    "checks_note": "Lo flux de trabalh CI reconstruís los fichièrs e los quasèrns READMEa partir dels fichièrs de modèl e local, verifica lo quasernet JSON, verifica las sortidas voidas, verifica la sintaxi de Python dins las cellulas de còde, escaneja de secrets accidentals evidents, e fracassa quand los fichièrs de commit generats son pas generats.",
+    "ci_items": [
+      "READMEgeneracion a partir de fichièrs locals",
+      "generacion de quasèrn de nòtas a partir dels fichièrs de modèl e de localizacion",
+      "quasernet JSONvaliditat",
+      "sortidas d'execucion vuèjas",
+      "La sintaxi de Python dins las cellulas de còde",
+      "secrets accidentals evidents",
+      "engatjat generat READMEe de fichièrs de quasernet correspondent a las fonts"
+    ],
+    "ci_limit": "Lo camin de transcripcion complet demanda d'APIs especificas a Colab, de telecargaments de modèls, de disponibilitat GPU, e de fichièrs mèdias provesits per l'utilizaire. Tractatz aquel camin coma un tèst de fum Colab manual après que las verificacions dels fichièrs generats passèron.",
+    "license_note": "Lo generator READMEd'aqueste depaus, lo modèl de quasernet, los fichièrs locals, los quasernets generats e los escripts de mantenença son publicats jos la licéncia MIT. Los modèls Whispere las dependéncias de tèrces son regits per lors licéncias respectivas.",
+    "feature_labels": [
+      "Liure d'utilizar",
+      "Pas de limit fix de talha de fichièr del costat del quasernet",
+      "Tractament per lots",
+      "Google Drivesosten",
+      "Totalament en linha",
+      "Formats de sortida multiples"
+    ],
+    "feature_bodies": [
+      "Aqueste quasernet utiliza [openai/whisper](https://github.com/openai/whisper), que OpenAIdobèrt lo 17 de genièr de 2023, amassa amb lo temps d'execucion gratuit GPUde Google Colab.",
+      "De grands fichièrs àudio e vidèo pòdon èsser tractats.",
+      "De fichièrs àudio e vidèo multiples pòdon èsser tractats en una sola execucion.",
+      "Los fichièrs pòdon èsser mandats dirèctament, o los fichièrs àudio/vidèo emmagazinats dins Google Driveòdon èsser tractats.",
+      "Las telecargaments e lo tractament son realizats sus Google Colab. Cap de ressorsa informatica locala es pas utilizada.",
+      "Lo quasernet sortís la transcripcion originala JSONe los fichièrs de sostítols TXT, CSV, Markdown, Excel, e SRTderivats."
+    ]
+  },
+  "translation_source": "direct_google:oc; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Aqueste quasernet transcriu de fichièrs àudio o vidèo amb Whisper.",
+    "features_heading": "Caracteristicas",
+    "features": [
+      "**Liure d'utilizar:** Aqueste quasernet utiliza [openai/whisper](https://github.com/openai/whisper), que OpenAIdobèrt lo 17 de genièr de 2023, amassa amb lo temps d'execucion gratuit GPUde Google Colab.",
+      "**Pas de limit fix de talha de fichièr del costat del quasernet:** De grands fichièrs àudio e vidèo pòdon èsser tractats.",
+      "**Tractament per lots:** De fichièrs àudio e vidèo multiples pòdon èsser tractats en una sola execucion.",
+      "**Google Drivesosten:** Los fichièrs pòdon èsser mandats dirèctament, o los fichièrs àudio/vidèo emmagazinats dins Google Driveòdon èsser tractats.",
+      "**Totalament en linha:** Las telecargaments e lo tractament son realizats sus Google Colab. Cap de ressorsa informatica locala es pas utilizada.",
+      "**Formats de sortida multiples:** Lo quasernet sortís la transcripcion originala JSONe los fichièrs de sostítols TXT, CSV, Markdown, Excel, e SRTderivats."
+    ],
+    "how_to_use_heading": "Cossí utilizar",
+    "how_to_use_steps": [
+      "Dins **1. Paramètres**, causissètz `INPUT_MODE`e ajustatz lo modèl o las opcions de sortida se necessari.",
+      "Seleccionatz **Temps d'execucion -> Executar tot**.",
+      "Se `INPUT_MODE = \"upload\"`, esperatz fins a **2. La seleccion de fichièr / Google Drivemontar** comença, puèi clicatz sus **Causissètz de fichièrs** dins l'airal de sortida d'aquela cellula.",
+      "Quand lo tractament es complet, los fichièrs de sortida son zipats e telecargats se `AUTO_DOWNLOAD_ZIP`es activat."
+    ],
+    "notes_heading": "Nòtas",
+    "notes": [
+      "Google Colabgratuit GPUla disponibilitat es limitada. Se cap de GPUes pas disponible e `REQUIRE_CUDA = True`, lo quasernet s'arrèsta abans la transcripcion.",
+      "Lo tractament pren de temps. Coma guida aproximativa quand utilizatz lo modèl large-v3-turbo, un fichièr àudio o vidèo de 60 minutas pòt prene aperaquí 5-10 minutas per se transcriure. Se mandatz de fichièrs dirèctament, lo temps de mandadís es tanben requerit.",
+      "Mantenètz aqueste quasernet dobèrt pendent lo tractament. Se tampatz lo quasernet pendent la transcripcion, lo tractament s'arrèsta."
+    ],
+    "feature_labels": [
+      "Liure d'utilizar",
+      "Pas de limit fix de talha de fichièr del costat del quasernet",
+      "Tractament per lots",
+      "Google Drivesosten",
+      "Totalament en linha",
+      "Formats de sortida multiples"
+    ],
+    "feature_bodies": [
+      "Aqueste quasernet utiliza [openai/whisper](https://github.com/openai/whisper), que OpenAIdobèrt lo 17 de genièr de 2023, amassa amb lo temps d'execucion gratuit GPUde Google Colab.",
+      "De grands fichièrs àudio e vidèo pòdon èsser tractats.",
+      "De fichièrs àudio e vidèo multiples pòdon èsser tractats en una sola execucion.",
+      "Los fichièrs pòdon èsser mandats dirèctament, o los fichièrs àudio/vidèo emmagazinats dins Google Driveòdon èsser tractats.",
+      "Las telecargaments e lo tractament son realizats sus Google Colab. Cap de ressorsa informatica locala es pas utilizada.",
+      "Lo quasernet sortís la transcripcion originala JSONe los fichièrs de sostítols TXT, CSV, Markdown, Excel, e SRTderivats."
+    ]
+  }
+}

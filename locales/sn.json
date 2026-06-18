@@ -1,0 +1,144 @@
+{
+  "language": "sn",
+  "display_name": "Shona",
+  "native_name": "Shona",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Settings",
+    "cell1.section_title": "# 1. Settings",
+    "cell2.title": "# @title 2. Kusarudzwa kwefaira / Google Drivemount",
+    "cell2.section_title": "# 2. Kusarudzwa kwefaira / Google Drivemount",
+    "cell3.title": "# @title 3. GPUtarisa uye kutsamira kuisirwa",
+    "cell3.section_title": "# 3. GPUtarisa uye kutsamira kuisirwa",
+    "cell4.title": "# @title 4. Mubatsiri anoshanda",
+    "cell4.section_title": "# 4. Mubatsiri anoshanda",
+    "cell5.title": "# @title 5. Rodha Whisperwomhanya kunyora",
+    "cell5.section_title": "# 5. Rodha Whisperwomhanya kunyora",
+    "cell6.title": "# @title 6. Zip uye dhawunirodha zvabuda",
+    "cell6.section_title": "# 6. Zip uye dhawunirodha zvabuda",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Shandisa `upload`kumafaira emunharaunda kana `google_drive`kumafaira akatochengetwa mu Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivekuisa",
+    "settings.drive_help": "# @markdown Aya marongero anoshandiswa chete kana `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Kazhinji chengeta iyi seti ku `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Iyo faira kana folda nzira pasi peMyDrive. Siya isina chinhu kushandisa iyo yepamusoro-level MyDrive folda.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Kana iyo Drive yekupinza nzira iri folda, tsvagawo maforodha madiki.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Sarudzo yezita refaira substring sefa.",
+    "settings.model_heading": "# @markdown ## Whispermodhi",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodhi ID. Turbo inokurumidza; large-v3inogona kunyatsogadzikana kune mamwe mafaera.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Shandisa `auto`ausingazivikanwe, kana sarudza mutauro unozivikanwa.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Shandisa Whispershandura mamiriro ekubuda muChirungu.",
+    "settings.output_heading": "# @markdown ## Output",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Chengetedza zvinobuda pasi pe Google Drivekana Drive maikirwo ashandiswa.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Gadzira uye dhawunirodha imwe ZIParchive pakupedzisira.",
+    "settings.formats_help": "# @markdown - Mafomati ezvinobuda anodzorwa nemabooleans pazasi.",
+    "settings.advanced_heading": "# ## Advanced",
+    "settings.advanced_help": "# Izvi zvisizvo ndezvekuchengetedza Colab. Vashandisiwo zvavo kazhinji havadi kuagadzirisa.",
+    "settings.loaded_message": "Settings loaded.",
+    "messages.choose_files": "Dzvanya 'Sarudza Mafaira' uye rodha imwe kana akawanda maodhiyo/vhidhiyo mafaera.",
+    "messages.selected_files": "Mafaira akasarudzwa:",
+    "messages.dependencies_done": "Kuiswa kwedependency kwapera.",
+    "messages.model_loaded": "Whispermodhi yakatakura.",
+    "messages.transcription_complete": "Kunyora kwapera.",
+    "errors.no_supported_files": "Hapana mafaera ekuteerera/mavhidhiyo anotsigirwa akasarudzwa.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nIri bhuku rinonyora mafaira ekuteerera kana vhidhiyo ne Whisper.\n\n## Features\n\n- **Yemahara kushandisa:** Iri bhuku rinoshandisa [openai/whisper](https://github.com/openai/whisper), iro OpenAIrakavhurika-sosi musi waNdira 17, 2023, pamwe chete ne Google Colab's yemahara GPUnguva yekumhanya.\n- **Hapana yakagadziriswa notebook-side file size limit:** Mafaira makuru ekuteerera nemavhidhiyo anogona kugadziriswa.\n- **Batch processing:** Akawanda maodhiyo uye vhidhiyo mafaera anogona kugadziriswa mukumhanya kumwe.\n- **Google Driverutsigiro:** Mafaira anogona kuiswa zvakananga, kana odhiyo/vhidhiyo mafaera akachengetwa mu Google Driveanogona kugadziriswa.\n- **Zvakazara online:** Kurodha uye kugadzirisa kunoitwa pa Google Colab. Hapana zviwanikwa zvekombuta zvemuno zvinoshandiswa.\n- **Mafomati akawanda ekubuda:** Notibhuku inoburitsa yepakutanga JSONchinyorwa uye yakabva TXT, CSV, Markdown, Excel, uye SRTsubtitle mafaira.\n\n## Kushandisa sei\n\n1. Mu **1. Settings**, sarudza `INPUT_MODE`uye gadzirisa modhi kana sarudzo dzekubuda kana zvichidikanwa.\n2. Sarudza **Nguva yekumhanya -> Mhanya zvese**.\n3. Kana `INPUT_MODE = \"upload\"`, mira kusvika **2. Kusarudzwa kwefaira / Google Drivemount** kunotanga, wobva wadzvanya **Sarudza Mafaira** munzvimbo yekubuda yesero.\n4. Kana kugadzirisa kwapera, mafaera anobuda anoiswa zip uye kudhawunirodha kana `AUTO_DOWNLOAD_ZIP`yakagoneswa.\n\n## Notes\n\n- Google Colabmahara GPUkuwanikwa kune kushoma. Kana pasina GPUaripo uye `REQUIRE_CUDA = True`, bhuku rekunyorera rinomira risati ranyorwa.\n- Kugadzirisa kunotora nguva. Segwara rakakasharara paunenge uchishandisa large-v3-turbomodhi, 60-maminetsi ekuteerera kana vhidhiyo faira inogona kutora anenge 5-10 maminetsi kunyora. Kana iwe ukarodha mafaera zvakananga, nguva yekuisa inodiwa zvakare.\n- Chengeta bhuku rino rekunyorera rakavhurika paunenge uchigadzira. Kana iwe ukavhara kabhuku panguva yekunyora, kugadzirisa kunomira.",
+    "settings.source_language_default": "shona"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Mitauro yakawanda Google Colabzvinyorwa zve Whisperkunyoreswa.",
+    "features": [
+      "**Yemahara kushandisa:** Iri bhuku rinoshandisa [openai/whisper](https://github.com/openai/whisper), iro OpenAIrakavhurika-sosi musi waNdira 17, 2023, pamwe chete ne Google Colab's yemahara GPUnguva yekumhanya.",
+      "**Hapana yakagadziriswa notebook-side file size limit:** Mafaira makuru ekuteerera nemavhidhiyo anogona kugadziriswa.",
+      "**Batch processing:** Akawanda maodhiyo uye vhidhiyo mafaera anogona kugadziriswa mukumhanya kumwe.",
+      "**Google Driverutsigiro:** Mafaira anogona kuiswa zvakananga, kana odhiyo/vhidhiyo mafaera akachengetwa mu Google Driveanogona kugadziriswa.",
+      "**Zvakazara online:** Kurodha uye kugadzirisa kunoitwa pa Google Colab. Hapana zviwanikwa zvekombuta zvemuno zvinoshandiswa.",
+      "**Mafomati akawanda ekubuda:** Notibhuku inoburitsa yepakutanga JSONchinyorwa uye yakabva TXT, CSV, Markdown, Excel, uye SRTsubtitle mafaira."
+    ],
+    "template_note": "Dzidzi READMEndiyo nzvimbo yekupinda muchiRungu, uye madocs/READMEane akagadzirwa localized READMEmafaira. Iyo template notebook ndiyo sosi kabhuku uye ine zvibatiso zvakaita se `{{cell1.title}}`. Mafaira enzvimbo anopa mutauro-chaiwo READMEuye Colab-yakatarisana kopi. Manotibhuku anogadzirwa akazvipira kuti maColab link arambe akagadzikana.",
+    "checks_note": "Iyo CI workflow inovakazve READMEmafaera uye zvinyorwa kubva kutemplate uye mafaera enzvimbo, inotarisa notebook JSON, inoongorora zvisina chinhu zvabuda, inotarisa Python syntax mumaseru ekodhi, inoongorora zvakavanzika zviri pachena zvetsaona, uye inotadza kana mafaera akagadzirwa asina kuzvipira.",
+    "ci_items": [
+      "READMEchizvarwa kubva kunzvimbo mafaira",
+      "kugadzirwa kwebhuku rekunyorera kubva kutemplate uye mafaera enzvimbo",
+      "notebook JSONchokwadi",
+      "isina chinhu execution outputs",
+      "Python syntax mumaseru ekodhi",
+      "zvakavanzika zvakavanzika",
+      "yakazvipira yakagadzirwa READMEuye faira renotibhuku rinoenderana nekwakabva"
+    ],
+    "ci_limit": "Nzira yekunyora yakazara inoda maColab-specific APIs, kudhawunirodha kwemodhi, GPUkuwanikwa, uye mafaera emedia anopihwa nemushandisi. Bata iyo nzira sebhuku reColab chiutsi bvunzo mushure mekugadzirwa-faira cheki ichipfuura.",
+    "license_note": "Iyi repository's READMEjenareta, template yenotibhuku, mafaera enzvimbo, akagadzirwa manotsi, uye zvinyorwa zvekugadzirisa zvinoburitswa pasi pe MITRezinesi. Whispermodhi uye wechitatu-bato kutsamira kunotongwa nemarezinesi avo.",
+    "feature_labels": [
+      "Yemahara kushandisa",
+      "Hapana yakagadziriswa notebook-side file size limit",
+      "Batch processing",
+      "Google Driverutsigiro",
+      "Zvakazara online",
+      "Mafomati akawanda ekubuda"
+    ],
+    "feature_bodies": [
+      "Iri bhuku rinoshandisa [openai/whisper](https://github.com/openai/whisper), iro OpenAIrakavhurika-sosi musi waNdira 17, 2023, pamwe chete ne Google Colab's yemahara GPUnguva yekumhanya.",
+      "Mafaira makuru ekuteerera nemavhidhiyo anogona kugadziriswa.",
+      "Akawanda maodhiyo uye vhidhiyo mafaera anogona kugadziriswa mukumhanya kumwe.",
+      "Mafaira anogona kuiswa zvakananga, kana odhiyo/vhidhiyo mafaera akachengetwa mu Google Driveanogona kugadziriswa.",
+      "Kurodha uye kugadzirisa kunoitwa pa Google Colab. Hapana zviwanikwa zvekombuta zvemuno zvinoshandiswa.",
+      "Notibhuku inoburitsa yepakutanga JSONchinyorwa uye yakabva TXT, CSV, Markdown, Excel, uye SRTsubtitle mafaira."
+    ]
+  },
+  "labels": {
+    "features": "Features",
+    "languages": "Mitauro",
+    "language": "Mutauro",
+    "readme": "README",
+    "notebook": "Notebook",
+    "repository_layout": "Repository Layout",
+    "build": "Vaka",
+    "checks": "Checks",
+    "what_ci_can_test": "Izvo CI Inogona Kuedza",
+    "license": "License"
+  },
+  "translation_source": "google:sn; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Iri bhuku rinonyora mafaira ekuteerera kana vhidhiyo ne Whisper.",
+    "features_heading": "Features",
+    "features": [
+      "**Yemahara kushandisa:** Iri bhuku rinoshandisa [openai/whisper](https://github.com/openai/whisper), iro OpenAIrakavhurika-sosi musi waNdira 17, 2023, pamwe chete ne Google Colab's yemahara GPUnguva yekumhanya.",
+      "**Hapana yakagadziriswa notebook-side file size limit:** Mafaira makuru ekuteerera nemavhidhiyo anogona kugadziriswa.",
+      "**Batch processing:** Akawanda maodhiyo uye vhidhiyo mafaera anogona kugadziriswa mukumhanya kumwe.",
+      "**Google Driverutsigiro:** Mafaira anogona kuiswa zvakananga, kana odhiyo/vhidhiyo mafaera akachengetwa mu Google Driveanogona kugadziriswa.",
+      "**Zvakazara online:** Kurodha uye kugadzirisa kunoitwa pa Google Colab. Hapana zviwanikwa zvekombuta zvemuno zvinoshandiswa.",
+      "**Mafomati akawanda ekubuda:** Notibhuku inoburitsa yepakutanga JSONchinyorwa uye yakabva TXT, CSV, Markdown, Excel, uye SRTsubtitle mafaira."
+    ],
+    "how_to_use_heading": "Kushandisa sei",
+    "how_to_use_steps": [
+      "Mu **1. Settings**, sarudza `INPUT_MODE`uye gadzirisa modhi kana sarudzo dzekubuda kana zvichidikanwa.",
+      "Sarudza ** Nguva yekumhanya -> Mhanya zvese **.",
+      "Kana `INPUT_MODE = \"upload\"`, mira kusvika **2. Kusarudzwa kwefaira / Google Drivemount** kunotanga, wobva wadzvanya **Sarudza Mafaira** munzvimbo yekubuda yesero.",
+      "Kana kugadzirisa kwapera, mafaera anobuda anoiswa zip uye kudhawunirodha kana `AUTO_DOWNLOAD_ZIP`yakagoneswa."
+    ],
+    "notes_heading": "Notes",
+    "notes": [
+      "Google Colabmahara GPUkuwanikwa kune kushoma. Kana pasina GPUaripo uye `REQUIRE_CUDA = True`, bhuku rekunyorera rinomira risati ranyorwa.",
+      "Kugadzirisa kunotora nguva. Segwara rakakasharara paunenge uchishandisa large-v3-turbomodhi, 60-maminetsi ekuteerera kana vhidhiyo faira inogona kutora anenge 5-10 maminetsi kunyora. Kana iwe ukarodha mafaera zvakananga, nguva yekuisa inodiwa zvakare.",
+      "Chengeta bhuku rino rekunyorera rakavhurika paunenge uchigadzira. Kana iwe ukavhara kabhuku panguva yekunyora, kugadzirisa kunomira."
+    ],
+    "feature_labels": [
+      "Yemahara kushandisa",
+      "Hapana yakagadziriswa notebook-side file size limit",
+      "Batch processing",
+      "Google Driverutsigiro",
+      "Zvakazara online",
+      "Mafomati akawanda ekubuda"
+    ],
+    "feature_bodies": [
+      "Iri bhuku rinoshandisa [openai/whisper](https://github.com/openai/whisper), iro OpenAIrakavhurika-sosi musi waNdira 17, 2023, pamwe chete ne Google Colab's yemahara GPUnguva yekumhanya.",
+      "Mafaira makuru ekuteerera nemavhidhiyo anogona kugadziriswa.",
+      "Akawanda maodhiyo uye vhidhiyo mafaera anogona kugadziriswa mukumhanya kumwe.",
+      "Mafaira anogona kuiswa zvakananga, kana odhiyo/vhidhiyo mafaera akachengetwa mu Google Driveanogona kugadziriswa.",
+      "Kurodha uye kugadzirisa kunoitwa pa Google Colab. Hapana zviwanikwa zvekombuta zvemuno zvinoshandiswa.",
+      "Notibhuku inoburitsa yepakutanga JSONchinyorwa uye yakabva TXT, CSV, Markdown, Excel, uye SRTsubtitle mafaira."
+    ]
+  }
+}

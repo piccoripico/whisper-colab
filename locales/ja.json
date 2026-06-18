@@ -1,0 +1,144 @@
+{
+  "language": "ja",
+  "display_name": "Japanese",
+  "native_name": "日本語",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. 設定",
+    "cell1.section_title": "# 1. 設定",
+    "cell2.title": "# @title 2. ファイル選択 / Google Driveマウント",
+    "cell2.section_title": "# 2. ファイル選択 / Google Driveマウント",
+    "cell3.title": "# @title 3. GPUのチェックと依存関係のインストール",
+    "cell3.section_title": "# 3. GPUのチェックと依存関係のインストール",
+    "cell4.title": "# @title 4. ヘルパー関数",
+    "cell4.section_title": "# 4. ヘルパー関数",
+    "cell5.title": "# @title 5. Whisperをロードして文字起こしを実行します",
+    "cell5.section_title": "# 5. Whisperをロードして文字起こしを実行します",
+    "cell6.title": "# @title 6. 出力を圧縮してダウンロードする",
+    "cell6.section_title": "# 6. 出力を圧縮してダウンロードする",
+    "settings.input_heading": "# @markdown ## 入力",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: ローカル ファイルには `upload`を、Google Driveに既に保存されているファイルには `google_drive`を使用します。",
+    "settings.drive_heading": "# @markdown ### Google Drive入力",
+    "settings.drive_help": "# @markdown これらの設定は、`INPUT_MODE == \"google_drive\"`の場合にのみ使用されます。",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: 通常、これは `/content/drive/MyDrive`に設定しておいてください。",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: MyDrive 下のファイルまたはフォルダーのパス。最上位の MyDrive フォルダーを使用する場合は、空白のままにします。",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: ドライブの入力パスがフォルダーの場合は、サブフォルダーも検索します。",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: オプションのファイル名の部分文字列フィルター。",
+    "settings.model_heading": "# @markdown ## Whisperモデル",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Faceモデル ID。ターボの方が速いです。ファイルによっては large-v3の方が安定する場合があります。",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: 不明な場合は `auto`を使用するか、既知のソース言語を選択します。",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: 英語を出力するには Whisper翻訳モードを使用します。",
+    "settings.output_heading": "# @markdown ## 出力",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ドライブ入力を使用する場合、出力を Google Driveに保存します。",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: 最後に ZIPアーカイブを 1 つ作成してダウンロードします。",
+    "settings.formats_help": "# @markdown - 出力形式は以下のブール値によって制御されます。",
+    "settings.advanced_heading": "# ## 上級者向け",
+    "settings.advanced_help": "# これらのデフォルトは Colab にとって保守的なものです。通常、一般ユーザーは編集する必要はありません。",
+    "settings.loaded_message": "設定が読み込まれました。",
+    "messages.choose_files": "[ファイルを選択] をクリックし、1 つ以上のオーディオ/ビデオ ファイルをアップロードします。",
+    "messages.selected_files": "選択したファイル:",
+    "messages.dependencies_done": "依存関係のインストールが完了しました。",
+    "messages.model_loaded": "Whisperモデルがロードされました。",
+    "messages.transcription_complete": "転写が完了しました。",
+    "errors.no_supported_files": "サポートされているオーディオ/ビデオ ファイルが選択されていません。",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Whisperコラボノート\n\nこのノートブックは、Whisperを使用して音声ファイルまたはビデオ ファイルを転写します。\n\n## 特長\n\n- **無料で使用できます:** このノートブックは、OpenAIが 2023 年 1 月 17 日にオープンソース化した [openai/whisper](https://github.com/openai/whisper)と、Google Colabの無料の GPUランタイムを使用します。\n- **ノートブック側のファイル サイズの固定制限なし:** 大きなオーディオ ファイルやビデオ ファイルを処理できます。\n- **バッチ処理:** 複数のオーディオ ファイルとビデオ ファイルを 1 回の実行で処理できます。\n- **Google Driveサポート:** ファイルを直接アップロードすることも、Google Driveに保存されているオーディオ/ビデオ ファイルを処理することもできます。\n- **完全オンライン:** ダウンロードと処理は Google Colabで実行されます。ローカルのコンピューティング リソースは使用されません。\n- **複数の出力フォーマット:** ノートブックは、元の JSONトランスクリプトと、派生した TXT、CSV、Markdown、Excel、および SRT字幕ファイルを出力します。\n\n## 使用方法\n\n1. **1では。設定**、`INPUT_MODE`を選択し、必要に応じてモデルまたは出力オプションを調整します。\n2. **[ランタイム] -> [すべて実行]** を選択します。\n3. `INPUT_MODE = \"upload\"`の場合は**2まで待ちます。ファイルの選択 / Google Driveマウント** が開始され、そのセルの出力領域で **ファイルの選択** をクリックします。\n4. `AUTO_DOWNLOAD_ZIP`が有効になっている場合は、処理が完了すると出力ファイルが圧縮されてダウンロードされます。\n\n## 注意事項\n\n- Google Colab無料 GPU空き状況には限りがあります。利用可能な GPUがなく、`REQUIRE_CUDA = True`の場合、ノートブックは転記する前に停止します。\n- 処理には時間がかかります。 large-v3-turboモデルを使用する場合の目安として、60 分の音声またはビデオ ファイルの文字起こしには約 5 ～ 10 分かかることがあります。ファイルを直接アップロードする場合は、アップロード時間も必要です。\n- 処理中はこのノートブックを開いたままにしてください。文字起こし中にノートブックを閉じると、処理が停止します。",
+    "settings.source_language_default": "japanese"
+  },
+  "labels": {
+    "features": "特長",
+    "languages": "言語",
+    "language": "言語",
+    "readme": "README",
+    "notebook": "ノート",
+    "repository_layout": "リポジトリのレイアウト",
+    "build": "ビルドする",
+    "checks": "小切手",
+    "what_ci_can_test": "CI でテストできること",
+    "license": "ライセンス"
+  },
+  "readme": {
+    "title": "Whisperコラボ",
+    "subtitle": "Whisper文字起こし用の多言語 Google Colabノートブック。",
+    "features": [
+      "**無料で使用できます:** このノートブックは、OpenAIが 2023 年 1 月 17 日にオープンソース化した [openai/whisper](https://github.com/openai/whisper)と、Google Colabの無料の GPUランタイムを使用します。",
+      "**ノートブック側のファイル サイズの固定制限なし:** 大きなオーディオ ファイルやビデオ ファイルを処理できます。",
+      "**バッチ処理:** 複数のオーディオ ファイルとビデオ ファイルを 1 回の実行で処理できます。",
+      "**Google Driveサポート:** ファイルを直接アップロードすることも、Google Driveに保存されているオーディオ/ビデオ ファイルを処理することもできます。",
+      "**完全オンライン:** ダウンロードと処理は Google Colabで実行されます。ローカルのコンピューティング リソースは使用されません。",
+      "**複数の出力フォーマット:** ノートブックは、元の JSONトランスクリプトと、派生した TXT、CSV、Markdown、Excel、および SRT字幕ファイルを出力します。"
+    ],
+    "template_note": "ルート READMEは英語のエントリ ポイントであり、docs/READMEには生成されたローカライズされた READMEファイルが含まれています。テンプレート ノートブックはソース ノートブックであり、`{{cell1.title}}`などのプレースホルダーが含まれています。ロケール ファイルは、言語固有の READMEおよび Colab 向けのコピーを提供します。生成されたノートブックはコミットされるため、Colab リンクは安定した状態に保たれます。",
+    "checks_note": "CI ワークフローは、テンプレート ファイルとロケール ファイルから READMEファイルとノートブックを再構築し、ノートブック JSONをチェックし、空の出力を検証し、コード セル内の Python 構文をチェックし、明らかな偶発的なシークレットをスキャンし、生成されたファイルがコミットされていない場合は失敗します。",
+    "ci_items": [
+      "READMEロケール ファイルからの生成",
+      "テンプレートとロケール ファイルからのノートブックの生成",
+      "ノートブックJSONの有効性",
+      "空の実行出力",
+      "コードセル内のPython構文",
+      "明らかな偶然の秘密",
+      "生成された READMEとソースに一致するノートブック ファイルをコミットしました"
+    ],
+    "ci_limit": "完全な転写パスには、Colab 固有の API、モデルのダウンロード、GPUの可用性、およびユーザー提供のメディア ファイルが必要です。生成されたファイルのチェックに合格した後、そのパスを手動の Colab スモーク テストとして扱います。",
+    "license_note": "このリポジトリの READMEジェネレーター、ノートブック テンプレート、ロケール ファイル、生成されたノートブック、およびメンテナンス スクリプトは、MITライセンスに基づいてリリースされています。 Whisperモデルとサードパーティの依存関係は、それぞれのライセンスによって管理されます。",
+    "feature_labels": [
+      "無料で使用できます",
+      "ノートブック側のファイル サイズの固定制限なし",
+      "バッチ処理",
+      "Google Driveサポート",
+      "完全オンライン",
+      "複数の出力フォーマット"
+    ],
+    "feature_bodies": [
+      "このノートブックは、OpenAIが 2023 年 1 月 17 日にオープンソース化した [openai/whisper](https://github.com/openai/whisper)と、Google Colabの無料の GPUランタイムを使用します。",
+      "大きなオーディオ ファイルやビデオ ファイルを処理できます。",
+      "複数のオーディオ ファイルとビデオ ファイルを 1 回の実行で処理できます。",
+      "ファイルを直接アップロードすることも、Google Driveに保存されているオーディオ/ビデオ ファイルを処理することもできます。",
+      "ダウンロードと処理は Google Colabで実行されます。ローカルのコンピューティング リソースは使用されません。",
+      "ノートブックは、元の JSONトランスクリプトと、派生した TXT、CSV、Markdown、Excel、および SRT字幕ファイルを出力します。"
+    ]
+  },
+  "translation_source": "google:ja; machine-translated from en",
+  "notebook": {
+    "title": "Whisperコラボノート",
+    "description": "このノートブックは、Whisperを使用して音声ファイルまたはビデオ ファイルを転写します。",
+    "features_heading": "特長",
+    "features": [
+      "**無料で使用できます:** このノートブックは、OpenAIが 2023 年 1 月 17 日にオープンソース化した [openai/whisper](https://github.com/openai/whisper)と、Google Colabの無料の GPUランタイムを使用します。",
+      "**ノートブック側のファイル サイズの固定制限なし:** 大きなオーディオ ファイルやビデオ ファイルを処理できます。",
+      "**バッチ処理:** 複数のオーディオ ファイルとビデオ ファイルを 1 回の実行で処理できます。",
+      "**Google Driveサポート:** ファイルを直接アップロードすることも、Google Driveに保存されているオーディオ/ビデオ ファイルを処理することもできます。",
+      "**完全オンライン:** ダウンロードと処理は Google Colabで実行されます。ローカルのコンピューティング リソースは使用されません。",
+      "**複数の出力フォーマット:** ノートブックは、元の JSONトランスクリプトと、派生した TXT、CSV、Markdown、Excel、および SRT字幕ファイルを出力します。"
+    ],
+    "how_to_use_heading": "使用方法",
+    "how_to_use_steps": [
+      "**1では。設定**、`INPUT_MODE`を選択し、必要に応じてモデルまたは出力オプションを調整します。",
+      "**[ランタイム] -> [すべて実行]** を選択します。",
+      "`INPUT_MODE = \"upload\"`の場合は**2まで待ちます。ファイルの選択 / Google Driveマウント** が開始され、そのセルの出力領域で **ファイルの選択** をクリックします。",
+      "`AUTO_DOWNLOAD_ZIP`が有効になっている場合は、処理が完了すると出力ファイルが圧縮されてダウンロードされます。"
+    ],
+    "notes_heading": "注意事項",
+    "notes": [
+      "Google Colab無料 GPU空き状況には限りがあります。利用可能な GPUがなく、`REQUIRE_CUDA = True`の場合、ノートブックは転記する前に停止します。",
+      "処理には時間がかかります。 large-v3-turboモデルを使用する場合の目安として、60 分の音声またはビデオ ファイルの文字起こしには約 5 ～ 10 分かかることがあります。ファイルを直接アップロードする場合は、アップロード時間も必要です。",
+      "処理中はこのノートブックを開いたままにしてください。文字起こし中にノートブックを閉じると、処理が停止します。"
+    ],
+    "feature_labels": [
+      "無料で使用できます",
+      "ノートブック側のファイル サイズの固定制限なし",
+      "バッチ処理",
+      "Google Driveサポート",
+      "完全オンライン",
+      "複数の出力フォーマット"
+    ],
+    "feature_bodies": [
+      "このノートブックは、OpenAIが 2023 年 1 月 17 日にオープンソース化した [openai/whisper](https://github.com/openai/whisper)と、Google Colabの無料の GPUランタイムを使用します。",
+      "大きなオーディオ ファイルやビデオ ファイルを処理できます。",
+      "複数のオーディオ ファイルとビデオ ファイルを 1 回の実行で処理できます。",
+      "ファイルを直接アップロードすることも、Google Driveに保存されているオーディオ/ビデオ ファイルを処理することもできます。",
+      "ダウンロードと処理は Google Colabで実行されます。ローカルのコンピューティング リソースは使用されません。",
+      "ノートブックは、元の JSONトランスクリプトと、派生した TXT、CSV、Markdown、Excel、および SRT字幕ファイルを出力します。"
+    ]
+  }
+}

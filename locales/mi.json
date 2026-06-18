@@ -1,0 +1,144 @@
+{
+  "language": "mi",
+  "display_name": "Maori",
+  "native_name": "Maori",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Tautuhinga",
+    "cell1.section_title": "# 1. Tautuhinga",
+    "cell2.title": "# @title 2. Kōwhiringa kōnae / Google DriveMaunga",
+    "cell2.section_title": "# 2. Kōwhiringa kōnae / Google DriveMaunga",
+    "cell3.title": "# @title 3. GPUtirohia me te whakaurunga whakawhirinaki",
+    "cell3.section_title": "# 3. GPUtirohia me te whakaurunga whakawhirinaki",
+    "cell4.title": "# @title 4. Nga mahi kaiawhina",
+    "cell4.section_title": "# 4. Nga mahi kaiawhina",
+    "cell5.title": "# @title 5. Utaina Whisperka whakahaere tuhinga",
+    "cell5.section_title": "# 5. Utaina Whisperka whakahaere tuhinga",
+    "cell6.title": "# @title 6. Zip me te tango i nga putanga",
+    "cell6.section_title": "# 6. Zip me te tango i nga putanga",
+    "settings.input_heading": "# @markdown ## Whakauru",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Whakamahia `upload`mo nga konae a rohe, `google_drive`ranei mo nga konae kua rongoa ki Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivewhakauru",
+    "settings.drive_help": "# @markdown Ka whakamahia noa enei tautuhinga ina `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: I te nuinga o te wa kia mau tenei huinga ki `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: He kōnae, he ara kōpaki ranei kei raro i MyDrive. Waiho kia watea hei whakamahi i te kōpaki MyDrive taumata-runga.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Mēnā he kōpaki te ara tāuru Drive, rapua hoki ngā kōpakiroto.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: whiriwhiringa whiriwhiringa ingoa kōnae whiriwhiringa.",
+    "settings.model_heading": "# @markdown ## Whispertauira",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facetauira ID. He tere ake te Turbo; Ka taea e large-v3te noho pumau mo etahi konae.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Whakamahia `auto`ka kore e mohiotia, ka kowhiria ranei he reo puna e mohiotia ana.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Whakamahia Whisperaratau whakamaori hei whakaputa i te reo Ingarihi.",
+    "settings.output_heading": "# @markdown ## Putanga",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Tiakina nga putanga i raro i te Google Driveka whakamahia te whakaurunga Puku.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Waihanga me te tango i tetahi ZIPuranga kei te mutunga.",
+    "settings.formats_help": "# @markdown - Ko nga whakatakotoranga putanga e whakahaeretia ana e nga booleans i raro nei.",
+    "settings.advanced_heading": "# ## Arā atu",
+    "settings.advanced_help": "# Ko enei taunoa he pai mo Colab. Ko nga kaiwhakamahi noa e kore e hiahia ki te whakatika i a raatau.",
+    "settings.loaded_message": "Kua utaina nga tautuhinga.",
+    "messages.choose_files": "Patohia te 'Kōwhiri Kōnae' ka tuku ake i tētahi, neke atu rānei ngā kōnae oro/ataata.",
+    "messages.selected_files": "Ko nga konae kua tohua:",
+    "messages.dependencies_done": "Kua oti te whakaurunga whakawhirinaki.",
+    "messages.model_loaded": "Whispertauira utaina.",
+    "messages.transcription_complete": "Kua oti te tuhi.",
+    "errors.no_supported_files": "Karekau he konae oro/ataata tautoko i tohua.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Whisperukatuhituhi Colab\n\nKa tuhia e tenei pukatuhi nga konae ororongo, ataata ranei ki te Whisper.\n\n## Ngā āhuatanga\n\n- **Free ki te whakamahi:** Ka whakamahia e tenei pukatuhi [openai/whisper](https://github.com/openai/whisper), he OpenAIi tuwhera mai i te Hanuere 17, 2023, me te Google Colabte wa whakahaere GPUkore utu.\n- **Karekau he tepe rahi o te konae pukatuhi-taha:** Ka taea te tukatuka i nga konae ororongo me te ataata.\n- **Tukatuka puranga:** He maha nga konae ororongo me nga konae ataata ka taea te whakahaere i te oma kotahi.\n- **Google Drivetautoko:** Ka taea te tuku ake i nga konae, ka taea ranei te tukatuka i nga konae ororongo/ataata kei roto i te Google Drive.\n- **Tino ipurangi:** Ka mahia nga tangohanga me te tukatuka i runga Google Colab. Karekau he rauemi rorohiko a-rohe e whakamahia ana.\n- **Nga momo whakaputanga maha:** Ka whakaputahia e te pukatuhi te tuhinga taketake JSONme nga konae taitararoto TXT, CSV, Markdown, Excel, me SRT.\n\n## Me pehea te whakamahi\n\n1. Kei **1. Tautuhinga**, whiriwhiria `INPUT_MODE`ka whakatika i te tauira me nga whiringa putanga mena ka hiahiatia.\n2. Tīpakohia **Waima -> Whakahaerehia katoa**.\n3. Mena `INPUT_MODE = \"upload\"`, tatari kia **2. Ka timata te kowhiringa konae / Google Drivemaunga**, katahi ka paato i te **Kōwhiri Kōnae** kei te waahi whakaputa o taua pūtau.\n4. Ina oti te tukatuka, ka kutuhia nga konae whakaputa ka tangohia mena ka taea te `AUTO_DOWNLOAD_ZIP`.\n\n## Notes\n\n- Google Colabkore utu GPUhe iti te waatea. Mena karekau GPUkei te waatea me `REQUIRE_CUDA = True`, ka mutu te pukatuhi i mua i te tuhi.\n- Ka roa te tukatuka. Hei arataki taratara ina whakamahi ana i te tauira large-v3-turbo, ka roa pea te 5-10 meneti te roa o te ororongo, ororongo ranei mo te 60 meneti hei tuhi. Mena ka tuku tika koe i nga konae, ka hiahiatia ano te waa tuku.\n- Kia tuwhera tonu tenei pukatuhi i te wa e tukatuka ana. Mena ka kati koe i te pukatuhi i te wa e tuhi ana, ka mutu te mahi.",
+    "settings.source_language_default": "maori"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "reo maha Google Colabukatuhi mo Whispertuhi.",
+    "features": [
+      "**Free ki te whakamahi:** Ka whakamahia e tenei pukatuhi [openai/whisper](https://github.com/openai/whisper), he OpenAIi tuwhera mai i te Hanuere 17, 2023, me te Google Colabte wa whakahaere GPUkore utu.",
+      "**Karekau he tepe rahi o te konae pukatuhi-taha:** Ka taea te tukatuka i nga konae ororongo me te ataata.",
+      "**Tukatuka puranga:** He maha nga konae ororongo me nga konae ataata ka taea te whakahaere i te oma kotahi.",
+      "**Google Drivetautoko:** Ka taea te tuku ake i nga konae, ka taea ranei te tukatuka i nga konae ororongo/ataata kei roto i te Google Drive.",
+      "**Tino ipurangi:** Ka mahia nga tangohanga me te tukatuka i runga Google Colab. Karekau he rauemi rorohiko a-rohe e whakamahia ana.",
+      "**Nga momo whakaputanga maha:** Ka whakaputahia e te pukatuhi te tuhinga taketake JSONme nga konae taitararoto TXT, CSV, Markdown, Excel, me SRT."
+    ],
+    "template_note": "Ko te pakiaka READMEko te urunga reo Ingarihi, a kei roto ko docs/READMEnga konae README. Ko te pukatuhi tauira ko te pukatuhi puna, kei roto nga kaipupuri waahi penei i te `{{cell1.title}}`. Ko nga konae rohe e whakarato ana i te reo motuhake READMEme te kape e anga ana ki a Colab. Ko nga pukatuhi kua hangaia kia pumau tonu nga hononga Colab.",
+    "checks_note": "Ka hanga ano e te rerengamahi CI READMEnga konae me nga pukamahi mai i te tauira me nga konae rohe, ka taki pukatuhi JSON, ka tirohia nga putanga kore, ka tirohia te wetereo Python i roto i nga pūtau waehere, ka tirotirohia nga mea ngaro ohorere kitea, ka rahua ina kore nga konae i mahia.",
+    "ci_items": [
+      "READMEwhakatipuranga mai i nga konae rohe",
+      "whakaputa pukatuhi mai i te tauira me nga konae rohe",
+      "pukatuhi JSONwhaimana",
+      "nga putanga mahi kau",
+      "Kuputuhi Python i roto i nga pūtau waehere",
+      "kitea nga mea ngaro ohorere",
+      "i mahia READMEme nga konae pukatuhi e rite ana ki nga puna"
+    ],
+    "ci_limit": "Ko te huarahi tuhi katoa e hiahia ana ki nga API motuhake a Colab, nga tauira tangohanga, GPUte waatea, me nga konae pāpāho e whakaratohia ana e te kaiwhakamahi. Me whai i taua ara hei whakamatautau mo te auahi a Colab i muri i te paahitanga o nga arowhai konae.",
+    "license_note": "Ko te kaihanga README, te tauira pukatuhi, nga konae rohe, nga pukatuhi kua hangaia, me nga tuhinga tiaki ka tukuna i raro i te Raihana MIT. WhisperKo nga tauira me nga whakawhirinaki-tuatoru e whakahaerehia ana e o raatau raihana.",
+    "feature_labels": [
+      "Free ki te whakamahi",
+      "Karekau he tepe rahi o te konae pukatuhi-taha",
+      "Tukatuka puranga",
+      "Google Drivetautoko",
+      "Tino ipurangi",
+      "Nga momo whakaputanga maha"
+    ],
+    "feature_bodies": [
+      "Ka whakamahia e tenei pukatuhi [openai/whisper](https://github.com/openai/whisper), he OpenAIi tuwhera mai i te Hanuere 17, 2023, me te Google Colabte wa whakahaere GPUkore utu.",
+      "Ka taea te tukatuka i nga konae ororongo me te ataata.",
+      "He maha nga konae ororongo me nga konae ataata ka taea te whakahaere i te oma kotahi.",
+      "Ka taea te tuku ake i nga konae, ka taea ranei te tukatuka i nga konae ororongo/ataata kei roto i te Google Drive.",
+      "Ka mahia nga tangohanga me te tukatuka i runga Google Colab. Karekau he rauemi rorohiko a-rohe e whakamahia ana.",
+      "Ka whakaputahia e te pukatuhi te tuhinga taketake JSONme nga konae taitararoto TXT, CSV, Markdown, Excel, me SRT."
+    ]
+  },
+  "labels": {
+    "features": "Ngā āhuatanga",
+    "languages": "Nga reo",
+    "language": "Reo",
+    "readme": "README",
+    "notebook": "Pukatuhituhi",
+    "repository_layout": "Tahora Pupuri",
+    "build": "Hanga",
+    "checks": "Takitaki",
+    "what_ci_can_test": "He aha te CI Ka taea te whakamatautau",
+    "license": "Raihana"
+  },
+  "translation_source": "google:mi; machine-translated from en",
+  "notebook": {
+    "title": "Whisperukatuhituhi Colab",
+    "description": "Ka tuhia e tenei pukatuhi nga konae ororongo, ataata ranei ki te Whisper.",
+    "features_heading": "Ngā āhuatanga",
+    "features": [
+      "**Free ki te whakamahi:** Ka whakamahia e tenei pukatuhi [openai/whisper](https://github.com/openai/whisper), he OpenAIi tuwhera mai i te Hanuere 17, 2023, me te Google Colabte wa whakahaere GPUkore utu.",
+      "**Karekau he tepe rahi o te konae pukatuhi-taha:** Ka taea te tukatuka i nga konae ororongo me te ataata.",
+      "**Tukatuka puranga:** He maha nga konae ororongo me nga konae ataata ka taea te whakahaere i te oma kotahi.",
+      "**Google Drivetautoko:** Ka taea te tuku ake i nga konae, ka taea ranei te tukatuka i nga konae ororongo/ataata kei roto i te Google Drive.",
+      "**Tino ipurangi:** Ka mahia nga tangohanga me te tukatuka i runga Google Colab. Karekau he rauemi rorohiko a-rohe e whakamahia ana.",
+      "**Nga momo whakaputanga maha:** Ka whakaputahia e te pukatuhi te tuhinga taketake JSONme nga konae taitararoto TXT, CSV, Markdown, Excel, me SRT."
+    ],
+    "how_to_use_heading": "Me pehea te whakamahi",
+    "how_to_use_steps": [
+      "Kei **1. Tautuhinga**, whiriwhiria `INPUT_MODE`ka whakatika i te tauira me nga whiringa putanga mena ka hiahiatia.",
+      "Tīpakohia **Waima -> Whakahaerehia katoa**.",
+      "Mena `INPUT_MODE = \"upload\"`, tatari kia **2. Ka timata te kowhiringa konae / Google Drivemaunga**, katahi ka paato i te **Kōwhiri Kōnae** kei te waahi whakaputa o taua pūtau.",
+      "Ina oti te tukatuka, ka kutuhia nga konae whakaputa ka tangohia mena ka taea te `AUTO_DOWNLOAD_ZIP`."
+    ],
+    "notes_heading": "Notes",
+    "notes": [
+      "Google Colabkore utu GPUhe iti te waatea. Mena karekau GPUkei te waatea me `REQUIRE_CUDA = True`, ka mutu te pukatuhi i mua i te tuhi.",
+      "Ka roa te tukatuka. Hei arataki taratara ina whakamahi ana i te tauira large-v3-turbo, ka roa pea te 5-10 meneti te roa o te ororongo, ororongo ranei mo te 60 meneti hei tuhi. Mena ka tuku tika koe i nga konae, ka hiahiatia ano te waa tuku.",
+      "Kia tuwhera tonu tenei pukatuhi i te wa e tukatuka ana. Mena ka kati koe i te pukatuhi i te wa e tuhi ana, ka mutu te mahi."
+    ],
+    "feature_labels": [
+      "Free ki te whakamahi",
+      "Karekau he tepe rahi o te konae pukatuhi-taha",
+      "Tukatuka puranga",
+      "Google Drivetautoko",
+      "Tino ipurangi",
+      "Nga momo whakaputanga maha"
+    ],
+    "feature_bodies": [
+      "Ka whakamahia e tenei pukatuhi [openai/whisper](https://github.com/openai/whisper), he OpenAIi tuwhera mai i te Hanuere 17, 2023, me te Google Colabte wa whakahaere GPUkore utu.",
+      "Ka taea te tukatuka i nga konae ororongo me te ataata.",
+      "He maha nga konae ororongo me nga konae ataata ka taea te whakahaere i te oma kotahi.",
+      "Ka taea te tuku ake i nga konae, ka taea ranei te tukatuka i nga konae ororongo/ataata kei roto i te Google Drive.",
+      "Ka mahia nga tangohanga me te tukatuka i runga Google Colab. Karekau he rauemi rorohiko a-rohe e whakamahia ana.",
+      "Ka whakaputahia e te pukatuhi te tuhinga taketake JSONme nga konae taitararoto TXT, CSV, Markdown, Excel, me SRT."
+    ]
+  }
+}

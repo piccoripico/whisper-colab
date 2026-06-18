@@ -1,0 +1,144 @@
+{
+  "language": "ln",
+  "display_name": "Lingala",
+  "native_name": "Lingala",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Ezali ndenge nini? Ba paramètres",
+    "cell1.section_title": "# 1. Ezali ndenge nini? Ba paramètres",
+    "cell2.title": "# @title 2. Ezali ndenge nini? Boponi ya fisyé / Google Drivemontage",
+    "cell2.section_title": "# 2. Ezali ndenge nini? Boponi ya fisyé / Google Drivemontage",
+    "cell3.title": "# @title 3. Ezali ndenge nini? GPUvérification na installation ya dépendance",
+    "cell3.section_title": "# 3. Ezali ndenge nini? GPUvérification na installation ya dépendance",
+    "cell4.title": "# @title 4. Ezali ndenge nini? Misala ya mosungi",
+    "cell4.section_title": "# 4. Ezali ndenge nini? Misala ya mosungi",
+    "cell5.title": "# @title 5. Ezali ndenge nini? Charger Whispermpe kosala transcription",
+    "cell5.section_title": "# 5. Ezali ndenge nini? Charger Whispermpe kosala transcription",
+    "cell6.title": "# @title 6. Ezali ndenge nini? Zip na ba sorties ya téléchargement",
+    "cell6.section_title": "# 6. Ezali ndenge nini? Zip na ba sorties ya téléchargement",
+    "settings.input_heading": "# @markdown ## Ezali ndenge nini? Bokotisi",
+    "settings.input_mode_help": "# @markdown - Ezali ndenge nini? `INPUT_MODE`: Salelá `upload`mpo na ba fisyé ya esika to `google_drive`mpo na ba fisyé oyo esi ebombami na Google Drive.",
+    "settings.drive_heading": "# @markdown ### Ezali ndenge nini? Google Drivebokotisi",
+    "settings.drive_help": "# @markdown Ezali ndenge nini? Ba paramètres oyo esalelamaka kaka tango `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - Ezali ndenge nini? `GOOGLE_DRIVE_ROOT`: Mbala mingi bomba oyo etiamaki na `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - Ezali ndenge nini? `GOOGLE_DRIVE_SUBPATH`: Nzela ya fisyé to ya dossier na se ya MyDrive. Tika esika ya pamba mpo na kosalela dossier MyDrive ya niveau ya likolo.",
+    "settings.recursive_help": "# @markdown - Ezali ndenge nini? `RECURSIVE`: Soki nzela ya entrée ya Drive ezali dossier, luka pe ba sous-dossiers.",
+    "settings.filename_contains_help": "# @markdown - Ezali ndenge nini? `FILENAME_CONTAINS`: Filtre ya sous-chaîne ya kombo ya fisyé ya bolingi.",
+    "settings.model_heading": "# @markdown ## Ezali ndenge nini? Whispermodèle",
+    "settings.model_help": "# @markdown - Ezali ndenge nini? `MODEL_ID`: Hugging FaceID ya modèle. Turbo ezali mbangu koleka; large-v3ekoki kozala stable mingi mpo na ba fichiers mosusu.",
+    "settings.language_help": "# @markdown - Ezali ndenge nini? `SOURCE_LANGUAGE`: Salelá `auto`ntango eyebani te, to pona monoko ya source eyebani.",
+    "settings.translate_help": "# @markdown - Ezali ndenge nini? `TRANSLATE_TO_ENGLISH`: Salelá mode ya kobongola Whispermpo na kobimisa Lingelesi.",
+    "settings.output_heading": "# @markdown ## Ezali ndenge nini? Bobimisi",
+    "settings.output_help": "# @markdown - Ezali ndenge nini? `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Bomba ba sorties na se ya Google Drivetango entrée ya Drive esalemi.",
+    "settings.auto_download_help": "# @markdown - Ezali ndenge nini? `AUTO_DOWNLOAD_ZIP`: Bosala pe bo télécharger archive moko ZIPna suka.",
+    "settings.formats_help": "# @markdown - Ezali ndenge nini? Ba formats ya sortie ezali contrôlé na ba booleans oyo ezali awa na se.",
+    "settings.advanced_heading": "# ## Ezali ndenge nini? Avancé",
+    "settings.advanced_help": "# Ezali ndenge nini? Ba défauts oyo eza conservateur pona Colab. Mbala mingi, basaleli mpamba bazalaka na mposa te ya kobongisa yango.",
+    "settings.loaded_message": "Ezali ndenge nini? Ba paramètres ezo charger.",
+    "messages.choose_files": "Ezali ndenge nini? Finá na ‘Poná bafichiers’ mpe tyá fichier audio/vidéo moko to mingi.",
+    "messages.selected_files": "Ezali ndenge nini? Ba fichiers oyo oponi:",
+    "messages.dependencies_done": "Ezali ndenge nini? Installation ya dépendance esili.",
+    "messages.model_loaded": "Ezali ndenge nini? Whispermodèle chargé.",
+    "messages.transcription_complete": "Ezali ndenge nini? Transcription esili.",
+    "errors.no_supported_files": "Ezali ndenge nini? Ba fichiers audio/vidéo oyo esungami eponami te.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Ezali ndenge nini? WhisperKaye ya Colab\n\nEzali ndenge nini? Kaye oyo e transcrire ba fichiers audio to vidéo na Whisper.\n\n## Ezali ndenge nini? Makambo oyo ezali na kati\n\n- **Ezali ndenge nini? Ofele mpo na kosalela:** Ezali ndenge nini? Kaye oyo esaleli [openai/whisper](https://github.com/openai/whisper), oyo OpenAIefungolaki na mokolo ya 17 ya sanza ya yambo 2023, elongo na tango ya kotambola ya ofele ya GPUya Google Colab.\n- **Ezali ndenge nini? Limite ya taille ya fichier côté ya kaye oyo ebongwani te:** Ezali ndenge nini? Ba fichiers audio mpe vidéo ya minene ekoki ko traité.\n- **Ezali ndenge nini? Traitement ya batch:** Ezali ndenge nini? Ba fichiers audio mpe vidéo ebele ekoki kosalama na mbala moko.\n- **Ezali ndenge nini? Google Drivelisungi:** Ezali ndenge nini? Ba fichiers ekoki ko uploader directement, to ba fichiers audio/vidéo oyo ebombami na Google Driveekoki ko traité.\n- **Ezali ndenge nini? Na mobimba na yango na nzela ya Internet:** Ezali ndenge nini? Ba téléchargements na traitement esalemaka na Google Colab. Ba ressources informatiques locales esalelamaka te.\n- **Ezali ndenge nini? Ba formats ya sortie ebele:** Ezali ndenge nini? Kaye yango ebimisi transcript ya ebandeli JSONmpe oyo euti na ba fichiers ya sous-titre TXT, CSV, Markdown, Excel, mpe SRT.\n\n## Ezali ndenge nini? Ndenge ya kosalela\n\n1. Ezali ndenge nini? Na **1. Paramètres**, pona `INPUT_MODE`mpe bongisa ba options ya modèle to ya sortie soki esengeli.\n2. Ezali ndenge nini? Pona **Ntango ya kotambola -> Kosala nyonso**.\n3. Ezali ndenge nini? Soki `INPUT_MODE = \"upload\"`, zela tii **2. Pona fichier / Google Drivemount** ebandi, sima finá **Pona ba fichiers** na esika ya sortie ya cellule wana.\n4. Ezali ndenge nini? Tango traitement esili, ba fichiers ya sortie ezo zipper pe ezo télécharger soki `AUTO_DOWNLOAD_ZIP`e activé.\n\n## Ezali ndenge nini? Maloba ya ntina\n\n- Ezali ndenge nini? Google Colabofele GPUdisponibilité ezali moke. Soki GPUezali te mpe `REQUIRE_CUDA = True`, kaye etelemaka liboso ya transcription.\n- Ezali ndenge nini? Kosala yango esɛngaka ntango. Lokola motambwisi ya moke ntango ozali kosalela modèle large-v3-turbo, fichier audio to video ya miniti 60 ekoki kozwa pene na miniti 5-10 mpo na kokoma. Soki o uploader ba fichiers directement, temps ya upload esengeli pe.\n- Ezali ndenge nini? Bomba kaye oyo polele tango ozali kosala. Soki okangi kaye na tango ya transcription, traitement etelemi.",
+    "settings.source_language_default": "lingala"
+  },
+  "labels": {
+    "features": "Ezali ndenge nini? Makambo oyo ezali na kati",
+    "languages": "Ezali ndenge nini? Minɔkɔ",
+    "language": "Ezali ndenge nini? Monoko",
+    "readme": "Ezali ndenge nini? README",
+    "notebook": "Ezali ndenge nini? Kaye",
+    "repository_layout": "Ezali ndenge nini? Bobongisi ya ebombelo",
+    "build": "Ezali ndenge nini? Tongela",
+    "checks": "Ezali ndenge nini? Ba chèques",
+    "what_ci_can_test": "Ezali ndenge nini? Oyo CI Ekoki Komeka",
+    "license": "Ezali ndenge nini? Licence ya ndingisa"
+  },
+  "readme": {
+    "title": "Ezali ndenge nini? WhisperColab ya kosala",
+    "subtitle": "Ezali ndenge nini? Ba cahiers ya minoko mingi Google Colabmpo na transcription ya Whisper.",
+    "features": [
+      "**Ezali ndenge nini? Ofele mpo na kosalela:** Ezali ndenge nini? Kaye oyo esaleli [openai/whisper](https://github.com/openai/whisper), oyo OpenAIefungolaki na mokolo ya 17 ya sanza ya yambo 2023, elongo na tango ya kotambola ya ofele ya GPUya Google Colab.",
+      "**Ezali ndenge nini? Limite ya taille ya fichier côté ya kaye oyo ebongwani te:** Ezali ndenge nini? Ba fichiers audio mpe vidéo ya minene ekoki ko traité.",
+      "**Ezali ndenge nini? Traitement ya batch:** Ezali ndenge nini? Ba fichiers audio mpe vidéo ebele ekoki kosalama na mbala moko.",
+      "**Ezali ndenge nini? Google Drivelisungi:** Ezali ndenge nini? Ba fichiers ekoki ko uploader directement, to ba fichiers audio/vidéo oyo ebombami na Google Driveekoki ko traité.",
+      "**Ezali ndenge nini? Na mobimba na yango na nzela ya Internet:** Ezali ndenge nini? Ba téléchargements na traitement esalemaka na Google Colab. Ba ressources informatiques locales esalelamaka te.",
+      "**Ezali ndenge nini? Ba formats ya sortie ebele:** Ezali ndenge nini? Kaye yango ebimisi transcript ya ebandeli JSONmpe oyo euti na ba fichiers ya sous-titre TXT, CSV, Markdown, Excel, mpe SRT."
+    ],
+    "template_note": "Ezali ndenge nini? Mosuni READMEezali esika ya bokoti ya Lingelesi, mpe docs/READMEezali na ba fichiers localisés READMEoyo esalemi. Kaye ya modèle ezali kaye ya source mpe ezali na ba placeholders lokola `{{cell1.title}}`. Ba fisyé ya esika epesaka READMEoyo etali monoko mpe kopi oyo etali Colab. Ba cahiers générés e committé donc ba liens ya Colab ezala stable.",
+    "checks_note": "Ezali ndenge nini? Flux ya mosala ya CI etongaka lisusu ba fichiers READMEmpe ba cahiers uta na ba fichiers ya modèle mpe ya locale, e vérifier cahier JSON, e vérifier ba sorties ya pamba, e vérifier syntaxe ya Python na ba cellules ya code, e scanner ba secrets ya accident ya polele, mpe elongi te tango ba fichiers oyo esalemi esalemi te.",
+    "ci_items": [
+      "Ezali ndenge nini? READMEgénération uta na ba fichiers ya locale",
+      "Ezali ndenge nini? génération ya cahier à partir ya ba fichiers ya modèle na locale",
+      "Ezali ndenge nini? kaye JSONbosolo",
+      "Ezali ndenge nini? ba sorties ya exécution ya pamba",
+      "Ezali ndenge nini? Syntaxe ya python na ba cellules ya code",
+      "Ezali ndenge nini? basekele ya polele oyo esalemaki na mbalakaka",
+      "Ezali ndenge nini? committed ebimisaki READMEmpe ba fichiers ya kaye oyo ekokani na ba sources"
+    ],
+    "ci_limit": "Ezali ndenge nini? Nzela ya transcription mobimba esengaka ba API spécifiques ya Colab, ba téléchargements ya modèle, disponibilité ya GPU, mpe ba fichiers ya media oyo mosaleli apesi. Traite nzela wana lokola test ya milinga ya Colab manuel sima ya ba vérifications ya fichier generated eleki.",
+    "license_note": "Ezali ndenge nini? Générateur ya READMEya ebombelo oyo, modèle ya cahier, ba fichiers ya locale, ba cahiers oyo esalemi, mpe ba scripts ya entretien ebimi na se ya Licence MIT. ba modèles Whisperna ba dépendances ya troisième partie etambwisami na ba licences na bango respectives.",
+    "feature_labels": [
+      "Ezali ndenge nini? Ofele mpo na kosalela",
+      "Ezali ndenge nini? Limite ya taille ya fichier côté ya kaye oyo ebongwani te",
+      "Ezali ndenge nini? Traitement ya batch",
+      "Ezali ndenge nini? Google Drivelisungi",
+      "Ezali ndenge nini? Na mobimba na yango na nzela ya Internet",
+      "Ezali ndenge nini? Ba formats ya sortie ebele"
+    ],
+    "feature_bodies": [
+      "Ezali ndenge nini? Kaye oyo esaleli [openai/whisper](https://github.com/openai/whisper), oyo OpenAIefungolaki na mokolo ya 17 ya sanza ya yambo 2023, elongo na tango ya kotambola ya ofele ya GPUya Google Colab.",
+      "Ezali ndenge nini? Ba fichiers audio mpe vidéo ya minene ekoki ko traité.",
+      "Ezali ndenge nini? Ba fichiers audio mpe vidéo ebele ekoki kosalama na mbala moko.",
+      "Ezali ndenge nini? Ba fichiers ekoki ko uploader directement, to ba fichiers audio/vidéo oyo ebombami na Google Driveekoki ko traité.",
+      "Ezali ndenge nini? Ba téléchargements na traitement esalemaka na Google Colab. Ba ressources informatiques locales esalelamaka te.",
+      "Ezali ndenge nini? Kaye yango ebimisi transcript ya ebandeli JSONmpe oyo euti na ba fichiers ya sous-titre TXT, CSV, Markdown, Excel, mpe SRT."
+    ]
+  },
+  "translation_source": "google:ln; machine-translated from en",
+  "notebook": {
+    "title": "Ezali ndenge nini? WhisperKaye ya Colab",
+    "description": "Ezali ndenge nini? Kaye oyo e transcrire ba fichiers audio to vidéo na Whisper.",
+    "features_heading": "Ezali ndenge nini? Makambo oyo ezali na kati",
+    "features": [
+      "**Ezali ndenge nini? Ofele mpo na kosalela:** Ezali ndenge nini? Kaye oyo esaleli [openai/whisper](https://github.com/openai/whisper), oyo OpenAIefungolaki na mokolo ya 17 ya sanza ya yambo 2023, elongo na tango ya kotambola ya ofele ya GPUya Google Colab.",
+      "**Ezali ndenge nini? Limite ya taille ya fichier côté ya kaye oyo ebongwani te:** Ezali ndenge nini? Ba fichiers audio mpe vidéo ya minene ekoki ko traité.",
+      "**Ezali ndenge nini? Traitement ya batch:** Ezali ndenge nini? Ba fichiers audio mpe vidéo ebele ekoki kosalama na mbala moko.",
+      "**Ezali ndenge nini? Google Drivelisungi:** Ezali ndenge nini? Ba fichiers ekoki ko uploader directement, to ba fichiers audio/vidéo oyo ebombami na Google Driveekoki ko traité.",
+      "**Ezali ndenge nini? Na mobimba na yango na nzela ya Internet:** Ezali ndenge nini? Ba téléchargements na traitement esalemaka na Google Colab. Ba ressources informatiques locales esalelamaka te.",
+      "**Ezali ndenge nini? Ba formats ya sortie ebele:** Ezali ndenge nini? Kaye yango ebimisi transcript ya ebandeli JSONmpe oyo euti na ba fichiers ya sous-titre TXT, CSV, Markdown, Excel, mpe SRT."
+    ],
+    "how_to_use_heading": "Ezali ndenge nini? Ndenge ya kosalela",
+    "how_to_use_steps": [
+      "Ezali ndenge nini? Na **1. Paramètres**, pona `INPUT_MODE`mpe bongisa ba options ya modèle to ya sortie soki esengeli.",
+      "Ezali ndenge nini? Pona **Ntango ya kotambola -> Kosala nyonso**.",
+      "Ezali ndenge nini? Soki `INPUT_MODE = \"upload\"`, zela tii **2. Pona fichier / Google Drivemount** ebandi, sima finá **Pona ba fichiers** na esika ya sortie ya cellule wana.",
+      "Ezali ndenge nini? Tango traitement esili, ba fichiers ya sortie ezo zipper pe ezo télécharger soki `AUTO_DOWNLOAD_ZIP`e activé."
+    ],
+    "notes_heading": "Ezali ndenge nini? Maloba ya ntina",
+    "notes": [
+      "Ezali ndenge nini? Google Colabofele GPUdisponibilité ezali moke. Soki GPUezali te mpe `REQUIRE_CUDA = True`, kaye etelemaka liboso ya transcription.",
+      "Ezali ndenge nini? Kosala yango esɛngaka ntango. Lokola motambwisi ya moke ntango ozali kosalela modèle large-v3-turbo, fichier audio to video ya miniti 60 ekoki kozwa pene na miniti 5-10 mpo na kokoma. Soki o uploader ba fichiers directement, temps ya upload esengeli pe.",
+      "Ezali ndenge nini? Bomba kaye oyo polele tango ozali kosala. Soki okangi kaye na tango ya transcription, traitement etelemi."
+    ],
+    "feature_labels": [
+      "Ezali ndenge nini? Ofele mpo na kosalela",
+      "Ezali ndenge nini? Limite ya taille ya fichier côté ya kaye oyo ebongwani te",
+      "Ezali ndenge nini? Traitement ya batch",
+      "Ezali ndenge nini? Google Drivelisungi",
+      "Ezali ndenge nini? Na mobimba na yango na nzela ya Internet",
+      "Ezali ndenge nini? Ba formats ya sortie ebele"
+    ],
+    "feature_bodies": [
+      "Ezali ndenge nini? Kaye oyo esaleli [openai/whisper](https://github.com/openai/whisper), oyo OpenAIefungolaki na mokolo ya 17 ya sanza ya yambo 2023, elongo na tango ya kotambola ya ofele ya GPUya Google Colab.",
+      "Ezali ndenge nini? Ba fichiers audio mpe vidéo ya minene ekoki ko traité.",
+      "Ezali ndenge nini? Ba fichiers audio mpe vidéo ebele ekoki kosalama na mbala moko.",
+      "Ezali ndenge nini? Ba fichiers ekoki ko uploader directement, to ba fichiers audio/vidéo oyo ebombami na Google Driveekoki ko traité.",
+      "Ezali ndenge nini? Ba téléchargements na traitement esalemaka na Google Colab. Ba ressources informatiques locales esalelamaka te.",
+      "Ezali ndenge nini? Kaye yango ebimisi transcript ya ebandeli JSONmpe oyo euti na ba fichiers ya sous-titre TXT, CSV, Markdown, Excel, mpe SRT."
+    ]
+  }
+}

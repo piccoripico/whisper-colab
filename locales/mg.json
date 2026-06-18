@@ -1,0 +1,144 @@
+{
+  "language": "mg",
+  "display_name": "Malagasy",
+  "native_name": "Malagasy",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Settings",
+    "cell1.section_title": "# 1. Settings",
+    "cell2.title": "# @title 2. Fifidianana rakitra / Google Drivemount",
+    "cell2.section_title": "# 2. Fifidianana rakitra / Google Drivemount",
+    "cell3.title": "# @title 3. GPUfanamarinana sy fametrahana fiankinan-doha",
+    "cell3.section_title": "# 3. GPUfanamarinana sy fametrahana fiankinan-doha",
+    "cell4.title": "# @title 4. Asa mpanampy",
+    "cell4.section_title": "# 4. Asa mpanampy",
+    "cell5.title": "# @title 5. Ampidiro Whisperary asio transcription",
+    "cell5.section_title": "# 5. Ampidiro Whisperary asio transcription",
+    "cell6.title": "# @title 6. Zip sy fampidinana ny vokatra",
+    "cell6.section_title": "# 6. Zip sy fampidinana ny vokatra",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Ampiasao `upload`ny rakitra eo an-toerana na `google_drive`ny rakitra efa voatahiry ao Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivefampidirana",
+    "settings.drive_help": "# @markdown Ireo fanovana ireo dia ampiasaina rehefa `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Tazony amin'ny `/content/drive/MyDrive`matetika ity andiany ity.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Lalana rakitra na lahatahiry eo ambanin'ny MyDrive. Avelao ho banga raha hampiasa ny lahatahiry MyDrive ambony indrindra.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Raha laha-tahiry ny lalan'ny fampidiran-drivotra dia tadiavo koa ny zana-taratasy.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: sivana zana-tsipìka anaram-pikambana azo atao.",
+    "settings.model_heading": "# @markdown ## Whispermodely",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID modely. Turbo dia haingana kokoa; large-v3dia mety ho stable kokoa ho an'ny rakitra sasany.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Ampiasao `auto`rehefa tsy fantatra, na mifidiana fiteny loharano fantatra.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Ampiasao Whisperfomba fandikana mba hamoahana teny anglisy.",
+    "settings.output_heading": "# @markdown ## Output",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Tehirizo ny vokatra eo ambanin'ny Google Driverehefa ampiasaina ny fampidirana Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Mamorona ary misintona iray ZIParisiva any amin'ny farany.",
+    "settings.formats_help": "# @markdown - Ny endrika famoahana dia fehezin'ny booleans etsy ambany.",
+    "settings.advanced_heading": "# ## Advanced",
+    "settings.advanced_help": "# Ireo default ireo dia mpandala ny nentin-drazana ho an'ny Colab. Matetika ny mpampiasa tsotra dia tsy mila manova azy ireo.",
+    "settings.loaded_message": "Nopetahana ny fika.",
+    "messages.choose_files": "Kitiho ny 'Choose Files' ary ampidiro rakitra audio/video iray na maromaro.",
+    "messages.selected_files": "rakitra voafantina:",
+    "messages.dependencies_done": "Vita ny fametrahana miankina.",
+    "messages.model_loaded": "Whispermaodely feno.",
+    "messages.transcription_complete": "Vita ny fandikana.",
+    "errors.no_supported_files": "Tsy misy rakitra audio/video voafantina.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nIty kahie ity dia mandika rakitra audio na video miaraka amin'ny Whisper.\n\n## Features\n\n- **Malalaka ampiasaina:** Ity kahie ity dia mampiasa [openai/whisper](https://github.com/openai/whisper), izay OpenAImisokatra amin'ny 17 janoary 2023, miaraka amin'ny Google Colabny GPUfampandehanana maimaim-poana.\n- **Tsy misy fetran'ny haben'ny rakitra amin'ny lafiny kahie:** Azo karakaraina ny rakitra audio sy video lehibe.\n- **Fanodinana batch:** Ny raki-peo sy horonan-tsarimihetsika marobe dia azo karakaraina amin'ny hazakazaka iray.\n- **Google Drivefanohanana:** Azo alaina mivantana ny rakitra, na azo ovaina ny rakitra audio/video voatahiry ao Google Drive.\n- **An-tserasera tanteraka:** Ny fampidinana sy fanodinana dia atao Google Colab. Tsy misy loharanon-karena informatika eo an-toerana ampiasaina.\n- **endrika Output maro:** Ny kahie dia mamoaka ny rakitsoratra JSONtany am-boalohany ary nalaina TXT, CSV, Markdown, Excel, ary SRTrakitra dikanteny.\n\n## Ahoana ny fampiasana\n\n1. Ao amin'ny **1. Settings**, safidio ny `INPUT_MODE`ary amboary ny modely na ny safidy mivoaka raha ilaina.\n2. Mifidiana **Rtime -> Run all**.\n3. Raha `INPUT_MODE = \"upload\"`dia andraso hatramin'ny **2. Manomboka ny fisafidianana fisie / Google Drivemount**, avy eo tsindrio **Choose Files** ao amin'ny faritra avoakan'ny sela.\n4. Rehefa vita ny fanodinana dia apetaka sy alaina ny rakitra vokarina raha toa ka alefa ny `AUTO_DOWNLOAD_ZIP`.\n\n## Notes\n\n- Google Colabmaimaim-poana GPUny fisiany dia voafetra ihany. Raha tsy misy GPUary `REQUIRE_CUDA = True`dia mijanona alohan'ny fanoratana ny kahie.\n- Mitaky fotoana ny fanodinana. Amin'ny maha mpitari-dalana henjana rehefa mampiasa ny maodely large-v3-turbo, dia mety haharitra 5-10 minitra eo ho eo ny rakitra audio na video 60 minitra vao handika azy. Raha mampakatra rakitra mivantana ianao dia ilaina ihany koa ny fotoana fandefasana.\n- Ataovy misokatra ity kahie ity mandritra ny fanodinana. Raha manakatona ny kahie ianao mandritra ny fanoratana dia mijanona ny fanodinana.",
+    "settings.source_language_default": "malagasy"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Google Colabkahie ho an'ny Whispertranscription.",
+    "features": [
+      "**Malalaka ampiasaina:** Ity kahie ity dia mampiasa [openai/whisper](https://github.com/openai/whisper), izay OpenAImisokatra amin'ny 17 janoary 2023, miaraka amin'ny Google Colabny GPUfampandehanana maimaim-poana.",
+      "**Tsy misy fetran'ny haben'ny rakitra amin'ny lafiny kahie:** Azo karakaraina ny rakitra audio sy video lehibe.",
+      "**Fanodinana batch:** Ny raki-peo sy horonan-tsarimihetsika marobe dia azo karakaraina amin'ny hazakazaka iray.",
+      "**Google Drivefanohanana:** Azo alaina mivantana ny rakitra, na azo ovaina ny rakitra audio/video voatahiry ao Google Drive.",
+      "**An-tserasera tanteraka:** Ny fampidinana sy fanodinana dia atao Google Colab. Tsy misy loharanon-karena informatika eo an-toerana ampiasaina.",
+      "**endrika Output maro:** Ny kahie dia mamoaka ny rakitsoratra JSONtany am-boalohany ary nalaina TXT, CSV, Markdown, Excel, ary SRTrakitra dikanteny."
+    ],
+    "template_note": "Ny fakany READMEno idirana amin'ny teny anglisy, ary ny docs/READMEdia misy rakitra READMEnovokarina. Ny kahie môdely dia ny kahie loharano ary misy toerana misy toerana toy ny `{{cell1.title}}`. Ny rakitra eo an-toerana dia manome kopia manokana READMEsy mifanatrika amin'ny Colab. Ny kahie novolavolaina dia natao mba hijanonana ho marin-toerana ny rohy Colab.",
+    "checks_note": "Ny workflow CI dia manangana rakitra sy kahie READMEavy amin'ny fisie môdely sy eo an-toerana, manamarina kahie JSON, manamarina ny vokatra tsy misy na inona na inona, manamarina ny syntax Python ao amin'ny cellule code, mijery ireo tsiambaratelo tsy nahy miharihary, ary tsy mahomby rehefa tsy vita ny rakitra vokarina.",
+    "ci_items": [
+      "READMEtaranaka avy amin'ny rakitra eo an-toerana",
+      "famoronana kahie avy amin'ny môdely sy ny rakitra eo an-toerana",
+      "kahie JSONmanankery",
+      "vokatra famonoana foana",
+      "Syntax Python amin'ny cellule code",
+      "tsiambaratelo tsy nahy mazava",
+      "vita READMEsy ny rakitra kahie mifanandrify amin'ny loharano"
+    ],
+    "ci_limit": "Ny lalan'ny fandikana feno dia mitaky API manokana amin'ny Colab, fampidinana maodely, GPUfisiana, ary rakitra media omen'ny mpampiasa. Raiso ho toy ny andrana setroka Colab amin'ny tanana io lalana io rehefa mandalo ny fisavana rakitra.",
+    "license_note": "Ny mpamokatra README, ny maodelin'ny kahie, ny rakitra eo an-toerana, ny kahie novokarina, ary ny script fikojakojana an'ity tahiry ity dia navoaka eo ambanin'ny fahazoan-dàlana MIT. Whisperny maodely sy ny fiankinan'ny antoko fahatelo dia fehezin'ny fahazoan-dàlana avy aminy.",
+    "feature_labels": [
+      "Malalaka ampiasaina",
+      "Tsy misy fetran'ny haben'ny rakitra amin'ny lafiny kahie",
+      "Fanodinana batch",
+      "Google Drivefanohanana",
+      "An-tserasera tanteraka",
+      "endrika Output maro"
+    ],
+    "feature_bodies": [
+      "Ity kahie ity dia mampiasa [openai/whisper](https://github.com/openai/whisper), izay OpenAImisokatra amin'ny 17 janoary 2023, miaraka amin'ny Google Colabny GPUfampandehanana maimaim-poana.",
+      "Azo karakaraina ny rakitra audio sy video lehibe.",
+      "Ny raki-peo sy horonan-tsarimihetsika marobe dia azo karakaraina amin'ny hazakazaka iray.",
+      "Azo alaina mivantana ny rakitra, na azo ovaina ny rakitra audio/video voatahiry ao Google Drive.",
+      "Ny fampidinana sy fanodinana dia atao Google Colab. Tsy misy loharanon-karena informatika eo an-toerana ampiasaina.",
+      "Ny kahie dia mamoaka ny rakitsoratra JSONtany am-boalohany ary nalaina TXT, CSV, Markdown, Excel, ary SRTrakitra dikanteny."
+    ]
+  },
+  "labels": {
+    "features": "Features",
+    "languages": "Fiteny",
+    "language": "Fiteny",
+    "readme": "README",
+    "notebook": "Notebook",
+    "repository_layout": "Layout repository",
+    "build": "Manorina",
+    "checks": "Seky",
+    "what_ci_can_test": "Inona no azon'ny CI andrana",
+    "license": "License"
+  },
+  "translation_source": "google:mg; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Ity kahie ity dia mandika rakitra audio na video miaraka amin'ny Whisper.",
+    "features_heading": "Features",
+    "features": [
+      "**Malalaka ampiasaina:** Ity kahie ity dia mampiasa [openai/whisper](https://github.com/openai/whisper), izay OpenAImisokatra amin'ny 17 janoary 2023, miaraka amin'ny Google Colabny GPUfampandehanana maimaim-poana.",
+      "**Tsy misy fetran'ny haben'ny rakitra amin'ny lafiny kahie:** Azo karakaraina ny rakitra audio sy video lehibe.",
+      "**Fanodinana batch:** Ny raki-peo sy horonan-tsarimihetsika marobe dia azo karakaraina amin'ny hazakazaka iray.",
+      "**Google Drivefanohanana:** Azo alaina mivantana ny rakitra, na azo ovaina ny rakitra audio/video voatahiry ao Google Drive.",
+      "**An-tserasera tanteraka:** Ny fampidinana sy fanodinana dia atao Google Colab. Tsy misy loharanon-karena informatika eo an-toerana ampiasaina.",
+      "**endrika Output maro:** Ny kahie dia mamoaka ny rakitsoratra JSONtany am-boalohany ary nalaina TXT, CSV, Markdown, Excel, ary SRTrakitra dikanteny."
+    ],
+    "how_to_use_heading": "Ahoana ny fampiasana",
+    "how_to_use_steps": [
+      "Ao amin'ny **1. Settings**, safidio ny `INPUT_MODE`ary amboary ny modely na ny safidy mivoaka raha ilaina.",
+      "Mifidiana **Rtime -> Run all**.",
+      "Raha `INPUT_MODE = \"upload\"`dia andraso hatramin'ny **2. Manomboka ny fisafidianana fisie / Google Drivemount**, avy eo tsindrio **Choose Files** ao amin'ny faritra avoakan'ny sela.",
+      "Rehefa vita ny fanodinana dia apetaka sy alaina ny rakitra vokarina raha toa ka alefa ny `AUTO_DOWNLOAD_ZIP`."
+    ],
+    "notes_heading": "Notes",
+    "notes": [
+      "Google Colabmaimaim-poana GPUny fisiany dia voafetra ihany. Raha tsy misy GPUary `REQUIRE_CUDA = True`dia mijanona alohan'ny fanoratana ny kahie.",
+      "Mitaky fotoana ny fanodinana. Amin'ny maha mpitari-dalana henjana rehefa mampiasa ny maodely large-v3-turbo, dia mety haharitra 5-10 minitra eo ho eo ny rakitra audio na video 60 minitra vao handika azy. Raha mampakatra rakitra mivantana ianao dia ilaina ihany koa ny fotoana fandefasana.",
+      "Ataovy misokatra ity kahie ity mandritra ny fanodinana. Raha manakatona ny kahie ianao mandritra ny fanoratana dia mijanona ny fanodinana."
+    ],
+    "feature_labels": [
+      "Malalaka ampiasaina",
+      "Tsy misy fetran'ny haben'ny rakitra amin'ny lafiny kahie",
+      "Fanodinana batch",
+      "Google Drivefanohanana",
+      "An-tserasera tanteraka",
+      "endrika Output maro"
+    ],
+    "feature_bodies": [
+      "Ity kahie ity dia mampiasa [openai/whisper](https://github.com/openai/whisper), izay OpenAImisokatra amin'ny 17 janoary 2023, miaraka amin'ny Google Colabny GPUfampandehanana maimaim-poana.",
+      "Azo karakaraina ny rakitra audio sy video lehibe.",
+      "Ny raki-peo sy horonan-tsarimihetsika marobe dia azo karakaraina amin'ny hazakazaka iray.",
+      "Azo alaina mivantana ny rakitra, na azo ovaina ny rakitra audio/video voatahiry ao Google Drive.",
+      "Ny fampidinana sy fanodinana dia atao Google Colab. Tsy misy loharanon-karena informatika eo an-toerana ampiasaina.",
+      "Ny kahie dia mamoaka ny rakitsoratra JSONtany am-boalohany ary nalaina TXT, CSV, Markdown, Excel, ary SRTrakitra dikanteny."
+    ]
+  }
+}

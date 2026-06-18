@@ -1,0 +1,144 @@
+{
+  "language": "et",
+  "display_name": "Estonian",
+  "native_name": "Estonian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Seaded",
+    "cell1.section_title": "# 1. Seaded",
+    "cell2.title": "# @title 2. Faili valik / Google Drivekinnitus",
+    "cell2.section_title": "# 2. Faili valik / Google Drivekinnitus",
+    "cell3.title": "# @title 3. GPUkontrollige ja sõltuvuse installimist",
+    "cell3.section_title": "# 3. GPUkontrollige ja sõltuvuse installimist",
+    "cell4.title": "# @title 4. Abimeeste funktsioonid",
+    "cell4.section_title": "# 4. Abimeeste funktsioonid",
+    "cell5.title": "# @title 5. Laadige Whisperja käivitage transkriptsioon",
+    "cell5.section_title": "# 5. Laadige Whisperja käivitage transkriptsioon",
+    "cell6.title": "# @title 6. Pakkige ja laadige alla väljundid",
+    "cell6.section_title": "# 6. Pakkige ja laadige alla väljundid",
+    "settings.input_heading": "# @markdown ## Sisend",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Kasutage `upload`kohalike failide jaoks või `google_drive`failide jaoks, mis on juba Google Drivesalvestatud.",
+    "settings.drive_heading": "# @markdown ### Google Drivesisend",
+    "settings.drive_help": "# @markdown Neid sätteid kasutatakse ainult siis, kui `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: tavaliselt jätke see määranguks `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: faili või kausta tee MyDrive'is. Ülataseme MyDrive'i kausta kasutamiseks jätke tühjaks.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Kui Drive'i sisendtee on kaust, otsige ka alamkaustadest.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Valikuline failinime alamstringi filter.",
+    "settings.model_heading": "# @markdown ## Whispermudel",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemudeli ID. Turbo on kiirem; large-v3võib mõne faili puhul olla stabiilsem.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Kui pole teada, kasutage `auto`või valige tuntud lähtekeel.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: kasutage inglise keele väljastamiseks Whispertõlkerežiimi.",
+    "settings.output_heading": "# @markdown ## Väljund",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Kui kasutatakse draivi sisendit, salvestage väljundid Google Drivealla.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Looge ja laadige alla üks ZIParhiiv.",
+    "settings.formats_help": "# @markdown - Väljundvorminguid juhivad allolevad tõeväärtused.",
+    "settings.advanced_heading": "# ## Täiustatud",
+    "settings.advanced_help": "# Need vaikeseaded on Colabi jaoks konservatiivsed. Tavakasutajad ei pea neid tavaliselt redigeerima.",
+    "settings.loaded_message": "Seaded on laaditud.",
+    "messages.choose_files": "Klõpsake \"Vali failid\" ja laadige üles üks või mitu heli-/videofaili.",
+    "messages.selected_files": "Valitud failid:",
+    "messages.dependencies_done": "Sõltuvuse installimine on lõpetatud.",
+    "messages.model_loaded": "Whispermudel on laaditud.",
+    "messages.transcription_complete": "Transkriptsioon on lõpetatud.",
+    "errors.no_supported_files": "Toetatud heli-/videofaile ei valitud.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColabi märkmik\n\nSee märkmik transkribeerib heli- või videofaile Whisper.\n\n## Omadused\n\n- **Tasuta kasutada:** See märkmik kasutab [openai/whisper](https://github.com/openai/whisper), mis OpenAIon avatud lähtekoodiga 17. jaanuaril 2023 koos Google Colabtasuta GPUkäitusajaga.\n- **Fikseeritud sülearvutipoolse faili suuruse piirangut pole:** Töödelda saab suuri heli- ja videofaile.\n- **Partii töötlemine:** Ühe käiguga saab töödelda mitut heli- ja videofaili.\n- **Google Drivetugi:** Faile saab otse üles laadida või Google Drivesalvestatud heli-/videofaile saab töödelda.\n- **Täielikult võrgus:** Allalaadimised ja töötlemine toimub aadressil Google Colab. Kohalikke arvutusressursse ei kasutata.\n- **Mitu väljundvormingut:** Märkmik väljastab algse JSONtranskriptsiooni ja tuletatud TXT, CSV, Markdowni, Excelja SRTsubtiitrifailid.\n\n## Kuidas kasutada\n\n1. Aastal **1. Seaded**, valige `INPUT_MODE`ja vajadusel kohandage mudelit või väljundi valikuid.\n2. Valige **Käitamisaeg -> Käivita kõik**.\n3. Kui `INPUT_MODE = \"upload\"`, oodake kuni **2. Faili valimine / Google Drivemount** käivitub, seejärel klõpsake selle lahtri väljundalal nuppu **Vali failid**.\n4. Kui töötlemine on lõppenud, pakitakse väljundfailid kokku ja laaditakse alla, kui `AUTO_DOWNLOAD_ZIP`on lubatud.\n\n## Märkmed\n\n- Google Colabtasuta GPUsaadavus on piiratud. Kui GPUole saadaval ja `REQUIRE_CUDA = True`, peatub märkmik enne transkriptsiooni.\n- Töötlemine võtab aega. Kui kasutate mudelit large-v3-turbo, võib 60-minutilise heli- või videofaili transkribeerimiseks kuluda umbes 5–10 minutit. Kui laadite faile otse üles, on vaja ka üleslaadimisaega.\n- Hoidke see märkmik töötlemise ajal avatuna. Kui sulgete märkmiku transkribeerimise ajal, peatub töötlemine.",
+    "settings.source_language_default": "estonian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Mitmekeelsed Google Colabmärkmikud Whispertranskriptsiooniks.",
+    "features": [
+      "**Tasuta kasutada:** See märkmik kasutab [openai/whisper](https://github.com/openai/whisper), mis OpenAIon avatud lähtekoodiga 17. jaanuaril 2023 koos Google Colabtasuta GPUkäitusajaga.",
+      "**Fikseeritud sülearvutipoolse faili suuruse piirangut pole:** Töödelda saab suuri heli- ja videofaile.",
+      "**Partii töötlemine:** Ühe käiguga saab töödelda mitut heli- ja videofaili.",
+      "**Google Drivetugi:** Faile saab otse üles laadida või Google Drivesalvestatud heli-/videofaile saab töödelda.",
+      "**Täielikult võrgus:** Allalaadimised ja töötlemine toimub aadressil Google Colab. Kohalikke arvutusressursse ei kasutata.",
+      "**Mitu väljundvormingut:** Märkmik väljastab algse JSONtranskriptsiooni ja tuletatud TXT, CSV, Markdowni, Excelja SRTsubtiitrifailid."
+    ],
+    "template_note": "Juur READMEon ingliskeelne sisestuspunkt ja docs/READMEsisaldab genereeritud lokaliseeritud READMEfaile. Mallmärkmik on lähtemärkmik ja sisaldab kohahoidjaid, nagu `{{cell1.title}}`. Lokaadifailid pakuvad keelepõhist READMEja Colabile suunatud koopiat. Loodud märkmikud on pühendunud, nii et Colabi lingid püsivad stabiilsena.",
+    "checks_note": "CI töövoog ehitab READMEfailid ja märkmikud uuesti malli- ja lokaadifailidest, kontrollib märkmikku JSON, kontrollib tühje väljundeid, kontrollib Pythoni süntaksit koodilahtrites, otsib ilmseid juhuslikke saladusi ja ebaõnnestub, kui loodud faile ei kinnitata.",
+    "ci_items": [
+      "READMEgenereerimine lokaadifailidest",
+      "sülearvuti genereerimine malli- ja lokaadifailidest",
+      "märkmik JSONkehtivus",
+      "tühjad täitmisväljundid",
+      "Pythoni süntaks koodilahtrites",
+      "ilmsed juhuslikud saladused",
+      "pühendunud loodud READMEja märkmikufailid, mis vastavad allikatele"
+    ],
+    "ci_limit": "Täieliku transkriptsioonitee jaoks on vaja Colabi spetsiifilisi API-sid, mudelite allalaadimist, GPUsaadavust ja kasutaja pakutavaid meediumifaile. Käsitlege seda teed kui käsitsi tehtud Colabi suitsutesti pärast loodud faili kontrollimise läbimist.",
+    "license_note": "Selle hoidla READMEgeneraator, märkmikumall, lokaadifailid, loodud märkmikud ja hooldusskriptid on välja antud MITlitsentsi all. Whispermudeleid ja kolmandate osapoolte sõltuvusi reguleerivad nende vastavad litsentsid.",
+    "feature_labels": [
+      "Tasuta kasutada",
+      "Fikseeritud sülearvutipoolse faili suuruse piirangut pole",
+      "Partii töötlemine",
+      "Google Drivetugi",
+      "Täielikult võrgus",
+      "Mitu väljundvormingut"
+    ],
+    "feature_bodies": [
+      "See märkmik kasutab [openai/whisper](https://github.com/openai/whisper), mis OpenAIon avatud lähtekoodiga 17. jaanuaril 2023 koos Google Colabtasuta GPUkäitusajaga.",
+      "Töödelda saab suuri heli- ja videofaile.",
+      "Ühe käiguga saab töödelda mitut heli- ja videofaili.",
+      "Faile saab otse üles laadida või Google Drivesalvestatud heli-/videofaile saab töödelda.",
+      "Allalaadimised ja töötlemine toimub aadressil Google Colab. Kohalikke arvutusressursse ei kasutata.",
+      "Märkmik väljastab algse JSONtranskriptsiooni ja tuletatud TXT, CSV, Markdowni, Excelja SRTsubtiitrifailid."
+    ]
+  },
+  "labels": {
+    "features": "Omadused",
+    "languages": "Keeled",
+    "language": "Keel",
+    "readme": "README",
+    "notebook": "Märkmik",
+    "repository_layout": "Hoidla paigutus",
+    "build": "Ehita",
+    "checks": "Kontrollid",
+    "what_ci_can_test": "Mida CI saab testida",
+    "license": "Litsents"
+  },
+  "translation_source": "google:et; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColabi märkmik",
+    "description": "See märkmik transkribeerib heli- või videofaile Whisper.",
+    "features_heading": "Omadused",
+    "features": [
+      "**Tasuta kasutada:** See märkmik kasutab [openai/whisper](https://github.com/openai/whisper), mis OpenAIon avatud lähtekoodiga 17. jaanuaril 2023 koos Google Colabtasuta GPUkäitusajaga.",
+      "**Fikseeritud sülearvutipoolse faili suuruse piirangut pole:** Töödelda saab suuri heli- ja videofaile.",
+      "**Partii töötlemine:** Ühe käiguga saab töödelda mitut heli- ja videofaili.",
+      "**Google Drivetugi:** Faile saab otse üles laadida või Google Drivesalvestatud heli-/videofaile saab töödelda.",
+      "**Täielikult võrgus:** Allalaadimised ja töötlemine toimub aadressil Google Colab. Kohalikke arvutusressursse ei kasutata.",
+      "**Mitu väljundvormingut:** Märkmik väljastab algse JSONtranskriptsiooni ja tuletatud TXT, CSV, Markdowni, Excelja SRTsubtiitrifailid."
+    ],
+    "how_to_use_heading": "Kuidas kasutada",
+    "how_to_use_steps": [
+      "Aastal **1. Seaded**, valige `INPUT_MODE`ja vajadusel kohandage mudelit või väljundi valikuid.",
+      "Valige **Käitamisaeg -> Käivita kõik**.",
+      "Kui `INPUT_MODE = \"upload\"`, oodake kuni **2. Faili valimine / Google Drivemount** käivitub, seejärel klõpsake selle lahtri väljundalal nuppu **Vali failid**.",
+      "Kui töötlemine on lõppenud, pakitakse väljundfailid kokku ja laaditakse alla, kui `AUTO_DOWNLOAD_ZIP`on lubatud."
+    ],
+    "notes_heading": "Märkmed",
+    "notes": [
+      "Google Colabtasuta GPUsaadavus on piiratud. Kui GPUole saadaval ja `REQUIRE_CUDA = True`, peatub märkmik enne transkriptsiooni.",
+      "Töötlemine võtab aega. Kui kasutate mudelit large-v3-turbo, võib 60-minutilise heli- või videofaili transkribeerimiseks kuluda umbes 5–10 minutit. Kui laadite faile otse üles, on vaja ka üleslaadimisaega.",
+      "Hoidke see märkmik töötlemise ajal avatuna. Kui sulgete märkmiku transkribeerimise ajal, peatub töötlemine."
+    ],
+    "feature_labels": [
+      "Tasuta kasutada",
+      "Fikseeritud sülearvutipoolse faili suuruse piirangut pole",
+      "Partii töötlemine",
+      "Google Drivetugi",
+      "Täielikult võrgus",
+      "Mitu väljundvormingut"
+    ],
+    "feature_bodies": [
+      "See märkmik kasutab [openai/whisper](https://github.com/openai/whisper), mis OpenAIon avatud lähtekoodiga 17. jaanuaril 2023 koos Google Colabtasuta GPUkäitusajaga.",
+      "Töödelda saab suuri heli- ja videofaile.",
+      "Ühe käiguga saab töödelda mitut heli- ja videofaili.",
+      "Faile saab otse üles laadida või Google Drivesalvestatud heli-/videofaile saab töödelda.",
+      "Allalaadimised ja töötlemine toimub aadressil Google Colab. Kohalikke arvutusressursse ei kasutata.",
+      "Märkmik väljastab algse JSONtranskriptsiooni ja tuletatud TXT, CSV, Markdowni, Excelja SRTsubtiitrifailid."
+    ]
+  }
+}

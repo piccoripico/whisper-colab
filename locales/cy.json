@@ -1,0 +1,144 @@
+{
+  "language": "cy",
+  "display_name": "Welsh",
+  "native_name": "Welsh",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Gosodiadau",
+    "cell1.section_title": "# 1. Gosodiadau",
+    "cell2.title": "# @title 2. Dewis ffeil / Google Drivemount",
+    "cell2.section_title": "# 2. Dewis ffeil / Google Drivemount",
+    "cell3.title": "# @title 3. GPUsiec a gosodiad dibyniaeth",
+    "cell3.section_title": "# 3. GPUsiec a gosodiad dibyniaeth",
+    "cell4.title": "# @title 4. Swyddogaethau cynorthwy-ydd",
+    "cell4.section_title": "# 4. Swyddogaethau cynorthwy-ydd",
+    "cell5.title": "# @title 5. Llwythwch Whispera rhedwch y trawsgrifiad",
+    "cell5.section_title": "# 5. Llwythwch Whispera rhedwch y trawsgrifiad",
+    "cell6.title": "# @title 6. Zip a llwytho i lawr allbynnau",
+    "cell6.section_title": "# 6. Zip a llwytho i lawr allbynnau",
+    "settings.input_heading": "# @markdown ## Mewnbwn",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Defnyddiwch `upload`ar gyfer ffeiliau lleol neu `google_drive`ar gyfer ffeiliau sydd eisoes wedi'u storio yn Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivemewnbwn",
+    "settings.drive_help": "# @markdown Dim ond pan fydd `INPUT_MODE == \"google_drive\"`y defnyddir y gosodiadau hyn.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Fel arfer cadwch y set hon i `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Llwybr ffeil neu ffolder o dan MyDrive. Gadewch yn wag i ddefnyddio'r ffolder MyDrive lefel uchaf.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Os yw llwybr mewnbwn Drive yn ffolder, chwiliwch am is-ffolderi hefyd.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Hidlydd is-linyn enw ffeil dewisol.",
+    "settings.model_heading": "# @markdown ## model Whisper",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID model. Mae Turbo yn gyflymach; Gall large-v3fod yn fwy sefydlog ar gyfer rhai ffeiliau.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Defnyddiwch `auto`an nad yw'n hysbys, neu dewiswch iaith ffynhonnell hysbys.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Defnyddiwch modd cyfieithu Whisperi allbwn Saesneg.",
+    "settings.output_heading": "# @markdown ## Allbwn",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Arbedwch allbynnau o dan Google Drivean ddefnyddir mewnbwn Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Creu a lawrlwytho un archif ZIPar y diwedd.",
+    "settings.formats_help": "# @markdown - Mae fformatau allbwn yn cael eu rheoli gan y booleans isod.",
+    "settings.advanced_heading": "# ## Uwch",
+    "settings.advanced_help": "# Mae'r rhagosodiadau hyn yn geidwadol i Colab. Fel arfer nid oes angen i ddefnyddwyr cyffredin eu golygu.",
+    "settings.loaded_message": "Gosodiadau wedi'u llwytho.",
+    "messages.choose_files": "Cliciwch ar 'Dewis Ffeiliau' ac uwchlwythwch un neu fwy o ffeiliau sain/fideo.",
+    "messages.selected_files": "Ffeiliau a ddewiswyd:",
+    "messages.dependencies_done": "Gosod dibyniaeth wedi'i orffen.",
+    "messages.model_loaded": "Model Whisperwedi'i lwytho.",
+    "messages.transcription_complete": "Trawsgrifiad wedi'i gwblhau.",
+    "errors.no_supported_files": "Ni ddewiswyd unrhyw ffeiliau sain/fideo â chymorth.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperLlyfr Nodiadau Colab\n\nMae'r llyfr nodiadau hwn yn trawsgrifio ffeiliau sain neu fideo gyda Whisper.\n\n## Nodweddion\n\n- **Am ddim i'w ddefnyddio:** Mae'r llyfr nodiadau hwn yn defnyddio [openai/whisper](https://github.com/openai/whisper), a oedd OpenAIffynhonnell agored ar Ionawr 17, 2023, ynghyd â Google Colabruntime am ddim GPU.\n- **Dim terfyn maint ffeil ochr llyfr nodiadau sefydlog:** Gellir prosesu ffeiliau sain a fideo mawr.\n- **Prosesu swp:** Gellir prosesu ffeiliau sain a fideo lluosog mewn un rhediad.\n- **Google Drivecefnogaeth:** Gellir uwchlwytho ffeiliau'n uniongyrchol, neu gellir prosesu ffeiliau sain/fideo sydd wedi'u storio yn Google Drive.\n- **Yn llawn ar-lein:** Perfformir lawrlwythiadau a phrosesu ar Google Colab. Ni ddefnyddir adnoddau cyfrifiadurol lleol.\n- **Fformatau allbwn lluosog:** Mae'r llyfr nodiadau yn allbynnu'r trawsgrifiad gwreiddiol JSONac yn deillio o TXT, CSV, Markdown, Excel, a SRTffeiliau isdeitl.\n\n## Sut i ddefnyddio\n\n1. Yn **1. Gosodiadau**, dewiswch `INPUT_MODE`ac addaswch y model neu'r opsiynau allbwn os oes angen.\n2. Dewiswch **Runtime -> Run all**.\n3. Os `INPUT_MODE = \"upload\"`, arhoswch tan **2. Mae dewis ffeil / Google Drivemount** yn dechrau, yna cliciwch **Dewis Ffeiliau** yn ardal allbwn y gell honno.\n4. Pan fydd y prosesu wedi'i gwblhau, caiff y ffeiliau allbwn eu sipio a'u llwytho i lawr os yw `AUTO_DOWNLOAD_ZIP`wedi'i alluogi.\n\n## Nodiadau\n\n- Google Colabam ddim GPUmae argaeledd yn gyfyngedig. Os nad oes GPUar gael a `REQUIRE_CUDA = True`, mae'r llyfr nodiadau yn stopio cyn trawsgrifio.\n- Mae prosesu yn cymryd amser. Fel canllaw bras wrth ddefnyddio'r model large-v3-turbo, gall ffeil sain neu fideo 60 munud gymryd tua 5-10 munud i'w thrawsgrifio. Os ydych chi'n uwchlwytho ffeiliau'n uniongyrchol, mae angen amser llwytho i fyny hefyd.\n- Cadwch y llyfr nodiadau hwn ar agor wrth brosesu. Os byddwch chi'n cau'r llyfr nodiadau yn ystod y trawsgrifio, bydd y prosesu'n dod i ben.",
+    "settings.source_language_default": "welsh"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Llyfrau nodiadau amlieithog Google Colabar gyfer trawsgrifiad Whisper.",
+    "features": [
+      "**Am ddim i'w ddefnyddio:** Mae'r llyfr nodiadau hwn yn defnyddio [openai/whisper](https://github.com/openai/whisper), a oedd OpenAIffynhonnell agored ar Ionawr 17, 2023, ynghyd â Google Colabruntime am ddim GPU.",
+      "**Dim terfyn maint ffeil ochr llyfr nodiadau sefydlog:** Gellir prosesu ffeiliau sain a fideo mawr.",
+      "**Prosesu swp:** Gellir prosesu ffeiliau sain a fideo lluosog mewn un rhediad.",
+      "**Google Drivecefnogaeth:** Gellir uwchlwytho ffeiliau'n uniongyrchol, neu gellir prosesu ffeiliau sain/fideo sydd wedi'u storio yn Google Drive.",
+      "**Yn llawn ar-lein:** Perfformir lawrlwythiadau a phrosesu ar Google Colab. Ni ddefnyddir adnoddau cyfrifiadurol lleol.",
+      "**Fformatau allbwn lluosog:** Mae'r llyfr nodiadau yn allbynnu'r trawsgrifiad gwreiddiol JSONac yn deillio o TXT, CSV, Markdown, Excel, a SRTffeiliau isdeitl."
+    ],
+    "template_note": "Y gwraidd READMEyw'r pwynt mynediad Saesneg, ac mae docs/READMEyn cynnwys ffeiliau lleol READMEa gynhyrchir. Y llyfr nodiadau templed yw'r llyfr nodiadau ffynhonnell ac mae'n cynnwys dalfannau fel `{{cell1.title}}`. Mae ffeiliau Locale yn darparu copi iaith-benodol READMEa Colab. Mae llyfrau nodiadau a gynhyrchir wedi'u hymrwymo felly mae cysylltiadau Colab yn aros yn sefydlog.",
+    "checks_note": "Mae llif gwaith CI yn ailadeiladu READMEffeiliau a llyfrau nodiadau o'r templed a'r ffeiliau locale, yn gwirio llyfr nodiadau JSON, yn gwirio allbynnau gwag, yn gwirio cystrawen Python mewn celloedd cod, yn sganio am gyfrinachau damweiniol amlwg, ac yn methu pan nad yw'r ffeiliau a gynhyrchir wedi'u hymrwymo.",
+    "ci_items": [
+      "READMEgenhedlaeth o ffeiliau locale",
+      "cynhyrchu llyfr nodiadau o'r templed a ffeiliau locale",
+      "llyfr nodiadau JSONdilysrwydd",
+      "allbynnau gweithredu gwag",
+      "Cystrawen Python mewn celloedd cod",
+      "cyfrinachau damweiniol amlwg",
+      "ymroddedig wedi'i gynhyrchu READMEa ffeiliau llyfr nodiadau yn cyfateb i'r ffynonellau"
+    ],
+    "ci_limit": "Mae'r llwybr trawsgrifio llawn yn gofyn am APIs penodol i Colab, lawrlwythiadau model, argaeledd GPU, a ffeiliau cyfryngau a ddarperir gan ddefnyddwyr. Triniwch y llwybr hwnnw fel prawf mwg Colab â llaw ar ôl i wiriadau ffeil a gynhyrchir basio.",
+    "license_note": "Mae generadur README, templed llyfr nodiadau, ffeiliau locale, llyfrau nodiadau a gynhyrchir, a sgriptiau cynnal a chadw yn cael eu rhyddhau o dan y Drwydded MIT. Mae modelau Whispera dibyniaethau trydydd parti yn cael eu llywodraethu gan eu trwyddedau priodol.",
+    "feature_labels": [
+      "Am ddim i'w ddefnyddio",
+      "Dim terfyn maint ffeil ochr llyfr nodiadau sefydlog",
+      "Prosesu swp",
+      "Google Drivecefnogaeth",
+      "Yn llawn ar-lein",
+      "Fformatau allbwn lluosog"
+    ],
+    "feature_bodies": [
+      "Mae'r llyfr nodiadau hwn yn defnyddio [openai/whisper](https://github.com/openai/whisper), a oedd OpenAIffynhonnell agored ar Ionawr 17, 2023, ynghyd â Google Colabruntime am ddim GPU.",
+      "Gellir prosesu ffeiliau sain a fideo mawr.",
+      "Gellir prosesu ffeiliau sain a fideo lluosog mewn un rhediad.",
+      "Gellir uwchlwytho ffeiliau'n uniongyrchol, neu gellir prosesu ffeiliau sain/fideo sydd wedi'u storio yn Google Drive.",
+      "Perfformir lawrlwythiadau a phrosesu ar Google Colab. Ni ddefnyddir adnoddau cyfrifiadurol lleol.",
+      "Mae'r llyfr nodiadau yn allbynnu'r trawsgrifiad gwreiddiol JSONac yn deillio o TXT, CSV, Markdown, Excel, a SRTffeiliau isdeitl."
+    ]
+  },
+  "labels": {
+    "features": "Nodweddion",
+    "languages": "Ieithoedd",
+    "language": "Iaith",
+    "readme": "README",
+    "notebook": "Llyfr nodiadau",
+    "repository_layout": "Cynllun Cadwrfa",
+    "build": "Adeiladu",
+    "checks": "Sieciau",
+    "what_ci_can_test": "Yr hyn y gall CI ei brofi",
+    "license": "Trwydded"
+  },
+  "translation_source": "google:cy; machine-translated from en",
+  "notebook": {
+    "title": "WhisperLlyfr Nodiadau Colab",
+    "description": "Mae'r llyfr nodiadau hwn yn trawsgrifio ffeiliau sain neu fideo gyda Whisper.",
+    "features_heading": "Nodweddion",
+    "features": [
+      "**Am ddim i'w ddefnyddio:** Mae'r llyfr nodiadau hwn yn defnyddio [openai/whisper](https://github.com/openai/whisper), a oedd OpenAIffynhonnell agored ar Ionawr 17, 2023, ynghyd â Google Colabruntime am ddim GPU.",
+      "**Dim terfyn maint ffeil ochr llyfr nodiadau sefydlog:** Gellir prosesu ffeiliau sain a fideo mawr.",
+      "**Prosesu swp:** Gellir prosesu ffeiliau sain a fideo lluosog mewn un rhediad.",
+      "**Google Drivecefnogaeth:** Gellir uwchlwytho ffeiliau'n uniongyrchol, neu gellir prosesu ffeiliau sain/fideo sydd wedi'u storio yn Google Drive.",
+      "**Yn llawn ar-lein:** Perfformir lawrlwythiadau a phrosesu ar Google Colab. Ni ddefnyddir adnoddau cyfrifiadurol lleol.",
+      "**Fformatau allbwn lluosog:** Mae'r llyfr nodiadau yn allbynnu'r trawsgrifiad gwreiddiol JSONac yn deillio o TXT, CSV, Markdown, Excel, a SRTffeiliau isdeitl."
+    ],
+    "how_to_use_heading": "Sut i ddefnyddio",
+    "how_to_use_steps": [
+      "Yn **1. Gosodiadau**, dewiswch `INPUT_MODE`ac addaswch y model neu'r opsiynau allbwn os oes angen.",
+      "Dewiswch **Runtime -> Run all**.",
+      "Os `INPUT_MODE = \"upload\"`, arhoswch tan **2. Mae dewis ffeil / Google Drivemount** yn dechrau, yna cliciwch **Dewis Ffeiliau** yn ardal allbwn y gell honno.",
+      "Pan fydd y prosesu wedi'i gwblhau, caiff y ffeiliau allbwn eu sipio a'u llwytho i lawr os yw `AUTO_DOWNLOAD_ZIP`wedi'i alluogi."
+    ],
+    "notes_heading": "Nodiadau",
+    "notes": [
+      "Google Colabam ddim GPUmae argaeledd yn gyfyngedig. Os nad oes GPUar gael a `REQUIRE_CUDA = True`, mae'r llyfr nodiadau yn stopio cyn trawsgrifio.",
+      "Mae prosesu yn cymryd amser. Fel canllaw bras wrth ddefnyddio'r model large-v3-turbo, gall ffeil sain neu fideo 60 munud gymryd tua 5-10 munud i'w thrawsgrifio. Os ydych chi'n uwchlwytho ffeiliau'n uniongyrchol, mae angen amser llwytho i fyny hefyd.",
+      "Cadwch y llyfr nodiadau hwn ar agor wrth brosesu. Os byddwch chi'n cau'r llyfr nodiadau yn ystod y trawsgrifio, bydd y prosesu'n dod i ben."
+    ],
+    "feature_labels": [
+      "Am ddim i'w ddefnyddio",
+      "Dim terfyn maint ffeil ochr llyfr nodiadau sefydlog",
+      "Prosesu swp",
+      "Google Drivecefnogaeth",
+      "Yn llawn ar-lein",
+      "Fformatau allbwn lluosog"
+    ],
+    "feature_bodies": [
+      "Mae'r llyfr nodiadau hwn yn defnyddio [openai/whisper](https://github.com/openai/whisper), a oedd OpenAIffynhonnell agored ar Ionawr 17, 2023, ynghyd â Google Colabruntime am ddim GPU.",
+      "Gellir prosesu ffeiliau sain a fideo mawr.",
+      "Gellir prosesu ffeiliau sain a fideo lluosog mewn un rhediad.",
+      "Gellir uwchlwytho ffeiliau'n uniongyrchol, neu gellir prosesu ffeiliau sain/fideo sydd wedi'u storio yn Google Drive.",
+      "Perfformir lawrlwythiadau a phrosesu ar Google Colab. Ni ddefnyddir adnoddau cyfrifiadurol lleol.",
+      "Mae'r llyfr nodiadau yn allbynnu'r trawsgrifiad gwreiddiol JSONac yn deillio o TXT, CSV, Markdown, Excel, a SRTffeiliau isdeitl."
+    ]
+  }
+}

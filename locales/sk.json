@@ -1,0 +1,144 @@
+{
+  "language": "sk",
+  "display_name": "Slovak",
+  "native_name": "Slovak",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Nastavenia",
+    "cell1.section_title": "# 1. Nastavenia",
+    "cell2.title": "# @title 2. Výber súboru / pripojenie Google Drive",
+    "cell2.section_title": "# 2. Výber súboru / pripojenie Google Drive",
+    "cell3.title": "# @title 3. GPUkontrola a inštalácia závislostí",
+    "cell3.section_title": "# 3. GPUkontrola a inštalácia závislostí",
+    "cell4.title": "# @title 4. Pomocné funkcie",
+    "cell4.section_title": "# 4. Pomocné funkcie",
+    "cell5.title": "# @title 5. Načítajte Whispera spustite prepis",
+    "cell5.section_title": "# 5. Načítajte Whispera spustite prepis",
+    "cell6.title": "# @title 6. Zazipujte a stiahnite výstupy",
+    "cell6.section_title": "# 6. Zazipujte a stiahnite výstupy",
+    "settings.input_heading": "# @markdown ## Vstup",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Použite `upload`re lokálne súbory alebo `google_drive`re súbory už uložené v Google Drive.",
+    "settings.drive_heading": "# @markdown ### Vstup Google Drive",
+    "settings.drive_help": "# @markdown Tieto nastavenia sa použijú iba vtedy, keď je `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Zvyčajne ponechajte toto nastavenie na `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Cesta k súboru alebo priečinku v časti MyDrive. Ak chcete použiť priečinok MyDrive najvyššej úrovne, nechajte pole prázdne.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Ak je vstupná cesta disku priečinok, vyhľadajte aj podpriečinky.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Voliteľný filter podreťazca názvu súboru.",
+    "settings.model_heading": "# @markdown ## Model Whisper",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID modelu. Turbo je rýchlejšie; large-v3môže byť pre niektoré súbory stabilnejšie.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Ak nie je známy, použite `auto`alebo vyberte známy zdrojový jazyk.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Na výstup v angličtine použite režim prekladu Whisper.",
+    "settings.output_heading": "# @markdown ## Výstup",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Uložte výstupy pod Google Drive, keď sa používa vstup pohonu.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Na konci vytvorte a stiahnite jeden archív ZIP.",
+    "settings.formats_help": "# @markdown - Výstupné formáty sú riadené pomocou boolovských hodnôt uvedených nižšie.",
+    "settings.advanced_heading": "# ## Pokročilé",
+    "settings.advanced_help": "# Tieto predvolené hodnoty sú pre Colab konzervatívne. Bežní používatelia ich zvyčajne nemusia upravovať.",
+    "settings.loaded_message": "Nastavenia načítané.",
+    "messages.choose_files": "Kliknite na „Vybrať súbory“ a odovzdajte jeden alebo viac audio/video súborov.",
+    "messages.selected_files": "Vybrané súbory:",
+    "messages.dependencies_done": "Inštalácia závislosti dokončená.",
+    "messages.model_loaded": "Načítaný model Whisper.",
+    "messages.transcription_complete": "Prepis je dokončený.",
+    "errors.no_supported_files": "Neboli vybraté žiadne podporované audio/video súbory.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperZápisník Colab\n\nTento zápisník prepisuje zvukové alebo video súbory pomocou Whisper.\n\n## Vlastnosti\n\n- **Bezplatné použitie:** Tento notebook používa [openai/whisper](https://github.com/openai/whisper), ktorý OpenAIsprístupnil 17. januára 2023, spolu s bezplatným runtime GPUod Google Colab.\n- **Žiadny pevný limit veľkosti súboru na strane notebooku:** Je možné spracovať veľké audio a video súbory.\n- **Dávkové spracovanie:** V jednom spustení je možné spracovať viacero audio a video súborov.\n- **Podpora Google Drive:** Súbory je možné nahrať priamo alebo spracovať audio/video súbory uložené v Google Drive.\n- **Plne online:** Sťahovanie a spracovanie sa vykonáva na Google Colab. Nepoužívajú sa žiadne lokálne výpočtové zdroje.\n- **Viac výstupných formátov:** Výstupom notebooku je pôvodný prepis JSONa odvodené súbory TXT, CSV, Markdown, Excela SRT.\n\n## Ako používať\n\n1. V **1. Nastavenia**, vyberte `INPUT_MODE`a v prípade potreby upravte možnosti modelu alebo výstupu.\n2. Vyberte **Runtime -> Run all**.\n3. Ak `INPUT_MODE = \"upload\"`, počkajte do **2. Spustí sa výber súboru / Google Driveripojenie**, potom kliknite na **Vybrať súbory** vo výstupnej oblasti danej bunky.\n4. Po dokončení spracovania sa výstupné súbory skomprimujú a stiahnu, ak je povolené `AUTO_DOWNLOAD_ZIP`.\n\n## Poznámky\n\n- Dostupnosť Google Colabzadarmo GPUje obmedzená. Ak nie je k dispozícii žiadne GPUa `REQUIRE_CUDA = True`, zápisník sa pred prepisom zastaví.\n- Spracovanie si vyžaduje čas. Ako približný návod pri použití modelu large-v3-turbomôže prepis 60-minútového audio alebo video súboru trvať približne 5-10 minút. Ak nahrávate súbory priamo, vyžaduje sa aj čas nahrávania.\n- Počas spracovania nechajte tento zápisník otvorený. Ak zápisník počas prepisu zatvoríte, spracovanie sa zastaví.",
+    "settings.source_language_default": "slovak"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Viacjazyčné zápisníky Google Colabna prepis Whisper.",
+    "features": [
+      "**Bezplatné použitie:** Tento notebook používa [openai/whisper](https://github.com/openai/whisper), ktorý OpenAIsprístupnil 17. januára 2023, spolu s bezplatným runtime GPUod Google Colab.",
+      "**Žiadny pevný limit veľkosti súboru na strane notebooku:** Je možné spracovať veľké audio a video súbory.",
+      "**Dávkové spracovanie:** V jednom spustení je možné spracovať viacero audio a video súborov.",
+      "**Podpora Google Drive:** Súbory je možné nahrať priamo alebo spracovať audio/video súbory uložené v Google Drive.",
+      "**Plne online:** Sťahovanie a spracovanie sa vykonáva na Google Colab. Nepoužívajú sa žiadne lokálne výpočtové zdroje.",
+      "**Viac výstupných formátov:** Výstupom notebooku je pôvodný prepis JSONa odvodené súbory TXT, CSV, Markdown, Excela SRT."
+    ],
+    "template_note": "Koreň READMEje anglický vstupný bod a docs/READMEobsahuje vygenerované lokalizované súbory README. Šablóna poznámkového bloku je zdrojový poznámkový blok a obsahuje zástupné symboly, ako napríklad `{{cell1.title}}`. Súbory miestnych nastavení poskytujú pre jazyk READMEa kópiu na strane Colab. Vygenerované zápisníky sú zaviazané, takže prepojenia Colab zostanú stabilné.",
+    "checks_note": "Pracovný postup CI prebuduje súbory READMEa poznámkové bloky zo súborov šablón a miestnych nastavení, skontroluje poznámkový blok JSON, overí prázdne výstupy, skontroluje syntax Pythonu v bunkách kódu, vyhľadá zjavné náhodné tajomstvá a zlyhá, keď vygenerované súbory nie sú potvrdené.",
+    "ci_items": [
+      "Generovanie READMEzo súborov miestnych nastavení",
+      "generovanie poznámkového bloku zo súborov šablón a miestnych nastavení",
+      "zápisník JSONlatnosť",
+      "prázdne výstupy vykonávania",
+      "Syntax Pythonu v bunkách kódu",
+      "zjavné náhodné tajomstvá",
+      "commit vygeneroval READMEa súbory poznámkového bloku zodpovedajúce zdrojom"
+    ],
+    "ci_limit": "Úplná cesta prepisu vyžaduje rozhrania API špecifické pre Colab, sťahovanie modelov, dostupnosť GPUa mediálne súbory poskytnuté používateľom. Po úspešnom vykonaní kontrol vygenerovaných súborov túto cestu berte ako manuálny test dymu Colab.",
+    "license_note": "Generátor READMEtohto úložiska, šablóna poznámkového bloku, súbory miestnych nastavení, generované poznámkové bloky a skripty údržby sú uvoľnené pod licenciou MIT. Modely Whispera závislosti od tretích strán sa riadia ich príslušnými licenciami.",
+    "feature_labels": [
+      "Bezplatné použitie",
+      "Žiadny pevný limit veľkosti súboru na strane notebooku",
+      "Dávkové spracovanie",
+      "Podpora Google Drive",
+      "Plne online",
+      "Viac výstupných formátov"
+    ],
+    "feature_bodies": [
+      "Tento notebook používa [openai/whisper](https://github.com/openai/whisper), ktorý OpenAIsprístupnil 17. januára 2023, spolu s bezplatným runtime GPUod Google Colab.",
+      "Je možné spracovať veľké audio a video súbory.",
+      "V jednom spustení je možné spracovať viacero audio a video súborov.",
+      "Súbory je možné nahrať priamo alebo spracovať audio/video súbory uložené v Google Drive.",
+      "Sťahovanie a spracovanie sa vykonáva na Google Colab. Nepoužívajú sa žiadne lokálne výpočtové zdroje.",
+      "Výstupom notebooku je pôvodný prepis JSONa odvodené súbory TXT, CSV, Markdown, Excela SRT."
+    ]
+  },
+  "labels": {
+    "features": "Vlastnosti",
+    "languages": "Jazyky",
+    "language": "Jazyk",
+    "readme": "README",
+    "notebook": "Zápisník",
+    "repository_layout": "Rozloženie úložiska",
+    "build": "Stavať",
+    "checks": "Kontroly",
+    "what_ci_can_test": "Čo môže CI testovať",
+    "license": "Licencia"
+  },
+  "translation_source": "google:sk; machine-translated from en",
+  "notebook": {
+    "title": "WhisperZápisník Colab",
+    "description": "Tento zápisník prepisuje zvukové alebo video súbory pomocou Whisper.",
+    "features_heading": "Vlastnosti",
+    "features": [
+      "**Bezplatné použitie:** Tento notebook používa [openai/whisper](https://github.com/openai/whisper), ktorý OpenAIsprístupnil 17. januára 2023, spolu s bezplatným runtime GPUod Google Colab.",
+      "**Žiadny pevný limit veľkosti súboru na strane notebooku:** Je možné spracovať veľké audio a video súbory.",
+      "**Dávkové spracovanie:** V jednom spustení je možné spracovať viacero audio a video súborov.",
+      "**Podpora Google Drive:** Súbory je možné nahrať priamo alebo spracovať audio/video súbory uložené v Google Drive.",
+      "**Plne online:** Sťahovanie a spracovanie sa vykonáva na Google Colab. Nepoužívajú sa žiadne lokálne výpočtové zdroje.",
+      "**Viac výstupných formátov:** Výstupom notebooku je pôvodný prepis JSONa odvodené súbory TXT, CSV, Markdown, Excela SRT."
+    ],
+    "how_to_use_heading": "Ako používať",
+    "how_to_use_steps": [
+      "V **1. Nastavenia**, vyberte `INPUT_MODE`a v prípade potreby upravte možnosti modelu alebo výstupu.",
+      "Vyberte **Runtime -> Run all**.",
+      "Ak `INPUT_MODE = \"upload\"`, počkajte do **2. Spustí sa výber súboru / Google Driveripojenie**, potom kliknite na **Vybrať súbory** vo výstupnej oblasti danej bunky.",
+      "Po dokončení spracovania sa výstupné súbory skomprimujú a stiahnu, ak je povolené `AUTO_DOWNLOAD_ZIP`."
+    ],
+    "notes_heading": "Poznámky",
+    "notes": [
+      "Dostupnosť Google Colabzadarmo GPUje obmedzená. Ak nie je k dispozícii žiadne GPUa `REQUIRE_CUDA = True`, zápisník sa pred prepisom zastaví.",
+      "Spracovanie si vyžaduje čas. Ako približný návod pri použití modelu large-v3-turbomôže prepis 60-minútového audio alebo video súboru trvať približne 5-10 minút. Ak nahrávate súbory priamo, vyžaduje sa aj čas nahrávania.",
+      "Počas spracovania nechajte tento zápisník otvorený. Ak zápisník počas prepisu zatvoríte, spracovanie sa zastaví."
+    ],
+    "feature_labels": [
+      "Bezplatné použitie",
+      "Žiadny pevný limit veľkosti súboru na strane notebooku",
+      "Dávkové spracovanie",
+      "Podpora Google Drive",
+      "Plne online",
+      "Viac výstupných formátov"
+    ],
+    "feature_bodies": [
+      "Tento notebook používa [openai/whisper](https://github.com/openai/whisper), ktorý OpenAIsprístupnil 17. januára 2023, spolu s bezplatným runtime GPUod Google Colab.",
+      "Je možné spracovať veľké audio a video súbory.",
+      "V jednom spustení je možné spracovať viacero audio a video súborov.",
+      "Súbory je možné nahrať priamo alebo spracovať audio/video súbory uložené v Google Drive.",
+      "Sťahovanie a spracovanie sa vykonáva na Google Colab. Nepoužívajú sa žiadne lokálne výpočtové zdroje.",
+      "Výstupom notebooku je pôvodný prepis JSONa odvodené súbory TXT, CSV, Markdown, Excela SRT."
+    ]
+  }
+}

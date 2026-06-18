@@ -1,0 +1,144 @@
+{
+  "language": "fo",
+  "display_name": "Faroese",
+  "native_name": "Faroese",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Innstillingar",
+    "cell1.section_title": "# 1. Innstillingar",
+    "cell2.title": "# @title 2. Fíluval / Google Drivefest",
+    "cell2.section_title": "# 2. Fíluval / Google Drivefest",
+    "cell3.title": "# @title 3. GPUkanning og avhengi uppseting",
+    "cell3.section_title": "# 3. GPUkanning og avhengi uppseting",
+    "cell4.title": "# @title 4. Hjálparafunktiónir",
+    "cell4.section_title": "# 4. Hjálparafunktiónir",
+    "cell5.title": "# @title 5. Heinta Whisperog koyr umskriving",
+    "cell5.section_title": "# 5. Heinta Whisperog koyr umskriving",
+    "cell6.title": "# @title 6. Zip og heinta úttøkur",
+    "cell6.section_title": "# 6. Zip og heinta úttøkur",
+    "settings.input_heading": "# @markdown ## Inntak",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Brúka `upload`til lokalar fílur ella `google_drive`til fílur, sum longu eru goymdar í Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveinntøkur",
+    "settings.drive_help": "# @markdown Hesar innstillingar verða bert nýttar, tá `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `/content/drive/MyDrive`: Vanliga halt hetta settið til `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Ein fílu- ella mappuleið undir MínDrive. Lat vera tómt fyri at brúka MyDrive mappuna á ovasta stigi.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Um inntøkuleiðin hjá Drive er ein mappa, skalt tú eisini leita í undirmappum.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Valfrítt fílunavn undirstreingjafiltur.",
+    "settings.model_heading": "# @markdown ## Whisperfyrimynd",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodell-ID. Turbo er skjótari; large-v3kann vera støðugari fyri nakrar fílur.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Brúka `auto`tá ókent, ella vel eitt kent keldumál.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Brúka Whispertýðingarhátt til at geva út enskt.",
+    "settings.output_heading": "# @markdown ## Útflutningur",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Goym úttøkur undir Google Drivetá Drive-inntak verður brúkt.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Stovna og heinta eitt ZIParkiv at enda.",
+    "settings.formats_help": "# @markdown - Útflutningssnið eru stýrd av booleanunum niðanfyri.",
+    "settings.advanced_heading": "# ## Framkomin",
+    "settings.advanced_help": "# Hesi forsett eru konservativ fyri Colab. Vanligir brúkarar nýtast vanliga ikki at rætta teir.",
+    "settings.loaded_message": "Innstillingar heintaðar.",
+    "messages.choose_files": "Trýst á 'Vel fílur' og legg eina ella fleiri ljóð/myndafílur upp.",
+    "messages.selected_files": "Valdar fílur:",
+    "messages.dependencies_done": "Avhengi uppseting liðug.",
+    "messages.model_loaded": "Whisperfyrimynd heintað.",
+    "messages.transcription_complete": "Uppskrivingin er liðug.",
+    "errors.no_supported_files": "Ongar stuðlaðar ljóð/myndafílur vórðu valdar.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# Colab Notubók\n\nHendan notubókin avskrivar ljóð- ella videofílur við Whisper.\n\n## Andlitsbragd\n\n- **Ókeypis at brúka:** Hendan farteldan brúkar [openai/whisper](https://github.com/openai/whisper), sum OpenAIvarð opnað 17. januar 2023, saman við ókeypis GPUkoyritíðini hjá Google Colab.\n- **Einki fast mark fyri fílustødd á farteldusíðuni:** Stórar ljóð- og videofílur kunnu viðgerast.\n- **Hópviðgerð:** Fleiri ljóð- og videofílur kunnu viðgerast í einum koyri.\n- **Google Drivestuðul:** Fílur kunnu leggjast upp beinleiðis, ella ljóð/myndafílur, sum eru goymdar í Google Drive, kunnu viðgerast.\n- **Heilt á netinum:** Niðurtøkur og viðgerðir verða framdar á Google Colab. Einki lokalt teldutilfeingi er nýtt.\n- **Fleiri útflutningssnið:** Notubókin gevur út upprunaliga JSONuppritið og avleiddu TXT, CSV, Markdown, Excel, og SRTundirtekstfílurnar.\n\n## Hvussu tú brúkar\n\n1. Í **1. Innstillingar**, vel `INPUT_MODE`og stilla modellið ella útgangsmøguleikarnar um tørvur er á tí.\n2. Vel **Koyritíð -> Koyr alt**.\n3. Um `INPUT_MODE = \"upload\"`, bíða til **2. Fíluval / Google Drivemontering** byrjar, og trýst síðani á **Vel Fílur** í útgangsøkinum hjá teirri kyknuni.\n4. Tá viðgerðin er liðug, verða útflutningsfílurnar zippaðar og heintaðar, um `AUTO_DOWNLOAD_ZIP`er virkið.\n\n## Viðmerkingar\n\n- Google Colabókeypis GPUtøkan er avmarkað. Um eingin GPUer tøkur og `REQUIRE_CUDA = True`, steðgar notubókin áðrenn umskriving.\n- Viðgerðin tekur tíð. Sum ein grov vegleiðing, tá ið large-v3-turbomodellið verður brúkt, kann ein 60 minuttir lang ljóð- ella videofíla taka umleið 5-10 minuttir at umskriva. Um tú letur fílur upp beinleiðis, er eisini krav um leinartíð.\n- Halt hesa fartelduna opna, meðan tú avgreiðir. Um tú letur fartelduna aftur undir transkriptiónini, steðgar viðgerðin.",
+    "settings.source_language_default": "faroese"
+  },
+  "readme": {
+    "title": "WhisperSamstarv",
+    "subtitle": "Fleirmæltar Google Colabnotubøkur til Whisperumskriving.",
+    "features": [
+      "**Ókeypis at brúka:** Hendan farteldan brúkar [openai/whisper](https://github.com/openai/whisper), sum OpenAIvarð opnað 17. januar 2023, saman við ókeypis GPUkoyritíðini hjá Google Colab.",
+      "**Einki fast mark fyri fílustødd á farteldusíðuni:** Stórar ljóð- og videofílur kunnu viðgerast.",
+      "**Hópviðgerð:** Fleiri ljóð- og videofílur kunnu viðgerast í einum koyri.",
+      "**Google Drivestuðul:** Fílur kunnu leggjast upp beinleiðis, ella ljóð/myndafílur, sum eru goymdar í Google Drive, kunnu viðgerast.",
+      "**Heilt á netinum:** Niðurtøkur og viðgerðir verða framdar á Google Colab. Einki lokalt teldutilfeingi er nýtt.",
+      "**Fleiri útflutningssnið:** Notubókin gevur út upprunaliga JSONuppritið og avleiddu TXT, CSV, Markdown, Excel, og SRTundirtekstfílurnar."
+    ],
+    "template_note": "Rótin READMEer enska inngongdarpunktið, og docs/READMEinniheldur framleiddar lokaliseraðar READMEfílur. Sniðbókin er keldubókin og inniheldur staðhaldarar sum `{{cell1.title}}`. Lokalfílur geva málspesifikt READMEog Colab-vendandi avrit. Genereraðar farteldur eru bundnar so Colab leinkjur halda seg støðugar.",
+    "checks_note": "CI arbeiðsgongdin umbyggir READMEfílur og notubøkur úr fyrimyndar- og lokalfílunum, kannar notubókina JSON, staðfestir tómar úttøkur, kannar Python syntaks í kodukyknum, kannar fyri týðiligum tilvildarligum loyndarmálum, og miseydnast tá framleiddar fílur ikki eru.",
+    "ci_items": [
+      "READMEframleiðsla frá lokalfílum",
+      "fartelduframleiðsla frá fyrimyndini og staðbundnu fílunum",
+      "skrivibók JSONgildi",
+      "tóm útførsluúrtøkur",
+      "Python-setningur í kodukyknum",
+      "týðilig tilvildarlig loyndarmál",
+      "bundið framleitt READMEog farteldufílur, sum passa til keldurnar"
+    ],
+    "ci_limit": "Fulla transkriptiónsleiðin krevur Colab-spesifikkar API'ir, modell-niðurtøkur, GPUtøkni og miðlafílur, sum brúkarin veitir. Viðgerð ta leiðina sum eina manuella Colab roykroynd eftir at framleidda-fílukanningar hava verið.",
+    "license_note": "READMEgeneratorurin, fartelduskabelonin, lokalfílurnar, framleiddu farteldurnar og viðlíkahaldsskriftirnar hjá hesum goymsluni eru útgivnar undir MITloyvinum. Whispermodellir og triðjaparts-avhengi eru stýrd av teirra hvør sínum loyvum.",
+    "feature_labels": [
+      "Ókeypis at brúka",
+      "Einki fast mark fyri fílustødd á farteldusíðuni",
+      "Hópviðgerð",
+      "Google Drivestuðul",
+      "Heilt á netinum",
+      "Fleiri útflutningssnið"
+    ],
+    "feature_bodies": [
+      "Hendan farteldan brúkar [openai/whisper](https://github.com/openai/whisper), sum OpenAIvarð opnað 17. januar 2023, saman við ókeypis GPUkoyritíðini hjá Google Colab.",
+      "Stórar ljóð- og videofílur kunnu viðgerast.",
+      "Fleiri ljóð- og videofílur kunnu viðgerast í einum koyri.",
+      "Fílur kunnu leggjast upp beinleiðis, ella ljóð/myndafílur, sum eru goymdar í Google Drive, kunnu viðgerast.",
+      "Niðurtøkur og viðgerðir verða framdar á Google Colab. Einki lokalt teldutilfeingi er nýtt.",
+      "Notubókin gevur út upprunaliga JSONuppritið og avleiddu TXT, CSV, Markdown, Excel, og SRTundirtekstfílurnar."
+    ]
+  },
+  "labels": {
+    "features": "Andlitsbragd",
+    "languages": "Mál",
+    "language": "Mál",
+    "readme": "README",
+    "notebook": "Notubók",
+    "repository_layout": "Goymsluuppseting",
+    "build": "Byggja",
+    "checks": "Ávísingar",
+    "what_ci_can_test": "Hvat CI kann royna",
+    "license": "Loyvi"
+  },
+  "translation_source": "direct_google:fo; machine-translated from en",
+  "notebook": {
+    "title": "Colab Notubók",
+    "description": "Hendan notubókin avskrivar ljóð- ella videofílur við Whisper.",
+    "features_heading": "Andlitsbragd",
+    "features": [
+      "**Ókeypis at brúka:** Hendan farteldan brúkar [openai/whisper](https://github.com/openai/whisper), sum OpenAIvarð opnað 17. januar 2023, saman við ókeypis GPUkoyritíðini hjá Google Colab.",
+      "**Einki fast mark fyri fílustødd á farteldusíðuni:** Stórar ljóð- og videofílur kunnu viðgerast.",
+      "**Hópviðgerð:** Fleiri ljóð- og videofílur kunnu viðgerast í einum koyri.",
+      "**Google Drivestuðul:** Fílur kunnu leggjast upp beinleiðis, ella ljóð/myndafílur, sum eru goymdar í Google Drive, kunnu viðgerast.",
+      "**Heilt á netinum:** Niðurtøkur og viðgerðir verða framdar á Google Colab. Einki lokalt teldutilfeingi er nýtt.",
+      "**Fleiri útflutningssnið:** Notubókin gevur út upprunaliga JSONuppritið og avleiddu TXT, CSV, Markdown, Excel, og SRTundirtekstfílurnar."
+    ],
+    "how_to_use_heading": "Hvussu tú brúkar",
+    "how_to_use_steps": [
+      "Í **1. Innstillingar**, vel `INPUT_MODE`og stilla modellið ella útgangsmøguleikarnar um tørvur er á tí.",
+      "Vel **Koyritíð -> Koyr alt**.",
+      "Um `INPUT_MODE = \"upload\"`, bíða til **2. Fíluval / Google Drivemontering** byrjar, og trýst síðani á **Vel Fílur** í útgangsøkinum hjá teirri kyknuni.",
+      "Tá viðgerðin er liðug, verða útflutningsfílurnar zippaðar og heintaðar, um `AUTO_DOWNLOAD_ZIP`er virkið."
+    ],
+    "notes_heading": "Viðmerkingar",
+    "notes": [
+      "Google Colabókeypis GPUtøkan er avmarkað. Um eingin GPUer tøkur og `REQUIRE_CUDA = True`, steðgar notubókin áðrenn umskriving.",
+      "Viðgerðin tekur tíð. Sum ein grov vegleiðing, tá ið large-v3-turbomodellið verður brúkt, kann ein 60 minuttir lang ljóð- ella videofíla taka umleið 5-10 minuttir at umskriva. Um tú letur fílur upp beinleiðis, er eisini krav um leinartíð.",
+      "Halt hesa fartelduna opna, meðan tú avgreiðir. Um tú letur fartelduna aftur undir transkriptiónini, steðgar viðgerðin."
+    ],
+    "feature_labels": [
+      "Ókeypis at brúka",
+      "Einki fast mark fyri fílustødd á farteldusíðuni",
+      "Hópviðgerð",
+      "Google Drivestuðul",
+      "Heilt á netinum",
+      "Fleiri útflutningssnið"
+    ],
+    "feature_bodies": [
+      "Hendan farteldan brúkar [openai/whisper](https://github.com/openai/whisper), sum OpenAIvarð opnað 17. januar 2023, saman við ókeypis GPUkoyritíðini hjá Google Colab.",
+      "Stórar ljóð- og videofílur kunnu viðgerast.",
+      "Fleiri ljóð- og videofílur kunnu viðgerast í einum koyri.",
+      "Fílur kunnu leggjast upp beinleiðis, ella ljóð/myndafílur, sum eru goymdar í Google Drive, kunnu viðgerast.",
+      "Niðurtøkur og viðgerðir verða framdar á Google Colab. Einki lokalt teldutilfeingi er nýtt.",
+      "Notubókin gevur út upprunaliga JSONuppritið og avleiddu TXT, CSV, Markdown, Excel, og SRTundirtekstfílurnar."
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "language": "id",
+  "display_name": "Indonesian",
+  "native_name": "Indonesian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Pengaturan",
+    "cell1.section_title": "# 1. Pengaturan",
+    "cell2.title": "# @title 2. Pemilihan file / Google Drivemount",
+    "cell2.section_title": "# 2. Pemilihan file / Google Drivemount",
+    "cell3.title": "# @title 3. GPUemeriksaan dan instalasi ketergantungan",
+    "cell3.section_title": "# 3. GPUemeriksaan dan instalasi ketergantungan",
+    "cell4.title": "# @title 4. Fungsi pembantu",
+    "cell4.section_title": "# 4. Fungsi pembantu",
+    "cell5.title": "# @title 5. Muat Whisperdan jalankan transkripsi",
+    "cell5.section_title": "# 5. Muat Whisperdan jalankan transkripsi",
+    "cell6.title": "# @title 6. Zip dan unduh hasilnya",
+    "cell6.section_title": "# 6. Zip dan unduh hasilnya",
+    "settings.input_heading": "# @markdown ## Masukan",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Gunakan `upload`untuk file lokal atau `google_drive`untuk file yang sudah disimpan di Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivemasukan",
+    "settings.drive_help": "# @markdown Pengaturan ini hanya digunakan ketika `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Biasanya simpan set ini ke `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Jalur file atau folder di bawah MyDrive. Biarkan kosong untuk menggunakan folder MyDrive tingkat atas.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Jika jalur masukan Drive berupa folder, cari juga subfolder.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Filter substring nama file opsional.",
+    "settings.model_heading": "# @markdown ## Whispermodel",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID model. Turbo lebih cepat; large-v3bisa lebih stabil untuk beberapa file.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Gunakan `auto`bila tidak diketahui, atau pilih bahasa sumber yang diketahui.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Gunakan mode terjemahan Whisperuntuk menghasilkan bahasa Inggris.",
+    "settings.output_heading": "# @markdown ## Keluaran",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Menyimpan output pada Google Driveketika input Drive digunakan.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Buat dan unduh satu arsip ZIPdi bagian akhir.",
+    "settings.formats_help": "# @markdown - Format keluaran dikontrol oleh boolean di bawah ini.",
+    "settings.advanced_heading": "# ## Lanjutan",
+    "settings.advanced_help": "# Default ini bersifat konservatif untuk Colab. Pengguna biasa biasanya tidak perlu mengeditnya.",
+    "settings.loaded_message": "Pengaturan dimuat.",
+    "messages.choose_files": "Klik 'Pilih File' dan unggah satu atau lebih file audio/video.",
+    "messages.selected_files": "File yang dipilih:",
+    "messages.dependencies_done": "Instalasi ketergantungan selesai.",
+    "messages.model_loaded": "Whispermodel dimuat.",
+    "messages.transcription_complete": "Transkripsi selesai.",
+    "errors.no_supported_files": "Tidak ada file audio/video yang didukung yang dipilih.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperBuku Catatan Colab\n\nNotebook ini mentranskripsikan file audio atau video dengan Whisper.\n\n## Fitur\n\n- **Gratis untuk digunakan:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.\n- **Tidak ada batasan ukuran file sisi buku catatan yang tetap:** File audio dan video berukuran besar dapat diproses.\n- **Pemrosesan batch:** Beberapa file audio dan video dapat diproses sekaligus.\n- **Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.\n- **Sepenuhnya daring:** Downloads and processing are performed on Google Colab. Tidak ada sumber daya komputasi lokal yang digunakan.\n- **Berbagai format keluaran:** Notebook ini mengeluarkan transkrip JSONasli dan file subjudul TXT, CSV, Markdown, Excel, dan SRT.\n\n## Cara menggunakan\n\n1. Di **1. Pengaturan**, pilih `INPUT_MODE`dan sesuaikan model atau opsi keluaran jika diperlukan.\n2. Pilih **Waktu Proses -> Jalankan semua**.\n3. Jika `INPUT_MODE = \"upload\"`, tunggu sampai **2. Pemilihan file / Google Drivemount** dimulai, lalu klik **Choose Files** di area output sel tersebut.\n4. Ketika pemrosesan selesai, file keluaran di-zip dan diunduh jika `AUTO_DOWNLOAD_ZIP`diaktifkan.\n\n## Catatan\n\n- Google Colabgratis GPUketersediaan terbatas. Jika GPUtidak tersedia dan `REQUIRE_CUDA = True`, buku catatan berhenti sebelum transkripsi.\n- Pemrosesan membutuhkan waktu. Sebagai panduan kasar saat menggunakan model large-v3-turbo, file audio atau video berdurasi 60 menit mungkin memerlukan waktu sekitar 5-10 menit untuk ditranskripsikan. Jika Anda mengunggah file secara langsung, waktu unggah juga diperlukan.\n- Biarkan buku catatan ini tetap terbuka saat sedang memproses. Jika Anda menutup buku catatan selama transkripsi, pemrosesan akan berhenti.",
+    "settings.source_language_default": "indonesian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Buku catatan multibahasa Google Colabuntuk transkripsi Whisper.",
+    "features": [
+      "**Gratis untuk digunakan:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Tidak ada batasan ukuran file sisi buku catatan yang tetap:** File audio dan video berukuran besar dapat diproses.",
+      "**Pemrosesan batch:** Beberapa file audio dan video dapat diproses sekaligus.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Sepenuhnya daring:** Downloads and processing are performed on Google Colab. Tidak ada sumber daya komputasi lokal yang digunakan.",
+      "**Berbagai format keluaran:** Notebook ini mengeluarkan transkrip JSONasli dan file subjudul TXT, CSV, Markdown, Excel, dan SRT."
+    ],
+    "template_note": "Root READMEadalah titik masuk bahasa Inggris, dan docs/READMEberisi file READMElokal yang dihasilkan. Buku catatan templat adalah buku catatan sumber dan berisi placeholder seperti `{{cell1.title}}`. File lokal menyediakan READMEkhusus bahasa dan salinan yang dapat dilihat di Colab. Notebook yang dihasilkan dikomit sehingga link Colab tetap stabil.",
+    "checks_note": "Alur kerja CI membangun kembali file READMEdan buku catatan dari templat dan file lokal, memeriksa buku catatan JSON, memverifikasi keluaran kosong, memeriksa sintaksis Python dalam sel kode, memindai rahasia yang tidak disengaja, dan gagal ketika file yang dihasilkan tidak dikomit.",
+    "ci_items": [
+      "READMEembuatan dari file lokal",
+      "pembuatan buku catatan dari templat dan file lokal",
+      "buku catatan JSONvaliditas",
+      "keluaran eksekusi kosong",
+      "Sintaks Python dalam sel kode",
+      "rahasia yang jelas dan tidak disengaja",
+      "berkomitmen menghasilkan READMEdan file buku catatan yang cocok dengan sumbernya"
+    ],
+    "ci_limit": "Jalur transkripsi lengkap memerlukan API khusus Colab, download model, ketersediaan GPU, dan file media yang disediakan pengguna. Perlakukan jalur tersebut sebagai pengujian asap Colab manual setelah pemeriksaan file yang dihasilkan berhasil.",
+    "license_note": "Generator READMErepositori ini, templat buku catatan, file lokal, buku catatan yang dihasilkan, dan skrip pemeliharaan dirilis di bawah Lisensi MIT. Whispermodel dan dependensi pihak ketiga diatur oleh lisensinya masing-masing.",
+    "feature_labels": [
+      "Gratis untuk digunakan",
+      "Tidak ada batasan ukuran file sisi buku catatan yang tetap",
+      "Pemrosesan batch",
+      "Google Drivesupport",
+      "Sepenuhnya daring",
+      "Berbagai format keluaran"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "File audio dan video berukuran besar dapat diproses.",
+      "Beberapa file audio dan video dapat diproses sekaligus.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Tidak ada sumber daya komputasi lokal yang digunakan.",
+      "Notebook ini mengeluarkan transkrip JSONasli dan file subjudul TXT, CSV, Markdown, Excel, dan SRT."
+    ]
+  },
+  "labels": {
+    "features": "Fitur",
+    "languages": "Bahasa",
+    "language": "Bahasa",
+    "readme": "README",
+    "notebook": "Buku catatan",
+    "repository_layout": "Tata Letak Repositori",
+    "build": "Membangun",
+    "checks": "Cek",
+    "what_ci_can_test": "Apa yang Dapat Diuji oleh CI",
+    "license": "Lisensi"
+  },
+  "translation_source": "google:id; machine-translated from en",
+  "notebook": {
+    "title": "WhisperBuku Catatan Colab",
+    "description": "Notebook ini mentranskripsikan file audio atau video dengan Whisper.",
+    "features_heading": "Fitur",
+    "features": [
+      "**Gratis untuk digunakan:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "**Tidak ada batasan ukuran file sisi buku catatan yang tetap:** File audio dan video berukuran besar dapat diproses.",
+      "**Pemrosesan batch:** Beberapa file audio dan video dapat diproses sekaligus.",
+      "**Google Drivesupport:** Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "**Sepenuhnya daring:** Downloads and processing are performed on Google Colab. Tidak ada sumber daya komputasi lokal yang digunakan.",
+      "**Berbagai format keluaran:** Notebook ini mengeluarkan transkrip JSONasli dan file subjudul TXT, CSV, Markdown, Excel, dan SRT."
+    ],
+    "how_to_use_heading": "Cara menggunakan",
+    "how_to_use_steps": [
+      "Di **1. Pengaturan**, pilih `INPUT_MODE`dan sesuaikan model atau opsi keluaran jika diperlukan.",
+      "Pilih **Waktu Proses -> Jalankan semua**.",
+      "Jika `INPUT_MODE = \"upload\"`, tunggu sampai **2. Pemilihan file / Google Drivemount** dimulai, lalu klik **Choose Files** di area output sel tersebut.",
+      "Ketika pemrosesan selesai, file keluaran di-zip dan diunduh jika `AUTO_DOWNLOAD_ZIP`diaktifkan."
+    ],
+    "notes_heading": "Catatan",
+    "notes": [
+      "Google Colabgratis GPUketersediaan terbatas. Jika GPUtidak tersedia dan `REQUIRE_CUDA = True`, buku catatan berhenti sebelum transkripsi.",
+      "Pemrosesan membutuhkan waktu. Sebagai panduan kasar saat menggunakan model large-v3-turbo, file audio atau video berdurasi 60 menit mungkin memerlukan waktu sekitar 5-10 menit untuk ditranskripsikan. Jika Anda mengunggah file secara langsung, waktu unggah juga diperlukan.",
+      "Biarkan buku catatan ini tetap terbuka saat sedang memproses. Jika Anda menutup buku catatan selama transkripsi, pemrosesan akan berhenti."
+    ],
+    "feature_labels": [
+      "Gratis untuk digunakan",
+      "Tidak ada batasan ukuran file sisi buku catatan yang tetap",
+      "Pemrosesan batch",
+      "Google Drivesupport",
+      "Sepenuhnya daring",
+      "Berbagai format keluaran"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAIopen-sourced on January 17, 2023, together with Google Colab's free GPUruntime.",
+      "File audio dan video berukuran besar dapat diproses.",
+      "Beberapa file audio dan video dapat diproses sekaligus.",
+      "Files can be uploaded directly, or audio/video files stored in Google Drivecan be processed.",
+      "Downloads and processing are performed on Google Colab. Tidak ada sumber daya komputasi lokal yang digunakan.",
+      "Notebook ini mengeluarkan transkrip JSONasli dan file subjudul TXT, CSV, Markdown, Excel, dan SRT."
+    ]
+  }
+}

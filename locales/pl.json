@@ -1,0 +1,144 @@
+{
+  "language": "pl",
+  "display_name": "Polish",
+  "native_name": "Polish",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Ustawienia",
+    "cell1.section_title": "# 1. Ustawienia",
+    "cell2.title": "# @title 2. Wybór pliku / Google Drivezamontuj",
+    "cell2.section_title": "# 2. Wybór pliku / Google Drivezamontuj",
+    "cell3.title": "# @title 3. GPUsprawdzenie i instalacja zależności",
+    "cell3.section_title": "# 3. GPUsprawdzenie i instalacja zależności",
+    "cell4.title": "# @title 4. Funkcje pomocnicze",
+    "cell4.section_title": "# 4. Funkcje pomocnicze",
+    "cell5.title": "# @title 5. Załaduj Whisperi uruchom transkrypcję",
+    "cell5.section_title": "# 5. Załaduj Whisperi uruchom transkrypcję",
+    "cell6.title": "# @title 6. Zpakuj i pobierz wyniki",
+    "cell6.section_title": "# 6. Zpakuj i pobierz wyniki",
+    "settings.input_heading": "# @markdown ## Wejście",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Użyj `upload`dla plików lokalnych lub `google_drive`dla plików już zapisanych w Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivewejście",
+    "settings.drive_help": "# @markdown Te ustawienia są używane tylko wtedy, gdy `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Zwykle ustawiaj tę opcję na `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Ścieżka pliku lub folderu w MyDrive. Pozostaw puste, aby użyć folderu MyDrive najwyższego poziomu.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Jeśli ścieżka wejściowa napędu to folder, przeszukaj także podfoldery.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Opcjonalny filtr podciągu nazwy pliku.",
+    "settings.model_heading": "# @markdown ## Model Whisper",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceIdentyfikator modelu. Turbo jest szybsze; large-v3może być bardziej stabilny w przypadku niektórych plików.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Użyj `auto`, jeśli jest nieznany, lub wybierz znany język źródłowy.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Użyj trybu tłumaczenia Whisper, aby wyprowadzić tekst w języku angielskim.",
+    "settings.output_heading": "# @markdown ## Wyjście",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Zapisz wyjścia pod Google Drive, gdy używane jest wejście napędu.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Na koniec utwórz i pobierz jedno archiwum ZIP.",
+    "settings.formats_help": "# @markdown - Formaty wyjściowe są kontrolowane przez poniższe wartości logiczne.",
+    "settings.advanced_heading": "# ## Zaawansowany",
+    "settings.advanced_help": "# Te wartości domyślne są konserwatywne w przypadku Colab. Zwykli użytkownicy zazwyczaj nie muszą ich edytować.",
+    "settings.loaded_message": "Ustawienia załadowane.",
+    "messages.choose_files": "Kliknij „Wybierz pliki” i prześlij jeden lub więcej plików audio/wideo.",
+    "messages.selected_files": "Wybrane pliki:",
+    "messages.dependencies_done": "Instalacja zależności została zakończona.",
+    "messages.model_loaded": "Załadowano model Whisper.",
+    "messages.transcription_complete": "Transkrypcja ukończona.",
+    "errors.no_supported_files": "Nie wybrano obsługiwanych plików audio/wideo.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperNotatnik Colab\n\nTen notatnik transkrybuje pliki audio lub wideo za pomocą Whisper.\n\n## Cechy\n\n- **Bezpłatne:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.\n- **Brak stałego limitu rozmiaru pliku po stronie notebooka:** Można przetwarzać duże pliki audio i wideo.\n- **Przetwarzanie wsadowe:** W jednym przebiegu można przetwarzać wiele plików audio i wideo.\n- **Wsparcie Google Drive:** Pliki można przesyłać bezpośrednio lub przetwarzać pliki audio/wideo zapisane w Google Drive.\n- **W pełni online:** Pobieranie i przetwarzanie odbywa się na Google Colab. Nie są wykorzystywane żadne lokalne zasoby obliczeniowe.\n- **Wiele formatów wyjściowych:** Notatnik generuje oryginalny transkrypt JSONoraz pochodne pliki napisów TXT, CSV, Markdown, Exceli SRT.\n\n## Jak używać\n\n1. W **1. Ustawienia**, wybierz `INPUT_MODE`i w razie potrzeby dostosuj model lub opcje wyjściowe.\n2. Wybierz **Środowisko wykonawcze -> Uruchom wszystko**.\n3. Jeśli `INPUT_MODE = \"upload\"`, poczekaj do **2. Rozpocznie się wybieranie pliku / montowanie Google Drive**, a następnie kliknij **Wybierz pliki** w obszarze wyjściowym tej komórki.\n4. Po zakończeniu przetwarzania pliki wyjściowe są spakowane i pobrane, jeśli włączona jest opcja `AUTO_DOWNLOAD_ZIP`.\n\n## Notatki\n\n- Google Colabbezpłatny GPUdostępność jest ograniczona. Jeśli nie jest dostępny GPUi `REQUIRE_CUDA = True`, notatnik zatrzymuje się przed transkrypcją.\n- Przetwarzanie wymaga czasu. Jako przybliżoną wskazówkę dotyczącą korzystania z modelu large-v3-turbo, transkrypcja 60-minutowego pliku audio lub wideo może zająć około 5-10 minut. Jeśli przesyłasz pliki bezpośrednio, wymagany jest również czas przesyłania.\n- Podczas przetwarzania trzymaj ten notatnik otwarty. Jeśli zamkniesz notatnik podczas transkrypcji, przetwarzanie zostanie zatrzymane.",
+    "settings.source_language_default": "polish"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Wielojęzyczne notesy Google Colabdo transkrypcji Whisper.",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Brak stałego limitu rozmiaru pliku po stronie notebooka:** Można przetwarzać duże pliki audio i wideo.",
+      "**Przetwarzanie wsadowe:** W jednym przebiegu można przetwarzać wiele plików audio i wideo.",
+      "**Wsparcie Google Drive:** Pliki można przesyłać bezpośrednio lub przetwarzać pliki audio/wideo zapisane w Google Drive.",
+      "**W pełni online:** Pobieranie i przetwarzanie odbywa się na Google Colab. Nie są wykorzystywane żadne lokalne zasoby obliczeniowe.",
+      "**Wiele formatów wyjściowych:** Notatnik generuje oryginalny transkrypt JSONoraz pochodne pliki napisów TXT, CSV, Markdown, Exceli SRT."
+    ],
+    "template_note": "Katalog główny READMEjest punktem wejścia w języku angielskim, a dokumentacja/READMEzawiera wygenerowane zlokalizowane pliki README. Notatnik szablonu jest notatnikiem źródłowym i zawiera elementy zastępcze, takie jak `{{cell1.title}}`. Pliki regionalne zawierają READMEspecyficzną dla języka kopię i kopię do Colab. Wygenerowane notatniki są zaangażowane, więc łącza Colab pozostają stabilne.",
+    "checks_note": "Przepływ pracy CI odbudowuje pliki READMEi notatki z szablonu i plików ustawień regionalnych, sprawdza notatnik JSON, weryfikuje puste dane wyjściowe, sprawdza składnię Pythona w komórkach kodu, skanuje w poszukiwaniu oczywistych przypadkowych sekretów i kończy się niepowodzeniem, gdy wygenerowane pliki nie są zatwierdzone.",
+    "ci_items": [
+      "Generowanie READMEz plików ustawień regionalnych",
+      "generowanie notatnika z plików szablonu i ustawień regionalnych",
+      "notatnik JSONważność",
+      "puste wyniki wykonania",
+      "Składnia Pythona w komórkach kodu",
+      "oczywiste przypadkowe tajemnice",
+      "commit wygenerował READMEi pliki notatników pasujące do źródeł"
+    ],
+    "ci_limit": "Pełna ścieżka transkrypcji wymaga interfejsów API specyficznych dla Colab, pobrania modelu, dostępności GPUi plików multimedialnych dostarczonych przez użytkownika. Traktuj tę ścieżkę jako ręczny test dymny Colab po pomyślnym przejściu kontroli wygenerowanych plików.",
+    "license_note": "Generator READMEz tego repozytorium, szablon notatnika, pliki ustawień regionalnych, wygenerowane notatniki i skrypty konserwacyjne są udostępniane na podstawie licencji MIT. Modele Whisperi zależności innych firm podlegają odpowiednim licencjom.",
+    "feature_labels": [
+      "Bezpłatne",
+      "Brak stałego limitu rozmiaru pliku po stronie notebooka",
+      "Przetwarzanie wsadowe",
+      "Wsparcie Google Drive",
+      "W pełni online",
+      "Wiele formatów wyjściowych"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Można przetwarzać duże pliki audio i wideo.",
+      "W jednym przebiegu można przetwarzać wiele plików audio i wideo.",
+      "Pliki można przesyłać bezpośrednio lub przetwarzać pliki audio/wideo zapisane w Google Drive.",
+      "Pobieranie i przetwarzanie odbywa się na Google Colab. Nie są wykorzystywane żadne lokalne zasoby obliczeniowe.",
+      "Notatnik generuje oryginalny transkrypt JSONoraz pochodne pliki napisów TXT, CSV, Markdown, Exceli SRT."
+    ]
+  },
+  "labels": {
+    "features": "Cechy",
+    "languages": "Języki",
+    "language": "Język",
+    "readme": "README",
+    "notebook": "Zeszyt",
+    "repository_layout": "Układ repozytorium",
+    "build": "Zbudować",
+    "checks": "Kontrole",
+    "what_ci_can_test": "Co CI może przetestować",
+    "license": "Licencja"
+  },
+  "translation_source": "google:pl; machine-translated from en",
+  "notebook": {
+    "title": "WhisperNotatnik Colab",
+    "description": "Ten notatnik transkrybuje pliki audio lub wideo za pomocą Whisper.",
+    "features_heading": "Cechy",
+    "features": [
+      "**Free to use:** This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "**Brak stałego limitu rozmiaru pliku po stronie notebooka:** Można przetwarzać duże pliki audio i wideo.",
+      "**Przetwarzanie wsadowe:** W jednym przebiegu można przetwarzać wiele plików audio i wideo.",
+      "**Wsparcie Google Drive:** Pliki można przesyłać bezpośrednio lub przetwarzać pliki audio/wideo zapisane w Google Drive.",
+      "**W pełni online:** Pobieranie i przetwarzanie odbywa się na Google Colab. Nie są wykorzystywane żadne lokalne zasoby obliczeniowe.",
+      "**Wiele formatów wyjściowych:** Notatnik generuje oryginalny transkrypt JSONoraz pochodne pliki napisów TXT, CSV, Markdown, Exceli SRT."
+    ],
+    "how_to_use_heading": "Jak używać",
+    "how_to_use_steps": [
+      "W **1. Ustawienia**, wybierz `INPUT_MODE`i w razie potrzeby dostosuj model lub opcje wyjściowe.",
+      "Wybierz **Środowisko wykonawcze -> Uruchom wszystko**.",
+      "Jeśli `INPUT_MODE = \"upload\"`, poczekaj do **2. Rozpocznie się wybieranie pliku / montowanie Google Drive**, a następnie kliknij **Wybierz pliki** w obszarze wyjściowym tej komórki.",
+      "Po zakończeniu przetwarzania pliki wyjściowe są spakowane i pobrane, jeśli włączona jest opcja `AUTO_DOWNLOAD_ZIP`."
+    ],
+    "notes_heading": "Notatki",
+    "notes": [
+      "Google Colabbezpłatny GPUdostępność jest ograniczona. Jeśli nie jest dostępny GPUi `REQUIRE_CUDA = True`, notatnik zatrzymuje się przed transkrypcją.",
+      "Przetwarzanie wymaga czasu. Jako przybliżoną wskazówkę dotyczącą korzystania z modelu large-v3-turbo, transkrypcja 60-minutowego pliku audio lub wideo może zająć około 5-10 minut. Jeśli przesyłasz pliki bezpośrednio, wymagany jest również czas przesyłania.",
+      "Podczas przetwarzania trzymaj ten notatnik otwarty. Jeśli zamkniesz notatnik podczas transkrypcji, przetwarzanie zostanie zatrzymane."
+    ],
+    "feature_labels": [
+      "Bezpłatne",
+      "Brak stałego limitu rozmiaru pliku po stronie notebooka",
+      "Przetwarzanie wsadowe",
+      "Wsparcie Google Drive",
+      "W pełni online",
+      "Wiele formatów wyjściowych"
+    ],
+    "feature_bodies": [
+      "This notebook uses [openai/whisper](https://github.com/openai/whisper), which OpenAI open-sourced on January 17, 2023, together with Google Colab's free GPU runtime.",
+      "Można przetwarzać duże pliki audio i wideo.",
+      "W jednym przebiegu można przetwarzać wiele plików audio i wideo.",
+      "Pliki można przesyłać bezpośrednio lub przetwarzać pliki audio/wideo zapisane w Google Drive.",
+      "Pobieranie i przetwarzanie odbywa się na Google Colab. Nie są wykorzystywane żadne lokalne zasoby obliczeniowe.",
+      "Notatnik generuje oryginalny transkrypt JSONoraz pochodne pliki napisów TXT, CSV, Markdown, Exceli SRT."
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "language": "tl",
+  "display_name": "Tagalog",
+  "native_name": "Tagalog",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Mga setting",
+    "cell1.section_title": "# 1. Mga setting",
+    "cell2.title": "# @title 2. Pagpili ng file / Google Drivemount",
+    "cell2.section_title": "# 2. Pagpili ng file / Google Drivemount",
+    "cell3.title": "# @title 3. GPUcheck at pag-install ng dependency",
+    "cell3.section_title": "# 3. GPUcheck at pag-install ng dependency",
+    "cell4.title": "# @title 4. Mga function ng katulong",
+    "cell4.section_title": "# 4. Mga function ng katulong",
+    "cell5.title": "# @title 5. Mag-load ng Whisperat magpatakbo ng transkripsyon",
+    "cell5.section_title": "# 5. Mag-load ng Whisperat magpatakbo ng transkripsyon",
+    "cell6.title": "# @title 6. Zip at pag-download ng mga output",
+    "cell6.section_title": "# 6. Zip at pag-download ng mga output",
+    "settings.input_heading": "# @markdown ## Input",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Gamitin ang `upload`ara sa mga lokal na file o `google_drive`ara sa mga file na nakaimbak na sa Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveinput",
+    "settings.drive_help": "# @markdown Ginagamit lang ang mga setting na ito kapag `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Karaniwang panatilihin ang set na ito sa `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Isang file o folder path sa ilalim ng MyDrive. Iwanang blangko upang gamitin ang top-level na MyDrive na folder.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Kung ang Drive input path ay isang folder, maghanap din ng mga subfolder.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Opsyonal na filter ng substring ng filename.",
+    "settings.model_heading": "# @markdown ## Whispermodelo",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodel ID. Ang Turbo ay mas mabilis; Ang large-v3ay maaaring maging mas matatag para sa ilang mga file.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Gamitin ang `auto`kapag hindi kilala, o pumili ng kilalang source language.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Gamitin ang Whispertranslate mode para mag-output ng English.",
+    "settings.output_heading": "# @markdown ## Output",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: I-save ang mga output sa ilalim ng Google Drivekapag ginamit ang input ng Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Gumawa at mag-download ng isang ZIParchive sa dulo.",
+    "settings.formats_help": "# @markdown - Ang mga format ng output ay kinokontrol ng mga boolean sa ibaba.",
+    "settings.advanced_heading": "# ## Advanced",
+    "settings.advanced_help": "# Ang mga default na ito ay konserbatibo para sa Colab. Karaniwang hindi kailangang i-edit ng mga ordinaryong user ang mga ito.",
+    "settings.loaded_message": "Na-load ang mga setting.",
+    "messages.choose_files": "I-click ang 'Pumili ng Mga File' at mag-upload ng isa o higit pang mga audio/video na file.",
+    "messages.selected_files": "Mga napiling file:",
+    "messages.dependencies_done": "Tapos na ang pag-install ng dependency.",
+    "messages.model_loaded": "Whisperna-load ang modelo.",
+    "messages.transcription_complete": "Kumpleto na ang transkripsyon.",
+    "errors.no_supported_files": "Walang piniling mga suportadong audio/video file.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nAng notebook na ito ay nagsasalin ng mga audio o video file na may Whisper.\n\n## Mga tampok\n\n- **Libreng gamitin:** Ang notebook na ito ay gumagamit ng [openai/whisper](https://github.com/openai/whisper), na OpenAIopen-sourced noong Enero 17, 2023, kasama ng Google Colabna libreng GPUruntime.\n- **Walang nakapirming limitasyon sa laki ng file sa gilid ng notebook:** Maaaring iproseso ang malalaking audio at video file.\n- **Batch processing:** Maaaring iproseso ang maraming audio at video file sa isang pagtakbo.\n- **Google Drivesuporta:** Maaaring direktang i-upload ang mga file, o maaaring iproseso ang mga file na audio/video na nakaimbak sa Google Drive.\n- **Ganap na online:** Ang mga pag-download at pagproseso ay isinasagawa sa Google Colab. Walang ginagamit na lokal na mapagkukunan ng computing.\n- **Maramihang mga format ng output:** Ang notebook ay naglalabas ng orihinal na JSONtranscript at nagmula sa TXT, CSV, Markdown, Excel, at SRTna mga subtitle na file.\n\n## Paano gamitin\n\n1. Sa **1. Mga Setting**, piliin ang `INPUT_MODE`at ayusin ang mga opsyon sa modelo o output kung kinakailangan.\n2. Piliin ang **Rtime -> Run all**.\n3. Kung `INPUT_MODE = \"upload\"`, maghintay hanggang **2. Magsisimula ang pagpili ng file / Google Drivemount**, pagkatapos ay i-click ang **Choose Files** sa output area ng cell na iyon.\n4. Kapag kumpleto na ang pagpoproseso, ang mga output file ay i-zip at ida-download kung ang `AUTO_DOWNLOAD_ZIP`ay pinagana.\n\n## Mga Tala\n\n- Google Colablibre GPUang availability ay limitado. Kung walang available na GPUat `REQUIRE_CUDA = True`, hihinto ang notebook bago ang transkripsyon.\n- Ang pagproseso ay tumatagal ng oras. Bilang isang magaspang na gabay kapag ginagamit ang modelong large-v3-turbo, maaaring tumagal nang humigit-kumulang 5-10 minuto bago mag-transcribe ang isang 60 minutong audio o video file. Kung direkta kang mag-upload ng mga file, kailangan din ang oras ng pag-upload.\n- Panatilihing bukas ang notebook na ito habang pinoproseso. Kung isasara mo ang notebook sa panahon ng transkripsyon, hihinto ang pagproseso.",
+    "settings.source_language_default": "tagalog"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Multilingual Google Colabna mga notebook para sa Whispertranskripsyon.",
+    "features": [
+      "**Libreng gamitin:** Ang notebook na ito ay gumagamit ng [openai/whisper](https://github.com/openai/whisper), na OpenAIopen-sourced noong Enero 17, 2023, kasama ng Google Colabna libreng GPUruntime.",
+      "**Walang nakapirming limitasyon sa laki ng file sa gilid ng notebook:** Maaaring iproseso ang malalaking audio at video file.",
+      "**Batch processing:** Maaaring iproseso ang maraming audio at video file sa isang pagtakbo.",
+      "**Google Drivesuporta:** Maaaring direktang i-upload ang mga file, o maaaring iproseso ang mga file na audio/video na nakaimbak sa Google Drive.",
+      "**Ganap na online:** Ang mga pag-download at pagproseso ay isinasagawa sa Google Colab. Walang ginagamit na lokal na mapagkukunan ng computing.",
+      "**Maramihang mga format ng output:** Ang notebook ay naglalabas ng orihinal na JSONtranscript at nagmula sa TXT, CSV, Markdown, Excel, at SRTna mga subtitle na file."
+    ],
+    "template_note": "Ang ugat na READMEay ang English entry point, at ang docs/READMEay naglalaman ng mga nabuong READMEna file. Ang template na notebook ay ang source notebook at naglalaman ng mga placeholder gaya ng `{{cell1.title}}`. Ang mga lokal na file ay nagbibigay ng tukoy sa wika na READMEat nakaharap sa Colab na kopya. Naka-commit ang mga nabuong notebook para manatiling stable ang mga link ng Colab.",
+    "checks_note": "Ang daloy ng trabaho ng CI ay muling nagtatayo ng READMEna mga file at notebook mula sa template at mga lokal na file, sinusuri ang notebook JSON, bini-verify ang mga walang laman na output, sinusuri ang Python syntax sa mga cell ng code, nag-scan para sa mga malinaw na hindi sinasadyang lihim, at nabigo kapag ang mga nabuong file ay hindi ginawa.",
+    "ci_items": [
+      "READMEhenerasyon mula sa mga lokal na file",
+      "pagbuo ng notebook mula sa template at mga lokal na file",
+      "notebook JSONvalidity",
+      "walang laman na mga output ng pagpapatupad",
+      "Syntax ng Python sa mga cell ng code",
+      "malinaw na hindi sinasadyang mga lihim",
+      "nakagawa ng READMEat mga notebook na file na tumutugma sa mga source"
+    ],
+    "ci_limit": "Ang buong transcription path ay nangangailangan ng mga Colab-specific na API, pag-download ng modelo, GPUavailability, at media file na ibinigay ng user. Tratuhin ang landas na iyon bilang isang manu-manong pagsubok sa usok ng Colab pagkatapos pumasa sa mga nabuong-file na pagsusuri.",
+    "license_note": "Ang READMEgenerator, notebook template, locale file, nabuong notebook, at maintenance script ng repository na ito ay inilabas sa ilalim ng MITLicense. Ang Whispermga modelo at mga dependency ng third-party ay pinamamahalaan ng kani-kanilang mga lisensya.",
+    "feature_labels": [
+      "Libreng gamitin",
+      "Walang nakapirming limitasyon sa laki ng file sa gilid ng notebook",
+      "Batch processing",
+      "Google Drivesuporta",
+      "Ganap na online",
+      "Maramihang mga format ng output"
+    ],
+    "feature_bodies": [
+      "Ang notebook na ito ay gumagamit ng [openai/whisper](https://github.com/openai/whisper), na OpenAIopen-sourced noong Enero 17, 2023, kasama ng Google Colabna libreng GPUruntime.",
+      "Maaaring iproseso ang malalaking audio at video file.",
+      "Maaaring iproseso ang maraming audio at video file sa isang pagtakbo.",
+      "Maaaring direktang i-upload ang mga file, o maaaring iproseso ang mga file na audio/video na nakaimbak sa Google Drive.",
+      "Ang mga pag-download at pagproseso ay isinasagawa sa Google Colab. Walang ginagamit na lokal na mapagkukunan ng computing.",
+      "Ang notebook ay naglalabas ng orihinal na JSONtranscript at nagmula sa TXT, CSV, Markdown, Excel, at SRTna mga subtitle na file."
+    ]
+  },
+  "labels": {
+    "features": "Mga tampok",
+    "languages": "Mga wika",
+    "language": "Wika",
+    "readme": "README",
+    "notebook": "Notebook",
+    "repository_layout": "Layout ng Imbakan",
+    "build": "Bumuo",
+    "checks": "Mga tseke",
+    "what_ci_can_test": "Ano ang Masusubok ng CI",
+    "license": "Lisensya"
+  },
+  "translation_source": "google:tl; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Ang notebook na ito ay nagsasalin ng mga audio o video file na may Whisper.",
+    "features_heading": "Mga tampok",
+    "features": [
+      "**Libreng gamitin:** Ang notebook na ito ay gumagamit ng [openai/whisper](https://github.com/openai/whisper), na OpenAIopen-sourced noong Enero 17, 2023, kasama ng Google Colabna libreng GPUruntime.",
+      "**Walang nakapirming limitasyon sa laki ng file sa gilid ng notebook:** Maaaring iproseso ang malalaking audio at video file.",
+      "**Batch processing:** Maaaring iproseso ang maraming audio at video file sa isang pagtakbo.",
+      "**Google Drivesuporta:** Maaaring direktang i-upload ang mga file, o maaaring iproseso ang mga file na audio/video na nakaimbak sa Google Drive.",
+      "**Ganap na online:** Ang mga pag-download at pagproseso ay isinasagawa sa Google Colab. Walang ginagamit na lokal na mapagkukunan ng computing.",
+      "**Maramihang mga format ng output:** Ang notebook ay naglalabas ng orihinal na JSONtranscript at nagmula sa TXT, CSV, Markdown, Excel, at SRTna mga subtitle na file."
+    ],
+    "how_to_use_heading": "Paano gamitin",
+    "how_to_use_steps": [
+      "Sa **1. Mga Setting**, piliin ang `INPUT_MODE`at ayusin ang mga opsyon sa modelo o output kung kinakailangan.",
+      "Piliin ang **Rtime -> Run all**.",
+      "Kung `INPUT_MODE = \"upload\"`, maghintay hanggang **2. Magsisimula ang pagpili ng file / Google Drivemount**, pagkatapos ay i-click ang **Choose Files** sa output area ng cell na iyon.",
+      "Kapag kumpleto na ang pagpoproseso, ang mga output file ay i-zip at ida-download kung ang `AUTO_DOWNLOAD_ZIP`ay pinagana."
+    ],
+    "notes_heading": "Mga Tala",
+    "notes": [
+      "Google Colablibre GPUang availability ay limitado. Kung walang available na GPUat `REQUIRE_CUDA = True`, hihinto ang notebook bago ang transkripsyon.",
+      "Ang pagproseso ay tumatagal ng oras. Bilang isang magaspang na gabay kapag ginagamit ang modelong large-v3-turbo, maaaring tumagal nang humigit-kumulang 5-10 minuto bago mag-transcribe ang isang 60 minutong audio o video file. Kung direkta kang mag-upload ng mga file, kailangan din ang oras ng pag-upload.",
+      "Panatilihing bukas ang notebook na ito habang pinoproseso. Kung isasara mo ang notebook sa panahon ng transkripsyon, hihinto ang pagproseso."
+    ],
+    "feature_labels": [
+      "Libreng gamitin",
+      "Walang nakapirming limitasyon sa laki ng file sa gilid ng notebook",
+      "Batch processing",
+      "Google Drivesuporta",
+      "Ganap na online",
+      "Maramihang mga format ng output"
+    ],
+    "feature_bodies": [
+      "Ang notebook na ito ay gumagamit ng [openai/whisper](https://github.com/openai/whisper), na OpenAIopen-sourced noong Enero 17, 2023, kasama ng Google Colabna libreng GPUruntime.",
+      "Maaaring iproseso ang malalaking audio at video file.",
+      "Maaaring iproseso ang maraming audio at video file sa isang pagtakbo.",
+      "Maaaring direktang i-upload ang mga file, o maaaring iproseso ang mga file na audio/video na nakaimbak sa Google Drive.",
+      "Ang mga pag-download at pagproseso ay isinasagawa sa Google Colab. Walang ginagamit na lokal na mapagkukunan ng computing.",
+      "Ang notebook ay naglalabas ng orihinal na JSONtranscript at nagmula sa TXT, CSV, Markdown, Excel, at SRTna mga subtitle na file."
+    ]
+  }
+}

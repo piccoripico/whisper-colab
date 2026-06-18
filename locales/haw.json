@@ -1,0 +1,144 @@
+{
+  "language": "haw",
+  "display_name": "Hawaiian",
+  "native_name": "Hawaiian",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Nā hoʻonohonoho",
+    "cell1.section_title": "# 1. Nā hoʻonohonoho",
+    "cell2.title": "# @title 2. Koho faila / Google Drivemauna",
+    "cell2.section_title": "# 2. Koho faila / Google Drivemauna",
+    "cell3.title": "# @title 3. GPUnānā a hoʻokomo hilinaʻi",
+    "cell3.section_title": "# 3. GPUnānā a hoʻokomo hilinaʻi",
+    "cell4.title": "# @title 4. Nā hana kōkua",
+    "cell4.section_title": "# 4. Nā hana kōkua",
+    "cell5.title": "# @title 5. Hoʻouka Whispera holo i ka palapala",
+    "cell5.section_title": "# 5. Hoʻouka Whispera holo i ka palapala",
+    "cell6.title": "# @title 6. Zip a hoʻoiho i nā huahana",
+    "cell6.section_title": "# 6. Zip a hoʻoiho i nā huahana",
+    "settings.input_heading": "# @markdown ## Hookomo",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: E hoʻohana `upload`no nā faila kūloko a i ʻole `google_drive`no nā faila i waiho mua ʻia ma Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Drivehookomo",
+    "settings.drive_help": "# @markdown Hoʻohana ʻia kēia mau hoʻonohonoho inā `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: E mālama mau i kēia hoʻonohonoho i `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: He waihona a waihona paha ala ma lalo o MyDrive. E waiho hakahaka no ka hoʻohana ʻana i ka waihona MyDrive kiʻekiʻe.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Inā he waihona ke ala hoʻokomo Drive, e huli pū i nā waihona waihona.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: He kānana substring inoa waihona koho.",
+    "settings.model_heading": "# @markdown ## Whisperkumu hoʻohālike",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID kumu hoʻohālike. ʻOi aku ka wikiwiki o Turbo; large-v3hiki ke pa'a no kekahi mau faila.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: E hoʻohana `auto`ke ʻike ʻole ʻia, a i ʻole e koho i kahi ʻōlelo kumu i ʻike ʻia.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: E hoʻohana Whisperke ʻano unuhi no ka hoʻopuka ʻana i ka ʻōlelo Pelekania.",
+    "settings.output_heading": "# @markdown ## Hoʻopuka",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: E mālama i nā mea hoʻopuka ma lalo o Google Driveke hoʻohana ʻia ka hoʻokomo Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Hana a hoʻoiho i hoʻokahi ZIPwaihona ma ka hopena.",
+    "settings.formats_help": "# @markdown - Hoʻoponopono ʻia nā ʻano hoʻopuka e nā booleans ma lalo nei.",
+    "settings.advanced_heading": "# ## Kiʻekiʻe",
+    "settings.advanced_help": "# ʻO kēia mau paʻamau he conservative no Colab. ʻAʻole pono nā mea hoʻohana maʻamau e hoʻoponopono iā lākou.",
+    "settings.loaded_message": "Hoʻouka ʻia nā ʻōkuhi.",
+    "messages.choose_files": "Kaomi iā 'Choose Files' a hoʻouka i hoʻokahi a ʻoi aku paha nā faila leo/wikiō.",
+    "messages.selected_files": "Nā faila i koho ʻia:",
+    "messages.dependencies_done": "Hoʻopau ka hoʻonohonoho hilinaʻi.",
+    "messages.model_loaded": "Whisperhoʻohālike i hoʻouka ʻia.",
+    "messages.transcription_complete": "Ua pau ka palapala.",
+    "errors.no_supported_files": "ʻAʻohe waihona leo/wikiō i kākoʻo ʻia.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notebook\n\nUa unuhi kēia puke i nā faila leo a i ʻole wikiō me Whisper.\n\n## Nā hiʻohiʻona\n\n- **Hoʻohana manuahi:** Ke hoʻohana nei kēia puke leka [openai/whisper](https://github.com/openai/whisper), i wehe ʻia e OpenAIma Ianuali 17, 2023, me ka Google Colabka GPUmanawa holo.\n- **ʻAʻohe palena nui o ka waihona ʻaoʻao puke puke:** Hiki ke hana ʻia nā faila leo nui a me nā wikiō.\n- **ʻO ka hana pūʻulu:** Hiki ke hana ʻia nā faila leo a me nā wikiō i ka holo hoʻokahi.\n- **Google Drivekākoʻo:** Hiki ke hoʻouka pololei ʻia nā faila, a i ʻole nā faila leo/wikiō i mālama ʻia ma Google Drivehiki ke hana.\n- **Paʻa pūnaewele:** Hana ʻia nā hoʻoiho a me ka hana ʻana ma Google Colab. ʻAʻole hoʻohana ʻia nā kumuwaiwai helu kūloko.\n- **Nui nā puka puka:** Hoʻopuka ka puke puke i ka palapala mua JSONa loaʻa mai TXT, CSV, Markdown, Excel, a me SRTnā waihona subtitle.\n\n## Pehea e hoʻohana ai\n\n1. Ma **1. Nā hoʻonohonoho**, koho `INPUT_MODE`a hoʻololi i ke kumu hoʻohālike a i ʻole nā ​​koho hoʻopuka inā pono.\n2. E koho i ka **Rtime -> Run all**.\n3. Inā `INPUT_MODE = \"upload\"`, kali a hiki i ka **2. Hoʻomaka ke koho faila / Google Drivemauna**, a laila kaomi i ka **E koho i nā faila** ma ka wahi puka o ia cell.\n4. Ke pau ka hana ʻana, hoʻopaʻa ʻia nā faila i hoʻoiho ʻia a hoʻoiho ʻia inā hiki ke `AUTO_DOWNLOAD_ZIP`.\n\n## Nā memo\n\n- Google Colabmanuahi GPUhiki ke loaʻa. Inā ʻaʻole loaʻa GPUa `REQUIRE_CUDA = True`, pau ka puke puke ma mua o ke kākau ʻana.\n- Pono ka manawa e hana ai. Ma ke ʻano he alakaʻi koʻikoʻi i ka wā e hoʻohana ai i ke kumu hoʻohālike large-v3-turbo, hiki i kahi faila leo a i ʻole wikiō he 60 mau minuke ma kahi o 5-10 mau minuke ke kākau ʻana. Inā hoʻouka pololei ʻoe i nā faila, pono pū ka manawa hoʻouka.\n- E wehe i kēia puke i ka wā e hana ana. Inā pani ʻoe i ka puke kākau i ka wā kākau, pau ka hana.",
+    "settings.source_language_default": "hawaiian"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Nā puke puke ʻōlelo Google Colabno Whisperkope.",
+    "features": [
+      "**Hoʻohana manuahi:** Ke hoʻohana nei kēia puke leka [openai/whisper](https://github.com/openai/whisper), i wehe ʻia e OpenAIma Ianuali 17, 2023, me ka Google Colabka GPUmanawa holo.",
+      "**ʻAʻohe palena nui o ka waihona ʻaoʻao puke puke:** Hiki ke hana ʻia nā faila leo nui a me nā wikiō.",
+      "**ʻO ka hana pūʻulu:** Hiki ke hana ʻia nā faila leo a me nā wikiō i ka holo hoʻokahi.",
+      "**Google Drivekākoʻo:** Hiki ke hoʻouka pololei ʻia nā faila, a i ʻole nā faila leo/wikiō i mālama ʻia ma Google Drivehiki ke hana.",
+      "**Paʻa pūnaewele:** Hana ʻia nā hoʻoiho a me ka hana ʻana ma Google Colab. ʻAʻole hoʻohana ʻia nā kumuwaiwai helu kūloko.",
+      "**Nui nā puka puka:** Hoʻopuka ka puke puke i ka palapala mua JSONa loaʻa mai TXT, CSV, Markdown, Excel, a me SRTnā waihona subtitle."
+    ],
+    "template_note": "ʻO ke kumu READMEka wahi komo ʻōlelo Pelekania, a ʻo docs/READMEnā faila READMEi haku ʻia. ʻO ka puke maʻamau ka puke puke kumu a loaʻa nā mea hoʻokomo e like me `{{cell1.title}}`. Hāʻawi nā faila kūloko i ka ʻōlelo kikoʻī READMEa me Colab i mua i ke kope. Hoʻopaʻa ʻia nā puke i hana ʻia no laila e kūpaʻa nā loulou Colab.",
+    "checks_note": "Hoʻokumu hou ka CI workflow READMEi nā faila a me nā puke mai ka template a me nā faila kūloko, e nānā i ka puke puke JSON, e hōʻoia i nā puka ʻole, e nānā i ka Python syntax i loko o nā cell code, e ʻimi i nā mea huna i ʻike ʻole ʻia, a hāʻule i ka wā i hana ʻole ʻia nā faila.",
+    "ci_items": [
+      "READMEhanauna mai nā faila kūloko",
+      "hana puke puke mai ka la'ana a me ka waihona wahi",
+      "puke puke JSONono",
+      "nā puka hoʻokō hakahaka",
+      "ʻO ka syntax Python i nā pūnaewele code",
+      "mea huna pohihihi maopopo",
+      "hana ʻia READMEa me nā waihona puke e pili ana i nā kumu"
+    ],
+    "ci_limit": "Pono ke ala unuhi piha i nā API kikoʻī Colab, nā hoʻoiho hoʻohālike, GPUloaʻa, a me nā faila media i hāʻawi ʻia e ka mea hoʻohana. E mālama i kēlā ala e like me ka hoʻāʻo ʻana i ka uahi Colab manual ma hope o ka hala ʻana o nā loiloi i hana ʻia.",
+    "license_note": "Ua hoʻokuʻu ʻia kēia waihona READMEgenerator, notebook template, file locale, generated notebooks, and maintenance scripts ma lalo o ka MITLicense. Whispernā kumu hoʻohālike a me nā mea hilinaʻi ʻaoʻao ʻekolu e hoʻomalu ʻia e ko lākou mau laikini.",
+    "feature_labels": [
+      "Hoʻohana manuahi",
+      "ʻAʻohe palena nui o ka waihona ʻaoʻao puke puke",
+      "ʻO ka hana pūʻulu",
+      "Google Drivekākoʻo",
+      "Paʻa pūnaewele",
+      "Nui nā puka puka"
+    ],
+    "feature_bodies": [
+      "Ke hoʻohana nei kēia puke leka [openai/whisper](https://github.com/openai/whisper), i wehe ʻia e OpenAIma Ianuali 17, 2023, me ka Google Colabka GPUmanawa holo.",
+      "Hiki ke hana ʻia nā faila leo nui a me nā wikiō.",
+      "Hiki ke hana ʻia nā faila leo a me nā wikiō i ka holo hoʻokahi.",
+      "Hiki ke hoʻouka pololei ʻia nā faila, a i ʻole nā faila leo/wikiō i mālama ʻia ma Google Drivehiki ke hana.",
+      "Hana ʻia nā hoʻoiho a me ka hana ʻana ma Google Colab. ʻAʻole hoʻohana ʻia nā kumuwaiwai helu kūloko.",
+      "Hoʻopuka ka puke puke i ka palapala mua JSONa loaʻa mai TXT, CSV, Markdown, Excel, a me SRTnā waihona subtitle."
+    ]
+  },
+  "labels": {
+    "features": "Nā hiʻohiʻona",
+    "languages": "ʻŌlelo",
+    "language": "ʻŌlelo",
+    "readme": "README",
+    "notebook": "puke puke",
+    "repository_layout": "Hoʻolālā waihona",
+    "build": "Kukulu",
+    "checks": "Nānā",
+    "what_ci_can_test": "He aha ka CI hiki ke ho'āʻo",
+    "license": "Laikini"
+  },
+  "translation_source": "google:haw; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notebook",
+    "description": "Ua unuhi kēia puke i nā faila leo a i ʻole wikiō me Whisper.",
+    "features_heading": "Nā hiʻohiʻona",
+    "features": [
+      "**Hoʻohana manuahi:** Ke hoʻohana nei kēia puke leka [openai/whisper](https://github.com/openai/whisper), i wehe ʻia e OpenAIma Ianuali 17, 2023, me ka Google Colabka GPUmanawa holo.",
+      "**ʻAʻohe palena nui o ka waihona ʻaoʻao puke puke:** Hiki ke hana ʻia nā faila leo nui a me nā wikiō.",
+      "**ʻO ka hana pūʻulu:** Hiki ke hana ʻia nā faila leo a me nā wikiō i ka holo hoʻokahi.",
+      "**Google Drivekākoʻo:** Hiki ke hoʻouka pololei ʻia nā faila, a i ʻole nā faila leo/wikiō i mālama ʻia ma Google Drivehiki ke hana.",
+      "**Paʻa pūnaewele:** Hana ʻia nā hoʻoiho a me ka hana ʻana ma Google Colab. ʻAʻole hoʻohana ʻia nā kumuwaiwai helu kūloko.",
+      "**Nui nā puka puka:** Hoʻopuka ka puke puke i ka palapala mua JSONa loaʻa mai TXT, CSV, Markdown, Excel, a me SRTnā waihona subtitle."
+    ],
+    "how_to_use_heading": "Pehea e hoʻohana ai",
+    "how_to_use_steps": [
+      "Ma **1. Nā hoʻonohonoho **, koho `INPUT_MODE`a hoʻololi i ke kumu hoʻohālike a i ʻole nā ​​koho hoʻopuka inā pono.",
+      "E koho i ka **Rtime -> Run all**.",
+      "Inā `INPUT_MODE = \"upload\"`, kali a hiki i ka **2. Hoʻomaka ke koho faila / Google Drivemauna**, a laila kaomi i ka **E koho i nā faila** ma ka wahi puka o ia cell.",
+      "Ke pau ka hana ʻana, hoʻopaʻa ʻia nā faila i hoʻoiho ʻia a hoʻoiho ʻia inā hiki ke `AUTO_DOWNLOAD_ZIP`."
+    ],
+    "notes_heading": "Nā memo",
+    "notes": [
+      "Google Colabmanuahi GPUhiki ke loaʻa. Inā ʻaʻole loaʻa GPUa `REQUIRE_CUDA = True`, pau ka puke puke ma mua o ke kākau ʻana.",
+      "Pono ka manawa e hana ai. Ma ke ʻano he alakaʻi koʻikoʻi i ka wā e hoʻohana ai i ke kumu hoʻohālike large-v3-turbo, hiki i kahi faila leo a i ʻole wikiō he 60 mau minuke ma kahi o 5-10 mau minuke ke kākau ʻana. Inā hoʻouka pololei ʻoe i nā faila, pono pū ka manawa hoʻouka.",
+      "E wehe i kēia puke i ka wā e hana ana. Inā pani ʻoe i ka puke kākau i ka wā kākau, pau ka hana."
+    ],
+    "feature_labels": [
+      "Hoʻohana manuahi",
+      "ʻAʻohe palena nui o ka waihona ʻaoʻao puke puke",
+      "ʻO ka hana pūʻulu",
+      "Google Drivekākoʻo",
+      "Paʻa pūnaewele",
+      "Nui nā puka puka"
+    ],
+    "feature_bodies": [
+      "Ke hoʻohana nei kēia puke leka [openai/whisper](https://github.com/openai/whisper), i wehe ʻia e OpenAIma Ianuali 17, 2023, me ka Google Colabka GPUmanawa holo.",
+      "Hiki ke hana ʻia nā faila leo nui a me nā wikiō.",
+      "Hiki ke hana ʻia nā faila leo a me nā wikiō i ka holo hoʻokahi.",
+      "Hiki ke hoʻouka pololei ʻia nā faila, a i ʻole nā faila leo/wikiō i mālama ʻia ma Google Drivehiki ke hana.",
+      "Hana ʻia nā hoʻoiho a me ka hana ʻana ma Google Colab. ʻAʻole hoʻohana ʻia nā kumuwaiwai helu kūloko.",
+      "Hoʻopuka ka puke puke i ka palapala mua JSONa loaʻa mai TXT, CSV, Markdown, Excel, a me SRTnā waihona subtitle."
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "language": "af",
+  "display_name": "Afrikaans",
+  "native_name": "Afrikaans",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Instellings",
+    "cell1.section_title": "# 1. Instellings",
+    "cell2.title": "# @title 2. Lêerkeuse / Google Drivemonteer",
+    "cell2.section_title": "# 2. Lêerkeuse / Google Drivemonteer",
+    "cell3.title": "# @title 3. GPUkontroleer en afhanklikheidsinstallasie",
+    "cell3.section_title": "# 3. GPUkontroleer en afhanklikheidsinstallasie",
+    "cell4.title": "# @title 4. Helper funksies",
+    "cell4.section_title": "# 4. Helper funksies",
+    "cell5.title": "# @title 5. Laai Whisperen voer transkripsie uit",
+    "cell5.section_title": "# 5. Laai Whisperen voer transkripsie uit",
+    "cell6.title": "# @title 6. Rits en laai uitsette af",
+    "cell6.section_title": "# 6. Rits en laai uitsette af",
+    "settings.input_heading": "# @markdown ## Invoer",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Gebruik `upload`vir plaaslike lêers of `google_drive`vir lêers wat reeds in Google Drivegestoor is.",
+    "settings.drive_heading": "# @markdown ### Google Driveinvoer",
+    "settings.drive_help": "# @markdown Hierdie instellings word slegs gebruik wanneer `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Hou hierdie stel gewoonlik op `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: 'n Lêer- of gidspad onder MyDrive. Laat leeg om die topvlak MyDrive-lêergids te gebruik.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: As die Drive-invoerpad 'n vouer is, soek ook subvouers.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Opsionele lêernaam substring filter.",
+    "settings.model_heading": "# @markdown ## Whispermodel",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging Facemodel ID. Turbo is vinniger; large-v3kan vir sommige lêers meer stabiel wees.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Gebruik `auto`wanneer dit onbekend is, of kies 'n bekende brontaal.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Gebruik Whispervertaalmodus om Engels uit te voer.",
+    "settings.output_heading": "# @markdown ## Uitset",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Stoor uitsette onder Google Drivewanneer Drive-invoer gebruik word.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Skep en laai een ZIP-argief aan die einde af.",
+    "settings.formats_help": "# @markdown - Uitsetformate word beheer deur die booleans hieronder.",
+    "settings.advanced_heading": "# ## Gevorderd",
+    "settings.advanced_help": "# Hierdie standaarde is konserwatief vir Colab. Gewone gebruikers hoef dit gewoonlik nie te wysig nie.",
+    "settings.loaded_message": "Instellings gelaai.",
+    "messages.choose_files": "Klik op 'Kies lêers' en laai een of meer oudio-/videolêers op.",
+    "messages.selected_files": "Geselekteerde lêers:",
+    "messages.dependencies_done": "Installasie van afhanklikheid voltooi.",
+    "messages.model_loaded": "Whispermodel gelaai.",
+    "messages.transcription_complete": "Transkripsie voltooi.",
+    "errors.no_supported_files": "Geen ondersteunde oudio-/videolêers is gekies nie.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperColab Notaboek\n\nHierdie notaboek transkribeer oudio- of videolêers met Whisper.\n\n## Kenmerke\n\n- **Gratis om te gebruik:** Hierdie notaboek gebruik [openai/whisper](https://github.com/openai/whisper), wat OpenAIoopbron op 17 Januarie 2023, saam met Google Colabse gratis GPUlooptyd.\n- **Geen vaste notaboek-kant lêer grootte limiet:** Groot oudio- en videolêers kan verwerk word.\n- **Batch verwerking:** Veelvuldige oudio- en videolêers kan in een lopie verwerk word.\n- **Google Driveondersteuning:** Lêers kan direk opgelaai word, of oudio-/videolêers wat in Google Drivegestoor is, kan verwerk word.\n- **Volledig aanlyn:** Aflaaie en verwerking word uitgevoer op Google Colab. Geen plaaslike rekenaarhulpbronne word gebruik nie.\n- **Veelvuldige uitvoerformate:** Die notaboek voer die oorspronklike JSONtranskripsie en afgeleide TXT, CSV, Markdown, Excelen SRTonderskriflêers uit.\n\n## Hoe om te gebruik\n\n1. In **1. Instellings**, kies `INPUT_MODE`en pas die model of uitvoeropsies aan indien nodig.\n2. Kies **Loptyd -> Begin alles**.\n3. As `INPUT_MODE = \"upload\"`, wag tot **2. Lêerseleksie / Google Drivemount** begin, klik dan **Kies lêers** in daardie sel se uitvoerarea.\n4. Wanneer verwerking voltooi is, word die uitvoerlêers gezip en afgelaai as `AUTO_DOWNLOAD_ZIP`geaktiveer is.\n\n## Notas\n\n- Google Colabgratis GPUbeskikbaarheid is beperk. Indien geen GPUbeskikbaar is nie en `REQUIRE_CUDA = True`, stop die notaboek voor transkripsie.\n- Verwerking neem tyd. As 'n rowwe gids wanneer die large-v3-turbo-model gebruik word, kan 'n 60-minute oudio- of videolêer ongeveer 5-10 minute neem om te transkribeer. As jy lêers direk oplaai, word oplaaityd ook vereis.\n- Hou hierdie notaboek oop terwyl dit verwerk word. As jy die notaboek toemaak tydens transkripsie, stop verwerking.",
+    "settings.source_language_default": "afrikaans"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Veeltalige Google Colabnotaboeke vir Whispertranskripsie.",
+    "features": [
+      "**Gratis om te gebruik:** Hierdie notaboek gebruik [openai/whisper](https://github.com/openai/whisper), wat OpenAIoopbron op 17 Januarie 2023, saam met Google Colabse gratis GPUlooptyd.",
+      "**Geen vaste notaboek-kant lêer grootte limiet:** Groot oudio- en videolêers kan verwerk word.",
+      "**Batch verwerking:** Veelvuldige oudio- en videolêers kan in een lopie verwerk word.",
+      "**Google Driveondersteuning:** Lêers kan direk opgelaai word, of oudio-/videolêers wat in Google Drivegestoor is, kan verwerk word.",
+      "**Volledig aanlyn:** Aflaaie en verwerking word uitgevoer op Google Colab. Geen plaaslike rekenaarhulpbronne word gebruik nie.",
+      "**Veelvuldige uitvoerformate:** Die notaboek voer die oorspronklike JSONtranskripsie en afgeleide TXT, CSV, Markdown, Excelen SRTonderskriflêers uit."
+    ],
+    "template_note": "Die wortel READMEis die Engelse toegangspunt, en docs/READMEbevat gegenereerde gelokaliseerde READMElêers. Die sjabloonnotaboek is die bronnotaboek en bevat plekhouers soos `{{cell1.title}}`. Plaaslike lêers verskaf taalspesifieke READMEen Colab-gerigte kopie. Gegenereerde notaboeke is verbind sodat Colab-skakels stabiel bly.",
+    "checks_note": "Die CI-werkvloei herbou READMElêers en notaboeke vanaf die sjabloon en lokaallêers, kontroleer notaboek JSON, verifieer leë uitsette, kontroleer Python-sintaksis in kodeselle, skandeer vir ooglopende toevallige geheime, en misluk wanneer gegenereerde lêers nie gepleeg word nie.",
+    "ci_items": [
+      "READMEgenerasie vanaf locale lêers",
+      "notaboek generering vanaf die sjabloon en locale lêers",
+      "notaboek JSONgeldigheid",
+      "leë uitvoering uitsette",
+      "Python-sintaksis in kodeselle",
+      "ooglopende toevallige geheime",
+      "toegewyde gegenereerde READMEen notaboeklêers wat ooreenstem met die bronne"
+    ],
+    "ci_limit": "Die volledige transkripsiepad vereis Colab-spesifieke API's, modelaflaaie, GPUbeskikbaarheid en gebruikerverskafde medialêers. Behandel daardie pad as 'n handmatige Colab-rooktoets nadat gegenereerde lêer-kontroles geslaag het.",
+    "license_note": "Hierdie bewaarplek se README-generator, notaboeksjabloon, lokaallêers, gegenereerde notaboeke en instandhoudingsskrifte word vrygestel onder die MIT-lisensie. Whispermodelle en derdeparty-afhanklikhede word deur hul onderskeie lisensies beheer.",
+    "feature_labels": [
+      "Gratis om te gebruik",
+      "Geen vaste notaboek-kant lêer grootte limiet",
+      "Batch verwerking",
+      "Google Driveondersteuning",
+      "Volledig aanlyn",
+      "Veelvuldige uitvoerformate"
+    ],
+    "feature_bodies": [
+      "Hierdie notaboek gebruik [openai/whisper](https://github.com/openai/whisper), wat OpenAIoopbron op 17 Januarie 2023, saam met Google Colabse gratis GPUlooptyd.",
+      "Groot oudio- en videolêers kan verwerk word.",
+      "Veelvuldige oudio- en videolêers kan in een lopie verwerk word.",
+      "Lêers kan direk opgelaai word, of oudio-/videolêers wat in Google Drivegestoor is, kan verwerk word.",
+      "Aflaaie en verwerking word uitgevoer op Google Colab. Geen plaaslike rekenaarhulpbronne word gebruik nie.",
+      "Die notaboek voer die oorspronklike JSONtranskripsie en afgeleide TXT, CSV, Markdown, Excelen SRTonderskriflêers uit."
+    ]
+  },
+  "labels": {
+    "features": "Kenmerke",
+    "languages": "Tale",
+    "language": "Taal",
+    "readme": "README",
+    "notebook": "Notaboek",
+    "repository_layout": "Bewaarplekuitleg",
+    "build": "Bou",
+    "checks": "Tjeks",
+    "what_ci_can_test": "Wat CI kan toets",
+    "license": "Lisensie"
+  },
+  "translation_source": "google:af; machine-translated from en",
+  "notebook": {
+    "title": "WhisperColab Notaboek",
+    "description": "Hierdie notaboek transkribeer oudio- of videolêers met Whisper.",
+    "features_heading": "Kenmerke",
+    "features": [
+      "**Gratis om te gebruik:** Hierdie notaboek gebruik [openai/whisper](https://github.com/openai/whisper), wat OpenAIoopbron op 17 Januarie 2023, saam met Google Colabse gratis GPUlooptyd.",
+      "**Geen vaste notaboek-kant lêer grootte limiet:** Groot oudio- en videolêers kan verwerk word.",
+      "**Batch verwerking:** Veelvuldige oudio- en videolêers kan in een lopie verwerk word.",
+      "**Google Driveondersteuning:** Lêers kan direk opgelaai word, of oudio-/videolêers wat in Google Drivegestoor is, kan verwerk word.",
+      "**Volledig aanlyn:** Aflaaie en verwerking word uitgevoer op Google Colab. Geen plaaslike rekenaarhulpbronne word gebruik nie.",
+      "**Veelvuldige uitvoerformate:** Die notaboek voer die oorspronklike JSONtranskripsie en afgeleide TXT, CSV, Markdown, Excelen SRTonderskriflêers uit."
+    ],
+    "how_to_use_heading": "Hoe om te gebruik",
+    "how_to_use_steps": [
+      "In **1. Instellings**, kies `INPUT_MODE`en pas die model of uitvoeropsies aan indien nodig.",
+      "Kies **Loptyd -> Begin alles**.",
+      "As `INPUT_MODE = \"upload\"`, wag tot **2. Lêerseleksie / Google Drivemount** begin, klik dan **Kies lêers** in daardie sel se uitvoerarea.",
+      "Wanneer verwerking voltooi is, word die uitvoerlêers gezip en afgelaai as `AUTO_DOWNLOAD_ZIP`geaktiveer is."
+    ],
+    "notes_heading": "Notas",
+    "notes": [
+      "Google Colabgratis GPUbeskikbaarheid is beperk. Indien geen GPUbeskikbaar is nie en `REQUIRE_CUDA = True`, stop die notaboek voor transkripsie.",
+      "Verwerking neem tyd. As 'n rowwe gids wanneer die large-v3-turbo-model gebruik word, kan 'n 60-minute oudio- of videolêer ongeveer 5-10 minute neem om te transkribeer. As jy lêers direk oplaai, word oplaaityd ook vereis.",
+      "Hou hierdie notaboek oop terwyl dit verwerk word. As jy die notaboek toemaak tydens transkripsie, stop verwerking."
+    ],
+    "feature_labels": [
+      "Gratis om te gebruik",
+      "Geen vaste notaboek-kant lêer grootte limiet",
+      "Batch verwerking",
+      "Google Driveondersteuning",
+      "Volledig aanlyn",
+      "Veelvuldige uitvoerformate"
+    ],
+    "feature_bodies": [
+      "Hierdie notaboek gebruik [openai/whisper](https://github.com/openai/whisper), wat OpenAIoopbron op 17 Januarie 2023, saam met Google Colabse gratis GPUlooptyd.",
+      "Groot oudio- en videolêers kan verwerk word.",
+      "Veelvuldige oudio- en videolêers kan in een lopie verwerk word.",
+      "Lêers kan direk opgelaai word, of oudio-/videolêers wat in Google Drivegestoor is, kan verwerk word.",
+      "Aflaaie en verwerking word uitgevoer op Google Colab. Geen plaaslike rekenaarhulpbronne word gebruik nie.",
+      "Die notaboek voer die oorspronklike JSONtranskripsie en afgeleide TXT, CSV, Markdown, Excelen SRTonderskriflêers uit."
+    ]
+  }
+}

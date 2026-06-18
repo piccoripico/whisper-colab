@@ -1,0 +1,144 @@
+{
+  "language": "ha",
+  "display_name": "Hausa",
+  "native_name": "Hausa",
+  "direction": "ltr",
+  "placeholders": {
+    "cell1.title": "# @title 1. Saituna",
+    "cell1.section_title": "# 1. Saituna",
+    "cell2.title": "# @title 2. Zaɓin fayil / Google Drivehawa",
+    "cell2.section_title": "# 2. Zaɓin fayil / Google Drivehawa",
+    "cell3.title": "# @title 3. GPUduba da shigarwar dogaro",
+    "cell3.section_title": "# 3. GPUduba da shigarwar dogaro",
+    "cell4.title": "# @title 4. Ayyuka masu taimako",
+    "cell4.section_title": "# 4. Ayyuka masu taimako",
+    "cell5.title": "# @title 5. Load Whisperkuma gudanar da rubutun",
+    "cell5.section_title": "# 5. Load Whisperkuma gudanar da rubutun",
+    "cell6.title": "# @title 6. Zip da zazzage abubuwan fitarwa",
+    "cell6.section_title": "# 6. Zip da zazzage abubuwan fitarwa",
+    "settings.input_heading": "# @markdown ## Shigarwa",
+    "settings.input_mode_help": "# @markdown - `INPUT_MODE`: Yi amfani da `upload`don fayilolin gida ko `google_drive`don fayilolin da aka riga aka adana a Google Drive.",
+    "settings.drive_heading": "# @markdown ### Google Driveshigar",
+    "settings.drive_help": "# @markdown Ana amfani da waɗannan saitunan kawai lokacin `INPUT_MODE == \"google_drive\"`.",
+    "settings.drive_root_help": "# @markdown - `GOOGLE_DRIVE_ROOT`: Yawancin lokaci kiyaye wannan saitin zuwa `/content/drive/MyDrive`.",
+    "settings.drive_subpath_help": "# @markdown - `GOOGLE_DRIVE_SUBPATH`: Fayil ko hanyar babban fayil a ƙarƙashin MyDrive. Bar komai don amfani da babban fayil ɗin MyDrive.",
+    "settings.recursive_help": "# @markdown - `RECURSIVE`: Idan hanyar shigar da Drive babban fayil ne, kuma bincika manyan fayiloli.",
+    "settings.filename_contains_help": "# @markdown - `FILENAME_CONTAINS`: Zaži fayil sunan substring tace.",
+    "settings.model_heading": "# @markdown ## Whispersamfurin",
+    "settings.model_help": "# @markdown - `MODEL_ID`: Hugging FaceID samfurin. Turbo yana da sauri; large-v3na iya zama mafi karko ga wasu fayiloli.",
+    "settings.language_help": "# @markdown - `SOURCE_LANGUAGE`: Yi amfani `auto`lokacin da ba'a sani ba, ko zaɓi sanannen yaren tushe.",
+    "settings.translate_help": "# @markdown - `TRANSLATE_TO_ENGLISH`: Yi amfani da yanayin fassara Whisperdon fitar da Ingilishi.",
+    "settings.output_heading": "# @markdown ## Fitowa",
+    "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Ajiye abubuwan fitarwa a ƙarƙashin Google Drivelokacin da ake amfani da shigarwar Drive.",
+    "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Ƙirƙiri kuma zazzage ɗaya ZIPtaskar a ƙarshen.",
+    "settings.formats_help": "# @markdown - Ana sarrafa tsarin fitarwa ta hanyar booleans da ke ƙasa.",
+    "settings.advanced_heading": "# ## Na ci gaba",
+    "settings.advanced_help": "# Waɗannan ɓangarorin ra'ayin mazan jiya ne don Colab. Masu amfani na yau da kullun ba sa buƙatar gyara su.",
+    "settings.loaded_message": "An yi lodin saituna.",
+    "messages.choose_files": "Danna 'Zabi Files' da upload daya ko fiye audio / video files.",
+    "messages.selected_files": "Fayilolin da aka zaɓa:",
+    "messages.dependencies_done": "An gama shigarwar dogara.",
+    "messages.model_loaded": "Whispersamfurin an saka.",
+    "messages.transcription_complete": "An kammala rubutun.",
+    "errors.no_supported_files": "Ba a zaɓi fayilolin mai jiwuwa/bidiyo masu goyan baya ba.",
+    "errors.gpu_runtime": "This notebook requires a CUDA GPU. In Colab, select Runtime > Change runtime type > Hardware accelerator > GPU, then restart and rerun.",
+    "intro_markdown": "# WhisperLittafin rubutu na Colab\n\nWannan littafin rubutu yana rubuta fayilolin odiyo ko bidiyo tare da Whisper.\n\n## Siffofin\n\n- **Kyauta don amfani:** Wannan littafin rubutu yana amfani da [openai/whisper](https://github.com/openai/whisper), wanda OpenAIbude-sourced ranar 17 ga Janairu, 2023, tare da Google Colab's free GPUruntime.\n- **Babu ƙayyadadden iyaka girman fayil ɗin gefen littafin rubutu:** Ana iya sarrafa manyan fayilolin odiyo da bidiyo.\n- **sarrafa tsari:** Ana iya sarrafa fayilolin odiyo da bidiyo da yawa a cikin gudu ɗaya.\n- **Google Drivetallafi:** Ana iya loda fayiloli kai tsaye, ko fayilolin odiyo/bidiyo da aka adana a Google Driveana iya sarrafa su.\n- **Cikakken kan layi:** Ana yin zazzagewa da sarrafawa akan Google Colab. Ba a yi amfani da albarkatun kwamfuta na gida ba.\n- **Multiple fitarwa Formats:** Littafin bayanin kula yana fitar da asalin JSONkwafin kuma an samu TXT, CSV, Markdown, Excel, da SRTfayilolin subtitle.\n\n## Yadda ake amfani\n\n1. A cikin **1. Saituna**, zaɓi `INPUT_MODE`kuma daidaita samfurin ko zaɓin fitarwa idan an buƙata.\n2. Zaɓi **Runtime -> Gudu duk**.\n3. Idan `INPUT_MODE = \"upload\"`, jira har sai **2. Zaɓin fayil / Google DriveDutsen** yana farawa, sannan danna **Zaɓi Fayiloli** a cikin wurin fitarwar tantanin halitta.\n4. Lokacin da aka gama aiki, ana yin zipped da zazzage fayilolin fitarwa idan an kunna `AUTO_DOWNLOAD_ZIP`.\n\n## Bayanan kula\n\n- Google Colabkyauta GPUsamuwa yana da iyaka. Idan babu GPUyana samuwa kuma `REQUIRE_CUDA = True`, littafin rubutu yana tsayawa kafin rubutawa.\n- Sarrafa yana ɗaukar lokaci. A matsayin jagora mai wahala lokacin amfani da ƙirar large-v3-turbo, fayil ɗin sauti ko bidiyo na mintuna 60 na iya ɗaukar kusan mintuna 5-10 don rubutawa. Idan ka loda fayiloli kai tsaye, ana kuma buƙatar lokacin lodawa.\n- Ci gaba da buɗe wannan littafin rubutu yayin sarrafawa. Idan kun rufe littafin rubutu yayin rubutawa, aiki yana tsayawa.",
+    "settings.source_language_default": "hausa"
+  },
+  "readme": {
+    "title": "WhisperColab",
+    "subtitle": "Multilingual Google Colablitattafan rubutu don Whisperrubutun.",
+    "features": [
+      "**Kyauta don amfani:** Wannan littafin rubutu yana amfani da [openai/whisper](https://github.com/openai/whisper), wanda OpenAIbude-sourced ranar 17 ga Janairu, 2023, tare da Google Colab's free GPUruntime.",
+      "**Babu ƙayyadadden iyaka girman fayil ɗin gefen littafin rubutu:** Ana iya sarrafa manyan fayilolin odiyo da bidiyo.",
+      "**sarrafa tsari:** Ana iya sarrafa fayilolin odiyo da bidiyo da yawa a cikin gudu ɗaya.",
+      "**Google Drivetallafi:** Ana iya loda fayiloli kai tsaye, ko fayilolin odiyo/bidiyo da aka adana a Google Driveana iya sarrafa su.",
+      "**Cikakken kan layi:** Ana yin zazzagewa da sarrafawa akan Google Colab. Ba a yi amfani da albarkatun kwamfuta na gida ba.",
+      "**Multiple fitarwa Formats:** Littafin bayanin kula yana fitar da asalin JSONkwafin kuma an samu TXT, CSV, Markdown, Excel, da SRTfayilolin subtitle."
+    ],
+    "template_note": "Tushen READMEshine wurin shigarwa na Ingilishi, kuma docs/READMEya ƙunshi fayilolin READMEda aka samar. Littafin rubutu na samfuri shine tushen littafin rubutu kuma ya ƙunshi masu riƙe wuri kamar `{{cell1.title}}`. Fayilolin gida suna ba da takamaiman yare READMEda kwafi mai fuskantar Colab. An ƙaddamar da littattafan rubutu da aka ƙirƙira don haka hanyoyin haɗin gwiwar Colab su tabbata.",
+    "checks_note": "Gudun aikin CI yana sake ginawa READMEfayiloli da litattafan rubutu daga samfuri da fayilolin gida, duba littafin rubutu JSON, yana tabbatar da abubuwan da ba komai ba, bincika syntax na Python a cikin sel ɗin lamba, bincika sirrin sirri na haɗari, kuma yana kasawa lokacin da fayilolin da aka ƙirƙira ba su aikata ba.",
+    "ci_items": [
+      "READMEtsara daga fayilolin gida",
+      "tsara littafin rubutu daga samfuri da fayilolin gida",
+      "littafin rubutu JSONinganci",
+      "komai kisa",
+      "Python syntax a cikin sel code",
+      "bayyanannen sirrin bazata",
+      "ƙaddamar da READMEda fayilolin littafin rubutu da suka dace da tushen"
+    ],
+    "ci_limit": "Cikakken hanyar rubutun yana buƙatar takamaiman APIs na Colab, zazzagewar ƙira, samuwan GPU, da fayilolin mai jarida da aka samar. Bi da waccan hanyar azaman gwajin hayaƙin Colab na hannu bayan ƙetare-fayil cak.",
+    "license_note": "Wannan ma'ajiyar ta READMEjanareta, samfurin littafin rubutu, fayilolin gida, littattafan rubutu da aka samar, da rubutun kulawa ana fitar dasu ƙarƙashin lasisin MIT. Whispersamfura da abubuwan dogaro na ɓangare na uku ana sarrafa su ta lasisin nasu.",
+    "feature_labels": [
+      "Kyauta don amfani",
+      "Babu ƙayyadadden iyaka girman fayil ɗin gefen littafin rubutu",
+      "sarrafa tsari",
+      "Google Drivetallafi",
+      "Cikakken kan layi",
+      "Multiple fitarwa Formats"
+    ],
+    "feature_bodies": [
+      "Wannan littafin rubutu yana amfani da [openai/whisper](https://github.com/openai/whisper), wanda OpenAIbude-sourced ranar 17 ga Janairu, 2023, tare da Google Colab's free GPUruntime.",
+      "Ana iya sarrafa manyan fayilolin odiyo da bidiyo.",
+      "Ana iya sarrafa fayilolin odiyo da bidiyo da yawa a cikin gudu ɗaya.",
+      "Ana iya loda fayiloli kai tsaye, ko fayilolin odiyo/bidiyo da aka adana a Google Driveana iya sarrafa su.",
+      "Ana yin zazzagewa da sarrafawa akan Google Colab. Ba a yi amfani da albarkatun kwamfuta na gida ba.",
+      "Littafin bayanin kula yana fitar da asalin JSONkwafin kuma an samu TXT, CSV, Markdown, Excel, da SRTfayilolin subtitle."
+    ]
+  },
+  "labels": {
+    "features": "Siffofin",
+    "languages": "Harsuna",
+    "language": "Harshe",
+    "readme": "README",
+    "notebook": "Littafin rubutu",
+    "repository_layout": "Tsarin Ma'ajiya",
+    "build": "Gina",
+    "checks": "Dubawa",
+    "what_ci_can_test": "Abin da CI zai iya Gwaji",
+    "license": "Lasisi"
+  },
+  "translation_source": "google:ha; machine-translated from en",
+  "notebook": {
+    "title": "WhisperLittafin rubutu na Colab",
+    "description": "Wannan littafin rubutu yana rubuta fayilolin odiyo ko bidiyo tare da Whisper.",
+    "features_heading": "Siffofin",
+    "features": [
+      "**Kyauta don amfani:** Wannan littafin rubutu yana amfani da [openai/whisper](https://github.com/openai/whisper), wanda OpenAIbude-sourced ranar 17 ga Janairu, 2023, tare da Google Colab's free GPUruntime.",
+      "**Babu ƙayyadadden iyaka girman fayil ɗin gefen littafin rubutu:** Ana iya sarrafa manyan fayilolin odiyo da bidiyo.",
+      "**sarrafa tsari:** Ana iya sarrafa fayilolin odiyo da bidiyo da yawa a cikin gudu ɗaya.",
+      "**Google Drivetallafi:** Ana iya loda fayiloli kai tsaye, ko fayilolin odiyo/bidiyo da aka adana a Google Driveana iya sarrafa su.",
+      "**Cikakken kan layi:** Ana yin zazzagewa da sarrafawa akan Google Colab. Ba a yi amfani da albarkatun kwamfuta na gida ba.",
+      "**Multiple fitarwa Formats:** Littafin bayanin kula yana fitar da asalin JSONkwafin kuma an samu TXT, CSV, Markdown, Excel, da SRTfayilolin subtitle."
+    ],
+    "how_to_use_heading": "Yadda ake amfani",
+    "how_to_use_steps": [
+      "A cikin **1. Saituna**, zaɓi `INPUT_MODE`kuma daidaita samfurin ko zaɓin fitarwa idan an buƙata.",
+      "Zaɓi **Runtime -> Gudu duk**.",
+      "Idan `INPUT_MODE = \"upload\"`, jira har sai **2. Zaɓin fayil / Google DriveDutsen** yana farawa, sannan danna ** Zaɓi Fayiloli** a cikin wurin fitarwar tantanin halitta.",
+      "Lokacin da aka gama aiki, ana yin zipped da zazzage fayilolin fitarwa idan an kunna `AUTO_DOWNLOAD_ZIP`."
+    ],
+    "notes_heading": "Bayanan kula",
+    "notes": [
+      "Google Colabkyauta GPUsamuwa yana da iyaka. Idan babu GPUyana samuwa kuma `REQUIRE_CUDA = True`, littafin rubutu yana tsayawa kafin rubutawa.",
+      "Sarrafa yana ɗaukar lokaci. A matsayin jagora mai wahala lokacin amfani da ƙirar large-v3-turbo, fayil ɗin sauti ko bidiyo na mintuna 60 na iya ɗaukar kusan mintuna 5-10 don rubutawa. Idan ka loda fayiloli kai tsaye, ana kuma buƙatar lokacin lodawa.",
+      "Ci gaba da buɗe wannan littafin rubutu yayin sarrafawa. Idan kun rufe littafin rubutu yayin rubutawa, aiki yana tsayawa."
+    ],
+    "feature_labels": [
+      "Kyauta don amfani",
+      "Babu ƙayyadadden iyaka girman fayil ɗin gefen littafin rubutu",
+      "sarrafa tsari",
+      "Google Drivetallafi",
+      "Cikakken kan layi",
+      "Multiple fitarwa Formats"
+    ],
+    "feature_bodies": [
+      "Wannan littafin rubutu yana amfani da [openai/whisper](https://github.com/openai/whisper), wanda OpenAIbude-sourced ranar 17 ga Janairu, 2023, tare da Google Colab's free GPUruntime.",
+      "Ana iya sarrafa manyan fayilolin odiyo da bidiyo.",
+      "Ana iya sarrafa fayilolin odiyo da bidiyo da yawa a cikin gudu ɗaya.",
+      "Ana iya loda fayiloli kai tsaye, ko fayilolin odiyo/bidiyo da aka adana a Google Driveana iya sarrafa su.",
+      "Ana yin zazzagewa da sarrafawa akan Google Colab. Ba a yi amfani da albarkatun kwamfuta na gida ba.",
+      "Littafin bayanin kula yana fitar da asalin JSONkwafin kuma an samu TXT, CSV, Markdown, Excel, da SRTfayilolin subtitle."
+    ]
+  }
+}

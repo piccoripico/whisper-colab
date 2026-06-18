@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Hoʻopuka",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: E mālama i nā mea hoʻopuka ma lalo o Google Driveke hoʻohana ʻia ka hoʻokomo Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Hana a hoʻoiho i hoʻokahi ZIPwaihona ma ka hopena.",
-    "settings.formats_help": "# @markdown - Hoʻoponopono ʻia nā ʻano hoʻopuka e nā booleans ma lalo nei.",
+    "settings.formats_help": "# - Hoʻoponopono ʻia nā ʻano hoʻopuka e nā booleans ma lalo nei.",
     "settings.advanced_heading": "# ## Kiʻekiʻe",
     "settings.advanced_help": "# ʻO kēia mau paʻamau he conservative no Colab. ʻAʻole pono nā mea hoʻohana maʻamau e hoʻoponopono iā lākou.",
     "settings.loaded_message": "Hoʻouka ʻia nā ʻōkuhi.",

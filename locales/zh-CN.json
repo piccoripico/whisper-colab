@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## 输出",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`：当使用驱动输入时，将输出保存在Google Drive下。",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`：最后创建并下载一个ZIP存档。",
-    "settings.formats_help": "# @markdown - 输出格式由下面的布尔值控制。",
+    "settings.formats_help": "# - 输出格式由下面的布尔值控制。",
     "settings.advanced_heading": "# ## 高级",
     "settings.advanced_help": "# 这些默认值对于 Colab 来说是保守的。普通用户通常不需要编辑它们。",
     "settings.loaded_message": "设置已加载。",

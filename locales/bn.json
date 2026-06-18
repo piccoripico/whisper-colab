@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## আউটপুট",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ড্রাইভ ইনপুট ব্যবহার করা হলে Google Driveএর অধীনে আউটপুট সংরক্ষণ করুন।",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: শেষে একটি ZIPআর্কাইভ তৈরি করুন এবং ডাউনলোড করুন।",
-    "settings.formats_help": "# @markdown - আউটপুট বিন্যাস নীচের বুলিয়ান দ্বারা নিয়ন্ত্রিত হয়।",
+    "settings.formats_help": "# - আউটপুট বিন্যাস নীচের বুলিয়ান দ্বারা নিয়ন্ত্রিত হয়।",
     "settings.advanced_heading": "# ## উন্নত",
     "settings.advanced_help": "# এই ডিফল্টগুলি Colab-এর জন্য রক্ষণশীল। সাধারণ ব্যবহারকারীদের সাধারণত এগুলি সম্পাদনা করার প্রয়োজন হয় না।",
     "settings.loaded_message": "সেটিংস লোড হয়েছে৷",

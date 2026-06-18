@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## ಔಟ್ಪುಟ್",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ಡ್ರೈವ್ ಇನ್‌ಪುಟ್ ಅನ್ನು ಬಳಸಿದಾಗ Google Driveಅಡಿಯಲ್ಲಿ ಔಟ್‌ಪುಟ್‌ಗಳನ್ನು ಉಳಿಸಿ.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: ಕೊನೆಯಲ್ಲಿ ಒಂದು ZIPಆರ್ಕೈವ್ ಅನ್ನು ರಚಿಸಿ ಮತ್ತು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ.",
-    "settings.formats_help": "# @markdown - ಔಟ್‌ಪುಟ್ ಸ್ವರೂಪಗಳನ್ನು ಕೆಳಗಿನ ಬೂಲಿಯನ್‌ಗಳಿಂದ ನಿಯಂತ್ರಿಸಲಾಗುತ್ತದೆ.",
+    "settings.formats_help": "# - ಔಟ್‌ಪುಟ್ ಸ್ವರೂಪಗಳನ್ನು ಕೆಳಗಿನ ಬೂಲಿಯನ್‌ಗಳಿಂದ ನಿಯಂತ್ರಿಸಲಾಗುತ್ತದೆ.",
     "settings.advanced_heading": "# ## ಸುಧಾರಿತ",
     "settings.advanced_help": "# ಈ ಡೀಫಾಲ್ಟ್‌ಗಳು ಕೊಲಾಬ್‌ಗೆ ಸಂಪ್ರದಾಯವಾದಿಗಳಾಗಿವೆ. ಸಾಮಾನ್ಯ ಬಳಕೆದಾರರು ಸಾಮಾನ್ಯವಾಗಿ ಅವುಗಳನ್ನು ಸಂಪಾದಿಸುವ ಅಗತ್ಯವಿಲ್ಲ.",
     "settings.loaded_message": "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಿದೆ.",

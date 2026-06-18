@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Sòti",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Sove rezilta yo anba Google Drivelè yo itilize antre Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Kreye epi telechaje yon achiv ZIPnan fen.",
-    "settings.formats_help": "# @markdown - Fòma pwodiksyon yo kontwole pa boolean ki anba yo.",
+    "settings.formats_help": "# - Fòma pwodiksyon yo kontwole pa boolean ki anba yo.",
     "settings.advanced_heading": "# ## Avanse",
     "settings.advanced_help": "# Defo sa yo konsèvatif pou Colab. Itilizatè òdinè anjeneral pa bezwen edite yo.",
     "settings.loaded_message": "Anviwònman chaje.",

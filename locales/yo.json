@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Abajade",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Fi awọn abajade pamọ labẹ Google Drivenigbati o ba lo igbewọle Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Ṣẹda ati ṣe igbasilẹ ọkan ZIPamosi ni ipari.",
-    "settings.formats_help": "# @markdown - Awọn ọna kika igbejade jẹ iṣakoso nipasẹ awọn boolean ni isalẹ.",
+    "settings.formats_help": "# - Awọn ọna kika igbejade jẹ iṣakoso nipasẹ awọn boolean ni isalẹ.",
     "settings.advanced_heading": "# ## To ti ni ilọsiwaju",
     "settings.advanced_help": "# Awọn aiyipada wọnyi jẹ Konsafetifu fun Colab. Awọn olumulo deede ko nilo lati ṣatunkọ wọn.",
     "settings.loaded_message": "Eto ti kojọpọ.",

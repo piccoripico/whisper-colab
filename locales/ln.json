@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Ezali ndenge nini? Bobimisi",
     "settings.output_help": "# @markdown - Ezali ndenge nini? `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Bomba ba sorties na se ya Google Drivetango entrée ya Drive esalemi.",
     "settings.auto_download_help": "# @markdown - Ezali ndenge nini? `AUTO_DOWNLOAD_ZIP`: Bosala pe bo télécharger archive moko ZIPna suka.",
-    "settings.formats_help": "# @markdown - Ezali ndenge nini? Ba formats ya sortie ezali contrôlé na ba booleans oyo ezali awa na se.",
+    "settings.formats_help": "# - Ezali ndenge nini? Ba formats ya sortie ezali contrôlé na ba booleans oyo ezali awa na se.",
     "settings.advanced_heading": "# ## Ezali ndenge nini? Avancé",
     "settings.advanced_help": "# Ezali ndenge nini? Ba défauts oyo eza conservateur pona Colab. Mbala mingi, basaleli mpamba bazalaka na mposa te ya kobongisa yango.",
     "settings.loaded_message": "Ezali ndenge nini? Ba paramètres ezo charger.",

@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## उत्पादनम्",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: यदा Drive input इत्यस्य उपयोगः भवति तदा Google Driveइत्यस्य अधः आउटपुट् रक्षन्तु ।",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: अन्ते एकं ZIPसंग्रहणं निर्माय डाउनलोड् कुर्वन्तु।",
-    "settings.formats_help": "# @markdown - आउटपुट् प्रारूपाः अधोलिखितैः बूलियनैः नियन्त्रिताः भवन्ति ।",
+    "settings.formats_help": "# - आउटपुट् प्रारूपाः अधोलिखितैः बूलियनैः नियन्त्रिताः भवन्ति ।",
     "settings.advanced_heading": "# ## उन्नत",
     "settings.advanced_help": "# एते पूर्वनिर्धारिताः कोलाबस्य कृते रूढिवादीः सन्ति । साधारणप्रयोक्तृणां प्रायः तान् सम्पादयितुं आवश्यकता नास्ति ।",
     "settings.loaded_message": "सेटिंग्स् लोड् कृताः।",

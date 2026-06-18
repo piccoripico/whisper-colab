@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## 출력",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: 드라이브 입력을 사용할 경우 출력을 Google Drive에 저장합니다.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: 마지막에 하나의 ZIP아카이브를 생성하고 다운로드합니다.",
-    "settings.formats_help": "# @markdown - 출력 형식은 아래 부울로 제어됩니다.",
+    "settings.formats_help": "# - 출력 형식은 아래 부울로 제어됩니다.",
     "settings.advanced_heading": "# ## 고급",
     "settings.advanced_help": "# Colab에서는 이러한 기본값이 보수적입니다. 일반 사용자는 일반적으로 편집할 필요가 없습니다.",
     "settings.loaded_message": "설정이 로드되었습니다.",

@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Гаралт",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Драйвын оролтыг ашиглах үед гаралтыг Google Driveдоор хадгална.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Төгсгөлд нь нэг ZIPархив үүсгэж татаж аваарай.",
-    "settings.formats_help": "# @markdown - Гаралтын форматыг доорх логикоор удирддаг.",
+    "settings.formats_help": "# - Гаралтын форматыг доорх логикоор удирддаг.",
     "settings.advanced_heading": "# ## Дэвшилтэт",
     "settings.advanced_help": "# Эдгээр өгөгдмөл нь Колабын хувьд консерватив байна. Энгийн хэрэглэгчид ихэвчлэн засварлах шаардлагагүй байдаг.",
     "settings.loaded_message": "Тохиргоог ачааллаа.",

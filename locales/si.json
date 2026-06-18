@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## ප්රතිදානය",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Drive ආදානය භාවිතා කරන විට Google Driveයටතේ ප්‍රතිදාන සුරකින්න.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: අවසානයේ ZIPසංරක්ෂිතයක් සාදා බාගන්න.",
-    "settings.formats_help": "# @markdown - ප්‍රතිදාන ආකෘති පහත බූලියන් මගින් පාලනය වේ.",
+    "settings.formats_help": "# - ප්‍රතිදාන ආකෘති පහත බූලියන් මගින් පාලනය වේ.",
     "settings.advanced_heading": "# ## උසස්",
     "settings.advanced_help": "# මෙම පෙරනිමි Colab සඳහා ගතානුගතික වේ. සාමාන්‍ය පරිශීලකයින්ට සාමාන්‍යයෙන් ඒවා සංස්කරණය කිරීමට අවශ්‍ය නොවේ.",
     "settings.loaded_message": "සැකසීම් පූරණය කරන ලදී.",

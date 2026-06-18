@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Output",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Servare outputs sub Google Drivecum Drive initus adhibetur.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: crea et fac unum archivum in fine ZIP.",
-    "settings.formats_help": "# @markdown - Formae output infra reguntur a booleans.",
+    "settings.formats_help": "# - Formae output infra reguntur a booleans.",
     "settings.advanced_heading": "# ## Provecta",
     "settings.advanced_help": "# Hae defaltae conservativae sunt pro Colab. Ordinarii utentes plerumque eos recensere non oportet.",
     "settings.loaded_message": "Occasus oneratus.",

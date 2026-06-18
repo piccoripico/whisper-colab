@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## đầu ra",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Lưu đầu ra trong Google Drivekhi sử dụng đầu vào Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Tạo và tải xuống một kho lưu trữ ZIPở cuối.",
-    "settings.formats_help": "# @markdown - Các định dạng đầu ra được kiểm soát bởi các boolean bên dưới.",
+    "settings.formats_help": "# - Các định dạng đầu ra được kiểm soát bởi các boolean bên dưới.",
     "settings.advanced_heading": "# ## Nâng cao",
     "settings.advanced_help": "# Những giá trị mặc định này mang tính thận trọng đối với Colab. Người dùng thông thường thường không cần chỉnh sửa chúng.",
     "settings.loaded_message": "Đã tải cài đặt.",

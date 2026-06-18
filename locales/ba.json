@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Сығыш",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Һаҡлау сығыштары аҫтында Google Driveҡасан Диск индереү ҡулланыла.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Аҙағында бер ZIPархивын булдырыу һәм скачать итеү.",
-    "settings.formats_help": "# @markdown - Сығыш форматтары түбәндәге бул һандары менән идара ителә.",
+    "settings.formats_help": "# - Сығыш форматтары түбәндәге бул һандары менән идара ителә.",
     "settings.advanced_heading": "# ## Алдынғы",
     "settings.advanced_help": "# Был ғәҙәттәгесә Colab өсөн консерватив. Ғәҙәттә, ябай ҡулланыусыларға уларҙы мөхәррирләргә кәрәкмәй.",
     "settings.loaded_message": "Настройки загружены.",

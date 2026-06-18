@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Вихід",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Зберігайте виходи під Google Drive, коли використовується вхід Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Створіть і завантажте один ZIPархів наприкінці.",
-    "settings.formats_help": "# @markdown - Формати виводу контролюються логічними значеннями нижче.",
+    "settings.formats_help": "# - Формати виводу контролюються логічними значеннями нижче.",
     "settings.advanced_heading": "# ## Просунутий",
     "settings.advanced_help": "# Ці параметри за умовчанням є консервативними для Colab. Звичайним користувачам зазвичай не потрібно їх редагувати.",
     "settings.loaded_message": "Налаштування завантажено.",

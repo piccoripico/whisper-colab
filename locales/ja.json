@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## 出力",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ドライブ入力を使用する場合、出力を Google Driveに保存します。",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: 最後に ZIPアーカイブを 1 つ作成してダウンロードします。",
-    "settings.formats_help": "# @markdown - 出力形式は以下のブール値によって制御されます。",
+    "settings.formats_help": "# - 出力形式は以下のブール値によって制御されます。",
     "settings.advanced_heading": "# ## 上級者向け",
     "settings.advanced_help": "# これらのデフォルトは Colab にとって保守的なものです。通常、一般ユーザーは編集する必要はありません。",
     "settings.loaded_message": "設定が読み込まれました。",

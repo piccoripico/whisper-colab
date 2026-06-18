@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Ieșire",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Salvați ieșirile sub Google Drivecând este utilizată intrarea Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Creați și descărcați o arhivă ZIPla sfârșit.",
-    "settings.formats_help": "# @markdown - Formatele de ieșire sunt controlate de valorile booleene de mai jos.",
+    "settings.formats_help": "# - Formatele de ieșire sunt controlate de valorile booleene de mai jos.",
     "settings.advanced_heading": "# ## Avansat",
     "settings.advanced_help": "# Aceste valori implicite sunt conservatoare pentru Colab. De obicei, utilizatorii obișnuiți nu trebuie să le editeze.",
     "settings.loaded_message": "Setările au fost încărcate.",

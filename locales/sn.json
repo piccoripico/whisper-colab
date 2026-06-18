@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Output",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Chengetedza zvinobuda pasi pe Google Drivekana Drive maikirwo ashandiswa.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Gadzira uye dhawunirodha imwe ZIParchive pakupedzisira.",
-    "settings.formats_help": "# @markdown - Mafomati ezvinobuda anodzorwa nemabooleans pazasi.",
+    "settings.formats_help": "# - Mafomati ezvinobuda anodzorwa nemabooleans pazasi.",
     "settings.advanced_heading": "# ## Advanced",
     "settings.advanced_help": "# Izvi zvisizvo ndezvekuchengetedza Colab. Vashandisiwo zvavo kazhinji havadi kuagadzirisa.",
     "settings.loaded_message": "Settings loaded.",

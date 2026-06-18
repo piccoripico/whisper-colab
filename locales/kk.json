@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Шығару",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Drive кірісі пайдаланылған кезде шығыстарды Google Driveастында сақтаңыз.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Соңында бір ZIPмұрағатын жасаңыз және жүктеңіз.",
-    "settings.formats_help": "# @markdown - Шығару пішімдері төмендегі логикалық мәндермен басқарылады.",
+    "settings.formats_help": "# - Шығару пішімдері төмендегі логикалық мәндермен басқарылады.",
     "settings.advanced_heading": "# ## Жетілдірілген",
     "settings.advanced_help": "# Бұл әдепкі мәндер Colab үшін консервативті болып табылады. Әдетте қарапайым пайдаланушыларға оларды өңдеу қажет емес.",
     "settings.loaded_message": "Параметрлер жүктелді.",

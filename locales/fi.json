@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Lähtö",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Tallenna lähdöt kohtaan Google Drive, kun taajuusmuuttajatuloa käytetään.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Luo ja lataa yksi ZIParkisto lopussa.",
-    "settings.formats_help": "# @markdown - Tulostusmuotoja ohjaavat alla olevat loogiset arvot.",
+    "settings.formats_help": "# - Tulostusmuotoja ohjaavat alla olevat loogiset arvot.",
     "settings.advanced_heading": "# ## Edistynyt",
     "settings.advanced_help": "# Nämä oletusasetukset ovat Colabille varovaisia. Tavallisten käyttäjien ei yleensä tarvitse muokata niitä.",
     "settings.loaded_message": "Asetukset ladattu.",

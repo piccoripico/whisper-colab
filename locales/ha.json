@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Fitowa",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Ajiye abubuwan fitarwa a ƙarƙashin Google Drivelokacin da ake amfani da shigarwar Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Ƙirƙiri kuma zazzage ɗaya ZIPtaskar a ƙarshen.",
-    "settings.formats_help": "# @markdown - Ana sarrafa tsarin fitarwa ta hanyar booleans da ke ƙasa.",
+    "settings.formats_help": "# - Ana sarrafa tsarin fitarwa ta hanyar booleans da ke ƙasa.",
     "settings.advanced_heading": "# ## Na ci gaba",
     "settings.advanced_help": "# Waɗannan ɓangarorin ra'ayin mazan jiya ne don Colab. Masu amfani na yau da kullun ba sa buƙatar gyara su.",
     "settings.loaded_message": "An yi lodin saituna.",

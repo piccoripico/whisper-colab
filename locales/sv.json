@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Utgång",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Spara utgångar under Google Drivenär frekvensomriktarens ingång används.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Skapa och ladda ner ett ZIParkiv i slutet.",
-    "settings.formats_help": "# @markdown - Utdataformat styrs av booleanerna nedan.",
+    "settings.formats_help": "# - Utdataformat styrs av booleanerna nedan.",
     "settings.advanced_heading": "# ## Avancerat",
     "settings.advanced_help": "# Dessa standardvärden är konservativa för Colab. Vanliga användare behöver vanligtvis inte redigera dem.",
     "settings.loaded_message": "Inställningar laddade.",

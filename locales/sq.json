@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Prodhimi",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Ruani daljet nën Google Drivekur përdoret hyrja e \"Diskut\".",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Krijoni dhe shkarkoni një arkiv ZIPnë fund.",
-    "settings.formats_help": "# @markdown - Formatet e daljes kontrollohen nga booleans më poshtë.",
+    "settings.formats_help": "# - Formatet e daljes kontrollohen nga booleans më poshtë.",
     "settings.advanced_heading": "# ## E avancuar",
     "settings.advanced_help": "# Këto parazgjedhje janë konservatore për Colab. Përdoruesit e zakonshëm zakonisht nuk kanë nevojë t'i modifikojnë ato.",
     "settings.loaded_message": "Cilësimet u ngarkuan.",

@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## רעזולטאַט",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: היט אַוטפּוץ אונטער Google Driveווען דרייוו אַרייַנשרייַב איז געניצט.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: שאַפֿן און אראפקאפיע איין ZIPאַרקייוו אין די סוף.",
-    "settings.formats_help": "# @markdown - רעזולטאַט פֿאָרמאַטירונגען זענען קאַנטראָולד דורך די בולאַנז אונטן.",
+    "settings.formats_help": "# - רעזולטאַט פֿאָרמאַטירונגען זענען קאַנטראָולד דורך די בולאַנז אונטן.",
     "settings.advanced_heading": "# ## אַוואַנסירטע",
     "settings.advanced_help": "# די דיפאָלץ זענען קאָנסערוואַטיווע פֿאַר קאָלאַב. פּראָסט ניצערס יוזשאַוואַלי טאָן ניט דאַרפֿן צו רעדאַגירן זיי.",
     "settings.loaded_message": "סעטטינגס לאָודיד.",

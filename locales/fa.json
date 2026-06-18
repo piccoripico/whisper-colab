@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## خروجی",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: هنگام استفاده از ورودی Drive، خروجی‌ها را در زیر Google Driveذخیره کنید.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: در پایان یک آرشیو ZIPایجاد و دانلود کنید.",
-    "settings.formats_help": "# @markdown - فرمت های خروجی توسط بولین های زیر کنترل می شوند.",
+    "settings.formats_help": "# - فرمت های خروجی توسط بولین های زیر کنترل می شوند.",
     "settings.advanced_heading": "# ## پیشرفته",
     "settings.advanced_help": "# این پیش فرض ها برای Colab محافظه کارانه هستند. کاربران عادی معمولا نیازی به ویرایش آنها ندارند.",
     "settings.loaded_message": "تنظیمات بارگیری شد.",

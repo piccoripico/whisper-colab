@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Output",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Simpen output ing Google Drivenalika input Drive digunakake.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Gawe lan download siji ZIParsip ing mburi.",
-    "settings.formats_help": "# @markdown - Format output dikontrol dening boolean ing ngisor iki.",
+    "settings.formats_help": "# - Format output dikontrol dening boolean ing ngisor iki.",
     "settings.advanced_heading": "# ## Majeng",
     "settings.advanced_help": "# Default iki konservatif kanggo Colab. Pangguna biasa biasane ora perlu nyunting.",
     "settings.loaded_message": "Setelan dimuat.",

@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Чыгыш",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Драйвер кертү кулланылганда, нәтиҗәләрне Google Driveастында саклагыз.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Ахырда ZIPархивын ясап йөкләгез.",
-    "settings.formats_help": "# @markdown - Чыгыш форматлары түбәндәге булеаннар белән идарә ителә.",
+    "settings.formats_help": "# - Чыгыш форматлары түбәндәге булеаннар белән идарә ителә.",
     "settings.advanced_heading": "# ## Алга киткән",
     "settings.advanced_help": "# Бу дефолтлар Colab өчен консерватив. Гади кулланучыларга гадәттә аларны редакцияләү кирәк түгел.",
     "settings.loaded_message": "Көйләүләр йөкләнгән.",

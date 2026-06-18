@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Արդյունք",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`. ելքերը պահեք Google Driveտակ, երբ օգտագործվում է Drive մուտքագրումը:",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Վերջում ստեղծեք և ներբեռնեք մեկ ZIPարխիվ:",
-    "settings.formats_help": "# @markdown - Ելքային ձևաչափերը վերահսկվում են ստորև բերված բուլյաններով:",
+    "settings.formats_help": "# - Ելքային ձևաչափերը վերահսկվում են ստորև բերված բուլյաններով:",
     "settings.advanced_heading": "# ## Ընդլայնված",
     "settings.advanced_help": "# Այս լռելյայնները պահպանողական են Colab-ի համար: Սովորական օգտատերերը սովորաբար դրանք խմբագրելու կարիք չունեն։",
     "settings.loaded_message": "Կարգավորումները բեռնված են:",

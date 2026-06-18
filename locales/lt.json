@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Išvestis",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Išsaugokite išvestis Google Drive, kai naudojama disko įvestis.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Pabaigoje sukurkite ir atsisiųskite vieną ZIParchyvą.",
-    "settings.formats_help": "# @markdown - Išvesties formatus valdo toliau pateikiamos loginės reikšmės.",
+    "settings.formats_help": "# - Išvesties formatus valdo toliau pateikiamos loginės reikšmės.",
     "settings.advanced_heading": "# ## Išplėstinė",
     "settings.advanced_help": "# Šie numatytieji „Colab“ nustatymai yra konservatyvūs. Paprastiems vartotojams jų redaguoti paprastai nereikia.",
     "settings.loaded_message": "Nustatymai įkelti.",

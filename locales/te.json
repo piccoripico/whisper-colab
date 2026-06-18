@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## అవుట్‌పుట్",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: డ్రైవ్ ఇన్‌పుట్ ఉపయోగించినప్పుడు Google Driveకింద అవుట్‌పుట్‌లను సేవ్ చేయండి.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: చివరిలో ZIPఆర్కైవ్‌ను సృష్టించండి మరియు డౌన్‌లోడ్ చేయండి.",
-    "settings.formats_help": "# @markdown - అవుట్‌పుట్ ఫార్మాట్‌లు దిగువన ఉన్న బూలియన్‌లచే నియంత్రించబడతాయి.",
+    "settings.formats_help": "# - అవుట్‌పుట్ ఫార్మాట్‌లు దిగువన ఉన్న బూలియన్‌లచే నియంత్రించబడతాయి.",
     "settings.advanced_heading": "# ## అధునాతనమైనది",
     "settings.advanced_help": "# ఈ డిఫాల్ట్‌లు Colab కోసం సాంప్రదాయికమైనవి. సాధారణ వినియోగదారులు సాధారణంగా వాటిని సవరించాల్సిన అవసరం లేదు.",
     "settings.loaded_message": "సెట్టింగ్‌లు లోడ్ అయ్యాయి.",

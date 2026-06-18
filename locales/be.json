@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Выхад",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: захоўваць выхады ў Google Drive, калі выкарыстоўваецца ўвод Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Стварыце і загрузіце адзін архіў ZIPу канцы.",
-    "settings.formats_help": "# @markdown - Фарматы вываду кіруюцца лагічнымі значэннямі ніжэй.",
+    "settings.formats_help": "# - Фарматы вываду кіруюцца лагічнымі значэннямі ніжэй.",
     "settings.advanced_heading": "# ## Пашыраны",
     "settings.advanced_help": "# Гэтыя значэнні па змаўчанні з'яўляюцца кансерватыўнымі для Colab. Звычайным карыстальнікам звычайна не трэба іх рэдагаваць.",
     "settings.loaded_message": "Налады загружаны.",

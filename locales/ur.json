@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## آؤٹ پٹ",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ڈرائیو ان پٹ استعمال ہونے پر آؤٹ پٹ کو Google Driveکے تحت محفوظ کریں۔",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: آخر میں ایک ZIPآرکائیو بنائیں اور ڈاؤن لوڈ کریں۔",
-    "settings.formats_help": "# @markdown - آؤٹ پٹ فارمیٹس کو نیچے دیے گئے بولین کے ذریعے کنٹرول کیا جاتا ہے۔",
+    "settings.formats_help": "# - آؤٹ پٹ فارمیٹس کو نیچے دیے گئے بولین کے ذریعے کنٹرول کیا جاتا ہے۔",
     "settings.advanced_heading": "# ## اعلی درجے کی",
     "settings.advanced_help": "# یہ ڈیفالٹس Colab کے لیے قدامت پسند ہیں۔ عام صارفین کو عموماً ان میں ترمیم کرنے کی ضرورت نہیں ہوتی۔",
     "settings.loaded_message": "ترتیبات لوڈ ہو گئیں۔",

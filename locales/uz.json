@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Chiqish",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Disk kiritishidan foydalanilganda chiqishlarni Google Driveostida saqlang.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Oxirida bitta ZIParxiv yarating va yuklab oling.",
-    "settings.formats_help": "# @markdown - Chiqarish formatlari quyida joylashgan booleanlar tomonidan boshqariladi.",
+    "settings.formats_help": "# - Chiqarish formatlari quyida joylashgan booleanlar tomonidan boshqariladi.",
     "settings.advanced_heading": "# ## Murakkab",
     "settings.advanced_help": "# Bu standart sozlamalar Colab uchun konservativ hisoblanadi. Oddiy foydalanuvchilar odatda ularni tahrirlashlari shart emas.",
     "settings.loaded_message": "Sozlamalar yuklandi.",

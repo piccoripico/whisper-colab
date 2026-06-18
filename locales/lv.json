@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Izvade",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ja tiek izmantota diskdziņa ievade, saglabājiet izejas zem Google Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Beigās izveidojiet un lejupielādējiet vienu ZIParhīvu.",
-    "settings.formats_help": "# @markdown - Izvades formātus kontrolē tālāk norādītie Būla vērtības.",
+    "settings.formats_help": "# - Izvades formātus kontrolē tālāk norādītie Būla vērtības.",
     "settings.advanced_heading": "# ## Papildu",
     "settings.advanced_help": "# Šie noklusējuma iestatījumi Colab ir konservatīvi. Parastiem lietotājiem tie parasti nav jārediģē.",
     "settings.loaded_message": "Iestatījumi ir ielādēti.",

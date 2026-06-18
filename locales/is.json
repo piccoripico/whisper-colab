@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Framleiðsla",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Vistaðu úttak undir Google Driveþegar drifinntak er notað.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Búðu til og halaðu niður einu ZIPskjalasafn í lokin.",
-    "settings.formats_help": "# @markdown - Úttakssnið er stjórnað af booleanunum hér að neðan.",
+    "settings.formats_help": "# - Úttakssnið er stjórnað af booleanunum hér að neðan.",
     "settings.advanced_heading": "# ## Ítarlegri",
     "settings.advanced_help": "# Þessi vanskil eru íhaldssöm fyrir Colab. Venjulegir notendur þurfa yfirleitt ekki að breyta þeim.",
     "settings.loaded_message": "Stillingar hlaðnar.",

@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Kaluaran",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Simpen kaluaran dina Google Drivenalika input Drive dipaké.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Jieun tur ngundeur hiji ZIParsip dina tungtungna.",
-    "settings.formats_help": "# @markdown - Format kaluaran dikawasa ku boolean di handap.",
+    "settings.formats_help": "# - Format kaluaran dikawasa ku boolean di handap.",
     "settings.advanced_heading": "# ## Maju",
     "settings.advanced_help": "# Standar ieu konservatif pikeun Colab. Pamaké biasa biasana henteu kedah ngédit éta.",
     "settings.loaded_message": "Setélan dimuat.",

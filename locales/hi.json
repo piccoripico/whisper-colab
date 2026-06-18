@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## आउटपुट",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: जब ड्राइव इनपुट का उपयोग किया जाता है तो आउटपुट को Google Driveके अंतर्गत सहेजें।",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: अंत में एक ZIPसंग्रह बनाएं और डाउनलोड करें।",
-    "settings.formats_help": "# @markdown - आउटपुट स्वरूप नीचे दिए गए बूलियन द्वारा नियंत्रित होते हैं।",
+    "settings.formats_help": "# - आउटपुट स्वरूप नीचे दिए गए बूलियन द्वारा नियंत्रित होते हैं।",
     "settings.advanced_heading": "# ## उन्नत",
     "settings.advanced_help": "# ये चूक Colab के लिए रूढ़िवादी हैं। आम उपयोगकर्ताओं को आमतौर पर इन्हें संपादित करने की आवश्यकता नहीं होती है।",
     "settings.loaded_message": "सेटिंग्स लोड हो गईं.",

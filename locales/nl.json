@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Uitvoer",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Sla uitgangen op onder Google Drivewanneer omvormeringang wordt gebruikt.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Aan het eind een ZIP-archief maken en downloaden.",
-    "settings.formats_help": "# @markdown - Uitvoerformaten worden bepaald door de onderstaande booleans.",
+    "settings.formats_help": "# - Uitvoerformaten worden bepaald door de onderstaande booleans.",
     "settings.advanced_heading": "# ## Geavanceerd",
     "settings.advanced_help": "# Deze standaardwaarden zijn conservatief voor Colab. Gewone gebruikers hoeven ze meestal niet te bewerken.",
     "settings.loaded_message": "Instellingen geladen.",

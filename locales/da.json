@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Output",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Gem udgange under Google Drive, når drevindgangen bruges.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Opret og download et ZIParkiv til sidst.",
-    "settings.formats_help": "# @markdown - Outputformater styres af booleanerne nedenfor.",
+    "settings.formats_help": "# - Outputformater styres af booleanerne nedenfor.",
     "settings.advanced_heading": "# ## Avanceret",
     "settings.advanced_help": "# Disse standardindstillinger er konservative for Colab. Almindelige brugere behøver normalt ikke at redigere dem.",
     "settings.loaded_message": "Indstillinger er indlæst.",

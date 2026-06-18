@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Натиҷа",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Ҳангоми истифода бурдани вуруди Drive, натиҷаҳоро дар зери Google Driveзахира кунед.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Дар охир як бойгонии ZIPэҷод ва зеркашӣ кунед.",
-    "settings.formats_help": "# @markdown - Форматҳои баромад аз ҷониби логикӣ дар зер идора карда мешаванд.",
+    "settings.formats_help": "# - Форматҳои баромад аз ҷониби логикӣ дар зер идора карда мешаванд.",
     "settings.advanced_heading": "# ## Мукаммал",
     "settings.advanced_help": "# Ин пешфарзҳо барои Colab консервативӣ мебошанд. Истифодабарандагони оддӣ одатан таҳрир кардани онҳоро надоранд.",
     "settings.loaded_message": "Танзимотҳо бор карда шуданд.",

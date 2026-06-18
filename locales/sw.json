@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Pato",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Hifadhi matokeo chini ya Google Drivewakati ingizo la Hifadhi linatumiwa.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Unda na pakua kumbukumbu moja ya ZIPmwishoni.",
-    "settings.formats_help": "# @markdown - Miundo ya pato inadhibitiwa na booleans hapa chini.",
+    "settings.formats_help": "# - Miundo ya pato inadhibitiwa na booleans hapa chini.",
     "settings.advanced_heading": "# ## Advanced",
     "settings.advanced_help": "# Chaguomsingi hizi ni za kihafidhina kwa Colab. Watumiaji wa kawaida kwa kawaida hawahitaji kuzihariri.",
     "settings.loaded_message": "Mipangilio imepakiwa.",

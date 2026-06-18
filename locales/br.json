@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Disoc'h",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Enrollañ an disoc'hoù dindan Google Drivea vez arveret mont e-barzh ar c'heflusker.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Krouiñ ha pellgargañ un diell ZIPa-benn ar fin.",
-    "settings.formats_help": "# @markdown - Reoliet e vez ar furmadoù ezporzhiañ gant ar booleanoù amañ dindan.",
+    "settings.formats_help": "# - Reoliet e vez ar furmadoù ezporzhiañ gant ar booleanoù amañ dindan.",
     "settings.advanced_heading": "# ## Araokaet",
     "settings.advanced_help": "# Mirour eo an arventennoù dre ziouer-mañ evit Colab. An implijerien ordinal n'o deus ket ezhomm da gemmañ anezho peurliesañ.",
     "settings.loaded_message": "Karget eo bet an arventennoù.",

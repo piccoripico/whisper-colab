@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## เอาท์พุต",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: บันทึกเอาต์พุตภายใต้ Google Driveเมื่อใช้อินพุตไดรฟ์",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: สร้างและดาวน์โหลด ZIPหนึ่งไฟล์ในตอนท้าย",
-    "settings.formats_help": "# @markdown - รูปแบบเอาต์พุตจะถูกควบคุมโดยบูลีนด้านล่าง",
+    "settings.formats_help": "# - รูปแบบเอาต์พุตจะถูกควบคุมโดยบูลีนด้านล่าง",
     "settings.advanced_heading": "# ## ขั้นสูง",
     "settings.advanced_help": "# ค่าเริ่มต้นเหล่านี้เป็นค่าพื้นฐานสำหรับ Colab ผู้ใช้ทั่วไปมักไม่จำเป็นต้องแก้ไข",
     "settings.loaded_message": "โหลดการตั้งค่าแล้ว",

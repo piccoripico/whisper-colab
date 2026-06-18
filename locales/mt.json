@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Output",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Issejvja l-outputs taħt Google Drivemeta jintuża l-input Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Oħloq u niżżel arkivju wieħed ZIPfl-aħħar.",
-    "settings.formats_help": "# @markdown - Il-formati tal-output huma kkontrollati mill-booleans hawn taħt.",
+    "settings.formats_help": "# - Il-formati tal-output huma kkontrollati mill-booleans hawn taħt.",
     "settings.advanced_heading": "# ## Avvanzat",
     "settings.advanced_help": "# Dawn in-nuqqasijiet huma konservattivi għal Colab. L-utenti ordinarji normalment m'għandhomx għalfejn jeditjawhom.",
     "settings.loaded_message": "Settings mgħobbija.",

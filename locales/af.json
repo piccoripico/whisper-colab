@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Uitset",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Stoor uitsette onder Google Drivewanneer Drive-invoer gebruik word.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Skep en laai een ZIP-argief aan die einde af.",
-    "settings.formats_help": "# @markdown - Uitsetformate word beheer deur die booleans hieronder.",
+    "settings.formats_help": "# - Uitsetformate word beheer deur die booleans hieronder.",
     "settings.advanced_heading": "# ## Gevorderd",
     "settings.advanced_help": "# Hierdie standaarde is konserwatief vir Colab. Gewone gebruikers hoef dit gewoonlik nie te wysig nie.",
     "settings.loaded_message": "Instellings gelaai.",

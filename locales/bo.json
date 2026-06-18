@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## ཐོན་འབྲས།",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: བཀོལ་སྤྱོད་ནང་འཇུག་བེད་སྤྱོད་བྱེད་སྐབས་Google Driveའོག་ལ་ཐོན་འབྲས་ཉར་ཚགས་བྱེད།",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: མཇུག་ཏུ་ZIPཡིག་མཛོད་གཅིག་བཟོས་ནས་ཕབ་ལེན་བྱེད་དགོས།",
-    "settings.formats_help": "# @markdown - ཐོན་འབྲས་རྩ་སྒྲིག་འདི་གཤམ་གྱི་བུ་ལིན་གྱིས་ཚོད་འཛིན་བྱེད།",
+    "settings.formats_help": "# - ཐོན་འབྲས་རྩ་སྒྲིག་འདི་གཤམ་གྱི་བུ་ལིན་གྱིས་ཚོད་འཛིན་བྱེད།",
     "settings.advanced_heading": "# ## སྔོན་ཐོན་ཅན།",
     "settings.advanced_help": "# སྔོན་སྒྲིག་འདི་དག་ཀོ་ལབ་ཀྱི་ཆེད་དུ་སྲུང་སྐྱོབ་ཡིན། དཀྱུས་མའི་སྤྱོད་མཁན་གྱིས་རྒྱུན་དུ་རྩོམ་སྒྲིག་བྱེད་མི་དགོས།",
     "settings.loaded_message": "སྒྲིག་སྟངས་མངོན་ཟིན།",

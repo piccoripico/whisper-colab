@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Irteera",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Gorde irteerak Google Driveazpian Drive sarrera erabiltzen denean.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Sortu eta deskargatu ZIPartxibo bat amaieran.",
-    "settings.formats_help": "# @markdown - Irteerako formatuak beheko boolearrek kontrolatzen dituzte.",
+    "settings.formats_help": "# - Irteerako formatuak beheko boolearrek kontrolatzen dituzte.",
     "settings.advanced_heading": "# ## Aurreratua",
     "settings.advanced_help": "# Lehenetsi hauek kontserbadoreak dira Colabentzat. Erabiltzaile arruntek normalean ez dituzte editatu behar.",
     "settings.loaded_message": "Ezarpenak kargatu dira.",

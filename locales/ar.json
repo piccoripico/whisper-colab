@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## الإخراج",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: احفظ المخرجات ضمن Google Driveعند استخدام إدخال Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: قم بإنشاء وتنزيل أرشيف واحد ZIPفي النهاية.",
-    "settings.formats_help": "# @markdown - يتم التحكم في تنسيقات الإخراج بواسطة القيم المنطقية أدناه.",
+    "settings.formats_help": "# - يتم التحكم في تنسيقات الإخراج بواسطة القيم المنطقية أدناه.",
     "settings.advanced_heading": "# ## متقدم",
     "settings.advanced_help": "# هذه الإعدادات الافتراضية متحفظة بالنسبة لـ Colab. لا يحتاج المستخدمون العاديون عادةً إلى تعديلها.",
     "settings.loaded_message": "تم تحميل الإعدادات.",

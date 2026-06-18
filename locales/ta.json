@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## வெளியீடு",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: டிரைவ் உள்ளீடு பயன்படுத்தப்படும் போது Google Driveஇன் கீழ் வெளியீடுகளைச் சேமிக்கவும்.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: கடைசியில் ZIPகாப்பகத்தை உருவாக்கி பதிவிறக்கவும்.",
-    "settings.formats_help": "# @markdown - வெளியீட்டு வடிவங்கள் கீழே உள்ள பூலியன்களால் கட்டுப்படுத்தப்படுகின்றன.",
+    "settings.formats_help": "# - வெளியீட்டு வடிவங்கள் கீழே உள்ள பூலியன்களால் கட்டுப்படுத்தப்படுகின்றன.",
     "settings.advanced_heading": "# ## மேம்பட்டது",
     "settings.advanced_help": "# இந்த இயல்புநிலைகள் Colabக்கு கன்சர்வேடிவ். சாதாரண பயனர்கள் பொதுவாக அவற்றைத் திருத்த வேண்டியதில்லை.",
     "settings.loaded_message": "அமைப்புகள் ஏற்றப்பட்டன.",

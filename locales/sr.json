@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Излаз",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Save outputs under Google Drive when Drive input is used.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Create and download one ZIP archive at the end.",
-    "settings.formats_help": "# @markdown - Излазне формате контролишу логичке вредности испод.",
+    "settings.formats_help": "# - Излазне формате контролишу логичке вредности испод.",
     "settings.advanced_heading": "# ## Напредно",
     "settings.advanced_help": "# Ове подразумеване вредности су конзервативне за Цолаб. Обични корисници обично не морају да их уређују.",
     "settings.loaded_message": "Подешавања су учитана.",

@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Wax soo saarka",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Ku keydi wax soo saarka hoosta Google Drivemarka galinta Drive la isticmaalo.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Abuur oo soo deji hal ZIPkaydka dhammaadka.",
-    "settings.formats_help": "# @markdown - Qaababka wax soo saarka waxaa gacanta ku haya booleans-ka hoose.",
+    "settings.formats_help": "# - Qaababka wax soo saarka waxaa gacanta ku haya booleans-ka hoose.",
     "settings.advanced_heading": "# ## Sareeye",
     "settings.advanced_help": "# Qodobadani waa kuwo muxaafid u ah Colab. Isticmaalayaasha caadiga ah badanaa uma baahna inay wax ka beddelaan.",
     "settings.loaded_message": "Dejinta waa raray",

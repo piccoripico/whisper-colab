@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## ຜົນຜະລິດ",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ບັນທຶກຜົນໄດ້ຮັບພາຍໃຕ້ Google Driveເມື່ອການປ້ອນຂໍ້ມູນ Drive ຖືກໃຊ້.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: ສ້າງແລະດາວໂຫລດຫນຶ່ງ ZIPເກັບໄວ້ໃນທ້າຍ.",
-    "settings.formats_help": "# @markdown - ຮູບແບບຜົນຜະລິດຖືກຄວບຄຸມໂດຍ boolean ຂ້າງລຸ່ມນີ້.",
+    "settings.formats_help": "# - ຮູບແບບຜົນຜະລິດຖືກຄວບຄຸມໂດຍ boolean ຂ້າງລຸ່ມນີ້.",
     "settings.advanced_heading": "# ## ຂັ້ນສູງ",
     "settings.advanced_help": "# ຄ່າເລີ່ມຕົ້ນເຫຼົ່ານີ້ແມ່ນແບບອະນຸລັກສໍາລັບ Colab. ຜູ້ໃຊ້ທົ່ວໄປມັກຈະບໍ່ຈໍາເປັນຕ້ອງແກ້ໄຂພວກມັນ.",
     "settings.loaded_message": "ໂຫຼດການຕັ້ງຄ່າແລ້ວ.",

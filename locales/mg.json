@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Output",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Tehirizo ny vokatra eo ambanin'ny Google Driverehefa ampiasaina ny fampidirana Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Mamorona ary misintona iray ZIParisiva any amin'ny farany.",
-    "settings.formats_help": "# @markdown - Ny endrika famoahana dia fehezin'ny booleans etsy ambany.",
+    "settings.formats_help": "# - Ny endrika famoahana dia fehezin'ny booleans etsy ambany.",
     "settings.advanced_heading": "# ## Advanced",
     "settings.advanced_help": "# Ireo default ireo dia mpandala ny nentin-drazana ho an'ny Colab. Matetika ny mpampiasa tsotra dia tsy mila manova azy ireo.",
     "settings.loaded_message": "Nopetahana ny fika.",

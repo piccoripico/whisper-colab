@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Utgang",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Lagre utganger under Google Drivenår stasjonsinngang brukes.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Opprett og last ned ett ZIP-arkiv på slutten.",
-    "settings.formats_help": "# @markdown - Utdataformater styres av boolene nedenfor.",
+    "settings.formats_help": "# - Utdataformater styres av boolene nedenfor.",
     "settings.advanced_heading": "# ## Avansert",
     "settings.advanced_help": "# Disse standardinnstillingene er konservative for Colab. Vanlige brukere trenger vanligvis ikke å redigere dem.",
     "settings.loaded_message": "Innstillinger lastet.",

@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Salida",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: guarde las salidas en Google Drivecuando se utilice la entrada del variador.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: cree y descargue un archivo ZIPal final.",
-    "settings.formats_help": "# @markdown - Los formatos de salida están controlados por los siguientes valores booleanos.",
+    "settings.formats_help": "# - Los formatos de salida están controlados por los siguientes valores booleanos.",
     "settings.advanced_heading": "# ## Avanzado",
     "settings.advanced_help": "# Estos valores predeterminados son conservadores para Colab. Los usuarios normales normalmente no necesitan editarlos.",
     "settings.loaded_message": "Configuraciones cargadas.",

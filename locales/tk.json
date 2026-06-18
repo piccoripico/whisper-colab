@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Çykyş",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Drive giriş ulanylanda netijeleri Google Driveastynda saklaň.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Soňunda bir ZIParhiwini dörediň we göçürip alyň.",
-    "settings.formats_help": "# @markdown - Çykyş formatlary aşakdaky “booleans” tarapyndan dolandyrylýar.",
+    "settings.formats_help": "# - Çykyş formatlary aşakdaky “booleans” tarapyndan dolandyrylýar.",
     "settings.advanced_heading": "# ## Ösen",
     "settings.advanced_help": "# Bu defoltlar Colab üçin konserwatiwdir. Dinönekeý ulanyjylar, adatça, olary redaktirlemegiň zerurlygy ýok.",
     "settings.loaded_message": "Sazlamalar ýüklendi.",

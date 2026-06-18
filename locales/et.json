@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Väljund",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Kui kasutatakse draivi sisendit, salvestage väljundid Google Drivealla.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Looge ja laadige alla üks ZIParhiiv.",
-    "settings.formats_help": "# @markdown - Väljundvorminguid juhivad allolevad tõeväärtused.",
+    "settings.formats_help": "# - Väljundvorminguid juhivad allolevad tõeväärtused.",
     "settings.advanced_heading": "# ## Täiustatud",
     "settings.advanced_help": "# Need vaikeseaded on Colabi jaoks konservatiivsed. Tavakasutajad ei pea neid tavaliselt redigeerima.",
     "settings.loaded_message": "Seaded on laaditud.",

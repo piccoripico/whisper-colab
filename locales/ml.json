@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## ഔട്ട്പുട്ട്",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: ഡ്രൈവ് ഇൻപുട്ട് ഉപയോഗിക്കുമ്പോൾ Google Driveഎന്നതിന് കീഴിൽ ഔട്ട്പുട്ടുകൾ സംരക്ഷിക്കുക.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: അവസാനം ഒരു ZIPആർക്കൈവ് സൃഷ്‌ടിച്ച് ഡൗൺലോഡ് ചെയ്യുക.",
-    "settings.formats_help": "# @markdown - ഔട്ട്‌പുട്ട് ഫോർമാറ്റുകൾ നിയന്ത്രിക്കുന്നത് താഴെയുള്ള ബൂലിയനുകളാണ്.",
+    "settings.formats_help": "# - ഔട്ട്‌പുട്ട് ഫോർമാറ്റുകൾ നിയന്ത്രിക്കുന്നത് താഴെയുള്ള ബൂലിയനുകളാണ്.",
     "settings.advanced_heading": "# ## വിപുലമായ",
     "settings.advanced_help": "# ഈ ഡിഫോൾട്ടുകൾ കൊളാബിന് യാഥാസ്ഥിതികമാണ്. സാധാരണ ഉപയോക്താക്കൾ സാധാരണയായി അവ എഡിറ്റ് ചെയ്യേണ്ടതില്ല.",
     "settings.loaded_message": "ക്രമീകരണങ്ങൾ ലോഡ് ചെയ്തു.",

@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Výstup",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Uložte výstupy pod Google Drive, keď sa používa vstup pohonu.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Na konci vytvorte a stiahnite jeden archív ZIP.",
-    "settings.formats_help": "# @markdown - Výstupné formáty sú riadené pomocou boolovských hodnôt uvedených nižšie.",
+    "settings.formats_help": "# - Výstupné formáty sú riadené pomocou boolovských hodnôt uvedených nižšie.",
     "settings.advanced_heading": "# ## Pokročilé",
     "settings.advanced_help": "# Tieto predvolené hodnoty sú pre Colab konzervatívne. Bežní používatelia ich zvyčajne nemusia upravovať.",
     "settings.loaded_message": "Nastavenia načítané.",

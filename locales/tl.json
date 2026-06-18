@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Output",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: I-save ang mga output sa ilalim ng Google Drivekapag ginamit ang input ng Drive.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Gumawa at mag-download ng isang ZIParchive sa dulo.",
-    "settings.formats_help": "# @markdown - Ang mga format ng output ay kinokontrol ng mga boolean sa ibaba.",
+    "settings.formats_help": "# - Ang mga format ng output ay kinokontrol ng mga boolean sa ibaba.",
     "settings.advanced_heading": "# ## Advanced",
     "settings.advanced_help": "# Ang mga default na ito ay konserbatibo para sa Colab. Karaniwang hindi kailangang i-edit ng mga ordinaryong user ang mga ito.",
     "settings.loaded_message": "Na-load ang mga setting.",

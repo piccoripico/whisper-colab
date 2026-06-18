@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## محصول",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: د Google Driveلاندې محصول خوندي کړئ کله چې د ډرایو ان پټ کارول کیږي.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: په پای کې یو ZIPآرشیف جوړ او ډاونلوډ کړئ.",
-    "settings.formats_help": "# @markdown - د محصول فارمیټونه د لاندې بولین لخوا کنټرول کیږي.",
+    "settings.formats_help": "# - د محصول فارمیټونه د لاندې بولین لخوا کنټرول کیږي.",
     "settings.advanced_heading": "# ## پرمختللی",
     "settings.advanced_help": "# دا ډیفالټونه د کولاب لپاره محافظه کار دي. عادي کاروونکي معمولا اړتیا نلري چې دوی ترمیم کړي.",
     "settings.loaded_message": "ترتیبات ډک شوي.",

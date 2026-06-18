@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Izlaz",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Sačuvajte izlaze pod Google Drivekada se koristi Drive input.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Kreirajte i preuzmite jednu ZIParhivu na kraju.",
-    "settings.formats_help": "# @markdown - Izlazne formate kontrolišu logičke vrednosti ispod.",
+    "settings.formats_help": "# - Izlazne formate kontrolišu logičke vrednosti ispod.",
     "settings.advanced_heading": "# ## Napredno",
     "settings.advanced_help": "# Ove zadane postavke su konzervativne za Colab. Obični korisnici ih obično ne moraju uređivati.",
     "settings.loaded_message": "Postavke su učitane.",

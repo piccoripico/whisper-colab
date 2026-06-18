@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Keluaran",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Simpan output di bawah Google Driveapabila input Drive digunakan.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Cipta dan muat turun satu arkib ZIPdi penghujung.",
-    "settings.formats_help": "# @markdown - Format output dikawal oleh boolean di bawah.",
+    "settings.formats_help": "# - Format output dikawal oleh boolean di bawah.",
     "settings.advanced_heading": "# ## Maju",
     "settings.advanced_help": "# Lalai ini adalah konservatif untuk Colab. Pengguna biasa biasanya tidak perlu mengeditnya.",
     "settings.loaded_message": "Tetapan dimuatkan.",

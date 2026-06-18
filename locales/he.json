@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## פלט",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: שמור פלטים תחת Google Driveכאשר נעשה שימוש בכניסת כונן.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: צור והורד ארכיון ZIPבסוף.",
-    "settings.formats_help": "# @markdown - פורמטים של פלט נשלטים על ידי הבוליאנים למטה.",
+    "settings.formats_help": "# - פורמטים של פלט נשלטים על ידי הבוליאנים למטה.",
     "settings.advanced_heading": "# ## מתקדם",
     "settings.advanced_help": "# ברירת המחדל היא שמרנית עבור Colab. משתמשים רגילים בדרך כלל לא צריכים לערוך אותם.",
     "settings.loaded_message": "ההגדרות נטענו.",

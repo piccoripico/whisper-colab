@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## გამომავალი",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: შეინახეთ შედეგები Google Driveქვეშ, როდესაც Drive-ის შეყვანა გამოიყენება.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: შექმენით და ჩამოტვირთეთ ერთი ZIPარქივი ბოლოს.",
-    "settings.formats_help": "# @markdown - გამომავალი ფორმატები კონტროლდება ქვემოთ მოცემული ლოგინებით.",
+    "settings.formats_help": "# - გამომავალი ფორმატები კონტროლდება ქვემოთ მოცემული ლოგინებით.",
     "settings.advanced_heading": "# ## გაფართოებული",
     "settings.advanced_help": "# ეს ნაგულისხმევები კონსერვატიულია Colab-ისთვის. ჩვეულებრივ მომხმარებლებს არ სჭირდებათ მათი რედაქტირება.",
     "settings.loaded_message": "პარამეტრები ჩატვირთულია.",

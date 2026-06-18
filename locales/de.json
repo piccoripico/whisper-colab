@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Ausgabe",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Ausgänge unter Google Drivespeichern, wenn der Antriebseingang verwendet wird.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Erstellen Sie am Ende ein ZIPArchiv und laden Sie es herunter.",
-    "settings.formats_help": "# @markdown - Ausgabeformate werden durch die folgenden booleschen Werte gesteuert.",
+    "settings.formats_help": "# - Ausgabeformate werden durch die folgenden booleschen Werte gesteuert.",
     "settings.advanced_heading": "# ## Fortgeschritten",
     "settings.advanced_help": "# Diese Standardeinstellungen sind für Colab konservativ. Normale Benutzer müssen sie normalerweise nicht bearbeiten.",
     "settings.loaded_message": "Einstellungen geladen.",

@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Útflutningur",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Goym úttøkur undir Google Drivetá Drive-inntak verður brúkt.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Stovna og heinta eitt ZIParkiv at enda.",
-    "settings.formats_help": "# @markdown - Útflutningssnið eru stýrd av booleanunum niðanfyri.",
+    "settings.formats_help": "# - Útflutningssnið eru stýrd av booleanunum niðanfyri.",
     "settings.advanced_heading": "# ## Framkomin",
     "settings.advanced_help": "# Hesi forsett eru konservativ fyri Colab. Vanligir brúkarar nýtast vanliga ikki at rætta teir.",
     "settings.loaded_message": "Innstillingar heintaðar.",

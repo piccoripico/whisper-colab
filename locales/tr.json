@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Çıkış",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Sürücü girişi kullanıldığında çıkışları Google Drivealtına kaydedin.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Sonunda bir ZIParşivi oluşturun ve indirin.",
-    "settings.formats_help": "# @markdown - Çıkış formatları aşağıdaki boolean'lar tarafından kontrol edilir.",
+    "settings.formats_help": "# - Çıkış formatları aşağıdaki boolean'lar tarafından kontrol edilir.",
     "settings.advanced_heading": "# ## Gelişmiş",
     "settings.advanced_help": "# Bu varsayılanlar Colab için muhafazakardır. Sıradan kullanıcıların genellikle bunları düzenlemesine gerek yoktur.",
     "settings.loaded_message": "Ayarlar yüklendi.",

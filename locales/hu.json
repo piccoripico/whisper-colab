@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Kimenet",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Mentse a kimeneteket a Google Drivealá, ha meghajtó bemenetet használ.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Hozzon létre és töltsön le egy ZIParchívumot a végén.",
-    "settings.formats_help": "# @markdown - A kimeneti formátumokat az alábbi logikai értékek szabályozzák.",
+    "settings.formats_help": "# - A kimeneti formátumokat az alábbi logikai értékek szabályozzák.",
     "settings.advanced_heading": "# ## Haladó",
     "settings.advanced_help": "# Ezek az alapértelmezett értékek óvatosak a Colab esetében. Az átlagos felhasználóknak általában nem kell szerkeszteniük őket.",
     "settings.loaded_message": "Beállítások betöltve.",

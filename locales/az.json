@@ -31,7 +31,7 @@
     "settings.output_heading": "# @markdown ## Çıxış",
     "settings.output_help": "# @markdown - `SAVE_OUTPUTS_TO_GOOGLE_DRIVE`: Disk girişindən istifadə edildikdə çıxışları Google Drivealtında saxlayın.",
     "settings.auto_download_help": "# @markdown - `AUTO_DOWNLOAD_ZIP`: Sonda bir ZIParxiv yaradın və endirin.",
-    "settings.formats_help": "# @markdown - Çıxış formatları aşağıdakı booleanlar tərəfindən idarə olunur.",
+    "settings.formats_help": "# - Çıxış formatları aşağıdakı booleanlar tərəfindən idarə olunur.",
     "settings.advanced_heading": "# ## Qabaqcıl",
     "settings.advanced_help": "# Bu defoltlar Colab üçün mühafizəkardır. Adi istifadəçilər adətən onları redaktə etməyə ehtiyac duymurlar.",
     "settings.loaded_message": "Parametrlər yükləndi.",
